@@ -1,0 +1,27 @@
+datasource db {
+  provider = "postgresql"
+  // ◄ The 'url' line was completely removed from here!
+}
+
+generator client {
+  provider = "prisma-client-js" // Industry standard for Prisma 7
+  output   = "../src/generated/client"
+}
+
+enum Role {
+  USER
+  OWNER
+  TECHNICIAN
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
