@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 export const signupUser = async(req,res)=>{
  try{
     const {email,name,password,role} = req.body;
+    console.log("Received role:", req.body.role);
 
     if(!email || !name || !password){
            return res.status(400).json({message:'missin required account fields'})
@@ -21,12 +22,15 @@ export const signupUser = async(req,res)=>{
     const saltRounds =12;
     const hsashedPAssword = await bcrypt.hash(password,saltRounds);
 
+    const roles = req.body.role.toUpperCase();
+
+
     const newuser = await prisma.user.create({
         data:{
             email:email,
             name:name,
             password:hsashedPAssword,
-            role:role || 'USER'
+            role:roles|| 'USER'
         }
     });
 
