@@ -1,9 +1,10 @@
 import express from 'express';
-import {signupUser} from '../controllers/authController.js'
+import { signupUser, loginUser } from '../controllers/authController.js'; // Added your loginUser import
 
 const router = express.Router();
 
-router.post('/signup',signupUser);
-
+// Route mappings
+router.post('/signup', signupUser);
+router.post('/login', loginUser); // Map your new login endpoint!
 
 export default router;
