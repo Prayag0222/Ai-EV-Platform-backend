@@ -1,6 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
-import authRoutes from './routes/authRoutes.js'
+import authRoutes from './routes/authRoutes.js';
+import customerRoutes from './routes/customerRoutes.ts'
 import cors from 'cors';
 
 
@@ -26,6 +27,7 @@ app.get('/api/health',(req,res)=>(
 ))
 
 app.use('/api/auth', authRoutes)
+app.use('/api/owner',customerRoutes)
 
 app.listen(PORT,()=>{
     console.log(`Industry grade server is running on port ${PORT}`)

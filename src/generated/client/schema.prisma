@@ -25,3 +25,11 @@ model User {
 
   @@map("users")
 }
+
+model customer {
+  id           String   @id @default(uuid())
+  name         String
+  phone        String
+  vehicleModel String
+  createdAt    DateTime @default(now())
+}
