@@ -8,7 +8,7 @@ export const createCustomer = async (req: Request, res: Response) => {
 
 try{
 
-    const {name , phone , vehicleModel} = req.body
+    const {name , phone , vehicleModel, email , address} = req.body
 
     if(!name || !phone || !vehicleModel){
         return res.status(400).json({message:"Missing required fields: name, phone, vehicleModel"})
@@ -17,6 +17,10 @@ try{
         where:{phone:phone}
     });
 
+    // 3. Optional Sanity Check (Optional): If an email was typed, make sure it has an @ symbol
+    if (email && !email.includes('@')) {
+        return res.status(400).json({ error: 'Provided text format is not a valid email address sequence.' });
+    }
 
     if(existingCustomer){
         return res.status(400).json({ message: 'This customer is already registered' });
@@ -27,7 +31,11 @@ try{
         data:{
             name:name,
             phone:phone,
-            vehicleModel:vehicleModel
+            vehicleModel:vehicleModel,
+            // ⚡ Prisma Power: If email or address are empty strings or missing altogether, 
+             // passing them here as undefined/null tells Prisma to safely mark them as NULL in Postgres!
+            email: email || null, 
+            address: address || null,
         }
     })
 

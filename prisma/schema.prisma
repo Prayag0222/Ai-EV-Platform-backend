@@ -28,9 +28,11 @@ model User {
 
 model customer {
   id    String  @id @default(uuid())
-  name  String
-  phone String
+  name     String
+  email        String?
+  phone String @unique
   vehicleModel String
+  address      String?
   createdAt DateTime @default(now())
 
 }
