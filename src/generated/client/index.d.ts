@@ -23,6 +23,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type customer = $Result.DefaultSelection<Prisma.$customerPayload>
+/**
+ * Model repairTicket
+ * 
+ */
+export type repairTicket = $Result.DefaultSelection<Prisma.$repairTicketPayload>
 
 /**
  * Enums
@@ -182,6 +187,16 @@ export class PrismaClient<
     * ```
     */
   get customer(): Prisma.customerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.repairTicket`: Exposes CRUD operations for the **repairTicket** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RepairTickets
+    * const repairTickets = await prisma.repairTicket.findMany()
+    * ```
+    */
+  get repairTicket(): Prisma.repairTicketDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -617,7 +632,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    customer: 'customer'
+    customer: 'customer',
+    repairTicket: 'repairTicket'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -633,7 +649,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "customer"
+      modelProps: "user" | "customer" | "repairTicket"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -785,6 +801,80 @@ export namespace Prisma {
           }
         }
       }
+      repairTicket: {
+        payload: Prisma.$repairTicketPayload<ExtArgs>
+        fields: Prisma.repairTicketFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.repairTicketFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.repairTicketFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>
+          }
+          findFirst: {
+            args: Prisma.repairTicketFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.repairTicketFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>
+          }
+          findMany: {
+            args: Prisma.repairTicketFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>[]
+          }
+          create: {
+            args: Prisma.repairTicketCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>
+          }
+          createMany: {
+            args: Prisma.repairTicketCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.repairTicketCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>[]
+          }
+          delete: {
+            args: Prisma.repairTicketDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>
+          }
+          update: {
+            args: Prisma.repairTicketUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>
+          }
+          deleteMany: {
+            args: Prisma.repairTicketDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.repairTicketUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.repairTicketUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>[]
+          }
+          upsert: {
+            args: Prisma.repairTicketUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$repairTicketPayload>
+          }
+          aggregate: {
+            args: Prisma.RepairTicketAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRepairTicket>
+          }
+          groupBy: {
+            args: Prisma.repairTicketGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RepairTicketGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.repairTicketCountArgs<ExtArgs>
+            result: $Utils.Optional<RepairTicketCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -895,6 +985,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     customer?: customerOmit
+    repairTicket?: repairTicketOmit
   }
 
   /* Types for Logging */
@@ -969,6 +1060,36 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type CustomerCountOutputType
+   */
+
+  export type CustomerCountOutputType = {
+    tickets: number
+  }
+
+  export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tickets?: boolean | CustomerCountOutputTypeCountTicketsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomerCountOutputType
+     */
+    select?: CustomerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: repairTicketWhereInput
+  }
 
 
   /**
@@ -2181,6 +2302,8 @@ export namespace Prisma {
     vehicleModel?: boolean
     address?: boolean
     createdAt?: boolean
+    tickets?: boolean | customer$ticketsArgs<ExtArgs>
+    _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
   export type customerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2214,10 +2337,18 @@ export namespace Prisma {
   }
 
   export type customerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "vehicleModel" | "address" | "createdAt", ExtArgs["result"]["customer"]>
+  export type customerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tickets?: boolean | customer$ticketsArgs<ExtArgs>
+    _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type customerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type customerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $customerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "customer"
-    objects: {}
+    objects: {
+      tickets: Prisma.$repairTicketPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
@@ -2620,6 +2751,7 @@ export namespace Prisma {
    */
   export interface Prisma__customerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    tickets<T extends customer$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, customer$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2673,6 +2805,10 @@ export namespace Prisma {
      */
     omit?: customerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
+    /**
      * Filter, which customer to fetch.
      */
     where: customerWhereUniqueInput
@@ -2691,6 +2827,10 @@ export namespace Prisma {
      */
     omit?: customerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
+    /**
      * Filter, which customer to fetch.
      */
     where: customerWhereUniqueInput
@@ -2708,6 +2848,10 @@ export namespace Prisma {
      * Omit specific fields from the customer
      */
     omit?: customerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
     /**
      * Filter, which customer to fetch.
      */
@@ -2757,6 +2901,10 @@ export namespace Prisma {
      */
     omit?: customerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
+    /**
      * Filter, which customer to fetch.
      */
     where?: customerWhereInput
@@ -2804,6 +2952,10 @@ export namespace Prisma {
      * Omit specific fields from the customer
      */
     omit?: customerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
     /**
      * Filter, which customers to fetch.
      */
@@ -2853,6 +3005,10 @@ export namespace Prisma {
      */
     omit?: customerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
+    /**
      * The data needed to create a customer.
      */
     data: XOR<customerCreateInput, customerUncheckedCreateInput>
@@ -2900,6 +3056,10 @@ export namespace Prisma {
      * Omit specific fields from the customer
      */
     omit?: customerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
     /**
      * The data needed to update a customer.
      */
@@ -2967,6 +3127,10 @@ export namespace Prisma {
      */
     omit?: customerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
+    /**
      * The filter to search for the customer to update in case it exists.
      */
     where: customerWhereUniqueInput
@@ -2993,6 +3157,10 @@ export namespace Prisma {
      */
     omit?: customerOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
+    /**
      * Filter which customer to delete.
      */
     where: customerWhereUniqueInput
@@ -3013,6 +3181,30 @@ export namespace Prisma {
   }
 
   /**
+   * customer.tickets
+   */
+  export type customer$ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    where?: repairTicketWhereInput
+    orderBy?: repairTicketOrderByWithRelationInput | repairTicketOrderByWithRelationInput[]
+    cursor?: repairTicketWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairTicketScalarFieldEnum | RepairTicketScalarFieldEnum[]
+  }
+
+  /**
    * customer without action
    */
   export type customerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3024,6 +3216,1133 @@ export namespace Prisma {
      * Omit specific fields from the customer
      */
     omit?: customerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model repairTicket
+   */
+
+  export type AggregateRepairTicket = {
+    _count: RepairTicketCountAggregateOutputType | null
+    _avg: RepairTicketAvgAggregateOutputType | null
+    _sum: RepairTicketSumAggregateOutputType | null
+    _min: RepairTicketMinAggregateOutputType | null
+    _max: RepairTicketMaxAggregateOutputType | null
+  }
+
+  export type RepairTicketAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RepairTicketSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RepairTicketMinAggregateOutputType = {
+    id: number | null
+    issueCategory: string | null
+    description: string | null
+    status: string | null
+    technicianNotes: string | null
+    createdAt: Date | null
+    customerId: string | null
+  }
+
+  export type RepairTicketMaxAggregateOutputType = {
+    id: number | null
+    issueCategory: string | null
+    description: string | null
+    status: string | null
+    technicianNotes: string | null
+    createdAt: Date | null
+    customerId: string | null
+  }
+
+  export type RepairTicketCountAggregateOutputType = {
+    id: number
+    issueCategory: number
+    description: number
+    status: number
+    technicianNotes: number
+    createdAt: number
+    customerId: number
+    _all: number
+  }
+
+
+  export type RepairTicketAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type RepairTicketSumAggregateInputType = {
+    id?: true
+  }
+
+  export type RepairTicketMinAggregateInputType = {
+    id?: true
+    issueCategory?: true
+    description?: true
+    status?: true
+    technicianNotes?: true
+    createdAt?: true
+    customerId?: true
+  }
+
+  export type RepairTicketMaxAggregateInputType = {
+    id?: true
+    issueCategory?: true
+    description?: true
+    status?: true
+    technicianNotes?: true
+    createdAt?: true
+    customerId?: true
+  }
+
+  export type RepairTicketCountAggregateInputType = {
+    id?: true
+    issueCategory?: true
+    description?: true
+    status?: true
+    technicianNotes?: true
+    createdAt?: true
+    customerId?: true
+    _all?: true
+  }
+
+  export type RepairTicketAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which repairTicket to aggregate.
+     */
+    where?: repairTicketWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of repairTickets to fetch.
+     */
+    orderBy?: repairTicketOrderByWithRelationInput | repairTicketOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: repairTicketWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` repairTickets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` repairTickets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned repairTickets
+    **/
+    _count?: true | RepairTicketCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RepairTicketAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RepairTicketSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RepairTicketMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RepairTicketMaxAggregateInputType
+  }
+
+  export type GetRepairTicketAggregateType<T extends RepairTicketAggregateArgs> = {
+        [P in keyof T & keyof AggregateRepairTicket]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRepairTicket[P]>
+      : GetScalarType<T[P], AggregateRepairTicket[P]>
+  }
+
+
+
+
+  export type repairTicketGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: repairTicketWhereInput
+    orderBy?: repairTicketOrderByWithAggregationInput | repairTicketOrderByWithAggregationInput[]
+    by: RepairTicketScalarFieldEnum[] | RepairTicketScalarFieldEnum
+    having?: repairTicketScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RepairTicketCountAggregateInputType | true
+    _avg?: RepairTicketAvgAggregateInputType
+    _sum?: RepairTicketSumAggregateInputType
+    _min?: RepairTicketMinAggregateInputType
+    _max?: RepairTicketMaxAggregateInputType
+  }
+
+  export type RepairTicketGroupByOutputType = {
+    id: number
+    issueCategory: string
+    description: string
+    status: string
+    technicianNotes: string | null
+    createdAt: Date
+    customerId: string
+    _count: RepairTicketCountAggregateOutputType | null
+    _avg: RepairTicketAvgAggregateOutputType | null
+    _sum: RepairTicketSumAggregateOutputType | null
+    _min: RepairTicketMinAggregateOutputType | null
+    _max: RepairTicketMaxAggregateOutputType | null
+  }
+
+  type GetRepairTicketGroupByPayload<T extends repairTicketGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RepairTicketGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RepairTicketGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RepairTicketGroupByOutputType[P]>
+            : GetScalarType<T[P], RepairTicketGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type repairTicketSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    issueCategory?: boolean
+    description?: boolean
+    status?: boolean
+    technicianNotes?: boolean
+    createdAt?: boolean
+    customerId?: boolean
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repairTicket"]>
+
+  export type repairTicketSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    issueCategory?: boolean
+    description?: boolean
+    status?: boolean
+    technicianNotes?: boolean
+    createdAt?: boolean
+    customerId?: boolean
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repairTicket"]>
+
+  export type repairTicketSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    issueCategory?: boolean
+    description?: boolean
+    status?: boolean
+    technicianNotes?: boolean
+    createdAt?: boolean
+    customerId?: boolean
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repairTicket"]>
+
+  export type repairTicketSelectScalar = {
+    id?: boolean
+    issueCategory?: boolean
+    description?: boolean
+    status?: boolean
+    technicianNotes?: boolean
+    createdAt?: boolean
+    customerId?: boolean
+  }
+
+  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "technicianNotes" | "createdAt" | "customerId", ExtArgs["result"]["repairTicket"]>
+  export type repairTicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }
+  export type repairTicketIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }
+  export type repairTicketIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }
+
+  export type $repairTicketPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "repairTicket"
+    objects: {
+      customer: Prisma.$customerPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      issueCategory: string
+      description: string
+      status: string
+      technicianNotes: string | null
+      createdAt: Date
+      customerId: string
+    }, ExtArgs["result"]["repairTicket"]>
+    composites: {}
+  }
+
+  type repairTicketGetPayload<S extends boolean | null | undefined | repairTicketDefaultArgs> = $Result.GetResult<Prisma.$repairTicketPayload, S>
+
+  type repairTicketCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<repairTicketFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RepairTicketCountAggregateInputType | true
+    }
+
+  export interface repairTicketDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['repairTicket'], meta: { name: 'repairTicket' } }
+    /**
+     * Find zero or one RepairTicket that matches the filter.
+     * @param {repairTicketFindUniqueArgs} args - Arguments to find a RepairTicket
+     * @example
+     * // Get one RepairTicket
+     * const repairTicket = await prisma.repairTicket.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends repairTicketFindUniqueArgs>(args: SelectSubset<T, repairTicketFindUniqueArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RepairTicket that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {repairTicketFindUniqueOrThrowArgs} args - Arguments to find a RepairTicket
+     * @example
+     * // Get one RepairTicket
+     * const repairTicket = await prisma.repairTicket.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends repairTicketFindUniqueOrThrowArgs>(args: SelectSubset<T, repairTicketFindUniqueOrThrowArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairTicket that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {repairTicketFindFirstArgs} args - Arguments to find a RepairTicket
+     * @example
+     * // Get one RepairTicket
+     * const repairTicket = await prisma.repairTicket.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends repairTicketFindFirstArgs>(args?: SelectSubset<T, repairTicketFindFirstArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairTicket that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {repairTicketFindFirstOrThrowArgs} args - Arguments to find a RepairTicket
+     * @example
+     * // Get one RepairTicket
+     * const repairTicket = await prisma.repairTicket.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends repairTicketFindFirstOrThrowArgs>(args?: SelectSubset<T, repairTicketFindFirstOrThrowArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepairTickets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {repairTicketFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RepairTickets
+     * const repairTickets = await prisma.repairTicket.findMany()
+     * 
+     * // Get first 10 RepairTickets
+     * const repairTickets = await prisma.repairTicket.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const repairTicketWithIdOnly = await prisma.repairTicket.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends repairTicketFindManyArgs>(args?: SelectSubset<T, repairTicketFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RepairTicket.
+     * @param {repairTicketCreateArgs} args - Arguments to create a RepairTicket.
+     * @example
+     * // Create one RepairTicket
+     * const RepairTicket = await prisma.repairTicket.create({
+     *   data: {
+     *     // ... data to create a RepairTicket
+     *   }
+     * })
+     * 
+     */
+    create<T extends repairTicketCreateArgs>(args: SelectSubset<T, repairTicketCreateArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RepairTickets.
+     * @param {repairTicketCreateManyArgs} args - Arguments to create many RepairTickets.
+     * @example
+     * // Create many RepairTickets
+     * const repairTicket = await prisma.repairTicket.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends repairTicketCreateManyArgs>(args?: SelectSubset<T, repairTicketCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RepairTickets and returns the data saved in the database.
+     * @param {repairTicketCreateManyAndReturnArgs} args - Arguments to create many RepairTickets.
+     * @example
+     * // Create many RepairTickets
+     * const repairTicket = await prisma.repairTicket.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RepairTickets and only return the `id`
+     * const repairTicketWithIdOnly = await prisma.repairTicket.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends repairTicketCreateManyAndReturnArgs>(args?: SelectSubset<T, repairTicketCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RepairTicket.
+     * @param {repairTicketDeleteArgs} args - Arguments to delete one RepairTicket.
+     * @example
+     * // Delete one RepairTicket
+     * const RepairTicket = await prisma.repairTicket.delete({
+     *   where: {
+     *     // ... filter to delete one RepairTicket
+     *   }
+     * })
+     * 
+     */
+    delete<T extends repairTicketDeleteArgs>(args: SelectSubset<T, repairTicketDeleteArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RepairTicket.
+     * @param {repairTicketUpdateArgs} args - Arguments to update one RepairTicket.
+     * @example
+     * // Update one RepairTicket
+     * const repairTicket = await prisma.repairTicket.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends repairTicketUpdateArgs>(args: SelectSubset<T, repairTicketUpdateArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RepairTickets.
+     * @param {repairTicketDeleteManyArgs} args - Arguments to filter RepairTickets to delete.
+     * @example
+     * // Delete a few RepairTickets
+     * const { count } = await prisma.repairTicket.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends repairTicketDeleteManyArgs>(args?: SelectSubset<T, repairTicketDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepairTickets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {repairTicketUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RepairTickets
+     * const repairTicket = await prisma.repairTicket.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends repairTicketUpdateManyArgs>(args: SelectSubset<T, repairTicketUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepairTickets and returns the data updated in the database.
+     * @param {repairTicketUpdateManyAndReturnArgs} args - Arguments to update many RepairTickets.
+     * @example
+     * // Update many RepairTickets
+     * const repairTicket = await prisma.repairTicket.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RepairTickets and only return the `id`
+     * const repairTicketWithIdOnly = await prisma.repairTicket.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends repairTicketUpdateManyAndReturnArgs>(args: SelectSubset<T, repairTicketUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RepairTicket.
+     * @param {repairTicketUpsertArgs} args - Arguments to update or create a RepairTicket.
+     * @example
+     * // Update or create a RepairTicket
+     * const repairTicket = await prisma.repairTicket.upsert({
+     *   create: {
+     *     // ... data to create a RepairTicket
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RepairTicket we want to update
+     *   }
+     * })
+     */
+    upsert<T extends repairTicketUpsertArgs>(args: SelectSubset<T, repairTicketUpsertArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RepairTickets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {repairTicketCountArgs} args - Arguments to filter RepairTickets to count.
+     * @example
+     * // Count the number of RepairTickets
+     * const count = await prisma.repairTicket.count({
+     *   where: {
+     *     // ... the filter for the RepairTickets we want to count
+     *   }
+     * })
+    **/
+    count<T extends repairTicketCountArgs>(
+      args?: Subset<T, repairTicketCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RepairTicketCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RepairTicket.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairTicketAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RepairTicketAggregateArgs>(args: Subset<T, RepairTicketAggregateArgs>): Prisma.PrismaPromise<GetRepairTicketAggregateType<T>>
+
+    /**
+     * Group by RepairTicket.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {repairTicketGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends repairTicketGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: repairTicketGroupByArgs['orderBy'] }
+        : { orderBy?: repairTicketGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, repairTicketGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepairTicketGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the repairTicket model
+   */
+  readonly fields: repairTicketFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for repairTicket.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__repairTicketClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends customerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, customerDefaultArgs<ExtArgs>>): Prisma__customerClient<$Result.GetResult<Prisma.$customerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the repairTicket model
+   */
+  interface repairTicketFieldRefs {
+    readonly id: FieldRef<"repairTicket", 'Int'>
+    readonly issueCategory: FieldRef<"repairTicket", 'String'>
+    readonly description: FieldRef<"repairTicket", 'String'>
+    readonly status: FieldRef<"repairTicket", 'String'>
+    readonly technicianNotes: FieldRef<"repairTicket", 'String'>
+    readonly createdAt: FieldRef<"repairTicket", 'DateTime'>
+    readonly customerId: FieldRef<"repairTicket", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * repairTicket findUnique
+   */
+  export type repairTicketFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * Filter, which repairTicket to fetch.
+     */
+    where: repairTicketWhereUniqueInput
+  }
+
+  /**
+   * repairTicket findUniqueOrThrow
+   */
+  export type repairTicketFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * Filter, which repairTicket to fetch.
+     */
+    where: repairTicketWhereUniqueInput
+  }
+
+  /**
+   * repairTicket findFirst
+   */
+  export type repairTicketFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * Filter, which repairTicket to fetch.
+     */
+    where?: repairTicketWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of repairTickets to fetch.
+     */
+    orderBy?: repairTicketOrderByWithRelationInput | repairTicketOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for repairTickets.
+     */
+    cursor?: repairTicketWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` repairTickets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` repairTickets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of repairTickets.
+     */
+    distinct?: RepairTicketScalarFieldEnum | RepairTicketScalarFieldEnum[]
+  }
+
+  /**
+   * repairTicket findFirstOrThrow
+   */
+  export type repairTicketFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * Filter, which repairTicket to fetch.
+     */
+    where?: repairTicketWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of repairTickets to fetch.
+     */
+    orderBy?: repairTicketOrderByWithRelationInput | repairTicketOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for repairTickets.
+     */
+    cursor?: repairTicketWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` repairTickets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` repairTickets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of repairTickets.
+     */
+    distinct?: RepairTicketScalarFieldEnum | RepairTicketScalarFieldEnum[]
+  }
+
+  /**
+   * repairTicket findMany
+   */
+  export type repairTicketFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * Filter, which repairTickets to fetch.
+     */
+    where?: repairTicketWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of repairTickets to fetch.
+     */
+    orderBy?: repairTicketOrderByWithRelationInput | repairTicketOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing repairTickets.
+     */
+    cursor?: repairTicketWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` repairTickets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` repairTickets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of repairTickets.
+     */
+    distinct?: RepairTicketScalarFieldEnum | RepairTicketScalarFieldEnum[]
+  }
+
+  /**
+   * repairTicket create
+   */
+  export type repairTicketCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * The data needed to create a repairTicket.
+     */
+    data: XOR<repairTicketCreateInput, repairTicketUncheckedCreateInput>
+  }
+
+  /**
+   * repairTicket createMany
+   */
+  export type repairTicketCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many repairTickets.
+     */
+    data: repairTicketCreateManyInput | repairTicketCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * repairTicket createManyAndReturn
+   */
+  export type repairTicketCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * The data used to create many repairTickets.
+     */
+    data: repairTicketCreateManyInput | repairTicketCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * repairTicket update
+   */
+  export type repairTicketUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * The data needed to update a repairTicket.
+     */
+    data: XOR<repairTicketUpdateInput, repairTicketUncheckedUpdateInput>
+    /**
+     * Choose, which repairTicket to update.
+     */
+    where: repairTicketWhereUniqueInput
+  }
+
+  /**
+   * repairTicket updateMany
+   */
+  export type repairTicketUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update repairTickets.
+     */
+    data: XOR<repairTicketUpdateManyMutationInput, repairTicketUncheckedUpdateManyInput>
+    /**
+     * Filter which repairTickets to update
+     */
+    where?: repairTicketWhereInput
+    /**
+     * Limit how many repairTickets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * repairTicket updateManyAndReturn
+   */
+  export type repairTicketUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * The data used to update repairTickets.
+     */
+    data: XOR<repairTicketUpdateManyMutationInput, repairTicketUncheckedUpdateManyInput>
+    /**
+     * Filter which repairTickets to update
+     */
+    where?: repairTicketWhereInput
+    /**
+     * Limit how many repairTickets to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * repairTicket upsert
+   */
+  export type repairTicketUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * The filter to search for the repairTicket to update in case it exists.
+     */
+    where: repairTicketWhereUniqueInput
+    /**
+     * In case the repairTicket found by the `where` argument doesn't exist, create a new repairTicket with this data.
+     */
+    create: XOR<repairTicketCreateInput, repairTicketUncheckedCreateInput>
+    /**
+     * In case the repairTicket was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<repairTicketUpdateInput, repairTicketUncheckedUpdateInput>
+  }
+
+  /**
+   * repairTicket delete
+   */
+  export type repairTicketDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    /**
+     * Filter which repairTicket to delete.
+     */
+    where: repairTicketWhereUniqueInput
+  }
+
+  /**
+   * repairTicket deleteMany
+   */
+  export type repairTicketDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which repairTickets to delete
+     */
+    where?: repairTicketWhereInput
+    /**
+     * Limit how many repairTickets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * repairTicket without action
+   */
+  export type repairTicketDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
   }
 
 
@@ -3065,6 +4384,19 @@ export namespace Prisma {
   };
 
   export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
+
+
+  export const RepairTicketScalarFieldEnum: {
+    id: 'id',
+    issueCategory: 'issueCategory',
+    description: 'description',
+    status: 'status',
+    technicianNotes: 'technicianNotes',
+    createdAt: 'createdAt',
+    customerId: 'customerId'
+  };
+
+  export type RepairTicketScalarFieldEnum = (typeof RepairTicketScalarFieldEnum)[keyof typeof RepairTicketScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3150,6 +4482,20 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -3228,6 +4574,7 @@ export namespace Prisma {
     vehicleModel?: StringFilter<"customer"> | string
     address?: StringNullableFilter<"customer"> | string | null
     createdAt?: DateTimeFilter<"customer"> | Date | string
+    tickets?: RepairTicketListRelationFilter
   }
 
   export type customerOrderByWithRelationInput = {
@@ -3238,6 +4585,7 @@ export namespace Prisma {
     vehicleModel?: SortOrder
     address?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    tickets?: repairTicketOrderByRelationAggregateInput
   }
 
   export type customerWhereUniqueInput = Prisma.AtLeast<{
@@ -3251,6 +4599,7 @@ export namespace Prisma {
     vehicleModel?: StringFilter<"customer"> | string
     address?: StringNullableFilter<"customer"> | string | null
     createdAt?: DateTimeFilter<"customer"> | Date | string
+    tickets?: RepairTicketListRelationFilter
   }, "id" | "phone">
 
   export type customerOrderByWithAggregationInput = {
@@ -3277,6 +4626,73 @@ export namespace Prisma {
     vehicleModel?: StringWithAggregatesFilter<"customer"> | string
     address?: StringNullableWithAggregatesFilter<"customer"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"customer"> | Date | string
+  }
+
+  export type repairTicketWhereInput = {
+    AND?: repairTicketWhereInput | repairTicketWhereInput[]
+    OR?: repairTicketWhereInput[]
+    NOT?: repairTicketWhereInput | repairTicketWhereInput[]
+    id?: IntFilter<"repairTicket"> | number
+    issueCategory?: StringFilter<"repairTicket"> | string
+    description?: StringFilter<"repairTicket"> | string
+    status?: StringFilter<"repairTicket"> | string
+    technicianNotes?: StringNullableFilter<"repairTicket"> | string | null
+    createdAt?: DateTimeFilter<"repairTicket"> | Date | string
+    customerId?: StringFilter<"repairTicket"> | string
+    customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
+  }
+
+  export type repairTicketOrderByWithRelationInput = {
+    id?: SortOrder
+    issueCategory?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    technicianNotes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    customerId?: SortOrder
+    customer?: customerOrderByWithRelationInput
+  }
+
+  export type repairTicketWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: repairTicketWhereInput | repairTicketWhereInput[]
+    OR?: repairTicketWhereInput[]
+    NOT?: repairTicketWhereInput | repairTicketWhereInput[]
+    issueCategory?: StringFilter<"repairTicket"> | string
+    description?: StringFilter<"repairTicket"> | string
+    status?: StringFilter<"repairTicket"> | string
+    technicianNotes?: StringNullableFilter<"repairTicket"> | string | null
+    createdAt?: DateTimeFilter<"repairTicket"> | Date | string
+    customerId?: StringFilter<"repairTicket"> | string
+    customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
+  }, "id">
+
+  export type repairTicketOrderByWithAggregationInput = {
+    id?: SortOrder
+    issueCategory?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    technicianNotes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    customerId?: SortOrder
+    _count?: repairTicketCountOrderByAggregateInput
+    _avg?: repairTicketAvgOrderByAggregateInput
+    _max?: repairTicketMaxOrderByAggregateInput
+    _min?: repairTicketMinOrderByAggregateInput
+    _sum?: repairTicketSumOrderByAggregateInput
+  }
+
+  export type repairTicketScalarWhereWithAggregatesInput = {
+    AND?: repairTicketScalarWhereWithAggregatesInput | repairTicketScalarWhereWithAggregatesInput[]
+    OR?: repairTicketScalarWhereWithAggregatesInput[]
+    NOT?: repairTicketScalarWhereWithAggregatesInput | repairTicketScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"repairTicket"> | number
+    issueCategory?: StringWithAggregatesFilter<"repairTicket"> | string
+    description?: StringWithAggregatesFilter<"repairTicket"> | string
+    status?: StringWithAggregatesFilter<"repairTicket"> | string
+    technicianNotes?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"repairTicket"> | Date | string
+    customerId?: StringWithAggregatesFilter<"repairTicket"> | string
   }
 
   export type UserCreateInput = {
@@ -3357,6 +4773,7 @@ export namespace Prisma {
     vehicleModel: string
     address?: string | null
     createdAt?: Date | string
+    tickets?: repairTicketCreateNestedManyWithoutCustomerInput
   }
 
   export type customerUncheckedCreateInput = {
@@ -3367,6 +4784,7 @@ export namespace Prisma {
     vehicleModel: string
     address?: string | null
     createdAt?: Date | string
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type customerUpdateInput = {
@@ -3377,6 +4795,7 @@ export namespace Prisma {
     vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUpdateManyWithoutCustomerNestedInput
   }
 
   export type customerUncheckedUpdateInput = {
@@ -3387,6 +4806,7 @@ export namespace Prisma {
     vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type customerCreateManyInput = {
@@ -3417,6 +4837,72 @@ export namespace Prisma {
     vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type repairTicketCreateInput = {
+    issueCategory: string
+    description: string
+    status?: string
+    technicianNotes?: string | null
+    createdAt?: Date | string
+    customer: customerCreateNestedOneWithoutTicketsInput
+  }
+
+  export type repairTicketUncheckedCreateInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    technicianNotes?: string | null
+    createdAt?: Date | string
+    customerId: string
+  }
+
+  export type repairTicketUpdateInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type repairTicketCreateManyInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    technicianNotes?: string | null
+    createdAt?: Date | string
+    customerId: string
+  }
+
+  export type repairTicketUpdateManyMutationInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type repairTicketUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3539,9 +5025,19 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type RepairTicketListRelationFilter = {
+    every?: repairTicketWhereInput
+    some?: repairTicketWhereInput
+    none?: repairTicketWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type repairTicketOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type customerCountOrderByAggregateInput = {
@@ -3592,6 +5088,76 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type CustomerScalarRelationFilter = {
+    is?: customerWhereInput
+    isNot?: customerWhereInput
+  }
+
+  export type repairTicketCountOrderByAggregateInput = {
+    id?: SortOrder
+    issueCategory?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    technicianNotes?: SortOrder
+    createdAt?: SortOrder
+    customerId?: SortOrder
+  }
+
+  export type repairTicketAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type repairTicketMaxOrderByAggregateInput = {
+    id?: SortOrder
+    issueCategory?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    technicianNotes?: SortOrder
+    createdAt?: SortOrder
+    customerId?: SortOrder
+  }
+
+  export type repairTicketMinOrderByAggregateInput = {
+    id?: SortOrder
+    issueCategory?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    technicianNotes?: SortOrder
+    createdAt?: SortOrder
+    customerId?: SortOrder
+  }
+
+  export type repairTicketSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -3604,8 +5170,72 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type repairTicketCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput> | repairTicketCreateWithoutCustomerInput[] | repairTicketUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutCustomerInput | repairTicketCreateOrConnectWithoutCustomerInput[]
+    createMany?: repairTicketCreateManyCustomerInputEnvelope
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type repairTicketUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput> | repairTicketCreateWithoutCustomerInput[] | repairTicketUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutCustomerInput | repairTicketCreateOrConnectWithoutCustomerInput[]
+    createMany?: repairTicketCreateManyCustomerInputEnvelope
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type repairTicketUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput> | repairTicketCreateWithoutCustomerInput[] | repairTicketUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutCustomerInput | repairTicketCreateOrConnectWithoutCustomerInput[]
+    upsert?: repairTicketUpsertWithWhereUniqueWithoutCustomerInput | repairTicketUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: repairTicketCreateManyCustomerInputEnvelope
+    set?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    disconnect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    delete?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    update?: repairTicketUpdateWithWhereUniqueWithoutCustomerInput | repairTicketUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: repairTicketUpdateManyWithWhereWithoutCustomerInput | repairTicketUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+  }
+
+  export type repairTicketUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput> | repairTicketCreateWithoutCustomerInput[] | repairTicketUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutCustomerInput | repairTicketCreateOrConnectWithoutCustomerInput[]
+    upsert?: repairTicketUpsertWithWhereUniqueWithoutCustomerInput | repairTicketUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: repairTicketCreateManyCustomerInputEnvelope
+    set?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    disconnect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    delete?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    update?: repairTicketUpdateWithWhereUniqueWithoutCustomerInput | repairTicketUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: repairTicketUpdateManyWithWhereWithoutCustomerInput | repairTicketUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+  }
+
+  export type customerCreateNestedOneWithoutTicketsInput = {
+    create?: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: customerCreateOrConnectWithoutTicketsInput
+    connect?: customerWhereUniqueInput
+  }
+
+  export type customerUpdateOneRequiredWithoutTicketsNestedInput = {
+    create?: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: customerCreateOrConnectWithoutTicketsInput
+    upsert?: customerUpsertWithoutTicketsInput
+    connect?: customerWhereUniqueInput
+    update?: XOR<XOR<customerUpdateToOneWithWhereWithoutTicketsInput, customerUpdateWithoutTicketsInput>, customerUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3732,6 +5362,180 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type repairTicketCreateWithoutCustomerInput = {
+    issueCategory: string
+    description: string
+    status?: string
+    technicianNotes?: string | null
+    createdAt?: Date | string
+  }
+
+  export type repairTicketUncheckedCreateWithoutCustomerInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    technicianNotes?: string | null
+    createdAt?: Date | string
+  }
+
+  export type repairTicketCreateOrConnectWithoutCustomerInput = {
+    where: repairTicketWhereUniqueInput
+    create: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type repairTicketCreateManyCustomerInputEnvelope = {
+    data: repairTicketCreateManyCustomerInput | repairTicketCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type repairTicketUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: repairTicketWhereUniqueInput
+    update: XOR<repairTicketUpdateWithoutCustomerInput, repairTicketUncheckedUpdateWithoutCustomerInput>
+    create: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type repairTicketUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: repairTicketWhereUniqueInput
+    data: XOR<repairTicketUpdateWithoutCustomerInput, repairTicketUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type repairTicketUpdateManyWithWhereWithoutCustomerInput = {
+    where: repairTicketScalarWhereInput
+    data: XOR<repairTicketUpdateManyMutationInput, repairTicketUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type repairTicketScalarWhereInput = {
+    AND?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+    OR?: repairTicketScalarWhereInput[]
+    NOT?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+    id?: IntFilter<"repairTicket"> | number
+    issueCategory?: StringFilter<"repairTicket"> | string
+    description?: StringFilter<"repairTicket"> | string
+    status?: StringFilter<"repairTicket"> | string
+    technicianNotes?: StringNullableFilter<"repairTicket"> | string | null
+    createdAt?: DateTimeFilter<"repairTicket"> | Date | string
+    customerId?: StringFilter<"repairTicket"> | string
+  }
+
+  export type customerCreateWithoutTicketsInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    vehicleModel: string
+    address?: string | null
+    createdAt?: Date | string
+  }
+
+  export type customerUncheckedCreateWithoutTicketsInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    vehicleModel: string
+    address?: string | null
+    createdAt?: Date | string
+  }
+
+  export type customerCreateOrConnectWithoutTicketsInput = {
+    where: customerWhereUniqueInput
+    create: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
+  }
+
+  export type customerUpsertWithoutTicketsInput = {
+    update: XOR<customerUpdateWithoutTicketsInput, customerUncheckedUpdateWithoutTicketsInput>
+    create: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
+    where?: customerWhereInput
+  }
+
+  export type customerUpdateToOneWithWhereWithoutTicketsInput = {
+    where?: customerWhereInput
+    data: XOR<customerUpdateWithoutTicketsInput, customerUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type customerUpdateWithoutTicketsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type customerUncheckedUpdateWithoutTicketsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type repairTicketCreateManyCustomerInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    technicianNotes?: string | null
+    createdAt?: Date | string
+  }
+
+  export type repairTicketUpdateWithoutCustomerInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type repairTicketUncheckedUpdateWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type repairTicketUncheckedUpdateManyWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
