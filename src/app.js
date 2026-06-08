@@ -4,6 +4,7 @@ import authRoutes from './routes/authRoutes.js';
 import customerRoutes from './routes/customerRoutes.ts'
 import ticketRoutes from './routes/ticketRoutes.ts'
 import operationRoutes from './routes/operationRoutes.js';
+import technicianRoutes from './routes/technicianRoutes.ts';
 import cors from 'cors';
 
 
@@ -33,6 +34,7 @@ app.use('/api/owner',customerRoutes)
 app.use('/api/owner',ticketRoutes)
 // 🛠️ OPERATIONAL DOMAIN LINK: Mount your greasy-hands technician workspace routes
 app.use('/api/operation', operationRoutes);
+app.use('/api/technician', technicianRoutes);
 
 app.listen(PORT,()=>{
     console.log(`Industry grade server is running on port ${PORT}`)

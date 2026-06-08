@@ -13,6 +13,11 @@ enum Role {
   OWNER
   TECHNICIAN
 }
+enum TechnicianStatus {
+  AVAILABLE
+  BUSY
+  ON_LEAVE
+}
 
 model User {
   id        String   @id @default(uuid())
@@ -56,4 +61,19 @@ model repairTicket {
   customerId  String
   customer customer @relation(fields: [customerId], references:[id], onDelete:Cascade)
 
+}
+
+model technician {
+  id              String           @id @default(uuid())
+  fullName        String
+  email           String           @unique
+  phone           String
+  employeeId      String           @unique
+  specialization  String
+  status          String           @default("AVAILABLE")
+  experienceYears String
+  address         String?
+  profileImage    String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
 }

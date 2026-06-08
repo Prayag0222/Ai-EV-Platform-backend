@@ -28,6 +28,11 @@ export type customer = $Result.DefaultSelection<Prisma.$customerPayload>
  * 
  */
 export type repairTicket = $Result.DefaultSelection<Prisma.$repairTicketPayload>
+/**
+ * Model technician
+ * 
+ */
+export type technician = $Result.DefaultSelection<Prisma.$technicianPayload>
 
 /**
  * Enums
@@ -41,11 +46,24 @@ export namespace $Enums {
 
 export type Role = (typeof Role)[keyof typeof Role]
 
+
+export const TechnicianStatus: {
+  AVAILABLE: 'AVAILABLE',
+  BUSY: 'BUSY',
+  ON_LEAVE: 'ON_LEAVE'
+};
+
+export type TechnicianStatus = (typeof TechnicianStatus)[keyof typeof TechnicianStatus]
+
 }
 
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
+
+export type TechnicianStatus = $Enums.TechnicianStatus
+
+export const TechnicianStatus: typeof $Enums.TechnicianStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -197,6 +215,16 @@ export class PrismaClient<
     * ```
     */
   get repairTicket(): Prisma.repairTicketDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.technician`: Exposes CRUD operations for the **technician** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Technicians
+    * const technicians = await prisma.technician.findMany()
+    * ```
+    */
+  get technician(): Prisma.technicianDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -633,7 +661,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     customer: 'customer',
-    repairTicket: 'repairTicket'
+    repairTicket: 'repairTicket',
+    technician: 'technician'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -649,7 +678,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "customer" | "repairTicket"
+      modelProps: "user" | "customer" | "repairTicket" | "technician"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -875,6 +904,80 @@ export namespace Prisma {
           }
         }
       }
+      technician: {
+        payload: Prisma.$technicianPayload<ExtArgs>
+        fields: Prisma.technicianFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.technicianFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.technicianFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          findFirst: {
+            args: Prisma.technicianFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.technicianFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          findMany: {
+            args: Prisma.technicianFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>[]
+          }
+          create: {
+            args: Prisma.technicianCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          createMany: {
+            args: Prisma.technicianCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.technicianCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>[]
+          }
+          delete: {
+            args: Prisma.technicianDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          update: {
+            args: Prisma.technicianUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          deleteMany: {
+            args: Prisma.technicianDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.technicianUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.technicianUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>[]
+          }
+          upsert: {
+            args: Prisma.technicianUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          aggregate: {
+            args: Prisma.TechnicianAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTechnician>
+          }
+          groupBy: {
+            args: Prisma.technicianGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TechnicianGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.technicianCountArgs<ExtArgs>
+            result: $Utils.Optional<TechnicianCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -986,6 +1089,7 @@ export namespace Prisma {
     user?: UserOmit
     customer?: customerOmit
     repairTicket?: repairTicketOmit
+    technician?: technicianOmit
   }
 
   /* Types for Logging */
@@ -4347,6 +4451,1097 @@ export namespace Prisma {
 
 
   /**
+   * Model technician
+   */
+
+  export type AggregateTechnician = {
+    _count: TechnicianCountAggregateOutputType | null
+    _min: TechnicianMinAggregateOutputType | null
+    _max: TechnicianMaxAggregateOutputType | null
+  }
+
+  export type TechnicianMinAggregateOutputType = {
+    id: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    employeeId: string | null
+    specialization: string | null
+    status: string | null
+    experienceYears: string | null
+    address: string | null
+    profileImage: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TechnicianMaxAggregateOutputType = {
+    id: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    employeeId: string | null
+    specialization: string | null
+    status: string | null
+    experienceYears: string | null
+    address: string | null
+    profileImage: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TechnicianCountAggregateOutputType = {
+    id: number
+    fullName: number
+    email: number
+    phone: number
+    employeeId: number
+    specialization: number
+    status: number
+    experienceYears: number
+    address: number
+    profileImage: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TechnicianMinAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TechnicianMaxAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TechnicianCountAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TechnicianAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which technician to aggregate.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicians.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned technicians
+    **/
+    _count?: true | TechnicianCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TechnicianMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TechnicianMaxAggregateInputType
+  }
+
+  export type GetTechnicianAggregateType<T extends TechnicianAggregateArgs> = {
+        [P in keyof T & keyof AggregateTechnician]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTechnician[P]>
+      : GetScalarType<T[P], AggregateTechnician[P]>
+  }
+
+
+
+
+  export type technicianGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: technicianWhereInput
+    orderBy?: technicianOrderByWithAggregationInput | technicianOrderByWithAggregationInput[]
+    by: TechnicianScalarFieldEnum[] | TechnicianScalarFieldEnum
+    having?: technicianScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TechnicianCountAggregateInputType | true
+    _min?: TechnicianMinAggregateInputType
+    _max?: TechnicianMaxAggregateInputType
+  }
+
+  export type TechnicianGroupByOutputType = {
+    id: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status: string
+    experienceYears: string
+    address: string | null
+    profileImage: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TechnicianCountAggregateOutputType | null
+    _min: TechnicianMinAggregateOutputType | null
+    _max: TechnicianMaxAggregateOutputType | null
+  }
+
+  type GetTechnicianGroupByPayload<T extends technicianGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TechnicianGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TechnicianGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TechnicianGroupByOutputType[P]>
+            : GetScalarType<T[P], TechnicianGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type technicianSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectScalar = {
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type technicianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phone" | "employeeId" | "specialization" | "status" | "experienceYears" | "address" | "profileImage" | "createdAt" | "updatedAt", ExtArgs["result"]["technician"]>
+
+  export type $technicianPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "technician"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fullName: string
+      email: string
+      phone: string
+      employeeId: string
+      specialization: string
+      status: string
+      experienceYears: string
+      address: string | null
+      profileImage: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["technician"]>
+    composites: {}
+  }
+
+  type technicianGetPayload<S extends boolean | null | undefined | technicianDefaultArgs> = $Result.GetResult<Prisma.$technicianPayload, S>
+
+  type technicianCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<technicianFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TechnicianCountAggregateInputType | true
+    }
+
+  export interface technicianDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['technician'], meta: { name: 'technician' } }
+    /**
+     * Find zero or one Technician that matches the filter.
+     * @param {technicianFindUniqueArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends technicianFindUniqueArgs>(args: SelectSubset<T, technicianFindUniqueArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Technician that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {technicianFindUniqueOrThrowArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends technicianFindUniqueOrThrowArgs>(args: SelectSubset<T, technicianFindUniqueOrThrowArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Technician that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindFirstArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends technicianFindFirstArgs>(args?: SelectSubset<T, technicianFindFirstArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Technician that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindFirstOrThrowArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends technicianFindFirstOrThrowArgs>(args?: SelectSubset<T, technicianFindFirstOrThrowArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Technicians that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Technicians
+     * const technicians = await prisma.technician.findMany()
+     * 
+     * // Get first 10 Technicians
+     * const technicians = await prisma.technician.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const technicianWithIdOnly = await prisma.technician.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends technicianFindManyArgs>(args?: SelectSubset<T, technicianFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Technician.
+     * @param {technicianCreateArgs} args - Arguments to create a Technician.
+     * @example
+     * // Create one Technician
+     * const Technician = await prisma.technician.create({
+     *   data: {
+     *     // ... data to create a Technician
+     *   }
+     * })
+     * 
+     */
+    create<T extends technicianCreateArgs>(args: SelectSubset<T, technicianCreateArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Technicians.
+     * @param {technicianCreateManyArgs} args - Arguments to create many Technicians.
+     * @example
+     * // Create many Technicians
+     * const technician = await prisma.technician.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends technicianCreateManyArgs>(args?: SelectSubset<T, technicianCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Technicians and returns the data saved in the database.
+     * @param {technicianCreateManyAndReturnArgs} args - Arguments to create many Technicians.
+     * @example
+     * // Create many Technicians
+     * const technician = await prisma.technician.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Technicians and only return the `id`
+     * const technicianWithIdOnly = await prisma.technician.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends technicianCreateManyAndReturnArgs>(args?: SelectSubset<T, technicianCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Technician.
+     * @param {technicianDeleteArgs} args - Arguments to delete one Technician.
+     * @example
+     * // Delete one Technician
+     * const Technician = await prisma.technician.delete({
+     *   where: {
+     *     // ... filter to delete one Technician
+     *   }
+     * })
+     * 
+     */
+    delete<T extends technicianDeleteArgs>(args: SelectSubset<T, technicianDeleteArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Technician.
+     * @param {technicianUpdateArgs} args - Arguments to update one Technician.
+     * @example
+     * // Update one Technician
+     * const technician = await prisma.technician.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends technicianUpdateArgs>(args: SelectSubset<T, technicianUpdateArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Technicians.
+     * @param {technicianDeleteManyArgs} args - Arguments to filter Technicians to delete.
+     * @example
+     * // Delete a few Technicians
+     * const { count } = await prisma.technician.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends technicianDeleteManyArgs>(args?: SelectSubset<T, technicianDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Technicians.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Technicians
+     * const technician = await prisma.technician.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends technicianUpdateManyArgs>(args: SelectSubset<T, technicianUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Technicians and returns the data updated in the database.
+     * @param {technicianUpdateManyAndReturnArgs} args - Arguments to update many Technicians.
+     * @example
+     * // Update many Technicians
+     * const technician = await prisma.technician.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Technicians and only return the `id`
+     * const technicianWithIdOnly = await prisma.technician.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends technicianUpdateManyAndReturnArgs>(args: SelectSubset<T, technicianUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Technician.
+     * @param {technicianUpsertArgs} args - Arguments to update or create a Technician.
+     * @example
+     * // Update or create a Technician
+     * const technician = await prisma.technician.upsert({
+     *   create: {
+     *     // ... data to create a Technician
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Technician we want to update
+     *   }
+     * })
+     */
+    upsert<T extends technicianUpsertArgs>(args: SelectSubset<T, technicianUpsertArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Technicians.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianCountArgs} args - Arguments to filter Technicians to count.
+     * @example
+     * // Count the number of Technicians
+     * const count = await prisma.technician.count({
+     *   where: {
+     *     // ... the filter for the Technicians we want to count
+     *   }
+     * })
+    **/
+    count<T extends technicianCountArgs>(
+      args?: Subset<T, technicianCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TechnicianCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Technician.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TechnicianAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TechnicianAggregateArgs>(args: Subset<T, TechnicianAggregateArgs>): Prisma.PrismaPromise<GetTechnicianAggregateType<T>>
+
+    /**
+     * Group by Technician.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends technicianGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: technicianGroupByArgs['orderBy'] }
+        : { orderBy?: technicianGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, technicianGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTechnicianGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the technician model
+   */
+  readonly fields: technicianFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for technician.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__technicianClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the technician model
+   */
+  interface technicianFieldRefs {
+    readonly id: FieldRef<"technician", 'String'>
+    readonly fullName: FieldRef<"technician", 'String'>
+    readonly email: FieldRef<"technician", 'String'>
+    readonly phone: FieldRef<"technician", 'String'>
+    readonly employeeId: FieldRef<"technician", 'String'>
+    readonly specialization: FieldRef<"technician", 'String'>
+    readonly status: FieldRef<"technician", 'String'>
+    readonly experienceYears: FieldRef<"technician", 'String'>
+    readonly address: FieldRef<"technician", 'String'>
+    readonly profileImage: FieldRef<"technician", 'String'>
+    readonly createdAt: FieldRef<"technician", 'DateTime'>
+    readonly updatedAt: FieldRef<"technician", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * technician findUnique
+   */
+  export type technicianFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician findUniqueOrThrow
+   */
+  export type technicianFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician findFirst
+   */
+  export type technicianFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicians.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician findFirstOrThrow
+   */
+  export type technicianFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicians.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician findMany
+   */
+  export type technicianFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technicians to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicians.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician create
+   */
+  export type technicianCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data needed to create a technician.
+     */
+    data: XOR<technicianCreateInput, technicianUncheckedCreateInput>
+  }
+
+  /**
+   * technician createMany
+   */
+  export type technicianCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many technicians.
+     */
+    data: technicianCreateManyInput | technicianCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * technician createManyAndReturn
+   */
+  export type technicianCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data used to create many technicians.
+     */
+    data: technicianCreateManyInput | technicianCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * technician update
+   */
+  export type technicianUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data needed to update a technician.
+     */
+    data: XOR<technicianUpdateInput, technicianUncheckedUpdateInput>
+    /**
+     * Choose, which technician to update.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician updateMany
+   */
+  export type technicianUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update technicians.
+     */
+    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyInput>
+    /**
+     * Filter which technicians to update
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * technician updateManyAndReturn
+   */
+  export type technicianUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data used to update technicians.
+     */
+    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyInput>
+    /**
+     * Filter which technicians to update
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * technician upsert
+   */
+  export type technicianUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The filter to search for the technician to update in case it exists.
+     */
+    where: technicianWhereUniqueInput
+    /**
+     * In case the technician found by the `where` argument doesn't exist, create a new technician with this data.
+     */
+    create: XOR<technicianCreateInput, technicianUncheckedCreateInput>
+    /**
+     * In case the technician was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<technicianUpdateInput, technicianUncheckedUpdateInput>
+  }
+
+  /**
+   * technician delete
+   */
+  export type technicianDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter which technician to delete.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician deleteMany
+   */
+  export type technicianDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which technicians to delete
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * technician without action
+   */
+  export type technicianDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4397,6 +5592,24 @@ export namespace Prisma {
   };
 
   export type RepairTicketScalarFieldEnum = (typeof RepairTicketScalarFieldEnum)[keyof typeof RepairTicketScalarFieldEnum]
+
+
+  export const TechnicianScalarFieldEnum: {
+    id: 'id',
+    fullName: 'fullName',
+    email: 'email',
+    phone: 'phone',
+    employeeId: 'employeeId',
+    specialization: 'specialization',
+    status: 'status',
+    experienceYears: 'experienceYears',
+    address: 'address',
+    profileImage: 'profileImage',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TechnicianScalarFieldEnum = (typeof TechnicianScalarFieldEnum)[keyof typeof TechnicianScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4695,6 +5908,93 @@ export namespace Prisma {
     customerId?: StringWithAggregatesFilter<"repairTicket"> | string
   }
 
+  export type technicianWhereInput = {
+    AND?: technicianWhereInput | technicianWhereInput[]
+    OR?: technicianWhereInput[]
+    NOT?: technicianWhereInput | technicianWhereInput[]
+    id?: StringFilter<"technician"> | string
+    fullName?: StringFilter<"technician"> | string
+    email?: StringFilter<"technician"> | string
+    phone?: StringFilter<"technician"> | string
+    employeeId?: StringFilter<"technician"> | string
+    specialization?: StringFilter<"technician"> | string
+    status?: StringFilter<"technician"> | string
+    experienceYears?: StringFilter<"technician"> | string
+    address?: StringNullableFilter<"technician"> | string | null
+    profileImage?: StringNullableFilter<"technician"> | string | null
+    createdAt?: DateTimeFilter<"technician"> | Date | string
+    updatedAt?: DateTimeFilter<"technician"> | Date | string
+  }
+
+  export type technicianOrderByWithRelationInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type technicianWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    employeeId?: string
+    AND?: technicianWhereInput | technicianWhereInput[]
+    OR?: technicianWhereInput[]
+    NOT?: technicianWhereInput | technicianWhereInput[]
+    fullName?: StringFilter<"technician"> | string
+    phone?: StringFilter<"technician"> | string
+    specialization?: StringFilter<"technician"> | string
+    status?: StringFilter<"technician"> | string
+    experienceYears?: StringFilter<"technician"> | string
+    address?: StringNullableFilter<"technician"> | string | null
+    profileImage?: StringNullableFilter<"technician"> | string | null
+    createdAt?: DateTimeFilter<"technician"> | Date | string
+    updatedAt?: DateTimeFilter<"technician"> | Date | string
+  }, "id" | "email" | "employeeId">
+
+  export type technicianOrderByWithAggregationInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: technicianCountOrderByAggregateInput
+    _max?: technicianMaxOrderByAggregateInput
+    _min?: technicianMinOrderByAggregateInput
+  }
+
+  export type technicianScalarWhereWithAggregatesInput = {
+    AND?: technicianScalarWhereWithAggregatesInput | technicianScalarWhereWithAggregatesInput[]
+    OR?: technicianScalarWhereWithAggregatesInput[]
+    NOT?: technicianScalarWhereWithAggregatesInput | technicianScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"technician"> | string
+    fullName?: StringWithAggregatesFilter<"technician"> | string
+    email?: StringWithAggregatesFilter<"technician"> | string
+    phone?: StringWithAggregatesFilter<"technician"> | string
+    employeeId?: StringWithAggregatesFilter<"technician"> | string
+    specialization?: StringWithAggregatesFilter<"technician"> | string
+    status?: StringWithAggregatesFilter<"technician"> | string
+    experienceYears?: StringWithAggregatesFilter<"technician"> | string
+    address?: StringNullableWithAggregatesFilter<"technician"> | string | null
+    profileImage?: StringNullableWithAggregatesFilter<"technician"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -4903,6 +6203,111 @@ export namespace Prisma {
     technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type technicianCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type technicianUncheckedCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type technicianUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianCreateManyInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type technicianUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5156,6 +6561,51 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type technicianCountOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type technicianMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type technicianMinOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

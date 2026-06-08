@@ -150,6 +150,21 @@ exports.Prisma.RepairTicketScalarFieldEnum = {
   customerId: 'customerId'
 };
 
+exports.Prisma.TechnicianScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  email: 'email',
+  phone: 'phone',
+  employeeId: 'employeeId',
+  specialization: 'specialization',
+  status: 'status',
+  experienceYears: 'experienceYears',
+  address: 'address',
+  profileImage: 'profileImage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -173,7 +188,8 @@ exports.Role = exports.$Enums.Role = {
 exports.Prisma.ModelName = {
   User: 'User',
   customer: 'customer',
-  repairTicket: 'repairTicket'
+  repairTicket: 'repairTicket',
+  technician: 'technician'
 };
 
 /**
