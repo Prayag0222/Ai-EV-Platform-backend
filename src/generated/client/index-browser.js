@@ -150,9 +150,40 @@ exports.Prisma.RepairTicketScalarFieldEnum = {
   customerId: 'customerId'
 };
 
+exports.Prisma.InventoryScalarFieldEnum = {
+  id: 'id',
+  partName: 'partName',
+  sku: 'sku',
+  category: 'category',
+  stockLevel: 'stockLevel',
+  retailPrice: 'retailPrice',
+  lowStockAlert: 'lowStockAlert',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  invoiceNo: 'invoiceNo',
+  customerName: 'customerName',
+  customerPhone: 'customerPhone',
+  ticketId: 'ticketId',
+  items: 'items',
+  laborCharge: 'laborCharge',
+  grandTotal: 'grandTotal',
+  paymentStatus: 'paymentStatus',
+  paymentMethod: 'paymentMethod',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -164,6 +195,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
 exports.Role = exports.$Enums.Role = {
   USER: 'USER',
   OWNER: 'OWNER',
@@ -173,7 +210,9 @@ exports.Role = exports.$Enums.Role = {
 exports.Prisma.ModelName = {
   User: 'User',
   customer: 'customer',
-  repairTicket: 'repairTicket'
+  repairTicket: 'repairTicket',
+  inventory: 'inventory',
+  invoice: 'invoice'
 };
 
 /**
