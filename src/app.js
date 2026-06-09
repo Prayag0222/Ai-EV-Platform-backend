@@ -7,6 +7,7 @@ import operationRoutes from './routes/operationRoutes.js';
 // Add this to your imports at the top:
 import inventoryRoutes from './routes/inventoryRoutes.js';
 import invoiceRoutes from './routes/invoiceRoutes.js';
+import technicianRoutes from './routes/technicianRoutes.ts';
 import cors from 'cors';
 
 
@@ -38,6 +39,7 @@ app.use('/api/owner',ticketRoutes)
 app.use('/api/operation', operationRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/invoice', invoiceRoutes);
+app.use('/api/technician', technicianRoutes);
 
 app.listen(PORT,()=>{
     console.log(`Industry grade server is running on port ${PORT}`)

@@ -150,6 +150,7 @@ exports.Prisma.RepairTicketScalarFieldEnum = {
   customerId: 'customerId'
 };
 
+<<<<<<< HEAD
 exports.Prisma.InventoryScalarFieldEnum = {
   id: 'id',
   partName: 'partName',
@@ -173,6 +174,19 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   grandTotal: 'grandTotal',
   paymentStatus: 'paymentStatus',
   paymentMethod: 'paymentMethod',
+=======
+exports.Prisma.TechnicianScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  email: 'email',
+  phone: 'phone',
+  employeeId: 'employeeId',
+  specialization: 'specialization',
+  status: 'status',
+  experienceYears: 'experienceYears',
+  address: 'address',
+  profileImage: 'profileImage',
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -211,8 +225,12 @@ exports.Prisma.ModelName = {
   User: 'User',
   customer: 'customer',
   repairTicket: 'repairTicket',
+<<<<<<< HEAD
   inventory: 'inventory',
   invoice: 'invoice'
+=======
+  technician: 'technician'
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 };
 
 /**

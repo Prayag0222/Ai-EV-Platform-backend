@@ -29,6 +29,7 @@ export type customer = $Result.DefaultSelection<Prisma.$customerPayload>
  */
 export type repairTicket = $Result.DefaultSelection<Prisma.$repairTicketPayload>
 /**
+<<<<<<< HEAD
  * Model inventory
  * 
  */
@@ -38,6 +39,12 @@ export type inventory = $Result.DefaultSelection<Prisma.$inventoryPayload>
  * 
  */
 export type invoice = $Result.DefaultSelection<Prisma.$invoicePayload>
+=======
+ * Model technician
+ * 
+ */
+export type technician = $Result.DefaultSelection<Prisma.$technicianPayload>
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 
 /**
  * Enums
@@ -51,11 +58,24 @@ export namespace $Enums {
 
 export type Role = (typeof Role)[keyof typeof Role]
 
+
+export const TechnicianStatus: {
+  AVAILABLE: 'AVAILABLE',
+  BUSY: 'BUSY',
+  ON_LEAVE: 'ON_LEAVE'
+};
+
+export type TechnicianStatus = (typeof TechnicianStatus)[keyof typeof TechnicianStatus]
+
 }
 
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
+
+export type TechnicianStatus = $Enums.TechnicianStatus
+
+export const TechnicianStatus: typeof $Enums.TechnicianStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -209,6 +229,7 @@ export class PrismaClient<
   get repairTicket(): Prisma.repairTicketDelegate<ExtArgs, ClientOptions>;
 
   /**
+<<<<<<< HEAD
    * `prisma.inventory`: Exposes CRUD operations for the **inventory** model.
     * Example usage:
     * ```ts
@@ -227,6 +248,16 @@ export class PrismaClient<
     * ```
     */
   get invoice(): Prisma.invoiceDelegate<ExtArgs, ClientOptions>;
+=======
+   * `prisma.technician`: Exposes CRUD operations for the **technician** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Technicians
+    * const technicians = await prisma.technician.findMany()
+    * ```
+    */
+  get technician(): Prisma.technicianDelegate<ExtArgs, ClientOptions>;
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 }
 
 export namespace Prisma {
@@ -664,8 +695,12 @@ export namespace Prisma {
     User: 'User',
     customer: 'customer',
     repairTicket: 'repairTicket',
+<<<<<<< HEAD
     inventory: 'inventory',
     invoice: 'invoice'
+=======
+    technician: 'technician'
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -681,7 +716,11 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
+<<<<<<< HEAD
       modelProps: "user" | "customer" | "repairTicket" | "inventory" | "invoice"
+=======
+      modelProps: "user" | "customer" | "repairTicket" | "technician"
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -907,6 +946,7 @@ export namespace Prisma {
           }
         }
       }
+<<<<<<< HEAD
       inventory: {
         payload: Prisma.$inventoryPayload<ExtArgs>
         fields: Prisma.inventoryFieldRefs
@@ -1052,6 +1092,79 @@ export namespace Prisma {
           count: {
             args: Prisma.invoiceCountArgs<ExtArgs>
             result: $Utils.Optional<InvoiceCountAggregateOutputType> | number
+=======
+      technician: {
+        payload: Prisma.$technicianPayload<ExtArgs>
+        fields: Prisma.technicianFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.technicianFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.technicianFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          findFirst: {
+            args: Prisma.technicianFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.technicianFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          findMany: {
+            args: Prisma.technicianFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>[]
+          }
+          create: {
+            args: Prisma.technicianCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          createMany: {
+            args: Prisma.technicianCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.technicianCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>[]
+          }
+          delete: {
+            args: Prisma.technicianDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          update: {
+            args: Prisma.technicianUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          deleteMany: {
+            args: Prisma.technicianDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.technicianUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.technicianUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>[]
+          }
+          upsert: {
+            args: Prisma.technicianUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianPayload>
+          }
+          aggregate: {
+            args: Prisma.TechnicianAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTechnician>
+          }
+          groupBy: {
+            args: Prisma.technicianGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TechnicianGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.technicianCountArgs<ExtArgs>
+            result: $Utils.Optional<TechnicianCountAggregateOutputType> | number
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
           }
         }
       }
@@ -1166,8 +1279,12 @@ export namespace Prisma {
     user?: UserOmit
     customer?: customerOmit
     repairTicket?: repairTicketOmit
+<<<<<<< HEAD
     inventory?: inventoryOmit
     invoice?: invoiceOmit
+=======
+    technician?: technicianOmit
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   }
 
   /* Types for Logging */
@@ -4529,6 +4646,7 @@ export namespace Prisma {
 
 
   /**
+<<<<<<< HEAD
    * Model inventory
    */
 
@@ -4562,10 +4680,33 @@ export namespace Prisma {
     stockLevel: number | null
     retailPrice: number | null
     lowStockAlert: number | null
+=======
+   * Model technician
+   */
+
+  export type AggregateTechnician = {
+    _count: TechnicianCountAggregateOutputType | null
+    _min: TechnicianMinAggregateOutputType | null
+    _max: TechnicianMaxAggregateOutputType | null
+  }
+
+  export type TechnicianMinAggregateOutputType = {
+    id: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    employeeId: string | null
+    specialization: string | null
+    status: string | null
+    experienceYears: string | null
+    address: string | null
+    profileImage: string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt: Date | null
     updatedAt: Date | null
   }
 
+<<<<<<< HEAD
   export type InventoryMaxAggregateOutputType = {
     id: number | null
     partName: string | null
@@ -4574,10 +4715,24 @@ export namespace Prisma {
     stockLevel: number | null
     retailPrice: number | null
     lowStockAlert: number | null
+=======
+  export type TechnicianMaxAggregateOutputType = {
+    id: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    employeeId: string | null
+    specialization: string | null
+    status: string | null
+    experienceYears: string | null
+    address: string | null
+    profileImage: string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt: Date | null
     updatedAt: Date | null
   }
 
+<<<<<<< HEAD
   export type InventoryCountAggregateOutputType = {
     id: number
     partName: number
@@ -4586,12 +4741,26 @@ export namespace Prisma {
     stockLevel: number
     retailPrice: number
     lowStockAlert: number
+=======
+  export type TechnicianCountAggregateOutputType = {
+    id: number
+    fullName: number
+    email: number
+    phone: number
+    employeeId: number
+    specialization: number
+    status: number
+    experienceYears: number
+    address: number
+    profileImage: number
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
+<<<<<<< HEAD
   export type InventoryAvgAggregateInputType = {
     id?: true
     stockLevel?: true
@@ -4614,10 +4783,24 @@ export namespace Prisma {
     stockLevel?: true
     retailPrice?: true
     lowStockAlert?: true
+=======
+  export type TechnicianMinAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: true
     updatedAt?: true
   }
 
+<<<<<<< HEAD
   export type InventoryMaxAggregateInputType = {
     id?: true
     partName?: true
@@ -4626,10 +4809,24 @@ export namespace Prisma {
     stockLevel?: true
     retailPrice?: true
     lowStockAlert?: true
+=======
+  export type TechnicianMaxAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: true
     updatedAt?: true
   }
 
+<<<<<<< HEAD
   export type InventoryCountAggregateInputType = {
     id?: true
     partName?: true
@@ -4638,11 +4835,25 @@ export namespace Prisma {
     stockLevel?: true
     retailPrice?: true
     lowStockAlert?: true
+=======
+  export type TechnicianCountAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
+<<<<<<< HEAD
   export type InventoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which inventory to aggregate.
@@ -4654,27 +4865,53 @@ export namespace Prisma {
      * Determine the order of inventories to fetch.
      */
     orderBy?: inventoryOrderByWithRelationInput | inventoryOrderByWithRelationInput[]
+=======
+  export type TechnicianAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which technician to aggregate.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
+<<<<<<< HEAD
     cursor?: inventoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` inventories from the position of the cursor.
+=======
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
+<<<<<<< HEAD
      * Skip the first `n` inventories.
+=======
+     * Skip the first `n` technicians.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+<<<<<<< HEAD
      * Count returned inventories
     **/
     _count?: true | InventoryCountAggregateInputType
@@ -4690,17 +4927,27 @@ export namespace Prisma {
      * Select which fields to sum
     **/
     _sum?: InventorySumAggregateInputType
+=======
+     * Count returned technicians
+    **/
+    _count?: true | TechnicianCountAggregateInputType
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
+<<<<<<< HEAD
     _min?: InventoryMinAggregateInputType
+=======
+    _min?: TechnicianMinAggregateInputType
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
+<<<<<<< HEAD
     _max?: InventoryMaxAggregateInputType
   }
 
@@ -4710,11 +4957,23 @@ export namespace Prisma {
         ? number
         : GetScalarType<T[P], AggregateInventory[P]>
       : GetScalarType<T[P], AggregateInventory[P]>
+=======
+    _max?: TechnicianMaxAggregateInputType
+  }
+
+  export type GetTechnicianAggregateType<T extends TechnicianAggregateArgs> = {
+        [P in keyof T & keyof AggregateTechnician]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTechnician[P]>
+      : GetScalarType<T[P], AggregateTechnician[P]>
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   }
 
 
 
 
+<<<<<<< HEAD
   export type inventoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: inventoryWhereInput
     orderBy?: inventoryOrderByWithAggregationInput | inventoryOrderByWithAggregationInput[]
@@ -4755,11 +5014,53 @@ export namespace Prisma {
               ? number
               : GetScalarType<T[P], InventoryGroupByOutputType[P]>
             : GetScalarType<T[P], InventoryGroupByOutputType[P]>
+=======
+  export type technicianGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: technicianWhereInput
+    orderBy?: technicianOrderByWithAggregationInput | technicianOrderByWithAggregationInput[]
+    by: TechnicianScalarFieldEnum[] | TechnicianScalarFieldEnum
+    having?: technicianScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TechnicianCountAggregateInputType | true
+    _min?: TechnicianMinAggregateInputType
+    _max?: TechnicianMaxAggregateInputType
+  }
+
+  export type TechnicianGroupByOutputType = {
+    id: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status: string
+    experienceYears: string
+    address: string | null
+    profileImage: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TechnicianCountAggregateOutputType | null
+    _min: TechnicianMinAggregateOutputType | null
+    _max: TechnicianMaxAggregateOutputType | null
+  }
+
+  type GetTechnicianGroupByPayload<T extends technicianGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TechnicianGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TechnicianGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TechnicianGroupByOutputType[P]>
+            : GetScalarType<T[P], TechnicianGroupByOutputType[P]>
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
         }
       >
     >
 
 
+<<<<<<< HEAD
   export type inventorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     partName?: boolean
@@ -4804,10 +5105,69 @@ export namespace Prisma {
     stockLevel?: boolean
     retailPrice?: boolean
     lowStockAlert?: boolean
+=======
+  export type technicianSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectScalar = {
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: boolean
     updatedAt?: boolean
   }
 
+<<<<<<< HEAD
   export type inventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partName" | "sku" | "category" | "stockLevel" | "retailPrice" | "lowStockAlert" | "createdAt" | "updatedAt", ExtArgs["result"]["inventory"]>
 
   export type $inventoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4842,11 +5202,51 @@ export namespace Prisma {
      * @example
      * // Get one Inventory
      * const inventory = await prisma.inventory.findUnique({
+=======
+  export type technicianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phone" | "employeeId" | "specialization" | "status" | "experienceYears" | "address" | "profileImage" | "createdAt" | "updatedAt", ExtArgs["result"]["technician"]>
+
+  export type $technicianPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "technician"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fullName: string
+      email: string
+      phone: string
+      employeeId: string
+      specialization: string
+      status: string
+      experienceYears: string
+      address: string | null
+      profileImage: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["technician"]>
+    composites: {}
+  }
+
+  type technicianGetPayload<S extends boolean | null | undefined | technicianDefaultArgs> = $Result.GetResult<Prisma.$technicianPayload, S>
+
+  type technicianCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<technicianFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TechnicianCountAggregateInputType | true
+    }
+
+  export interface technicianDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['technician'], meta: { name: 'technician' } }
+    /**
+     * Find zero or one Technician that matches the filter.
+     * @param {technicianFindUniqueArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findUnique({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
+<<<<<<< HEAD
     findUnique<T extends inventoryFindUniqueArgs>(args: SelectSubset<T, inventoryFindUniqueArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
@@ -4856,11 +5256,23 @@ export namespace Prisma {
      * @example
      * // Get one Inventory
      * const inventory = await prisma.inventory.findUniqueOrThrow({
+=======
+    findUnique<T extends technicianFindUniqueArgs>(args: SelectSubset<T, technicianFindUniqueArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Technician that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {technicianFindUniqueOrThrowArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findUniqueOrThrow({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
+<<<<<<< HEAD
     findUniqueOrThrow<T extends inventoryFindUniqueOrThrowArgs>(args: SelectSubset<T, inventoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
@@ -4871,11 +5283,24 @@ export namespace Prisma {
      * @example
      * // Get one Inventory
      * const inventory = await prisma.inventory.findFirst({
+=======
+    findUniqueOrThrow<T extends technicianFindUniqueOrThrowArgs>(args: SelectSubset<T, technicianFindUniqueOrThrowArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Technician that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindFirstArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findFirst({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
+<<<<<<< HEAD
     findFirst<T extends inventoryFindFirstArgs>(args?: SelectSubset<T, inventoryFindFirstArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
@@ -4887,11 +5312,25 @@ export namespace Prisma {
      * @example
      * // Get one Inventory
      * const inventory = await prisma.inventory.findFirstOrThrow({
+=======
+    findFirst<T extends technicianFindFirstArgs>(args?: SelectSubset<T, technicianFindFirstArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Technician that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindFirstOrThrowArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findFirstOrThrow({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
+<<<<<<< HEAD
     findFirstOrThrow<T extends inventoryFindFirstOrThrowArgs>(args?: SelectSubset<T, inventoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
@@ -4920,10 +5359,41 @@ export namespace Prisma {
      * const Inventory = await prisma.inventory.create({
      *   data: {
      *     // ... data to create a Inventory
+=======
+    findFirstOrThrow<T extends technicianFindFirstOrThrowArgs>(args?: SelectSubset<T, technicianFindFirstOrThrowArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Technicians that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Technicians
+     * const technicians = await prisma.technician.findMany()
+     * 
+     * // Get first 10 Technicians
+     * const technicians = await prisma.technician.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const technicianWithIdOnly = await prisma.technician.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends technicianFindManyArgs>(args?: SelectSubset<T, technicianFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Technician.
+     * @param {technicianCreateArgs} args - Arguments to create a Technician.
+     * @example
+     * // Create one Technician
+     * const Technician = await prisma.technician.create({
+     *   data: {
+     *     // ... data to create a Technician
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   }
      * })
      * 
      */
+<<<<<<< HEAD
     create<T extends inventoryCreateArgs>(args: SelectSubset<T, inventoryCreateArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
@@ -4932,12 +5402,23 @@ export namespace Prisma {
      * @example
      * // Create many Inventories
      * const inventory = await prisma.inventory.createMany({
+=======
+    create<T extends technicianCreateArgs>(args: SelectSubset<T, technicianCreateArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Technicians.
+     * @param {technicianCreateManyArgs} args - Arguments to create many Technicians.
+     * @example
+     * // Create many Technicians
+     * const technician = await prisma.technician.createMany({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
+<<<<<<< HEAD
     createMany<T extends inventoryCreateManyArgs>(args?: SelectSubset<T, inventoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
@@ -4946,13 +5427,28 @@ export namespace Prisma {
      * @example
      * // Create many Inventories
      * const inventory = await prisma.inventory.createManyAndReturn({
+=======
+    createMany<T extends technicianCreateManyArgs>(args?: SelectSubset<T, technicianCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Technicians and returns the data saved in the database.
+     * @param {technicianCreateManyAndReturnArgs} args - Arguments to create many Technicians.
+     * @example
+     * // Create many Technicians
+     * const technician = await prisma.technician.createManyAndReturn({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
+<<<<<<< HEAD
      * // Create many Inventories and only return the `id`
      * const inventoryWithIdOnly = await prisma.inventory.createManyAndReturn({
+=======
+     * // Create many Technicians and only return the `id`
+     * const technicianWithIdOnly = await prisma.technician.createManyAndReturn({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -4962,6 +5458,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
+<<<<<<< HEAD
     createManyAndReturn<T extends inventoryCreateManyAndReturnArgs>(args?: SelectSubset<T, inventoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
@@ -4972,10 +5469,23 @@ export namespace Prisma {
      * const Inventory = await prisma.inventory.delete({
      *   where: {
      *     // ... filter to delete one Inventory
+=======
+    createManyAndReturn<T extends technicianCreateManyAndReturnArgs>(args?: SelectSubset<T, technicianCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Technician.
+     * @param {technicianDeleteArgs} args - Arguments to delete one Technician.
+     * @example
+     * // Delete one Technician
+     * const Technician = await prisma.technician.delete({
+     *   where: {
+     *     // ... filter to delete one Technician
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   }
      * })
      * 
      */
+<<<<<<< HEAD
     delete<T extends inventoryDeleteArgs>(args: SelectSubset<T, inventoryDeleteArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
@@ -4984,6 +5494,16 @@ export namespace Prisma {
      * @example
      * // Update one Inventory
      * const inventory = await prisma.inventory.update({
+=======
+    delete<T extends technicianDeleteArgs>(args: SelectSubset<T, technicianDeleteArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Technician.
+     * @param {technicianUpdateArgs} args - Arguments to update one Technician.
+     * @example
+     * // Update one Technician
+     * const technician = await prisma.technician.update({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4993,6 +5513,7 @@ export namespace Prisma {
      * })
      * 
      */
+<<<<<<< HEAD
     update<T extends inventoryUpdateArgs>(args: SelectSubset<T, inventoryUpdateArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
@@ -5001,12 +5522,23 @@ export namespace Prisma {
      * @example
      * // Delete a few Inventories
      * const { count } = await prisma.inventory.deleteMany({
+=======
+    update<T extends technicianUpdateArgs>(args: SelectSubset<T, technicianUpdateArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Technicians.
+     * @param {technicianDeleteManyArgs} args - Arguments to filter Technicians to delete.
+     * @example
+     * // Delete a few Technicians
+     * const { count } = await prisma.technician.deleteMany({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
+<<<<<<< HEAD
     deleteMany<T extends inventoryDeleteManyArgs>(args?: SelectSubset<T, inventoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
@@ -5017,6 +5549,18 @@ export namespace Prisma {
      * @example
      * // Update many Inventories
      * const inventory = await prisma.inventory.updateMany({
+=======
+    deleteMany<T extends technicianDeleteManyArgs>(args?: SelectSubset<T, technicianDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Technicians.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Technicians
+     * const technician = await prisma.technician.updateMany({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5026,6 +5570,7 @@ export namespace Prisma {
      * })
      * 
      */
+<<<<<<< HEAD
     updateMany<T extends inventoryUpdateManyArgs>(args: SelectSubset<T, inventoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
@@ -5034,6 +5579,16 @@ export namespace Prisma {
      * @example
      * // Update many Inventories
      * const inventory = await prisma.inventory.updateManyAndReturn({
+=======
+    updateMany<T extends technicianUpdateManyArgs>(args: SelectSubset<T, technicianUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Technicians and returns the data updated in the database.
+     * @param {technicianUpdateManyAndReturnArgs} args - Arguments to update many Technicians.
+     * @example
+     * // Update many Technicians
+     * const technician = await prisma.technician.updateManyAndReturn({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5042,8 +5597,13 @@ export namespace Prisma {
      *   ]
      * })
      * 
+<<<<<<< HEAD
      * // Update zero or more Inventories and only return the `id`
      * const inventoryWithIdOnly = await prisma.inventory.updateManyAndReturn({
+=======
+     * // Update zero or more Technicians and only return the `id`
+     * const technicianWithIdOnly = await prisma.technician.updateManyAndReturn({
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -5056,6 +5616,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
+<<<<<<< HEAD
     updateManyAndReturn<T extends inventoryUpdateManyAndReturnArgs>(args: SelectSubset<T, inventoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
@@ -5066,11 +5627,24 @@ export namespace Prisma {
      * const inventory = await prisma.inventory.upsert({
      *   create: {
      *     // ... data to create a Inventory
+=======
+    updateManyAndReturn<T extends technicianUpdateManyAndReturnArgs>(args: SelectSubset<T, technicianUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Technician.
+     * @param {technicianUpsertArgs} args - Arguments to update or create a Technician.
+     * @example
+     * // Update or create a Technician
+     * const technician = await prisma.technician.upsert({
+     *   create: {
+     *     // ... data to create a Technician
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
+<<<<<<< HEAD
      *     // ... the filter for the Inventory we want to update
      *   }
      * })
@@ -5093,19 +5667,54 @@ export namespace Prisma {
     **/
     count<T extends inventoryCountArgs>(
       args?: Subset<T, inventoryCountArgs>,
+=======
+     *     // ... the filter for the Technician we want to update
+     *   }
+     * })
+     */
+    upsert<T extends technicianUpsertArgs>(args: SelectSubset<T, technicianUpsertArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Technicians.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianCountArgs} args - Arguments to filter Technicians to count.
+     * @example
+     * // Count the number of Technicians
+     * const count = await prisma.technician.count({
+     *   where: {
+     *     // ... the filter for the Technicians we want to count
+     *   }
+     * })
+    **/
+    count<T extends technicianCountArgs>(
+      args?: Subset<T, technicianCountArgs>,
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
+<<<<<<< HEAD
           : GetScalarType<T['select'], InventoryCountAggregateOutputType>
+=======
+          : GetScalarType<T['select'], TechnicianCountAggregateOutputType>
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
         : number
     >
 
     /**
+<<<<<<< HEAD
      * Allows you to perform aggregations operations on a Inventory.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * @param {InventoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+=======
+     * Allows you to perform aggregations operations on a Technician.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TechnicianAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -5125,6 +5734,7 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
+<<<<<<< HEAD
     aggregate<T extends InventoryAggregateArgs>(args: Subset<T, InventoryAggregateArgs>): Prisma.PrismaPromise<GetInventoryAggregateType<T>>
 
     /**
@@ -5132,6 +5742,15 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * @param {inventoryGroupByArgs} args - Group by arguments.
+=======
+    aggregate<T extends TechnicianAggregateArgs>(args: Subset<T, TechnicianAggregateArgs>): Prisma.PrismaPromise<GetTechnicianAggregateType<T>>
+
+    /**
+     * Group by Technician.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianGroupByArgs} args - Group by arguments.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -5146,14 +5765,23 @@ export namespace Prisma {
      * 
     **/
     groupBy<
+<<<<<<< HEAD
       T extends inventoryGroupByArgs,
+=======
+      T extends technicianGroupByArgs,
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
+<<<<<<< HEAD
         ? { orderBy: inventoryGroupByArgs['orderBy'] }
         : { orderBy?: inventoryGroupByArgs['orderBy'] },
+=======
+        ? { orderBy: technicianGroupByArgs['orderBy'] }
+        : { orderBy?: technicianGroupByArgs['orderBy'] },
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -5202,6 +5830,7 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
+<<<<<<< HEAD
     >(args: SubsetIntersection<T, inventoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInventoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
    * Fields of the inventory model
@@ -5211,11 +5840,26 @@ export namespace Prisma {
 
   /**
    * The delegate class that acts as a "Promise-like" for inventory.
+=======
+    >(args: SubsetIntersection<T, technicianGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTechnicianGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the technician model
+   */
+  readonly fields: technicianFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for technician.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
+<<<<<<< HEAD
   export interface Prisma__inventoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+=======
+  export interface Prisma__technicianClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5243,6 +5887,7 @@ export namespace Prisma {
 
 
   /**
+<<<<<<< HEAD
    * Fields of the inventory model
    */
   interface inventoryFieldRefs {
@@ -5255,11 +5900,29 @@ export namespace Prisma {
     readonly lowStockAlert: FieldRef<"inventory", 'Int'>
     readonly createdAt: FieldRef<"inventory", 'DateTime'>
     readonly updatedAt: FieldRef<"inventory", 'DateTime'>
+=======
+   * Fields of the technician model
+   */
+  interface technicianFieldRefs {
+    readonly id: FieldRef<"technician", 'String'>
+    readonly fullName: FieldRef<"technician", 'String'>
+    readonly email: FieldRef<"technician", 'String'>
+    readonly phone: FieldRef<"technician", 'String'>
+    readonly employeeId: FieldRef<"technician", 'String'>
+    readonly specialization: FieldRef<"technician", 'String'>
+    readonly status: FieldRef<"technician", 'String'>
+    readonly experienceYears: FieldRef<"technician", 'String'>
+    readonly address: FieldRef<"technician", 'String'>
+    readonly profileImage: FieldRef<"technician", 'String'>
+    readonly createdAt: FieldRef<"technician", 'DateTime'>
+    readonly updatedAt: FieldRef<"technician", 'DateTime'>
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   }
     
 
   // Custom InputTypes
   /**
+<<<<<<< HEAD
    * inventory findUnique
    */
   export type inventoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5327,17 +5990,91 @@ export namespace Prisma {
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` inventories from the position of the cursor.
+=======
+   * technician findUnique
+   */
+  export type technicianFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician findUniqueOrThrow
+   */
+  export type technicianFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician findFirst
+   */
+  export type technicianFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
+<<<<<<< HEAD
      * Skip the first `n` inventories.
+=======
+     * Skip the first `n` technicians.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
+<<<<<<< HEAD
      * Filter by unique combinations of inventories.
      */
     distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
@@ -5375,17 +6112,61 @@ export namespace Prisma {
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` inventories from the position of the cursor.
+=======
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician findFirstOrThrow
+   */
+  export type technicianFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
+<<<<<<< HEAD
      * Skip the first `n` inventories.
+=======
+     * Skip the first `n` technicians.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
+<<<<<<< HEAD
      * Filter by unique combinations of inventories.
      */
     distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
@@ -5423,17 +6204,61 @@ export namespace Prisma {
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` inventories from the position of the cursor.
+=======
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician findMany
+   */
+  export type technicianFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter, which technicians to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
+<<<<<<< HEAD
      * Skip the first `n` inventories.
+=======
+     * Skip the first `n` technicians.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
+<<<<<<< HEAD
      * Filter by unique combinations of inventories.
      */
     distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
@@ -5465,10 +6290,44 @@ export namespace Prisma {
      * The data used to create many inventories.
      */
     data: inventoryCreateManyInput | inventoryCreateManyInput[]
+=======
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician create
+   */
+  export type technicianCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data needed to create a technician.
+     */
+    data: XOR<technicianCreateInput, technicianUncheckedCreateInput>
+  }
+
+  /**
+   * technician createMany
+   */
+  export type technicianCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many technicians.
+     */
+    data: technicianCreateManyInput | technicianCreateManyInput[]
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     skipDuplicates?: boolean
   }
 
   /**
+<<<<<<< HEAD
    * inventory createManyAndReturn
    */
   export type inventoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5484,10 +6343,28 @@ export namespace Prisma {
      * The data used to create many inventories.
      */
     data: inventoryCreateManyInput | inventoryCreateManyInput[]
+=======
+   * technician createManyAndReturn
+   */
+  export type technicianCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data used to create many technicians.
+     */
+    data: technicianCreateManyInput | technicianCreateManyInput[]
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     skipDuplicates?: boolean
   }
 
   /**
+<<<<<<< HEAD
    * inventory update
    */
   export type inventoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5523,11 +6400,49 @@ export namespace Prisma {
     where?: inventoryWhereInput
     /**
      * Limit how many inventories to update.
+=======
+   * technician update
+   */
+  export type technicianUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data needed to update a technician.
+     */
+    data: XOR<technicianUpdateInput, technicianUncheckedUpdateInput>
+    /**
+     * Choose, which technician to update.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician updateMany
+   */
+  export type technicianUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update technicians.
+     */
+    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyInput>
+    /**
+     * Filter which technicians to update
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to update.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     limit?: number
   }
 
   /**
+<<<<<<< HEAD
    * inventory updateManyAndReturn
    */
   export type inventoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5549,11 +6464,35 @@ export namespace Prisma {
     where?: inventoryWhereInput
     /**
      * Limit how many inventories to update.
+=======
+   * technician updateManyAndReturn
+   */
+  export type technicianUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data used to update technicians.
+     */
+    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyInput>
+    /**
+     * Filter which technicians to update
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to update.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     limit?: number
   }
 
   /**
+<<<<<<< HEAD
    * inventory upsert
    */
   export type inventoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5607,11 +6546,67 @@ export namespace Prisma {
     where?: inventoryWhereInput
     /**
      * Limit how many inventories to delete.
+=======
+   * technician upsert
+   */
+  export type technicianUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The filter to search for the technician to update in case it exists.
+     */
+    where: technicianWhereUniqueInput
+    /**
+     * In case the technician found by the `where` argument doesn't exist, create a new technician with this data.
+     */
+    create: XOR<technicianCreateInput, technicianUncheckedCreateInput>
+    /**
+     * In case the technician was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<technicianUpdateInput, technicianUncheckedUpdateInput>
+  }
+
+  /**
+   * technician delete
+   */
+  export type technicianDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Filter which technician to delete.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician deleteMany
+   */
+  export type technicianDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which technicians to delete
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to delete.
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     limit?: number
   }
 
   /**
+<<<<<<< HEAD
    * inventory without action
    */
   export type inventoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6756,6 +7751,19 @@ export namespace Prisma {
      * Omit specific fields from the invoice
      */
     omit?: invoiceOmit<ExtArgs> | null
+=======
+   * technician without action
+   */
+  export type technicianDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   }
 
 
@@ -6812,6 +7820,7 @@ export namespace Prisma {
   export type RepairTicketScalarFieldEnum = (typeof RepairTicketScalarFieldEnum)[keyof typeof RepairTicketScalarFieldEnum]
 
 
+<<<<<<< HEAD
   export const InventoryScalarFieldEnum: {
     id: 'id',
     partName: 'partName',
@@ -6820,10 +7829,24 @@ export namespace Prisma {
     stockLevel: 'stockLevel',
     retailPrice: 'retailPrice',
     lowStockAlert: 'lowStockAlert',
+=======
+  export const TechnicianScalarFieldEnum: {
+    id: 'id',
+    fullName: 'fullName',
+    email: 'email',
+    phone: 'phone',
+    employeeId: 'employeeId',
+    specialization: 'specialization',
+    status: 'status',
+    experienceYears: 'experienceYears',
+    address: 'address',
+    profileImage: 'profileImage',
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
+<<<<<<< HEAD
   export type InventoryScalarFieldEnum = (typeof InventoryScalarFieldEnum)[keyof typeof InventoryScalarFieldEnum]
 
 
@@ -6843,6 +7866,9 @@ export namespace Prisma {
   };
 
   export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
+=======
+  export type TechnicianScalarFieldEnum = (typeof TechnicianScalarFieldEnum)[keyof typeof TechnicianScalarFieldEnum]
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 
 
   export const SortOrder: {
@@ -7171,6 +8197,7 @@ export namespace Prisma {
     customerId?: StringWithAggregatesFilter<"repairTicket"> | string
   }
 
+<<<<<<< HEAD
   export type inventoryWhereInput = {
     AND?: inventoryWhereInput | inventoryWhereInput[]
     OR?: inventoryWhereInput[]
@@ -7194,10 +8221,42 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+=======
+  export type technicianWhereInput = {
+    AND?: technicianWhereInput | technicianWhereInput[]
+    OR?: technicianWhereInput[]
+    NOT?: technicianWhereInput | technicianWhereInput[]
+    id?: StringFilter<"technician"> | string
+    fullName?: StringFilter<"technician"> | string
+    email?: StringFilter<"technician"> | string
+    phone?: StringFilter<"technician"> | string
+    employeeId?: StringFilter<"technician"> | string
+    specialization?: StringFilter<"technician"> | string
+    status?: StringFilter<"technician"> | string
+    experienceYears?: StringFilter<"technician"> | string
+    address?: StringNullableFilter<"technician"> | string | null
+    profileImage?: StringNullableFilter<"technician"> | string | null
+    createdAt?: DateTimeFilter<"technician"> | Date | string
+    updatedAt?: DateTimeFilter<"technician"> | Date | string
+  }
+
+  export type technicianOrderByWithRelationInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
+<<<<<<< HEAD
   export type inventoryWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     sku?: string
@@ -7332,6 +8391,60 @@ export namespace Prisma {
     paymentMethod?: StringWithAggregatesFilter<"invoice"> | string
     createdAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
+=======
+  export type technicianWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    employeeId?: string
+    AND?: technicianWhereInput | technicianWhereInput[]
+    OR?: technicianWhereInput[]
+    NOT?: technicianWhereInput | technicianWhereInput[]
+    fullName?: StringFilter<"technician"> | string
+    phone?: StringFilter<"technician"> | string
+    specialization?: StringFilter<"technician"> | string
+    status?: StringFilter<"technician"> | string
+    experienceYears?: StringFilter<"technician"> | string
+    address?: StringNullableFilter<"technician"> | string | null
+    profileImage?: StringNullableFilter<"technician"> | string | null
+    createdAt?: DateTimeFilter<"technician"> | Date | string
+    updatedAt?: DateTimeFilter<"technician"> | Date | string
+  }, "id" | "email" | "employeeId">
+
+  export type technicianOrderByWithAggregationInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: technicianCountOrderByAggregateInput
+    _max?: technicianMaxOrderByAggregateInput
+    _min?: technicianMinOrderByAggregateInput
+  }
+
+  export type technicianScalarWhereWithAggregatesInput = {
+    AND?: technicianScalarWhereWithAggregatesInput | technicianScalarWhereWithAggregatesInput[]
+    OR?: technicianScalarWhereWithAggregatesInput[]
+    NOT?: technicianScalarWhereWithAggregatesInput | technicianScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"technician"> | string
+    fullName?: StringWithAggregatesFilter<"technician"> | string
+    email?: StringWithAggregatesFilter<"technician"> | string
+    phone?: StringWithAggregatesFilter<"technician"> | string
+    employeeId?: StringWithAggregatesFilter<"technician"> | string
+    specialization?: StringWithAggregatesFilter<"technician"> | string
+    status?: StringWithAggregatesFilter<"technician"> | string
+    experienceYears?: StringWithAggregatesFilter<"technician"> | string
+    address?: StringNullableWithAggregatesFilter<"technician"> | string | null
+    profileImage?: StringNullableWithAggregatesFilter<"technician"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   }
 
   export type UserCreateInput = {
@@ -7544,6 +8657,7 @@ export namespace Prisma {
     customerId?: StringFieldUpdateOperationsInput | string
   }
 
+<<<<<<< HEAD
   export type inventoryCreateInput = {
     partName: string
     sku: string
@@ -7551,10 +8665,24 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+=======
+  export type technicianCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
+<<<<<<< HEAD
   export type inventoryUncheckedCreateInput = {
     id?: number
     partName: string
@@ -7563,10 +8691,24 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+=======
+  export type technicianUncheckedCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
+<<<<<<< HEAD
   export type inventoryUpdateInput = {
     partName?: StringFieldUpdateOperationsInput | string
     sku?: StringFieldUpdateOperationsInput | string
@@ -7574,10 +8716,24 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+=======
+  export type technicianUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+<<<<<<< HEAD
   export type inventoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     partName?: StringFieldUpdateOperationsInput | string
@@ -7586,10 +8742,24 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+=======
+  export type technicianUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+<<<<<<< HEAD
   export type inventoryCreateManyInput = {
     id?: number
     partName: string
@@ -7598,10 +8768,24 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+=======
+  export type technicianCreateManyInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
+<<<<<<< HEAD
   export type inventoryUpdateManyMutationInput = {
     partName?: StringFieldUpdateOperationsInput | string
     sku?: StringFieldUpdateOperationsInput | string
@@ -7609,10 +8793,24 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+=======
+  export type technicianUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+<<<<<<< HEAD
   export type inventoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     partName?: StringFieldUpdateOperationsInput | string
@@ -7723,6 +8921,19 @@ export namespace Prisma {
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+=======
+  export type technicianUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7980,6 +9191,7 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+<<<<<<< HEAD
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -7999,10 +9211,24 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+=======
+  export type technicianCountOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
+<<<<<<< HEAD
   export type inventoryAvgOrderByAggregateInput = {
     id?: SortOrder
     stockLevel?: SortOrder
@@ -8018,10 +9244,24 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+=======
+  export type technicianMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
+<<<<<<< HEAD
   export type inventoryMinOrderByAggregateInput = {
     id?: SortOrder
     partName?: SortOrder
@@ -8030,10 +9270,24 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+=======
+  export type technicianMinOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
+<<<<<<< HEAD
   export type inventorySumOrderByAggregateInput = {
     id?: SortOrder
     stockLevel?: SortOrder
@@ -8190,6 +9444,8 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
+=======
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
