@@ -13,6 +13,11 @@ enum Role {
   OWNER
   TECHNICIAN
 }
+enum TechnicianStatus {
+  AVAILABLE
+  BUSY
+  ON_LEAVE
+}
 
 model User {
   id        String   @id @default(uuid())
@@ -25,3 +30,83 @@ model User {
 
   @@map("users")
 }
+
+model customer {
+  id    String  @id @default(uuid())
+  name     String
+  email        String?
+  phone String @unique
+  vehicleModel String
+  address      String?
+  createdAt DateTime @default(now())
+
+// ⚡ LINK ROW: Points to our lowercase customer model table relations
+  tickets      repairTicket[]
+
+}
+
+model repairTicket {
+ id    Int   @id @default(autoincrement())
+ issueCategory String // e.g., "Battery", "BMS", "Controller"
+ description  String     // Detailed diagnostics notes
+ status    String  @default("PENDING") // PENDING, DIAGNOSING, RESOLVED
+ technicianNotes String? 
+ createdAt DateTime @default(now())
+
+
+ // 👤 CUSTOMER RELATION PIPELINE
+  // Note: customerId remains a String because it maps to the Customer table's UUID string format. 
+  // Relational databases handle this cross-type connection perfectly!
+
+  customerId  String
+  customer customer @relation(fields: [customerId], references:[id], onDelete:Cascade)
+
+}
+
+<<<<<<< HEAD
+
+  model inventory {
+  id              Int      @id @default(autoincrement())
+  partName        String   // e.g., "Ather 450X Brake Pads"
+  sku             String   @unique // Essential for fast barcode scanning or exact matching
+  category        String   // e.g., "Electrical", "Consumables", "Drivetrain"
+  stockLevel      Int      @default(0) // How many are on the shelf right now
+  retailPrice     Float    // What the customer pays on the final invoice
+  lowStockAlert   Int      @default(5) // Triggers the UI warning when stock dips below this number
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+
+model invoice {
+  id            Int      @id @default(autoincrement())
+  invoiceNo     String   @unique // e.g., "INV-2026-1001" (Automated unique string)
+  customerName  String   // Customer's name
+  customerPhone String   // Customer's contact phone number
+  ticketId      Int?     // Optional field: Links to a repair ticket (null if it's a quick counter sale)
+  items         Json     // Stores array list of items: [{"name": "Brake Pads", "sku": "CON-BP-1234", "qty": 1, "price": 450}]
+  laborCharge   Float    @default(0.0)  // Flat labor costs in Rupees
+  grandTotal    Float    // Final flat total in Rupees (Sum of parts + labor)
+  paymentStatus String   // Current billing state (e.g., "PAID", "UNPAID")
+  paymentMethod String   // Transaction category tracker (e.g., "CASH", "UPI", "CARD", "NONE")
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+=======
+model technician {
+  id              String           @id @default(uuid())
+  fullName        String
+  email           String           @unique
+  phone           String
+  employeeId      String           @unique
+  specialization  String
+  status          String           @default("AVAILABLE")
+  experienceYears String
+  address         String?
+  profileImage    String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d

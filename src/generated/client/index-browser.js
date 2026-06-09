@@ -130,14 +130,90 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CustomerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  vehicleModel: 'vehicleModel',
+  address: 'address',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepairTicketScalarFieldEnum = {
+  id: 'id',
+  issueCategory: 'issueCategory',
+  description: 'description',
+  status: 'status',
+  technicianNotes: 'technicianNotes',
+  createdAt: 'createdAt',
+  customerId: 'customerId'
+};
+
+<<<<<<< HEAD
+exports.Prisma.InventoryScalarFieldEnum = {
+  id: 'id',
+  partName: 'partName',
+  sku: 'sku',
+  category: 'category',
+  stockLevel: 'stockLevel',
+  retailPrice: 'retailPrice',
+  lowStockAlert: 'lowStockAlert',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  invoiceNo: 'invoiceNo',
+  customerName: 'customerName',
+  customerPhone: 'customerPhone',
+  ticketId: 'ticketId',
+  items: 'items',
+  laborCharge: 'laborCharge',
+  grandTotal: 'grandTotal',
+  paymentStatus: 'paymentStatus',
+  paymentMethod: 'paymentMethod',
+=======
+exports.Prisma.TechnicianScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  email: 'email',
+  phone: 'phone',
+  employeeId: 'employeeId',
+  specialization: 'specialization',
+  status: 'status',
+  experienceYears: 'experienceYears',
+  address: 'address',
+  profileImage: 'profileImage',
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.Role = exports.$Enums.Role = {
   USER: 'USER',
@@ -146,7 +222,15 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  customer: 'customer',
+  repairTicket: 'repairTicket',
+<<<<<<< HEAD
+  inventory: 'inventory',
+  invoice: 'invoice'
+=======
+  technician: 'technician'
+>>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 };
 
 /**

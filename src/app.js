@@ -1,6 +1,13 @@
 import express from 'express';
 import 'dotenv/config';
-import authRoutes from './routes/authRoutes.js'
+import authRoutes from './routes/authRoutes.js';
+import customerRoutes from './routes/customerRoutes.ts'
+import ticketRoutes from './routes/ticketRoutes.ts'
+import operationRoutes from './routes/operationRoutes.js';
+// Add this to your imports at the top:
+import inventoryRoutes from './routes/inventoryRoutes.js';
+import invoiceRoutes from './routes/invoiceRoutes.js';
+import technicianRoutes from './routes/technicianRoutes.ts';
 import cors from 'cors';
 
 
@@ -26,6 +33,13 @@ app.get('/api/health',(req,res)=>(
 ))
 
 app.use('/api/auth', authRoutes)
+app.use('/api/owner',customerRoutes)
+app.use('/api/owner',ticketRoutes)
+// 🛠️ OPERATIONAL DOMAIN LINK: Mount your greasy-hands technician workspace routes
+app.use('/api/operation', operationRoutes);
+app.use('/api/inventory', inventoryRoutes);
+app.use('/api/invoice', invoiceRoutes);
+app.use('/api/technician', technicianRoutes);
 
 app.listen(PORT,()=>{
     console.log(`Industry grade server is running on port ${PORT}`)
