@@ -13,6 +13,7 @@ enum Role {
   OWNER
   TECHNICIAN
 }
+
 enum TechnicianStatus {
   AVAILABLE
   BUSY
@@ -32,40 +33,92 @@ model User {
 }
 
 model customer {
-  id    String  @id @default(uuid())
-  name     String
+  id           String   @id @default(uuid())
+  name         String
   email        String?
-  phone String @unique
+  phone        String   @unique
   vehicleModel String
   address      String?
-  createdAt DateTime @default(now())
+  createdAt    DateTime @default(now())
 
-// ⚡ LINK ROW: Points to our lowercase customer model table relations
+  // ⚡ LINK ROW: Points to our lowercase repairTicket model
   tickets      repairTicket[]
-
 }
 
 model repairTicket {
- id    Int   @id @default(autoincrement())
- issueCategory String // e.g., "Battery", "BMS", "Controller"
- description  String     // Detailed diagnostics notes
- status    String  @default("PENDING") // PENDING, DIAGNOSING, RESOLVED
- technicianNotes String? 
- createdAt DateTime @default(now())
+  id             Int      @id @default(autoincrement())
+  issueCategory  String   // e.g., "Battery", "BMS", "Controller"
+  description    String   // Customer's initial complaint
+  status         String   @default("PENDING") // PENDING, DIAGNOSING, IN_SERVICE, RESOLVED
+  bay            String?
+  priority       String   @default("Standard") // Urgent, Standard
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now())
 
+  // Core Relations
+  customerId     String
+  customer       customer @relation(fields: [customerId], references:[id], onDelete:Cascade)
 
- // 👤 CUSTOMER RELATION PIPELINE
-  // Note: customerId remains a String because it maps to the Customer table's UUID string format. 
-  // Relational databases handle this cross-type connection perfectly!
+  technicianId   String?
+  technician     technician? @relation(fields: [technicianId], references: [id], onDelete: SetNull)
 
-  customerId  String
-  customer customer @relation(fields: [customerId], references:[id], onDelete:Cascade)
-
+  // ⚡ NEW MOBILE-FIRST RELATIONS
+  notes          technicianNote[]
+  timeline       timelineEvent[]
+  parts          usedPart[]
 }
 
-<<<<<<< HEAD
+// ----------------------------------------------------
+// 📱 NEW MOBILE-FIRST TECHNICIAN DATA MODELS
+// ----------------------------------------------------
 
-  model inventory {
+model technicianNote {
+  id              Int           @id @default(autoincrement())
+  ticketId        Int
+  ticket          repairTicket  @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  
+  // AI Voice-to-Text Engine Fields
+  rawVoiceText    String?       // E.g., "BMS kharab tha..."
+  structuredText  String        // E.g., "BMS failure detected and replaced."
+  
+  // Quick Tap Tags and Media
+  quickTags       String[]      // PostgreSQL supports arrays: ["BMS", "Fuse"]
+  imageUrls       String[]      // ["https://aws-s3-bucket/image1.jpg"]
+
+  createdAt       DateTime      @default(now())
+}
+
+model timelineEvent {
+  id              Int           @id @default(autoincrement())
+  ticketId        Int
+  ticket          repairTicket  @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  
+  status          String        // What status did it change to? (e.g., "In Service")
+  createdAt       DateTime      @default(now()) // Automatically logs the exact time!
+}
+
+model usedPart {
+  id              Int           @id @default(autoincrement())
+  
+  // Link to the specific repair job
+  ticketId        Int
+  ticket          repairTicket  @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  
+  // Link directly to your EXISTING Owner Inventory system!
+  inventoryId     Int           
+  inventoryItem   inventory     @relation(fields: [inventoryId], references: [id])
+  
+  // Store the specific details of THIS transaction
+  quantity        Int           @default(1)
+  lockedCost      Float         // We copy the cost here so it never changes on old invoices!
+  
+  createdAt       DateTime      @default(now())
+}
+
+// ----------------------------------------------------
+
+model inventory {
   id              Int      @id @default(autoincrement())
   partName        String   // e.g., "Ather 450X Brake Pads"
   sku             String   @unique // Essential for fast barcode scanning or exact matching
@@ -76,8 +129,10 @@ model repairTicket {
   
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-}
 
+  // ⚡ LINK ROW: Points to our usedPart history
+  usageHistory    usedPart[]
+}
 
 model invoice {
   id            Int      @id @default(autoincrement())
@@ -94,19 +149,20 @@ model invoice {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
-=======
+
 model technician {
-  id              String           @id @default(uuid())
+  id              String   @id @default(uuid())
   fullName        String
-  email           String           @unique
+  email           String   @unique
   phone           String
-  employeeId      String           @unique
+  employeeId      String   @unique
   specialization  String
-  status          String           @default("AVAILABLE")
+  status          String   @default("AVAILABLE")
   experienceYears String
   address         String?
   profileImage    String?
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  tickets         repairTicket[]
 }
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d

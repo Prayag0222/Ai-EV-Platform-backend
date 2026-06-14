@@ -15,6 +15,11 @@ export const getOperationalTickets = async (req: Request, res: Response) => {
             name: true,
             phone: true
           }
+        },
+        technician:{
+         select:{
+          fullName:true
+         }
         }
       },
       // ✅ FIXED: Sorted by id descending to keep the newest tickets at the top safely

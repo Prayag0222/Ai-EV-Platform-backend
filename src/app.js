@@ -9,6 +9,7 @@ import inventoryRoutes from './routes/inventoryRoutes.js';
 import invoiceRoutes from './routes/invoiceRoutes.js';
 import technicianRoutes from './routes/technicianRoutes.ts';
 import cors from 'cors';
+import voiceNotes from './routes/voiceNotes.js'
 
 
 const app = express();
@@ -31,7 +32,7 @@ app.get('/api/health',(req,res)=>(
 
     })
 ))
-
+app.use(voiceNotes)
 app.use('/api/auth', authRoutes)
 app.use('/api/owner',customerRoutes)
 app.use('/api/owner',ticketRoutes)
