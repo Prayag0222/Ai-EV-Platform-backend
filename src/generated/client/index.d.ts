@@ -29,7 +29,21 @@ export type customer = $Result.DefaultSelection<Prisma.$customerPayload>
  */
 export type repairTicket = $Result.DefaultSelection<Prisma.$repairTicketPayload>
 /**
-<<<<<<< HEAD
+ * Model technicianNote
+ * 
+ */
+export type technicianNote = $Result.DefaultSelection<Prisma.$technicianNotePayload>
+/**
+ * Model timelineEvent
+ * 
+ */
+export type timelineEvent = $Result.DefaultSelection<Prisma.$timelineEventPayload>
+/**
+ * Model usedPart
+ * 
+ */
+export type usedPart = $Result.DefaultSelection<Prisma.$usedPartPayload>
+/**
  * Model inventory
  * 
  */
@@ -39,12 +53,11 @@ export type inventory = $Result.DefaultSelection<Prisma.$inventoryPayload>
  * 
  */
 export type invoice = $Result.DefaultSelection<Prisma.$invoicePayload>
-=======
+/**
  * Model technician
  * 
  */
 export type technician = $Result.DefaultSelection<Prisma.$technicianPayload>
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 
 /**
  * Enums
@@ -229,7 +242,36 @@ export class PrismaClient<
   get repairTicket(): Prisma.repairTicketDelegate<ExtArgs, ClientOptions>;
 
   /**
-<<<<<<< HEAD
+   * `prisma.technicianNote`: Exposes CRUD operations for the **technicianNote** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TechnicianNotes
+    * const technicianNotes = await prisma.technicianNote.findMany()
+    * ```
+    */
+  get technicianNote(): Prisma.technicianNoteDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.timelineEvent`: Exposes CRUD operations for the **timelineEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TimelineEvents
+    * const timelineEvents = await prisma.timelineEvent.findMany()
+    * ```
+    */
+  get timelineEvent(): Prisma.timelineEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.usedPart`: Exposes CRUD operations for the **usedPart** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UsedParts
+    * const usedParts = await prisma.usedPart.findMany()
+    * ```
+    */
+  get usedPart(): Prisma.usedPartDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.inventory`: Exposes CRUD operations for the **inventory** model.
     * Example usage:
     * ```ts
@@ -248,7 +290,8 @@ export class PrismaClient<
     * ```
     */
   get invoice(): Prisma.invoiceDelegate<ExtArgs, ClientOptions>;
-=======
+
+  /**
    * `prisma.technician`: Exposes CRUD operations for the **technician** model.
     * Example usage:
     * ```ts
@@ -257,7 +300,6 @@ export class PrismaClient<
     * ```
     */
   get technician(): Prisma.technicianDelegate<ExtArgs, ClientOptions>;
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 }
 
 export namespace Prisma {
@@ -695,12 +737,12 @@ export namespace Prisma {
     User: 'User',
     customer: 'customer',
     repairTicket: 'repairTicket',
-<<<<<<< HEAD
+    technicianNote: 'technicianNote',
+    timelineEvent: 'timelineEvent',
+    usedPart: 'usedPart',
     inventory: 'inventory',
-    invoice: 'invoice'
-=======
+    invoice: 'invoice',
     technician: 'technician'
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -716,11 +758,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-<<<<<<< HEAD
-      modelProps: "user" | "customer" | "repairTicket" | "inventory" | "invoice"
-=======
-      modelProps: "user" | "customer" | "repairTicket" | "technician"
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+      modelProps: "user" | "customer" | "repairTicket" | "technicianNote" | "timelineEvent" | "usedPart" | "inventory" | "invoice" | "technician"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -946,7 +984,228 @@ export namespace Prisma {
           }
         }
       }
-<<<<<<< HEAD
+      technicianNote: {
+        payload: Prisma.$technicianNotePayload<ExtArgs>
+        fields: Prisma.technicianNoteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.technicianNoteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.technicianNoteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>
+          }
+          findFirst: {
+            args: Prisma.technicianNoteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.technicianNoteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>
+          }
+          findMany: {
+            args: Prisma.technicianNoteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>[]
+          }
+          create: {
+            args: Prisma.technicianNoteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>
+          }
+          createMany: {
+            args: Prisma.technicianNoteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.technicianNoteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>[]
+          }
+          delete: {
+            args: Prisma.technicianNoteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>
+          }
+          update: {
+            args: Prisma.technicianNoteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>
+          }
+          deleteMany: {
+            args: Prisma.technicianNoteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.technicianNoteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.technicianNoteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>[]
+          }
+          upsert: {
+            args: Prisma.technicianNoteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$technicianNotePayload>
+          }
+          aggregate: {
+            args: Prisma.TechnicianNoteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTechnicianNote>
+          }
+          groupBy: {
+            args: Prisma.technicianNoteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TechnicianNoteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.technicianNoteCountArgs<ExtArgs>
+            result: $Utils.Optional<TechnicianNoteCountAggregateOutputType> | number
+          }
+        }
+      }
+      timelineEvent: {
+        payload: Prisma.$timelineEventPayload<ExtArgs>
+        fields: Prisma.timelineEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.timelineEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.timelineEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>
+          }
+          findFirst: {
+            args: Prisma.timelineEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.timelineEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>
+          }
+          findMany: {
+            args: Prisma.timelineEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>[]
+          }
+          create: {
+            args: Prisma.timelineEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>
+          }
+          createMany: {
+            args: Prisma.timelineEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.timelineEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>[]
+          }
+          delete: {
+            args: Prisma.timelineEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>
+          }
+          update: {
+            args: Prisma.timelineEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.timelineEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.timelineEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.timelineEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.timelineEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$timelineEventPayload>
+          }
+          aggregate: {
+            args: Prisma.TimelineEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTimelineEvent>
+          }
+          groupBy: {
+            args: Prisma.timelineEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TimelineEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.timelineEventCountArgs<ExtArgs>
+            result: $Utils.Optional<TimelineEventCountAggregateOutputType> | number
+          }
+        }
+      }
+      usedPart: {
+        payload: Prisma.$usedPartPayload<ExtArgs>
+        fields: Prisma.usedPartFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.usedPartFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.usedPartFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>
+          }
+          findFirst: {
+            args: Prisma.usedPartFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.usedPartFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>
+          }
+          findMany: {
+            args: Prisma.usedPartFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>[]
+          }
+          create: {
+            args: Prisma.usedPartCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>
+          }
+          createMany: {
+            args: Prisma.usedPartCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.usedPartCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>[]
+          }
+          delete: {
+            args: Prisma.usedPartDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>
+          }
+          update: {
+            args: Prisma.usedPartUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>
+          }
+          deleteMany: {
+            args: Prisma.usedPartDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.usedPartUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.usedPartUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>[]
+          }
+          upsert: {
+            args: Prisma.usedPartUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usedPartPayload>
+          }
+          aggregate: {
+            args: Prisma.UsedPartAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUsedPart>
+          }
+          groupBy: {
+            args: Prisma.usedPartGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UsedPartGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.usedPartCountArgs<ExtArgs>
+            result: $Utils.Optional<UsedPartCountAggregateOutputType> | number
+          }
+        }
+      }
       inventory: {
         payload: Prisma.$inventoryPayload<ExtArgs>
         fields: Prisma.inventoryFieldRefs
@@ -1092,7 +1351,9 @@ export namespace Prisma {
           count: {
             args: Prisma.invoiceCountArgs<ExtArgs>
             result: $Utils.Optional<InvoiceCountAggregateOutputType> | number
-=======
+          }
+        }
+      }
       technician: {
         payload: Prisma.$technicianPayload<ExtArgs>
         fields: Prisma.technicianFieldRefs
@@ -1164,7 +1425,6 @@ export namespace Prisma {
           count: {
             args: Prisma.technicianCountArgs<ExtArgs>
             result: $Utils.Optional<TechnicianCountAggregateOutputType> | number
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
           }
         }
       }
@@ -1279,12 +1539,12 @@ export namespace Prisma {
     user?: UserOmit
     customer?: customerOmit
     repairTicket?: repairTicketOmit
-<<<<<<< HEAD
+    technicianNote?: technicianNoteOmit
+    timelineEvent?: timelineEventOmit
+    usedPart?: usedPartOmit
     inventory?: inventoryOmit
     invoice?: invoiceOmit
-=======
     technician?: technicianOmit
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   }
 
   /* Types for Logging */
@@ -1387,6 +1647,117 @@ export namespace Prisma {
    * CustomerCountOutputType without action
    */
   export type CustomerCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: repairTicketWhereInput
+  }
+
+
+  /**
+   * Count Type RepairTicketCountOutputType
+   */
+
+  export type RepairTicketCountOutputType = {
+    notes: number
+    timeline: number
+    parts: number
+  }
+
+  export type RepairTicketCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    notes?: boolean | RepairTicketCountOutputTypeCountNotesArgs
+    timeline?: boolean | RepairTicketCountOutputTypeCountTimelineArgs
+    parts?: boolean | RepairTicketCountOutputTypeCountPartsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RepairTicketCountOutputType without action
+   */
+  export type RepairTicketCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairTicketCountOutputType
+     */
+    select?: RepairTicketCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RepairTicketCountOutputType without action
+   */
+  export type RepairTicketCountOutputTypeCountNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: technicianNoteWhereInput
+  }
+
+  /**
+   * RepairTicketCountOutputType without action
+   */
+  export type RepairTicketCountOutputTypeCountTimelineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: timelineEventWhereInput
+  }
+
+  /**
+   * RepairTicketCountOutputType without action
+   */
+  export type RepairTicketCountOutputTypeCountPartsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: usedPartWhereInput
+  }
+
+
+  /**
+   * Count Type InventoryCountOutputType
+   */
+
+  export type InventoryCountOutputType = {
+    usageHistory: number
+  }
+
+  export type InventoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usageHistory?: boolean | InventoryCountOutputTypeCountUsageHistoryArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InventoryCountOutputType without action
+   */
+  export type InventoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InventoryCountOutputType
+     */
+    select?: InventoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InventoryCountOutputType without action
+   */
+  export type InventoryCountOutputTypeCountUsageHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: usedPartWhereInput
+  }
+
+
+  /**
+   * Count Type TechnicianCountOutputType
+   */
+
+  export type TechnicianCountOutputType = {
+    tickets: number
+  }
+
+  export type TechnicianCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tickets?: boolean | TechnicianCountOutputTypeCountTicketsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TechnicianCountOutputType without action
+   */
+  export type TechnicianCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TechnicianCountOutputType
+     */
+    select?: TechnicianCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TechnicianCountOutputType without action
+   */
+  export type TechnicianCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: repairTicketWhereInput
   }
 
@@ -3547,9 +3918,12 @@ export namespace Prisma {
     issueCategory: string | null
     description: string | null
     status: string | null
-    technicianNotes: string | null
+    bay: string | null
+    priority: string | null
     createdAt: Date | null
+    updatedAt: Date | null
     customerId: string | null
+    technicianId: string | null
   }
 
   export type RepairTicketMaxAggregateOutputType = {
@@ -3557,9 +3931,12 @@ export namespace Prisma {
     issueCategory: string | null
     description: string | null
     status: string | null
-    technicianNotes: string | null
+    bay: string | null
+    priority: string | null
     createdAt: Date | null
+    updatedAt: Date | null
     customerId: string | null
+    technicianId: string | null
   }
 
   export type RepairTicketCountAggregateOutputType = {
@@ -3567,9 +3944,12 @@ export namespace Prisma {
     issueCategory: number
     description: number
     status: number
-    technicianNotes: number
+    bay: number
+    priority: number
     createdAt: number
+    updatedAt: number
     customerId: number
+    technicianId: number
     _all: number
   }
 
@@ -3587,9 +3967,12 @@ export namespace Prisma {
     issueCategory?: true
     description?: true
     status?: true
-    technicianNotes?: true
+    bay?: true
+    priority?: true
     createdAt?: true
+    updatedAt?: true
     customerId?: true
+    technicianId?: true
   }
 
   export type RepairTicketMaxAggregateInputType = {
@@ -3597,9 +3980,12 @@ export namespace Prisma {
     issueCategory?: true
     description?: true
     status?: true
-    technicianNotes?: true
+    bay?: true
+    priority?: true
     createdAt?: true
+    updatedAt?: true
     customerId?: true
+    technicianId?: true
   }
 
   export type RepairTicketCountAggregateInputType = {
@@ -3607,9 +3993,12 @@ export namespace Prisma {
     issueCategory?: true
     description?: true
     status?: true
-    technicianNotes?: true
+    bay?: true
+    priority?: true
     createdAt?: true
+    updatedAt?: true
     customerId?: true
+    technicianId?: true
     _all?: true
   }
 
@@ -3704,9 +4093,12 @@ export namespace Prisma {
     issueCategory: string
     description: string
     status: string
-    technicianNotes: string | null
+    bay: string | null
+    priority: string
     createdAt: Date
+    updatedAt: Date
     customerId: string
+    technicianId: string | null
     _count: RepairTicketCountAggregateOutputType | null
     _avg: RepairTicketAvgAggregateOutputType | null
     _sum: RepairTicketSumAggregateOutputType | null
@@ -3733,10 +4125,18 @@ export namespace Prisma {
     issueCategory?: boolean
     description?: boolean
     status?: boolean
-    technicianNotes?: boolean
+    bay?: boolean
+    priority?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     customerId?: boolean
+    technicianId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    technician?: boolean | repairTicket$technicianArgs<ExtArgs>
+    notes?: boolean | repairTicket$notesArgs<ExtArgs>
+    timeline?: boolean | repairTicket$timelineArgs<ExtArgs>
+    parts?: boolean | repairTicket$partsArgs<ExtArgs>
+    _count?: boolean | RepairTicketCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repairTicket"]>
 
   export type repairTicketSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3744,10 +4144,14 @@ export namespace Prisma {
     issueCategory?: boolean
     description?: boolean
     status?: boolean
-    technicianNotes?: boolean
+    bay?: boolean
+    priority?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     customerId?: boolean
+    technicianId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    technician?: boolean | repairTicket$technicianArgs<ExtArgs>
   }, ExtArgs["result"]["repairTicket"]>
 
   export type repairTicketSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3755,10 +4159,14 @@ export namespace Prisma {
     issueCategory?: boolean
     description?: boolean
     status?: boolean
-    technicianNotes?: boolean
+    bay?: boolean
+    priority?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     customerId?: boolean
+    technicianId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    technician?: boolean | repairTicket$technicianArgs<ExtArgs>
   }, ExtArgs["result"]["repairTicket"]>
 
   export type repairTicketSelectScalar = {
@@ -3766,35 +4174,52 @@ export namespace Prisma {
     issueCategory?: boolean
     description?: boolean
     status?: boolean
-    technicianNotes?: boolean
+    bay?: boolean
+    priority?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     customerId?: boolean
+    technicianId?: boolean
   }
 
-  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "technicianNotes" | "createdAt" | "customerId", ExtArgs["result"]["repairTicket"]>
+  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "bay" | "priority" | "createdAt" | "updatedAt" | "customerId" | "technicianId", ExtArgs["result"]["repairTicket"]>
   export type repairTicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    technician?: boolean | repairTicket$technicianArgs<ExtArgs>
+    notes?: boolean | repairTicket$notesArgs<ExtArgs>
+    timeline?: boolean | repairTicket$timelineArgs<ExtArgs>
+    parts?: boolean | repairTicket$partsArgs<ExtArgs>
+    _count?: boolean | RepairTicketCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type repairTicketIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    technician?: boolean | repairTicket$technicianArgs<ExtArgs>
   }
   export type repairTicketIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    technician?: boolean | repairTicket$technicianArgs<ExtArgs>
   }
 
   export type $repairTicketPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "repairTicket"
     objects: {
       customer: Prisma.$customerPayload<ExtArgs>
+      technician: Prisma.$technicianPayload<ExtArgs> | null
+      notes: Prisma.$technicianNotePayload<ExtArgs>[]
+      timeline: Prisma.$timelineEventPayload<ExtArgs>[]
+      parts: Prisma.$usedPartPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       issueCategory: string
       description: string
       status: string
-      technicianNotes: string | null
+      bay: string | null
+      priority: string
       createdAt: Date
+      updatedAt: Date
       customerId: string
+      technicianId: string | null
     }, ExtArgs["result"]["repairTicket"]>
     composites: {}
   }
@@ -4190,6 +4615,10 @@ export namespace Prisma {
   export interface Prisma__repairTicketClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     customer<T extends customerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, customerDefaultArgs<ExtArgs>>): Prisma__customerClient<$Result.GetResult<Prisma.$customerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    technician<T extends repairTicket$technicianArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$technicianArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    notes<T extends repairTicket$notesArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$notesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    timeline<T extends repairTicket$timelineArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$timelineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    parts<T extends repairTicket$partsArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$partsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4223,9 +4652,12 @@ export namespace Prisma {
     readonly issueCategory: FieldRef<"repairTicket", 'String'>
     readonly description: FieldRef<"repairTicket", 'String'>
     readonly status: FieldRef<"repairTicket", 'String'>
-    readonly technicianNotes: FieldRef<"repairTicket", 'String'>
+    readonly bay: FieldRef<"repairTicket", 'String'>
+    readonly priority: FieldRef<"repairTicket", 'String'>
     readonly createdAt: FieldRef<"repairTicket", 'DateTime'>
+    readonly updatedAt: FieldRef<"repairTicket", 'DateTime'>
     readonly customerId: FieldRef<"repairTicket", 'String'>
+    readonly technicianId: FieldRef<"repairTicket", 'String'>
   }
     
 
@@ -4627,6 +5059,97 @@ export namespace Prisma {
   }
 
   /**
+   * repairTicket.technician
+   */
+  export type repairTicket$technicianArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    where?: technicianWhereInput
+  }
+
+  /**
+   * repairTicket.notes
+   */
+  export type repairTicket$notesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    where?: technicianNoteWhereInput
+    orderBy?: technicianNoteOrderByWithRelationInput | technicianNoteOrderByWithRelationInput[]
+    cursor?: technicianNoteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TechnicianNoteScalarFieldEnum | TechnicianNoteScalarFieldEnum[]
+  }
+
+  /**
+   * repairTicket.timeline
+   */
+  export type repairTicket$timelineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    where?: timelineEventWhereInput
+    orderBy?: timelineEventOrderByWithRelationInput | timelineEventOrderByWithRelationInput[]
+    cursor?: timelineEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TimelineEventScalarFieldEnum | TimelineEventScalarFieldEnum[]
+  }
+
+  /**
+   * repairTicket.parts
+   */
+  export type repairTicket$partsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    where?: usedPartWhereInput
+    orderBy?: usedPartOrderByWithRelationInput | usedPartOrderByWithRelationInput[]
+    cursor?: usedPartWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UsedPartScalarFieldEnum | UsedPartScalarFieldEnum[]
+  }
+
+  /**
    * repairTicket without action
    */
   export type repairTicketDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4646,809 +5169,404 @@ export namespace Prisma {
 
 
   /**
-<<<<<<< HEAD
-   * Model inventory
+   * Model technicianNote
    */
 
-  export type AggregateInventory = {
-    _count: InventoryCountAggregateOutputType | null
-    _avg: InventoryAvgAggregateOutputType | null
-    _sum: InventorySumAggregateOutputType | null
-    _min: InventoryMinAggregateOutputType | null
-    _max: InventoryMaxAggregateOutputType | null
+  export type AggregateTechnicianNote = {
+    _count: TechnicianNoteCountAggregateOutputType | null
+    _avg: TechnicianNoteAvgAggregateOutputType | null
+    _sum: TechnicianNoteSumAggregateOutputType | null
+    _min: TechnicianNoteMinAggregateOutputType | null
+    _max: TechnicianNoteMaxAggregateOutputType | null
   }
 
-  export type InventoryAvgAggregateOutputType = {
+  export type TechnicianNoteAvgAggregateOutputType = {
     id: number | null
-    stockLevel: number | null
-    retailPrice: number | null
-    lowStockAlert: number | null
+    ticketId: number | null
   }
 
-  export type InventorySumAggregateOutputType = {
+  export type TechnicianNoteSumAggregateOutputType = {
     id: number | null
-    stockLevel: number | null
-    retailPrice: number | null
-    lowStockAlert: number | null
+    ticketId: number | null
   }
 
-  export type InventoryMinAggregateOutputType = {
+  export type TechnicianNoteMinAggregateOutputType = {
     id: number | null
-    partName: string | null
-    sku: string | null
-    category: string | null
-    stockLevel: number | null
-    retailPrice: number | null
-    lowStockAlert: number | null
-=======
-   * Model technician
-   */
-
-  export type AggregateTechnician = {
-    _count: TechnicianCountAggregateOutputType | null
-    _min: TechnicianMinAggregateOutputType | null
-    _max: TechnicianMaxAggregateOutputType | null
-  }
-
-  export type TechnicianMinAggregateOutputType = {
-    id: string | null
-    fullName: string | null
-    email: string | null
-    phone: string | null
-    employeeId: string | null
-    specialization: string | null
-    status: string | null
-    experienceYears: string | null
-    address: string | null
-    profileImage: string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId: number | null
+    rawVoiceText: string | null
+    structuredText: string | null
     createdAt: Date | null
-    updatedAt: Date | null
   }
 
-<<<<<<< HEAD
-  export type InventoryMaxAggregateOutputType = {
+  export type TechnicianNoteMaxAggregateOutputType = {
     id: number | null
-    partName: string | null
-    sku: string | null
-    category: string | null
-    stockLevel: number | null
-    retailPrice: number | null
-    lowStockAlert: number | null
-=======
-  export type TechnicianMaxAggregateOutputType = {
-    id: string | null
-    fullName: string | null
-    email: string | null
-    phone: string | null
-    employeeId: string | null
-    specialization: string | null
-    status: string | null
-    experienceYears: string | null
-    address: string | null
-    profileImage: string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId: number | null
+    rawVoiceText: string | null
+    structuredText: string | null
     createdAt: Date | null
-    updatedAt: Date | null
   }
 
-<<<<<<< HEAD
-  export type InventoryCountAggregateOutputType = {
+  export type TechnicianNoteCountAggregateOutputType = {
     id: number
-    partName: number
-    sku: number
-    category: number
-    stockLevel: number
-    retailPrice: number
-    lowStockAlert: number
-=======
-  export type TechnicianCountAggregateOutputType = {
-    id: number
-    fullName: number
-    email: number
-    phone: number
-    employeeId: number
-    specialization: number
-    status: number
-    experienceYears: number
-    address: number
-    profileImage: number
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId: number
+    rawVoiceText: number
+    structuredText: number
+    quickTags: number
+    imageUrls: number
     createdAt: number
-    updatedAt: number
     _all: number
   }
 
 
-<<<<<<< HEAD
-  export type InventoryAvgAggregateInputType = {
+  export type TechnicianNoteAvgAggregateInputType = {
     id?: true
-    stockLevel?: true
-    retailPrice?: true
-    lowStockAlert?: true
+    ticketId?: true
   }
 
-  export type InventorySumAggregateInputType = {
+  export type TechnicianNoteSumAggregateInputType = {
     id?: true
-    stockLevel?: true
-    retailPrice?: true
-    lowStockAlert?: true
+    ticketId?: true
   }
 
-  export type InventoryMinAggregateInputType = {
+  export type TechnicianNoteMinAggregateInputType = {
     id?: true
-    partName?: true
-    sku?: true
-    category?: true
-    stockLevel?: true
-    retailPrice?: true
-    lowStockAlert?: true
-=======
-  export type TechnicianMinAggregateInputType = {
-    id?: true
-    fullName?: true
-    email?: true
-    phone?: true
-    employeeId?: true
-    specialization?: true
-    status?: true
-    experienceYears?: true
-    address?: true
-    profileImage?: true
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId?: true
+    rawVoiceText?: true
+    structuredText?: true
     createdAt?: true
-    updatedAt?: true
   }
 
-<<<<<<< HEAD
-  export type InventoryMaxAggregateInputType = {
+  export type TechnicianNoteMaxAggregateInputType = {
     id?: true
-    partName?: true
-    sku?: true
-    category?: true
-    stockLevel?: true
-    retailPrice?: true
-    lowStockAlert?: true
-=======
-  export type TechnicianMaxAggregateInputType = {
-    id?: true
-    fullName?: true
-    email?: true
-    phone?: true
-    employeeId?: true
-    specialization?: true
-    status?: true
-    experienceYears?: true
-    address?: true
-    profileImage?: true
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId?: true
+    rawVoiceText?: true
+    structuredText?: true
     createdAt?: true
-    updatedAt?: true
   }
 
-<<<<<<< HEAD
-  export type InventoryCountAggregateInputType = {
+  export type TechnicianNoteCountAggregateInputType = {
     id?: true
-    partName?: true
-    sku?: true
-    category?: true
-    stockLevel?: true
-    retailPrice?: true
-    lowStockAlert?: true
-=======
-  export type TechnicianCountAggregateInputType = {
-    id?: true
-    fullName?: true
-    email?: true
-    phone?: true
-    employeeId?: true
-    specialization?: true
-    status?: true
-    experienceYears?: true
-    address?: true
-    profileImage?: true
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId?: true
+    rawVoiceText?: true
+    structuredText?: true
+    quickTags?: true
+    imageUrls?: true
     createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
-<<<<<<< HEAD
-  export type InventoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TechnicianNoteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which inventory to aggregate.
+     * Filter which technicianNote to aggregate.
      */
-    where?: inventoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of inventories to fetch.
-     */
-    orderBy?: inventoryOrderByWithRelationInput | inventoryOrderByWithRelationInput[]
-=======
-  export type TechnicianAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which technician to aggregate.
-     */
-    where?: technicianWhereInput
+    where?: technicianNoteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of technicians to fetch.
+     * Determine the order of technicianNotes to fetch.
      */
-    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    orderBy?: technicianNoteOrderByWithRelationInput | technicianNoteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-<<<<<<< HEAD
-    cursor?: inventoryWhereUniqueInput
+    cursor?: technicianNoteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` inventories from the position of the cursor.
-=======
-    cursor?: technicianWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` technicians from the position of the cursor.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * Take `±n` technicianNotes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-<<<<<<< HEAD
-     * Skip the first `n` inventories.
-=======
-     * Skip the first `n` technicians.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * Skip the first `n` technicianNotes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-<<<<<<< HEAD
-     * Count returned inventories
+     * Count returned technicianNotes
     **/
-    _count?: true | InventoryCountAggregateInputType
+    _count?: true | TechnicianNoteCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: InventoryAvgAggregateInputType
+    _avg?: TechnicianNoteAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: InventorySumAggregateInputType
-=======
-     * Count returned technicians
-    **/
-    _count?: true | TechnicianCountAggregateInputType
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    _sum?: TechnicianNoteSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-<<<<<<< HEAD
-    _min?: InventoryMinAggregateInputType
-=======
-    _min?: TechnicianMinAggregateInputType
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    _min?: TechnicianNoteMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-<<<<<<< HEAD
-    _max?: InventoryMaxAggregateInputType
+    _max?: TechnicianNoteMaxAggregateInputType
   }
 
-  export type GetInventoryAggregateType<T extends InventoryAggregateArgs> = {
-        [P in keyof T & keyof AggregateInventory]: P extends '_count' | 'count'
+  export type GetTechnicianNoteAggregateType<T extends TechnicianNoteAggregateArgs> = {
+        [P in keyof T & keyof AggregateTechnicianNote]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateInventory[P]>
-      : GetScalarType<T[P], AggregateInventory[P]>
-=======
-    _max?: TechnicianMaxAggregateInputType
-  }
-
-  export type GetTechnicianAggregateType<T extends TechnicianAggregateArgs> = {
-        [P in keyof T & keyof AggregateTechnician]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateTechnician[P]>
-      : GetScalarType<T[P], AggregateTechnician[P]>
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+        : GetScalarType<T[P], AggregateTechnicianNote[P]>
+      : GetScalarType<T[P], AggregateTechnicianNote[P]>
   }
 
 
 
 
-<<<<<<< HEAD
-  export type inventoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: inventoryWhereInput
-    orderBy?: inventoryOrderByWithAggregationInput | inventoryOrderByWithAggregationInput[]
-    by: InventoryScalarFieldEnum[] | InventoryScalarFieldEnum
-    having?: inventoryScalarWhereWithAggregatesInput
+  export type technicianNoteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: technicianNoteWhereInput
+    orderBy?: technicianNoteOrderByWithAggregationInput | technicianNoteOrderByWithAggregationInput[]
+    by: TechnicianNoteScalarFieldEnum[] | TechnicianNoteScalarFieldEnum
+    having?: technicianNoteScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: InventoryCountAggregateInputType | true
-    _avg?: InventoryAvgAggregateInputType
-    _sum?: InventorySumAggregateInputType
-    _min?: InventoryMinAggregateInputType
-    _max?: InventoryMaxAggregateInputType
+    _count?: TechnicianNoteCountAggregateInputType | true
+    _avg?: TechnicianNoteAvgAggregateInputType
+    _sum?: TechnicianNoteSumAggregateInputType
+    _min?: TechnicianNoteMinAggregateInputType
+    _max?: TechnicianNoteMaxAggregateInputType
   }
 
-  export type InventoryGroupByOutputType = {
+  export type TechnicianNoteGroupByOutputType = {
     id: number
-    partName: string
-    sku: string
-    category: string
-    stockLevel: number
-    retailPrice: number
-    lowStockAlert: number
+    ticketId: number
+    rawVoiceText: string | null
+    structuredText: string
+    quickTags: string[]
+    imageUrls: string[]
     createdAt: Date
-    updatedAt: Date
-    _count: InventoryCountAggregateOutputType | null
-    _avg: InventoryAvgAggregateOutputType | null
-    _sum: InventorySumAggregateOutputType | null
-    _min: InventoryMinAggregateOutputType | null
-    _max: InventoryMaxAggregateOutputType | null
+    _count: TechnicianNoteCountAggregateOutputType | null
+    _avg: TechnicianNoteAvgAggregateOutputType | null
+    _sum: TechnicianNoteSumAggregateOutputType | null
+    _min: TechnicianNoteMinAggregateOutputType | null
+    _max: TechnicianNoteMaxAggregateOutputType | null
   }
 
-  type GetInventoryGroupByPayload<T extends inventoryGroupByArgs> = Prisma.PrismaPromise<
+  type GetTechnicianNoteGroupByPayload<T extends technicianNoteGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<InventoryGroupByOutputType, T['by']> &
+      PickEnumerable<TechnicianNoteGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof InventoryGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof TechnicianNoteGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], InventoryGroupByOutputType[P]>
-            : GetScalarType<T[P], InventoryGroupByOutputType[P]>
-=======
-  export type technicianGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: technicianWhereInput
-    orderBy?: technicianOrderByWithAggregationInput | technicianOrderByWithAggregationInput[]
-    by: TechnicianScalarFieldEnum[] | TechnicianScalarFieldEnum
-    having?: technicianScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TechnicianCountAggregateInputType | true
-    _min?: TechnicianMinAggregateInputType
-    _max?: TechnicianMaxAggregateInputType
-  }
-
-  export type TechnicianGroupByOutputType = {
-    id: string
-    fullName: string
-    email: string
-    phone: string
-    employeeId: string
-    specialization: string
-    status: string
-    experienceYears: string
-    address: string | null
-    profileImage: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: TechnicianCountAggregateOutputType | null
-    _min: TechnicianMinAggregateOutputType | null
-    _max: TechnicianMaxAggregateOutputType | null
-  }
-
-  type GetTechnicianGroupByPayload<T extends technicianGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TechnicianGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TechnicianGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TechnicianGroupByOutputType[P]>
-            : GetScalarType<T[P], TechnicianGroupByOutputType[P]>
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+              : GetScalarType<T[P], TechnicianNoteGroupByOutputType[P]>
+            : GetScalarType<T[P], TechnicianNoteGroupByOutputType[P]>
         }
       >
     >
 
 
-<<<<<<< HEAD
-  export type inventorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type technicianNoteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    partName?: boolean
-    sku?: boolean
-    category?: boolean
-    stockLevel?: boolean
-    retailPrice?: boolean
-    lowStockAlert?: boolean
+    ticketId?: boolean
+    rawVoiceText?: boolean
+    structuredText?: boolean
+    quickTags?: boolean
+    imageUrls?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["inventory"]>
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["technicianNote"]>
 
-  export type inventorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type technicianNoteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    partName?: boolean
-    sku?: boolean
-    category?: boolean
-    stockLevel?: boolean
-    retailPrice?: boolean
-    lowStockAlert?: boolean
+    ticketId?: boolean
+    rawVoiceText?: boolean
+    structuredText?: boolean
+    quickTags?: boolean
+    imageUrls?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["inventory"]>
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["technicianNote"]>
 
-  export type inventorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type technicianNoteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    partName?: boolean
-    sku?: boolean
-    category?: boolean
-    stockLevel?: boolean
-    retailPrice?: boolean
-    lowStockAlert?: boolean
+    ticketId?: boolean
+    rawVoiceText?: boolean
+    structuredText?: boolean
+    quickTags?: boolean
+    imageUrls?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["inventory"]>
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["technicianNote"]>
 
-  export type inventorySelectScalar = {
+  export type technicianNoteSelectScalar = {
     id?: boolean
-    partName?: boolean
-    sku?: boolean
-    category?: boolean
-    stockLevel?: boolean
-    retailPrice?: boolean
-    lowStockAlert?: boolean
-=======
-  export type technicianSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    fullName?: boolean
-    email?: boolean
-    phone?: boolean
-    employeeId?: boolean
-    specialization?: boolean
-    status?: boolean
-    experienceYears?: boolean
-    address?: boolean
-    profileImage?: boolean
+    ticketId?: boolean
+    rawVoiceText?: boolean
+    structuredText?: boolean
+    quickTags?: boolean
+    imageUrls?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["technician"]>
-
-  export type technicianSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    fullName?: boolean
-    email?: boolean
-    phone?: boolean
-    employeeId?: boolean
-    specialization?: boolean
-    status?: boolean
-    experienceYears?: boolean
-    address?: boolean
-    profileImage?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["technician"]>
-
-  export type technicianSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    fullName?: boolean
-    email?: boolean
-    phone?: boolean
-    employeeId?: boolean
-    specialization?: boolean
-    status?: boolean
-    experienceYears?: boolean
-    address?: boolean
-    profileImage?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["technician"]>
-
-  export type technicianSelectScalar = {
-    id?: boolean
-    fullName?: boolean
-    email?: boolean
-    phone?: boolean
-    employeeId?: boolean
-    specialization?: boolean
-    status?: boolean
-    experienceYears?: boolean
-    address?: boolean
-    profileImage?: boolean
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
-<<<<<<< HEAD
-  export type inventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partName" | "sku" | "category" | "stockLevel" | "retailPrice" | "lowStockAlert" | "createdAt" | "updatedAt", ExtArgs["result"]["inventory"]>
+  export type technicianNoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticketId" | "rawVoiceText" | "structuredText" | "quickTags" | "imageUrls" | "createdAt", ExtArgs["result"]["technicianNote"]>
+  export type technicianNoteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }
+  export type technicianNoteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }
+  export type technicianNoteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }
 
-  export type $inventoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "inventory"
-    objects: {}
+  export type $technicianNotePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "technicianNote"
+    objects: {
+      ticket: Prisma.$repairTicketPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      partName: string
-      sku: string
-      category: string
-      stockLevel: number
-      retailPrice: number
-      lowStockAlert: number
+      ticketId: number
+      rawVoiceText: string | null
+      structuredText: string
+      quickTags: string[]
+      imageUrls: string[]
       createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["inventory"]>
+    }, ExtArgs["result"]["technicianNote"]>
     composites: {}
   }
 
-  type inventoryGetPayload<S extends boolean | null | undefined | inventoryDefaultArgs> = $Result.GetResult<Prisma.$inventoryPayload, S>
+  type technicianNoteGetPayload<S extends boolean | null | undefined | technicianNoteDefaultArgs> = $Result.GetResult<Prisma.$technicianNotePayload, S>
 
-  type inventoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<inventoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: InventoryCountAggregateInputType | true
+  type technicianNoteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<technicianNoteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TechnicianNoteCountAggregateInputType | true
     }
 
-  export interface inventoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['inventory'], meta: { name: 'inventory' } }
+  export interface technicianNoteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['technicianNote'], meta: { name: 'technicianNote' } }
     /**
-     * Find zero or one Inventory that matches the filter.
-     * @param {inventoryFindUniqueArgs} args - Arguments to find a Inventory
+     * Find zero or one TechnicianNote that matches the filter.
+     * @param {technicianNoteFindUniqueArgs} args - Arguments to find a TechnicianNote
      * @example
-     * // Get one Inventory
-     * const inventory = await prisma.inventory.findUnique({
-=======
-  export type technicianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phone" | "employeeId" | "specialization" | "status" | "experienceYears" | "address" | "profileImage" | "createdAt" | "updatedAt", ExtArgs["result"]["technician"]>
-
-  export type $technicianPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "technician"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      fullName: string
-      email: string
-      phone: string
-      employeeId: string
-      specialization: string
-      status: string
-      experienceYears: string
-      address: string | null
-      profileImage: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["technician"]>
-    composites: {}
-  }
-
-  type technicianGetPayload<S extends boolean | null | undefined | technicianDefaultArgs> = $Result.GetResult<Prisma.$technicianPayload, S>
-
-  type technicianCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<technicianFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TechnicianCountAggregateInputType | true
-    }
-
-  export interface technicianDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['technician'], meta: { name: 'technician' } }
-    /**
-     * Find zero or one Technician that matches the filter.
-     * @param {technicianFindUniqueArgs} args - Arguments to find a Technician
-     * @example
-     * // Get one Technician
-     * const technician = await prisma.technician.findUnique({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Get one TechnicianNote
+     * const technicianNote = await prisma.technicianNote.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-<<<<<<< HEAD
-    findUnique<T extends inventoryFindUniqueArgs>(args: SelectSubset<T, inventoryFindUniqueArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends technicianNoteFindUniqueArgs>(args: SelectSubset<T, technicianNoteFindUniqueArgs<ExtArgs>>): Prisma__technicianNoteClient<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Inventory that matches the filter or throw an error with `error.code='P2025'`
+     * Find one TechnicianNote that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {inventoryFindUniqueOrThrowArgs} args - Arguments to find a Inventory
+     * @param {technicianNoteFindUniqueOrThrowArgs} args - Arguments to find a TechnicianNote
      * @example
-     * // Get one Inventory
-     * const inventory = await prisma.inventory.findUniqueOrThrow({
-=======
-    findUnique<T extends technicianFindUniqueArgs>(args: SelectSubset<T, technicianFindUniqueArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Technician that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {technicianFindUniqueOrThrowArgs} args - Arguments to find a Technician
-     * @example
-     * // Get one Technician
-     * const technician = await prisma.technician.findUniqueOrThrow({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Get one TechnicianNote
+     * const technicianNote = await prisma.technicianNote.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-<<<<<<< HEAD
-    findUniqueOrThrow<T extends inventoryFindUniqueOrThrowArgs>(args: SelectSubset<T, inventoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends technicianNoteFindUniqueOrThrowArgs>(args: SelectSubset<T, technicianNoteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__technicianNoteClient<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Inventory that matches the filter.
+     * Find the first TechnicianNote that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {inventoryFindFirstArgs} args - Arguments to find a Inventory
+     * @param {technicianNoteFindFirstArgs} args - Arguments to find a TechnicianNote
      * @example
-     * // Get one Inventory
-     * const inventory = await prisma.inventory.findFirst({
-=======
-    findUniqueOrThrow<T extends technicianFindUniqueOrThrowArgs>(args: SelectSubset<T, technicianFindUniqueOrThrowArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Technician that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {technicianFindFirstArgs} args - Arguments to find a Technician
-     * @example
-     * // Get one Technician
-     * const technician = await prisma.technician.findFirst({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Get one TechnicianNote
+     * const technicianNote = await prisma.technicianNote.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-<<<<<<< HEAD
-    findFirst<T extends inventoryFindFirstArgs>(args?: SelectSubset<T, inventoryFindFirstArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends technicianNoteFindFirstArgs>(args?: SelectSubset<T, technicianNoteFindFirstArgs<ExtArgs>>): Prisma__technicianNoteClient<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Inventory that matches the filter or
+     * Find the first TechnicianNote that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {inventoryFindFirstOrThrowArgs} args - Arguments to find a Inventory
+     * @param {technicianNoteFindFirstOrThrowArgs} args - Arguments to find a TechnicianNote
      * @example
-     * // Get one Inventory
-     * const inventory = await prisma.inventory.findFirstOrThrow({
-=======
-    findFirst<T extends technicianFindFirstArgs>(args?: SelectSubset<T, technicianFindFirstArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Technician that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {technicianFindFirstOrThrowArgs} args - Arguments to find a Technician
-     * @example
-     * // Get one Technician
-     * const technician = await prisma.technician.findFirstOrThrow({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Get one TechnicianNote
+     * const technicianNote = await prisma.technicianNote.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-<<<<<<< HEAD
-    findFirstOrThrow<T extends inventoryFindFirstOrThrowArgs>(args?: SelectSubset<T, inventoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends technicianNoteFindFirstOrThrowArgs>(args?: SelectSubset<T, technicianNoteFindFirstOrThrowArgs<ExtArgs>>): Prisma__technicianNoteClient<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Inventories that matches the filter.
+     * Find zero or more TechnicianNotes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {inventoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {technicianNoteFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Inventories
-     * const inventories = await prisma.inventory.findMany()
+     * // Get all TechnicianNotes
+     * const technicianNotes = await prisma.technicianNote.findMany()
      * 
-     * // Get first 10 Inventories
-     * const inventories = await prisma.inventory.findMany({ take: 10 })
+     * // Get first 10 TechnicianNotes
+     * const technicianNotes = await prisma.technicianNote.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const inventoryWithIdOnly = await prisma.inventory.findMany({ select: { id: true } })
+     * const technicianNoteWithIdOnly = await prisma.technicianNote.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends inventoryFindManyArgs>(args?: SelectSubset<T, inventoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends technicianNoteFindManyArgs>(args?: SelectSubset<T, technicianNoteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Inventory.
-     * @param {inventoryCreateArgs} args - Arguments to create a Inventory.
+     * Create a TechnicianNote.
+     * @param {technicianNoteCreateArgs} args - Arguments to create a TechnicianNote.
      * @example
-     * // Create one Inventory
-     * const Inventory = await prisma.inventory.create({
+     * // Create one TechnicianNote
+     * const TechnicianNote = await prisma.technicianNote.create({
      *   data: {
-     *     // ... data to create a Inventory
-=======
-    findFirstOrThrow<T extends technicianFindFirstOrThrowArgs>(args?: SelectSubset<T, technicianFindFirstOrThrowArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Technicians that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {technicianFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Technicians
-     * const technicians = await prisma.technician.findMany()
-     * 
-     * // Get first 10 Technicians
-     * const technicians = await prisma.technician.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const technicianWithIdOnly = await prisma.technician.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends technicianFindManyArgs>(args?: SelectSubset<T, technicianFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Technician.
-     * @param {technicianCreateArgs} args - Arguments to create a Technician.
-     * @example
-     * // Create one Technician
-     * const Technician = await prisma.technician.create({
-     *   data: {
-     *     // ... data to create a Technician
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     *     // ... data to create a TechnicianNote
      *   }
      * })
      * 
      */
-<<<<<<< HEAD
-    create<T extends inventoryCreateArgs>(args: SelectSubset<T, inventoryCreateArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends technicianNoteCreateArgs>(args: SelectSubset<T, technicianNoteCreateArgs<ExtArgs>>): Prisma__technicianNoteClient<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Inventories.
-     * @param {inventoryCreateManyArgs} args - Arguments to create many Inventories.
+     * Create many TechnicianNotes.
+     * @param {technicianNoteCreateManyArgs} args - Arguments to create many TechnicianNotes.
      * @example
-     * // Create many Inventories
-     * const inventory = await prisma.inventory.createMany({
-=======
-    create<T extends technicianCreateArgs>(args: SelectSubset<T, technicianCreateArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Technicians.
-     * @param {technicianCreateManyArgs} args - Arguments to create many Technicians.
-     * @example
-     * // Create many Technicians
-     * const technician = await prisma.technician.createMany({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Create many TechnicianNotes
+     * const technicianNote = await prisma.technicianNote.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-<<<<<<< HEAD
-    createMany<T extends inventoryCreateManyArgs>(args?: SelectSubset<T, inventoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends technicianNoteCreateManyArgs>(args?: SelectSubset<T, technicianNoteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Inventories and returns the data saved in the database.
-     * @param {inventoryCreateManyAndReturnArgs} args - Arguments to create many Inventories.
+     * Create many TechnicianNotes and returns the data saved in the database.
+     * @param {technicianNoteCreateManyAndReturnArgs} args - Arguments to create many TechnicianNotes.
      * @example
-     * // Create many Inventories
-     * const inventory = await prisma.inventory.createManyAndReturn({
-=======
-    createMany<T extends technicianCreateManyArgs>(args?: SelectSubset<T, technicianCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Technicians and returns the data saved in the database.
-     * @param {technicianCreateManyAndReturnArgs} args - Arguments to create many Technicians.
-     * @example
-     * // Create many Technicians
-     * const technician = await prisma.technician.createManyAndReturn({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Create many TechnicianNotes
+     * const technicianNote = await prisma.technicianNote.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-<<<<<<< HEAD
-     * // Create many Inventories and only return the `id`
-     * const inventoryWithIdOnly = await prisma.inventory.createManyAndReturn({
-=======
-     * // Create many Technicians and only return the `id`
-     * const technicianWithIdOnly = await prisma.technician.createManyAndReturn({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Create many TechnicianNotes and only return the `id`
+     * const technicianNoteWithIdOnly = await prisma.technicianNote.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -5458,52 +5576,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-<<<<<<< HEAD
-    createManyAndReturn<T extends inventoryCreateManyAndReturnArgs>(args?: SelectSubset<T, inventoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends technicianNoteCreateManyAndReturnArgs>(args?: SelectSubset<T, technicianNoteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Inventory.
-     * @param {inventoryDeleteArgs} args - Arguments to delete one Inventory.
+     * Delete a TechnicianNote.
+     * @param {technicianNoteDeleteArgs} args - Arguments to delete one TechnicianNote.
      * @example
-     * // Delete one Inventory
-     * const Inventory = await prisma.inventory.delete({
+     * // Delete one TechnicianNote
+     * const TechnicianNote = await prisma.technicianNote.delete({
      *   where: {
-     *     // ... filter to delete one Inventory
-=======
-    createManyAndReturn<T extends technicianCreateManyAndReturnArgs>(args?: SelectSubset<T, technicianCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Technician.
-     * @param {technicianDeleteArgs} args - Arguments to delete one Technician.
-     * @example
-     * // Delete one Technician
-     * const Technician = await prisma.technician.delete({
-     *   where: {
-     *     // ... filter to delete one Technician
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     *     // ... filter to delete one TechnicianNote
      *   }
      * })
      * 
      */
-<<<<<<< HEAD
-    delete<T extends inventoryDeleteArgs>(args: SelectSubset<T, inventoryDeleteArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends technicianNoteDeleteArgs>(args: SelectSubset<T, technicianNoteDeleteArgs<ExtArgs>>): Prisma__technicianNoteClient<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Inventory.
-     * @param {inventoryUpdateArgs} args - Arguments to update one Inventory.
+     * Update one TechnicianNote.
+     * @param {technicianNoteUpdateArgs} args - Arguments to update one TechnicianNote.
      * @example
-     * // Update one Inventory
-     * const inventory = await prisma.inventory.update({
-=======
-    delete<T extends technicianDeleteArgs>(args: SelectSubset<T, technicianDeleteArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Technician.
-     * @param {technicianUpdateArgs} args - Arguments to update one Technician.
-     * @example
-     * // Update one Technician
-     * const technician = await prisma.technician.update({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Update one TechnicianNote
+     * const technicianNote = await prisma.technicianNote.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5513,54 +5607,30 @@ export namespace Prisma {
      * })
      * 
      */
-<<<<<<< HEAD
-    update<T extends inventoryUpdateArgs>(args: SelectSubset<T, inventoryUpdateArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends technicianNoteUpdateArgs>(args: SelectSubset<T, technicianNoteUpdateArgs<ExtArgs>>): Prisma__technicianNoteClient<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Inventories.
-     * @param {inventoryDeleteManyArgs} args - Arguments to filter Inventories to delete.
+     * Delete zero or more TechnicianNotes.
+     * @param {technicianNoteDeleteManyArgs} args - Arguments to filter TechnicianNotes to delete.
      * @example
-     * // Delete a few Inventories
-     * const { count } = await prisma.inventory.deleteMany({
-=======
-    update<T extends technicianUpdateArgs>(args: SelectSubset<T, technicianUpdateArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Technicians.
-     * @param {technicianDeleteManyArgs} args - Arguments to filter Technicians to delete.
-     * @example
-     * // Delete a few Technicians
-     * const { count } = await prisma.technician.deleteMany({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Delete a few TechnicianNotes
+     * const { count } = await prisma.technicianNote.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-<<<<<<< HEAD
-    deleteMany<T extends inventoryDeleteManyArgs>(args?: SelectSubset<T, inventoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends technicianNoteDeleteManyArgs>(args?: SelectSubset<T, technicianNoteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Inventories.
+     * Update zero or more TechnicianNotes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {inventoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {technicianNoteUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Inventories
-     * const inventory = await prisma.inventory.updateMany({
-=======
-    deleteMany<T extends technicianDeleteManyArgs>(args?: SelectSubset<T, technicianDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Technicians.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {technicianUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Technicians
-     * const technician = await prisma.technician.updateMany({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Update many TechnicianNotes
+     * const technicianNote = await prisma.technicianNote.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5570,25 +5640,14 @@ export namespace Prisma {
      * })
      * 
      */
-<<<<<<< HEAD
-    updateMany<T extends inventoryUpdateManyArgs>(args: SelectSubset<T, inventoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends technicianNoteUpdateManyArgs>(args: SelectSubset<T, technicianNoteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Inventories and returns the data updated in the database.
-     * @param {inventoryUpdateManyAndReturnArgs} args - Arguments to update many Inventories.
+     * Update zero or more TechnicianNotes and returns the data updated in the database.
+     * @param {technicianNoteUpdateManyAndReturnArgs} args - Arguments to update many TechnicianNotes.
      * @example
-     * // Update many Inventories
-     * const inventory = await prisma.inventory.updateManyAndReturn({
-=======
-    updateMany<T extends technicianUpdateManyArgs>(args: SelectSubset<T, technicianUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Technicians and returns the data updated in the database.
-     * @param {technicianUpdateManyAndReturnArgs} args - Arguments to update many Technicians.
-     * @example
-     * // Update many Technicians
-     * const technician = await prisma.technician.updateManyAndReturn({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Update many TechnicianNotes
+     * const technicianNote = await prisma.technicianNote.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5597,13 +5656,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-<<<<<<< HEAD
-     * // Update zero or more Inventories and only return the `id`
-     * const inventoryWithIdOnly = await prisma.inventory.updateManyAndReturn({
-=======
-     * // Update zero or more Technicians and only return the `id`
-     * const technicianWithIdOnly = await prisma.technician.updateManyAndReturn({
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * // Update zero or more TechnicianNotes and only return the `id`
+     * const technicianNoteWithIdOnly = await prisma.technicianNote.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -5616,105 +5670,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-<<<<<<< HEAD
-    updateManyAndReturn<T extends inventoryUpdateManyAndReturnArgs>(args: SelectSubset<T, inventoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends technicianNoteUpdateManyAndReturnArgs>(args: SelectSubset<T, technicianNoteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Inventory.
-     * @param {inventoryUpsertArgs} args - Arguments to update or create a Inventory.
+     * Create or update one TechnicianNote.
+     * @param {technicianNoteUpsertArgs} args - Arguments to update or create a TechnicianNote.
      * @example
-     * // Update or create a Inventory
-     * const inventory = await prisma.inventory.upsert({
+     * // Update or create a TechnicianNote
+     * const technicianNote = await prisma.technicianNote.upsert({
      *   create: {
-     *     // ... data to create a Inventory
-=======
-    updateManyAndReturn<T extends technicianUpdateManyAndReturnArgs>(args: SelectSubset<T, technicianUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Technician.
-     * @param {technicianUpsertArgs} args - Arguments to update or create a Technician.
-     * @example
-     * // Update or create a Technician
-     * const technician = await prisma.technician.upsert({
-     *   create: {
-     *     // ... data to create a Technician
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     *     // ... data to create a TechnicianNote
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-<<<<<<< HEAD
-     *     // ... the filter for the Inventory we want to update
+     *     // ... the filter for the TechnicianNote we want to update
      *   }
      * })
      */
-    upsert<T extends inventoryUpsertArgs>(args: SelectSubset<T, inventoryUpsertArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends technicianNoteUpsertArgs>(args: SelectSubset<T, technicianNoteUpsertArgs<ExtArgs>>): Prisma__technicianNoteClient<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Inventories.
+     * Count the number of TechnicianNotes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {inventoryCountArgs} args - Arguments to filter Inventories to count.
+     * @param {technicianNoteCountArgs} args - Arguments to filter TechnicianNotes to count.
      * @example
-     * // Count the number of Inventories
-     * const count = await prisma.inventory.count({
+     * // Count the number of TechnicianNotes
+     * const count = await prisma.technicianNote.count({
      *   where: {
-     *     // ... the filter for the Inventories we want to count
+     *     // ... the filter for the TechnicianNotes we want to count
      *   }
      * })
     **/
-    count<T extends inventoryCountArgs>(
-      args?: Subset<T, inventoryCountArgs>,
-=======
-     *     // ... the filter for the Technician we want to update
-     *   }
-     * })
-     */
-    upsert<T extends technicianUpsertArgs>(args: SelectSubset<T, technicianUpsertArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Technicians.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {technicianCountArgs} args - Arguments to filter Technicians to count.
-     * @example
-     * // Count the number of Technicians
-     * const count = await prisma.technician.count({
-     *   where: {
-     *     // ... the filter for the Technicians we want to count
-     *   }
-     * })
-    **/
-    count<T extends technicianCountArgs>(
-      args?: Subset<T, technicianCountArgs>,
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    count<T extends technicianNoteCountArgs>(
+      args?: Subset<T, technicianNoteCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-<<<<<<< HEAD
-          : GetScalarType<T['select'], InventoryCountAggregateOutputType>
-=======
-          : GetScalarType<T['select'], TechnicianCountAggregateOutputType>
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+          : GetScalarType<T['select'], TechnicianNoteCountAggregateOutputType>
         : number
     >
 
     /**
-<<<<<<< HEAD
-     * Allows you to perform aggregations operations on a Inventory.
+     * Allows you to perform aggregations operations on a TechnicianNote.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {InventoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-=======
-     * Allows you to perform aggregations operations on a Technician.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TechnicianAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * @param {TechnicianNoteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -5734,23 +5739,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-<<<<<<< HEAD
-    aggregate<T extends InventoryAggregateArgs>(args: Subset<T, InventoryAggregateArgs>): Prisma.PrismaPromise<GetInventoryAggregateType<T>>
+    aggregate<T extends TechnicianNoteAggregateArgs>(args: Subset<T, TechnicianNoteAggregateArgs>): Prisma.PrismaPromise<GetTechnicianNoteAggregateType<T>>
 
     /**
-     * Group by Inventory.
+     * Group by TechnicianNote.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {inventoryGroupByArgs} args - Group by arguments.
-=======
-    aggregate<T extends TechnicianAggregateArgs>(args: Subset<T, TechnicianAggregateArgs>): Prisma.PrismaPromise<GetTechnicianAggregateType<T>>
-
-    /**
-     * Group by Technician.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {technicianGroupByArgs} args - Group by arguments.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+     * @param {technicianNoteGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -5765,23 +5760,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-<<<<<<< HEAD
-      T extends inventoryGroupByArgs,
-=======
-      T extends technicianGroupByArgs,
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+      T extends technicianNoteGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-<<<<<<< HEAD
-        ? { orderBy: inventoryGroupByArgs['orderBy'] }
-        : { orderBy?: inventoryGroupByArgs['orderBy'] },
-=======
-        ? { orderBy: technicianGroupByArgs['orderBy'] }
-        : { orderBy?: technicianGroupByArgs['orderBy'] },
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+        ? { orderBy: technicianNoteGroupByArgs['orderBy'] }
+        : { orderBy?: technicianNoteGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -5830,37 +5816,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-<<<<<<< HEAD
-    >(args: SubsetIntersection<T, inventoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInventoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, technicianNoteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTechnicianNoteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the inventory model
+   * Fields of the technicianNote model
    */
-  readonly fields: inventoryFieldRefs;
+  readonly fields: technicianNoteFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for inventory.
-=======
-    >(args: SubsetIntersection<T, technicianGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTechnicianGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the technician model
-   */
-  readonly fields: technicianFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for technician.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+   * The delegate class that acts as a "Promise-like" for technicianNote.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-<<<<<<< HEAD
-  export interface Prisma__inventoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-=======
-  export interface Prisma__technicianClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+  export interface Prisma__technicianNoteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    ticket<T extends repairTicketDefaultArgs<ExtArgs> = {}>(args?: Subset<T, repairTicketDefaultArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5887,7 +5858,3383 @@ export namespace Prisma {
 
 
   /**
-<<<<<<< HEAD
+   * Fields of the technicianNote model
+   */
+  interface technicianNoteFieldRefs {
+    readonly id: FieldRef<"technicianNote", 'Int'>
+    readonly ticketId: FieldRef<"technicianNote", 'Int'>
+    readonly rawVoiceText: FieldRef<"technicianNote", 'String'>
+    readonly structuredText: FieldRef<"technicianNote", 'String'>
+    readonly quickTags: FieldRef<"technicianNote", 'String[]'>
+    readonly imageUrls: FieldRef<"technicianNote", 'String[]'>
+    readonly createdAt: FieldRef<"technicianNote", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * technicianNote findUnique
+   */
+  export type technicianNoteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which technicianNote to fetch.
+     */
+    where: technicianNoteWhereUniqueInput
+  }
+
+  /**
+   * technicianNote findUniqueOrThrow
+   */
+  export type technicianNoteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which technicianNote to fetch.
+     */
+    where: technicianNoteWhereUniqueInput
+  }
+
+  /**
+   * technicianNote findFirst
+   */
+  export type technicianNoteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which technicianNote to fetch.
+     */
+    where?: technicianNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicianNotes to fetch.
+     */
+    orderBy?: technicianNoteOrderByWithRelationInput | technicianNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for technicianNotes.
+     */
+    cursor?: technicianNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicianNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicianNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicianNotes.
+     */
+    distinct?: TechnicianNoteScalarFieldEnum | TechnicianNoteScalarFieldEnum[]
+  }
+
+  /**
+   * technicianNote findFirstOrThrow
+   */
+  export type technicianNoteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which technicianNote to fetch.
+     */
+    where?: technicianNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicianNotes to fetch.
+     */
+    orderBy?: technicianNoteOrderByWithRelationInput | technicianNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for technicianNotes.
+     */
+    cursor?: technicianNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicianNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicianNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicianNotes.
+     */
+    distinct?: TechnicianNoteScalarFieldEnum | TechnicianNoteScalarFieldEnum[]
+  }
+
+  /**
+   * technicianNote findMany
+   */
+  export type technicianNoteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * Filter, which technicianNotes to fetch.
+     */
+    where?: technicianNoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicianNotes to fetch.
+     */
+    orderBy?: technicianNoteOrderByWithRelationInput | technicianNoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing technicianNotes.
+     */
+    cursor?: technicianNoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicianNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicianNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicianNotes.
+     */
+    distinct?: TechnicianNoteScalarFieldEnum | TechnicianNoteScalarFieldEnum[]
+  }
+
+  /**
+   * technicianNote create
+   */
+  export type technicianNoteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a technicianNote.
+     */
+    data: XOR<technicianNoteCreateInput, technicianNoteUncheckedCreateInput>
+  }
+
+  /**
+   * technicianNote createMany
+   */
+  export type technicianNoteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many technicianNotes.
+     */
+    data: technicianNoteCreateManyInput | technicianNoteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * technicianNote createManyAndReturn
+   */
+  export type technicianNoteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * The data used to create many technicianNotes.
+     */
+    data: technicianNoteCreateManyInput | technicianNoteCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * technicianNote update
+   */
+  export type technicianNoteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * The data needed to update a technicianNote.
+     */
+    data: XOR<technicianNoteUpdateInput, technicianNoteUncheckedUpdateInput>
+    /**
+     * Choose, which technicianNote to update.
+     */
+    where: technicianNoteWhereUniqueInput
+  }
+
+  /**
+   * technicianNote updateMany
+   */
+  export type technicianNoteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update technicianNotes.
+     */
+    data: XOR<technicianNoteUpdateManyMutationInput, technicianNoteUncheckedUpdateManyInput>
+    /**
+     * Filter which technicianNotes to update
+     */
+    where?: technicianNoteWhereInput
+    /**
+     * Limit how many technicianNotes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * technicianNote updateManyAndReturn
+   */
+  export type technicianNoteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * The data used to update technicianNotes.
+     */
+    data: XOR<technicianNoteUpdateManyMutationInput, technicianNoteUncheckedUpdateManyInput>
+    /**
+     * Filter which technicianNotes to update
+     */
+    where?: technicianNoteWhereInput
+    /**
+     * Limit how many technicianNotes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * technicianNote upsert
+   */
+  export type technicianNoteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * The filter to search for the technicianNote to update in case it exists.
+     */
+    where: technicianNoteWhereUniqueInput
+    /**
+     * In case the technicianNote found by the `where` argument doesn't exist, create a new technicianNote with this data.
+     */
+    create: XOR<technicianNoteCreateInput, technicianNoteUncheckedCreateInput>
+    /**
+     * In case the technicianNote was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<technicianNoteUpdateInput, technicianNoteUncheckedUpdateInput>
+  }
+
+  /**
+   * technicianNote delete
+   */
+  export type technicianNoteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+    /**
+     * Filter which technicianNote to delete.
+     */
+    where: technicianNoteWhereUniqueInput
+  }
+
+  /**
+   * technicianNote deleteMany
+   */
+  export type technicianNoteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which technicianNotes to delete
+     */
+    where?: technicianNoteWhereInput
+    /**
+     * Limit how many technicianNotes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * technicianNote without action
+   */
+  export type technicianNoteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technicianNote
+     */
+    select?: technicianNoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technicianNote
+     */
+    omit?: technicianNoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianNoteInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model timelineEvent
+   */
+
+  export type AggregateTimelineEvent = {
+    _count: TimelineEventCountAggregateOutputType | null
+    _avg: TimelineEventAvgAggregateOutputType | null
+    _sum: TimelineEventSumAggregateOutputType | null
+    _min: TimelineEventMinAggregateOutputType | null
+    _max: TimelineEventMaxAggregateOutputType | null
+  }
+
+  export type TimelineEventAvgAggregateOutputType = {
+    id: number | null
+    ticketId: number | null
+  }
+
+  export type TimelineEventSumAggregateOutputType = {
+    id: number | null
+    ticketId: number | null
+  }
+
+  export type TimelineEventMinAggregateOutputType = {
+    id: number | null
+    ticketId: number | null
+    status: string | null
+    createdAt: Date | null
+  }
+
+  export type TimelineEventMaxAggregateOutputType = {
+    id: number | null
+    ticketId: number | null
+    status: string | null
+    createdAt: Date | null
+  }
+
+  export type TimelineEventCountAggregateOutputType = {
+    id: number
+    ticketId: number
+    status: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TimelineEventAvgAggregateInputType = {
+    id?: true
+    ticketId?: true
+  }
+
+  export type TimelineEventSumAggregateInputType = {
+    id?: true
+    ticketId?: true
+  }
+
+  export type TimelineEventMinAggregateInputType = {
+    id?: true
+    ticketId?: true
+    status?: true
+    createdAt?: true
+  }
+
+  export type TimelineEventMaxAggregateInputType = {
+    id?: true
+    ticketId?: true
+    status?: true
+    createdAt?: true
+  }
+
+  export type TimelineEventCountAggregateInputType = {
+    id?: true
+    ticketId?: true
+    status?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TimelineEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which timelineEvent to aggregate.
+     */
+    where?: timelineEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of timelineEvents to fetch.
+     */
+    orderBy?: timelineEventOrderByWithRelationInput | timelineEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: timelineEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` timelineEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` timelineEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned timelineEvents
+    **/
+    _count?: true | TimelineEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TimelineEventAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TimelineEventSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TimelineEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TimelineEventMaxAggregateInputType
+  }
+
+  export type GetTimelineEventAggregateType<T extends TimelineEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateTimelineEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTimelineEvent[P]>
+      : GetScalarType<T[P], AggregateTimelineEvent[P]>
+  }
+
+
+
+
+  export type timelineEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: timelineEventWhereInput
+    orderBy?: timelineEventOrderByWithAggregationInput | timelineEventOrderByWithAggregationInput[]
+    by: TimelineEventScalarFieldEnum[] | TimelineEventScalarFieldEnum
+    having?: timelineEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TimelineEventCountAggregateInputType | true
+    _avg?: TimelineEventAvgAggregateInputType
+    _sum?: TimelineEventSumAggregateInputType
+    _min?: TimelineEventMinAggregateInputType
+    _max?: TimelineEventMaxAggregateInputType
+  }
+
+  export type TimelineEventGroupByOutputType = {
+    id: number
+    ticketId: number
+    status: string
+    createdAt: Date
+    _count: TimelineEventCountAggregateOutputType | null
+    _avg: TimelineEventAvgAggregateOutputType | null
+    _sum: TimelineEventSumAggregateOutputType | null
+    _min: TimelineEventMinAggregateOutputType | null
+    _max: TimelineEventMaxAggregateOutputType | null
+  }
+
+  type GetTimelineEventGroupByPayload<T extends timelineEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TimelineEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TimelineEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TimelineEventGroupByOutputType[P]>
+            : GetScalarType<T[P], TimelineEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type timelineEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketId?: boolean
+    status?: boolean
+    createdAt?: boolean
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["timelineEvent"]>
+
+  export type timelineEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketId?: boolean
+    status?: boolean
+    createdAt?: boolean
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["timelineEvent"]>
+
+  export type timelineEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketId?: boolean
+    status?: boolean
+    createdAt?: boolean
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["timelineEvent"]>
+
+  export type timelineEventSelectScalar = {
+    id?: boolean
+    ticketId?: boolean
+    status?: boolean
+    createdAt?: boolean
+  }
+
+  export type timelineEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticketId" | "status" | "createdAt", ExtArgs["result"]["timelineEvent"]>
+  export type timelineEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }
+  export type timelineEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }
+  export type timelineEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+  }
+
+  export type $timelineEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "timelineEvent"
+    objects: {
+      ticket: Prisma.$repairTicketPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      ticketId: number
+      status: string
+      createdAt: Date
+    }, ExtArgs["result"]["timelineEvent"]>
+    composites: {}
+  }
+
+  type timelineEventGetPayload<S extends boolean | null | undefined | timelineEventDefaultArgs> = $Result.GetResult<Prisma.$timelineEventPayload, S>
+
+  type timelineEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<timelineEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TimelineEventCountAggregateInputType | true
+    }
+
+  export interface timelineEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['timelineEvent'], meta: { name: 'timelineEvent' } }
+    /**
+     * Find zero or one TimelineEvent that matches the filter.
+     * @param {timelineEventFindUniqueArgs} args - Arguments to find a TimelineEvent
+     * @example
+     * // Get one TimelineEvent
+     * const timelineEvent = await prisma.timelineEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends timelineEventFindUniqueArgs>(args: SelectSubset<T, timelineEventFindUniqueArgs<ExtArgs>>): Prisma__timelineEventClient<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TimelineEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {timelineEventFindUniqueOrThrowArgs} args - Arguments to find a TimelineEvent
+     * @example
+     * // Get one TimelineEvent
+     * const timelineEvent = await prisma.timelineEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends timelineEventFindUniqueOrThrowArgs>(args: SelectSubset<T, timelineEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__timelineEventClient<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TimelineEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {timelineEventFindFirstArgs} args - Arguments to find a TimelineEvent
+     * @example
+     * // Get one TimelineEvent
+     * const timelineEvent = await prisma.timelineEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends timelineEventFindFirstArgs>(args?: SelectSubset<T, timelineEventFindFirstArgs<ExtArgs>>): Prisma__timelineEventClient<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TimelineEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {timelineEventFindFirstOrThrowArgs} args - Arguments to find a TimelineEvent
+     * @example
+     * // Get one TimelineEvent
+     * const timelineEvent = await prisma.timelineEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends timelineEventFindFirstOrThrowArgs>(args?: SelectSubset<T, timelineEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__timelineEventClient<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TimelineEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {timelineEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TimelineEvents
+     * const timelineEvents = await prisma.timelineEvent.findMany()
+     * 
+     * // Get first 10 TimelineEvents
+     * const timelineEvents = await prisma.timelineEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const timelineEventWithIdOnly = await prisma.timelineEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends timelineEventFindManyArgs>(args?: SelectSubset<T, timelineEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TimelineEvent.
+     * @param {timelineEventCreateArgs} args - Arguments to create a TimelineEvent.
+     * @example
+     * // Create one TimelineEvent
+     * const TimelineEvent = await prisma.timelineEvent.create({
+     *   data: {
+     *     // ... data to create a TimelineEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends timelineEventCreateArgs>(args: SelectSubset<T, timelineEventCreateArgs<ExtArgs>>): Prisma__timelineEventClient<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TimelineEvents.
+     * @param {timelineEventCreateManyArgs} args - Arguments to create many TimelineEvents.
+     * @example
+     * // Create many TimelineEvents
+     * const timelineEvent = await prisma.timelineEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends timelineEventCreateManyArgs>(args?: SelectSubset<T, timelineEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TimelineEvents and returns the data saved in the database.
+     * @param {timelineEventCreateManyAndReturnArgs} args - Arguments to create many TimelineEvents.
+     * @example
+     * // Create many TimelineEvents
+     * const timelineEvent = await prisma.timelineEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TimelineEvents and only return the `id`
+     * const timelineEventWithIdOnly = await prisma.timelineEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends timelineEventCreateManyAndReturnArgs>(args?: SelectSubset<T, timelineEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TimelineEvent.
+     * @param {timelineEventDeleteArgs} args - Arguments to delete one TimelineEvent.
+     * @example
+     * // Delete one TimelineEvent
+     * const TimelineEvent = await prisma.timelineEvent.delete({
+     *   where: {
+     *     // ... filter to delete one TimelineEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends timelineEventDeleteArgs>(args: SelectSubset<T, timelineEventDeleteArgs<ExtArgs>>): Prisma__timelineEventClient<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TimelineEvent.
+     * @param {timelineEventUpdateArgs} args - Arguments to update one TimelineEvent.
+     * @example
+     * // Update one TimelineEvent
+     * const timelineEvent = await prisma.timelineEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends timelineEventUpdateArgs>(args: SelectSubset<T, timelineEventUpdateArgs<ExtArgs>>): Prisma__timelineEventClient<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TimelineEvents.
+     * @param {timelineEventDeleteManyArgs} args - Arguments to filter TimelineEvents to delete.
+     * @example
+     * // Delete a few TimelineEvents
+     * const { count } = await prisma.timelineEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends timelineEventDeleteManyArgs>(args?: SelectSubset<T, timelineEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TimelineEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {timelineEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TimelineEvents
+     * const timelineEvent = await prisma.timelineEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends timelineEventUpdateManyArgs>(args: SelectSubset<T, timelineEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TimelineEvents and returns the data updated in the database.
+     * @param {timelineEventUpdateManyAndReturnArgs} args - Arguments to update many TimelineEvents.
+     * @example
+     * // Update many TimelineEvents
+     * const timelineEvent = await prisma.timelineEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TimelineEvents and only return the `id`
+     * const timelineEventWithIdOnly = await prisma.timelineEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends timelineEventUpdateManyAndReturnArgs>(args: SelectSubset<T, timelineEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TimelineEvent.
+     * @param {timelineEventUpsertArgs} args - Arguments to update or create a TimelineEvent.
+     * @example
+     * // Update or create a TimelineEvent
+     * const timelineEvent = await prisma.timelineEvent.upsert({
+     *   create: {
+     *     // ... data to create a TimelineEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TimelineEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends timelineEventUpsertArgs>(args: SelectSubset<T, timelineEventUpsertArgs<ExtArgs>>): Prisma__timelineEventClient<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TimelineEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {timelineEventCountArgs} args - Arguments to filter TimelineEvents to count.
+     * @example
+     * // Count the number of TimelineEvents
+     * const count = await prisma.timelineEvent.count({
+     *   where: {
+     *     // ... the filter for the TimelineEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends timelineEventCountArgs>(
+      args?: Subset<T, timelineEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TimelineEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TimelineEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TimelineEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TimelineEventAggregateArgs>(args: Subset<T, TimelineEventAggregateArgs>): Prisma.PrismaPromise<GetTimelineEventAggregateType<T>>
+
+    /**
+     * Group by TimelineEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {timelineEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends timelineEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: timelineEventGroupByArgs['orderBy'] }
+        : { orderBy?: timelineEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, timelineEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTimelineEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the timelineEvent model
+   */
+  readonly fields: timelineEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for timelineEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__timelineEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ticket<T extends repairTicketDefaultArgs<ExtArgs> = {}>(args?: Subset<T, repairTicketDefaultArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the timelineEvent model
+   */
+  interface timelineEventFieldRefs {
+    readonly id: FieldRef<"timelineEvent", 'Int'>
+    readonly ticketId: FieldRef<"timelineEvent", 'Int'>
+    readonly status: FieldRef<"timelineEvent", 'String'>
+    readonly createdAt: FieldRef<"timelineEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * timelineEvent findUnique
+   */
+  export type timelineEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * Filter, which timelineEvent to fetch.
+     */
+    where: timelineEventWhereUniqueInput
+  }
+
+  /**
+   * timelineEvent findUniqueOrThrow
+   */
+  export type timelineEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * Filter, which timelineEvent to fetch.
+     */
+    where: timelineEventWhereUniqueInput
+  }
+
+  /**
+   * timelineEvent findFirst
+   */
+  export type timelineEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * Filter, which timelineEvent to fetch.
+     */
+    where?: timelineEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of timelineEvents to fetch.
+     */
+    orderBy?: timelineEventOrderByWithRelationInput | timelineEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for timelineEvents.
+     */
+    cursor?: timelineEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` timelineEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` timelineEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of timelineEvents.
+     */
+    distinct?: TimelineEventScalarFieldEnum | TimelineEventScalarFieldEnum[]
+  }
+
+  /**
+   * timelineEvent findFirstOrThrow
+   */
+  export type timelineEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * Filter, which timelineEvent to fetch.
+     */
+    where?: timelineEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of timelineEvents to fetch.
+     */
+    orderBy?: timelineEventOrderByWithRelationInput | timelineEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for timelineEvents.
+     */
+    cursor?: timelineEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` timelineEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` timelineEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of timelineEvents.
+     */
+    distinct?: TimelineEventScalarFieldEnum | TimelineEventScalarFieldEnum[]
+  }
+
+  /**
+   * timelineEvent findMany
+   */
+  export type timelineEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * Filter, which timelineEvents to fetch.
+     */
+    where?: timelineEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of timelineEvents to fetch.
+     */
+    orderBy?: timelineEventOrderByWithRelationInput | timelineEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing timelineEvents.
+     */
+    cursor?: timelineEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` timelineEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` timelineEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of timelineEvents.
+     */
+    distinct?: TimelineEventScalarFieldEnum | TimelineEventScalarFieldEnum[]
+  }
+
+  /**
+   * timelineEvent create
+   */
+  export type timelineEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a timelineEvent.
+     */
+    data: XOR<timelineEventCreateInput, timelineEventUncheckedCreateInput>
+  }
+
+  /**
+   * timelineEvent createMany
+   */
+  export type timelineEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many timelineEvents.
+     */
+    data: timelineEventCreateManyInput | timelineEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * timelineEvent createManyAndReturn
+   */
+  export type timelineEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many timelineEvents.
+     */
+    data: timelineEventCreateManyInput | timelineEventCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * timelineEvent update
+   */
+  export type timelineEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a timelineEvent.
+     */
+    data: XOR<timelineEventUpdateInput, timelineEventUncheckedUpdateInput>
+    /**
+     * Choose, which timelineEvent to update.
+     */
+    where: timelineEventWhereUniqueInput
+  }
+
+  /**
+   * timelineEvent updateMany
+   */
+  export type timelineEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update timelineEvents.
+     */
+    data: XOR<timelineEventUpdateManyMutationInput, timelineEventUncheckedUpdateManyInput>
+    /**
+     * Filter which timelineEvents to update
+     */
+    where?: timelineEventWhereInput
+    /**
+     * Limit how many timelineEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * timelineEvent updateManyAndReturn
+   */
+  export type timelineEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * The data used to update timelineEvents.
+     */
+    data: XOR<timelineEventUpdateManyMutationInput, timelineEventUncheckedUpdateManyInput>
+    /**
+     * Filter which timelineEvents to update
+     */
+    where?: timelineEventWhereInput
+    /**
+     * Limit how many timelineEvents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * timelineEvent upsert
+   */
+  export type timelineEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the timelineEvent to update in case it exists.
+     */
+    where: timelineEventWhereUniqueInput
+    /**
+     * In case the timelineEvent found by the `where` argument doesn't exist, create a new timelineEvent with this data.
+     */
+    create: XOR<timelineEventCreateInput, timelineEventUncheckedCreateInput>
+    /**
+     * In case the timelineEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<timelineEventUpdateInput, timelineEventUncheckedUpdateInput>
+  }
+
+  /**
+   * timelineEvent delete
+   */
+  export type timelineEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+    /**
+     * Filter which timelineEvent to delete.
+     */
+    where: timelineEventWhereUniqueInput
+  }
+
+  /**
+   * timelineEvent deleteMany
+   */
+  export type timelineEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which timelineEvents to delete
+     */
+    where?: timelineEventWhereInput
+    /**
+     * Limit how many timelineEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * timelineEvent without action
+   */
+  export type timelineEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the timelineEvent
+     */
+    select?: timelineEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the timelineEvent
+     */
+    omit?: timelineEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: timelineEventInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model usedPart
+   */
+
+  export type AggregateUsedPart = {
+    _count: UsedPartCountAggregateOutputType | null
+    _avg: UsedPartAvgAggregateOutputType | null
+    _sum: UsedPartSumAggregateOutputType | null
+    _min: UsedPartMinAggregateOutputType | null
+    _max: UsedPartMaxAggregateOutputType | null
+  }
+
+  export type UsedPartAvgAggregateOutputType = {
+    id: number | null
+    ticketId: number | null
+    inventoryId: number | null
+    quantity: number | null
+    lockedCost: number | null
+  }
+
+  export type UsedPartSumAggregateOutputType = {
+    id: number | null
+    ticketId: number | null
+    inventoryId: number | null
+    quantity: number | null
+    lockedCost: number | null
+  }
+
+  export type UsedPartMinAggregateOutputType = {
+    id: number | null
+    ticketId: number | null
+    inventoryId: number | null
+    quantity: number | null
+    lockedCost: number | null
+    createdAt: Date | null
+  }
+
+  export type UsedPartMaxAggregateOutputType = {
+    id: number | null
+    ticketId: number | null
+    inventoryId: number | null
+    quantity: number | null
+    lockedCost: number | null
+    createdAt: Date | null
+  }
+
+  export type UsedPartCountAggregateOutputType = {
+    id: number
+    ticketId: number
+    inventoryId: number
+    quantity: number
+    lockedCost: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type UsedPartAvgAggregateInputType = {
+    id?: true
+    ticketId?: true
+    inventoryId?: true
+    quantity?: true
+    lockedCost?: true
+  }
+
+  export type UsedPartSumAggregateInputType = {
+    id?: true
+    ticketId?: true
+    inventoryId?: true
+    quantity?: true
+    lockedCost?: true
+  }
+
+  export type UsedPartMinAggregateInputType = {
+    id?: true
+    ticketId?: true
+    inventoryId?: true
+    quantity?: true
+    lockedCost?: true
+    createdAt?: true
+  }
+
+  export type UsedPartMaxAggregateInputType = {
+    id?: true
+    ticketId?: true
+    inventoryId?: true
+    quantity?: true
+    lockedCost?: true
+    createdAt?: true
+  }
+
+  export type UsedPartCountAggregateInputType = {
+    id?: true
+    ticketId?: true
+    inventoryId?: true
+    quantity?: true
+    lockedCost?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type UsedPartAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which usedPart to aggregate.
+     */
+    where?: usedPartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of usedParts to fetch.
+     */
+    orderBy?: usedPartOrderByWithRelationInput | usedPartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: usedPartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` usedParts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` usedParts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned usedParts
+    **/
+    _count?: true | UsedPartCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UsedPartAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UsedPartSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UsedPartMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UsedPartMaxAggregateInputType
+  }
+
+  export type GetUsedPartAggregateType<T extends UsedPartAggregateArgs> = {
+        [P in keyof T & keyof AggregateUsedPart]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUsedPart[P]>
+      : GetScalarType<T[P], AggregateUsedPart[P]>
+  }
+
+
+
+
+  export type usedPartGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: usedPartWhereInput
+    orderBy?: usedPartOrderByWithAggregationInput | usedPartOrderByWithAggregationInput[]
+    by: UsedPartScalarFieldEnum[] | UsedPartScalarFieldEnum
+    having?: usedPartScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UsedPartCountAggregateInputType | true
+    _avg?: UsedPartAvgAggregateInputType
+    _sum?: UsedPartSumAggregateInputType
+    _min?: UsedPartMinAggregateInputType
+    _max?: UsedPartMaxAggregateInputType
+  }
+
+  export type UsedPartGroupByOutputType = {
+    id: number
+    ticketId: number
+    inventoryId: number
+    quantity: number
+    lockedCost: number
+    createdAt: Date
+    _count: UsedPartCountAggregateOutputType | null
+    _avg: UsedPartAvgAggregateOutputType | null
+    _sum: UsedPartSumAggregateOutputType | null
+    _min: UsedPartMinAggregateOutputType | null
+    _max: UsedPartMaxAggregateOutputType | null
+  }
+
+  type GetUsedPartGroupByPayload<T extends usedPartGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UsedPartGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UsedPartGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UsedPartGroupByOutputType[P]>
+            : GetScalarType<T[P], UsedPartGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type usedPartSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketId?: boolean
+    inventoryId?: boolean
+    quantity?: boolean
+    lockedCost?: boolean
+    createdAt?: boolean
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+    inventoryItem?: boolean | inventoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usedPart"]>
+
+  export type usedPartSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketId?: boolean
+    inventoryId?: boolean
+    quantity?: boolean
+    lockedCost?: boolean
+    createdAt?: boolean
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+    inventoryItem?: boolean | inventoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usedPart"]>
+
+  export type usedPartSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticketId?: boolean
+    inventoryId?: boolean
+    quantity?: boolean
+    lockedCost?: boolean
+    createdAt?: boolean
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+    inventoryItem?: boolean | inventoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usedPart"]>
+
+  export type usedPartSelectScalar = {
+    id?: boolean
+    ticketId?: boolean
+    inventoryId?: boolean
+    quantity?: boolean
+    lockedCost?: boolean
+    createdAt?: boolean
+  }
+
+  export type usedPartOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticketId" | "inventoryId" | "quantity" | "lockedCost" | "createdAt", ExtArgs["result"]["usedPart"]>
+  export type usedPartInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+    inventoryItem?: boolean | inventoryDefaultArgs<ExtArgs>
+  }
+  export type usedPartIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+    inventoryItem?: boolean | inventoryDefaultArgs<ExtArgs>
+  }
+  export type usedPartIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
+    inventoryItem?: boolean | inventoryDefaultArgs<ExtArgs>
+  }
+
+  export type $usedPartPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "usedPart"
+    objects: {
+      ticket: Prisma.$repairTicketPayload<ExtArgs>
+      inventoryItem: Prisma.$inventoryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      ticketId: number
+      inventoryId: number
+      quantity: number
+      lockedCost: number
+      createdAt: Date
+    }, ExtArgs["result"]["usedPart"]>
+    composites: {}
+  }
+
+  type usedPartGetPayload<S extends boolean | null | undefined | usedPartDefaultArgs> = $Result.GetResult<Prisma.$usedPartPayload, S>
+
+  type usedPartCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<usedPartFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UsedPartCountAggregateInputType | true
+    }
+
+  export interface usedPartDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['usedPart'], meta: { name: 'usedPart' } }
+    /**
+     * Find zero or one UsedPart that matches the filter.
+     * @param {usedPartFindUniqueArgs} args - Arguments to find a UsedPart
+     * @example
+     * // Get one UsedPart
+     * const usedPart = await prisma.usedPart.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends usedPartFindUniqueArgs>(args: SelectSubset<T, usedPartFindUniqueArgs<ExtArgs>>): Prisma__usedPartClient<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UsedPart that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {usedPartFindUniqueOrThrowArgs} args - Arguments to find a UsedPart
+     * @example
+     * // Get one UsedPart
+     * const usedPart = await prisma.usedPart.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends usedPartFindUniqueOrThrowArgs>(args: SelectSubset<T, usedPartFindUniqueOrThrowArgs<ExtArgs>>): Prisma__usedPartClient<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UsedPart that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usedPartFindFirstArgs} args - Arguments to find a UsedPart
+     * @example
+     * // Get one UsedPart
+     * const usedPart = await prisma.usedPart.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends usedPartFindFirstArgs>(args?: SelectSubset<T, usedPartFindFirstArgs<ExtArgs>>): Prisma__usedPartClient<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UsedPart that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usedPartFindFirstOrThrowArgs} args - Arguments to find a UsedPart
+     * @example
+     * // Get one UsedPart
+     * const usedPart = await prisma.usedPart.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends usedPartFindFirstOrThrowArgs>(args?: SelectSubset<T, usedPartFindFirstOrThrowArgs<ExtArgs>>): Prisma__usedPartClient<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UsedParts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usedPartFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UsedParts
+     * const usedParts = await prisma.usedPart.findMany()
+     * 
+     * // Get first 10 UsedParts
+     * const usedParts = await prisma.usedPart.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const usedPartWithIdOnly = await prisma.usedPart.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends usedPartFindManyArgs>(args?: SelectSubset<T, usedPartFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UsedPart.
+     * @param {usedPartCreateArgs} args - Arguments to create a UsedPart.
+     * @example
+     * // Create one UsedPart
+     * const UsedPart = await prisma.usedPart.create({
+     *   data: {
+     *     // ... data to create a UsedPart
+     *   }
+     * })
+     * 
+     */
+    create<T extends usedPartCreateArgs>(args: SelectSubset<T, usedPartCreateArgs<ExtArgs>>): Prisma__usedPartClient<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UsedParts.
+     * @param {usedPartCreateManyArgs} args - Arguments to create many UsedParts.
+     * @example
+     * // Create many UsedParts
+     * const usedPart = await prisma.usedPart.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends usedPartCreateManyArgs>(args?: SelectSubset<T, usedPartCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UsedParts and returns the data saved in the database.
+     * @param {usedPartCreateManyAndReturnArgs} args - Arguments to create many UsedParts.
+     * @example
+     * // Create many UsedParts
+     * const usedPart = await prisma.usedPart.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UsedParts and only return the `id`
+     * const usedPartWithIdOnly = await prisma.usedPart.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends usedPartCreateManyAndReturnArgs>(args?: SelectSubset<T, usedPartCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UsedPart.
+     * @param {usedPartDeleteArgs} args - Arguments to delete one UsedPart.
+     * @example
+     * // Delete one UsedPart
+     * const UsedPart = await prisma.usedPart.delete({
+     *   where: {
+     *     // ... filter to delete one UsedPart
+     *   }
+     * })
+     * 
+     */
+    delete<T extends usedPartDeleteArgs>(args: SelectSubset<T, usedPartDeleteArgs<ExtArgs>>): Prisma__usedPartClient<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UsedPart.
+     * @param {usedPartUpdateArgs} args - Arguments to update one UsedPart.
+     * @example
+     * // Update one UsedPart
+     * const usedPart = await prisma.usedPart.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends usedPartUpdateArgs>(args: SelectSubset<T, usedPartUpdateArgs<ExtArgs>>): Prisma__usedPartClient<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UsedParts.
+     * @param {usedPartDeleteManyArgs} args - Arguments to filter UsedParts to delete.
+     * @example
+     * // Delete a few UsedParts
+     * const { count } = await prisma.usedPart.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends usedPartDeleteManyArgs>(args?: SelectSubset<T, usedPartDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UsedParts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usedPartUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UsedParts
+     * const usedPart = await prisma.usedPart.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends usedPartUpdateManyArgs>(args: SelectSubset<T, usedPartUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UsedParts and returns the data updated in the database.
+     * @param {usedPartUpdateManyAndReturnArgs} args - Arguments to update many UsedParts.
+     * @example
+     * // Update many UsedParts
+     * const usedPart = await prisma.usedPart.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UsedParts and only return the `id`
+     * const usedPartWithIdOnly = await prisma.usedPart.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends usedPartUpdateManyAndReturnArgs>(args: SelectSubset<T, usedPartUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UsedPart.
+     * @param {usedPartUpsertArgs} args - Arguments to update or create a UsedPart.
+     * @example
+     * // Update or create a UsedPart
+     * const usedPart = await prisma.usedPart.upsert({
+     *   create: {
+     *     // ... data to create a UsedPart
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UsedPart we want to update
+     *   }
+     * })
+     */
+    upsert<T extends usedPartUpsertArgs>(args: SelectSubset<T, usedPartUpsertArgs<ExtArgs>>): Prisma__usedPartClient<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UsedParts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usedPartCountArgs} args - Arguments to filter UsedParts to count.
+     * @example
+     * // Count the number of UsedParts
+     * const count = await prisma.usedPart.count({
+     *   where: {
+     *     // ... the filter for the UsedParts we want to count
+     *   }
+     * })
+    **/
+    count<T extends usedPartCountArgs>(
+      args?: Subset<T, usedPartCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UsedPartCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UsedPart.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsedPartAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UsedPartAggregateArgs>(args: Subset<T, UsedPartAggregateArgs>): Prisma.PrismaPromise<GetUsedPartAggregateType<T>>
+
+    /**
+     * Group by UsedPart.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usedPartGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends usedPartGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: usedPartGroupByArgs['orderBy'] }
+        : { orderBy?: usedPartGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, usedPartGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUsedPartGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the usedPart model
+   */
+  readonly fields: usedPartFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for usedPart.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__usedPartClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ticket<T extends repairTicketDefaultArgs<ExtArgs> = {}>(args?: Subset<T, repairTicketDefaultArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    inventoryItem<T extends inventoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, inventoryDefaultArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the usedPart model
+   */
+  interface usedPartFieldRefs {
+    readonly id: FieldRef<"usedPart", 'Int'>
+    readonly ticketId: FieldRef<"usedPart", 'Int'>
+    readonly inventoryId: FieldRef<"usedPart", 'Int'>
+    readonly quantity: FieldRef<"usedPart", 'Int'>
+    readonly lockedCost: FieldRef<"usedPart", 'Float'>
+    readonly createdAt: FieldRef<"usedPart", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * usedPart findUnique
+   */
+  export type usedPartFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * Filter, which usedPart to fetch.
+     */
+    where: usedPartWhereUniqueInput
+  }
+
+  /**
+   * usedPart findUniqueOrThrow
+   */
+  export type usedPartFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * Filter, which usedPart to fetch.
+     */
+    where: usedPartWhereUniqueInput
+  }
+
+  /**
+   * usedPart findFirst
+   */
+  export type usedPartFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * Filter, which usedPart to fetch.
+     */
+    where?: usedPartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of usedParts to fetch.
+     */
+    orderBy?: usedPartOrderByWithRelationInput | usedPartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for usedParts.
+     */
+    cursor?: usedPartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` usedParts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` usedParts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of usedParts.
+     */
+    distinct?: UsedPartScalarFieldEnum | UsedPartScalarFieldEnum[]
+  }
+
+  /**
+   * usedPart findFirstOrThrow
+   */
+  export type usedPartFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * Filter, which usedPart to fetch.
+     */
+    where?: usedPartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of usedParts to fetch.
+     */
+    orderBy?: usedPartOrderByWithRelationInput | usedPartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for usedParts.
+     */
+    cursor?: usedPartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` usedParts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` usedParts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of usedParts.
+     */
+    distinct?: UsedPartScalarFieldEnum | UsedPartScalarFieldEnum[]
+  }
+
+  /**
+   * usedPart findMany
+   */
+  export type usedPartFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * Filter, which usedParts to fetch.
+     */
+    where?: usedPartWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of usedParts to fetch.
+     */
+    orderBy?: usedPartOrderByWithRelationInput | usedPartOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing usedParts.
+     */
+    cursor?: usedPartWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` usedParts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` usedParts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of usedParts.
+     */
+    distinct?: UsedPartScalarFieldEnum | UsedPartScalarFieldEnum[]
+  }
+
+  /**
+   * usedPart create
+   */
+  export type usedPartCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * The data needed to create a usedPart.
+     */
+    data: XOR<usedPartCreateInput, usedPartUncheckedCreateInput>
+  }
+
+  /**
+   * usedPart createMany
+   */
+  export type usedPartCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many usedParts.
+     */
+    data: usedPartCreateManyInput | usedPartCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * usedPart createManyAndReturn
+   */
+  export type usedPartCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * The data used to create many usedParts.
+     */
+    data: usedPartCreateManyInput | usedPartCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * usedPart update
+   */
+  export type usedPartUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * The data needed to update a usedPart.
+     */
+    data: XOR<usedPartUpdateInput, usedPartUncheckedUpdateInput>
+    /**
+     * Choose, which usedPart to update.
+     */
+    where: usedPartWhereUniqueInput
+  }
+
+  /**
+   * usedPart updateMany
+   */
+  export type usedPartUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update usedParts.
+     */
+    data: XOR<usedPartUpdateManyMutationInput, usedPartUncheckedUpdateManyInput>
+    /**
+     * Filter which usedParts to update
+     */
+    where?: usedPartWhereInput
+    /**
+     * Limit how many usedParts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * usedPart updateManyAndReturn
+   */
+  export type usedPartUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * The data used to update usedParts.
+     */
+    data: XOR<usedPartUpdateManyMutationInput, usedPartUncheckedUpdateManyInput>
+    /**
+     * Filter which usedParts to update
+     */
+    where?: usedPartWhereInput
+    /**
+     * Limit how many usedParts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * usedPart upsert
+   */
+  export type usedPartUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * The filter to search for the usedPart to update in case it exists.
+     */
+    where: usedPartWhereUniqueInput
+    /**
+     * In case the usedPart found by the `where` argument doesn't exist, create a new usedPart with this data.
+     */
+    create: XOR<usedPartCreateInput, usedPartUncheckedCreateInput>
+    /**
+     * In case the usedPart was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<usedPartUpdateInput, usedPartUncheckedUpdateInput>
+  }
+
+  /**
+   * usedPart delete
+   */
+  export type usedPartDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    /**
+     * Filter which usedPart to delete.
+     */
+    where: usedPartWhereUniqueInput
+  }
+
+  /**
+   * usedPart deleteMany
+   */
+  export type usedPartDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which usedParts to delete
+     */
+    where?: usedPartWhereInput
+    /**
+     * Limit how many usedParts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * usedPart without action
+   */
+  export type usedPartDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model inventory
+   */
+
+  export type AggregateInventory = {
+    _count: InventoryCountAggregateOutputType | null
+    _avg: InventoryAvgAggregateOutputType | null
+    _sum: InventorySumAggregateOutputType | null
+    _min: InventoryMinAggregateOutputType | null
+    _max: InventoryMaxAggregateOutputType | null
+  }
+
+  export type InventoryAvgAggregateOutputType = {
+    id: number | null
+    stockLevel: number | null
+    retailPrice: number | null
+    lowStockAlert: number | null
+  }
+
+  export type InventorySumAggregateOutputType = {
+    id: number | null
+    stockLevel: number | null
+    retailPrice: number | null
+    lowStockAlert: number | null
+  }
+
+  export type InventoryMinAggregateOutputType = {
+    id: number | null
+    partName: string | null
+    sku: string | null
+    category: string | null
+    stockLevel: number | null
+    retailPrice: number | null
+    lowStockAlert: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InventoryMaxAggregateOutputType = {
+    id: number | null
+    partName: string | null
+    sku: string | null
+    category: string | null
+    stockLevel: number | null
+    retailPrice: number | null
+    lowStockAlert: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InventoryCountAggregateOutputType = {
+    id: number
+    partName: number
+    sku: number
+    category: number
+    stockLevel: number
+    retailPrice: number
+    lowStockAlert: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InventoryAvgAggregateInputType = {
+    id?: true
+    stockLevel?: true
+    retailPrice?: true
+    lowStockAlert?: true
+  }
+
+  export type InventorySumAggregateInputType = {
+    id?: true
+    stockLevel?: true
+    retailPrice?: true
+    lowStockAlert?: true
+  }
+
+  export type InventoryMinAggregateInputType = {
+    id?: true
+    partName?: true
+    sku?: true
+    category?: true
+    stockLevel?: true
+    retailPrice?: true
+    lowStockAlert?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InventoryMaxAggregateInputType = {
+    id?: true
+    partName?: true
+    sku?: true
+    category?: true
+    stockLevel?: true
+    retailPrice?: true
+    lowStockAlert?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InventoryCountAggregateInputType = {
+    id?: true
+    partName?: true
+    sku?: true
+    category?: true
+    stockLevel?: true
+    retailPrice?: true
+    lowStockAlert?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InventoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which inventory to aggregate.
+     */
+    where?: inventoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of inventories to fetch.
+     */
+    orderBy?: inventoryOrderByWithRelationInput | inventoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: inventoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` inventories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` inventories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned inventories
+    **/
+    _count?: true | InventoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InventoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InventorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InventoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InventoryMaxAggregateInputType
+  }
+
+  export type GetInventoryAggregateType<T extends InventoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateInventory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInventory[P]>
+      : GetScalarType<T[P], AggregateInventory[P]>
+  }
+
+
+
+
+  export type inventoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: inventoryWhereInput
+    orderBy?: inventoryOrderByWithAggregationInput | inventoryOrderByWithAggregationInput[]
+    by: InventoryScalarFieldEnum[] | InventoryScalarFieldEnum
+    having?: inventoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InventoryCountAggregateInputType | true
+    _avg?: InventoryAvgAggregateInputType
+    _sum?: InventorySumAggregateInputType
+    _min?: InventoryMinAggregateInputType
+    _max?: InventoryMaxAggregateInputType
+  }
+
+  export type InventoryGroupByOutputType = {
+    id: number
+    partName: string
+    sku: string
+    category: string
+    stockLevel: number
+    retailPrice: number
+    lowStockAlert: number
+    createdAt: Date
+    updatedAt: Date
+    _count: InventoryCountAggregateOutputType | null
+    _avg: InventoryAvgAggregateOutputType | null
+    _sum: InventorySumAggregateOutputType | null
+    _min: InventoryMinAggregateOutputType | null
+    _max: InventoryMaxAggregateOutputType | null
+  }
+
+  type GetInventoryGroupByPayload<T extends inventoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InventoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InventoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InventoryGroupByOutputType[P]>
+            : GetScalarType<T[P], InventoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type inventorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    partName?: boolean
+    sku?: boolean
+    category?: boolean
+    stockLevel?: boolean
+    retailPrice?: boolean
+    lowStockAlert?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    usageHistory?: boolean | inventory$usageHistoryArgs<ExtArgs>
+    _count?: boolean | InventoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["inventory"]>
+
+  export type inventorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    partName?: boolean
+    sku?: boolean
+    category?: boolean
+    stockLevel?: boolean
+    retailPrice?: boolean
+    lowStockAlert?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["inventory"]>
+
+  export type inventorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    partName?: boolean
+    sku?: boolean
+    category?: boolean
+    stockLevel?: boolean
+    retailPrice?: boolean
+    lowStockAlert?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["inventory"]>
+
+  export type inventorySelectScalar = {
+    id?: boolean
+    partName?: boolean
+    sku?: boolean
+    category?: boolean
+    stockLevel?: boolean
+    retailPrice?: boolean
+    lowStockAlert?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type inventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partName" | "sku" | "category" | "stockLevel" | "retailPrice" | "lowStockAlert" | "createdAt" | "updatedAt", ExtArgs["result"]["inventory"]>
+  export type inventoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usageHistory?: boolean | inventory$usageHistoryArgs<ExtArgs>
+    _count?: boolean | InventoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type inventoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type inventoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $inventoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "inventory"
+    objects: {
+      usageHistory: Prisma.$usedPartPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      partName: string
+      sku: string
+      category: string
+      stockLevel: number
+      retailPrice: number
+      lowStockAlert: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["inventory"]>
+    composites: {}
+  }
+
+  type inventoryGetPayload<S extends boolean | null | undefined | inventoryDefaultArgs> = $Result.GetResult<Prisma.$inventoryPayload, S>
+
+  type inventoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<inventoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InventoryCountAggregateInputType | true
+    }
+
+  export interface inventoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['inventory'], meta: { name: 'inventory' } }
+    /**
+     * Find zero or one Inventory that matches the filter.
+     * @param {inventoryFindUniqueArgs} args - Arguments to find a Inventory
+     * @example
+     * // Get one Inventory
+     * const inventory = await prisma.inventory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends inventoryFindUniqueArgs>(args: SelectSubset<T, inventoryFindUniqueArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Inventory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {inventoryFindUniqueOrThrowArgs} args - Arguments to find a Inventory
+     * @example
+     * // Get one Inventory
+     * const inventory = await prisma.inventory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends inventoryFindUniqueOrThrowArgs>(args: SelectSubset<T, inventoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Inventory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inventoryFindFirstArgs} args - Arguments to find a Inventory
+     * @example
+     * // Get one Inventory
+     * const inventory = await prisma.inventory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends inventoryFindFirstArgs>(args?: SelectSubset<T, inventoryFindFirstArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Inventory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inventoryFindFirstOrThrowArgs} args - Arguments to find a Inventory
+     * @example
+     * // Get one Inventory
+     * const inventory = await prisma.inventory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends inventoryFindFirstOrThrowArgs>(args?: SelectSubset<T, inventoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Inventories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inventoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Inventories
+     * const inventories = await prisma.inventory.findMany()
+     * 
+     * // Get first 10 Inventories
+     * const inventories = await prisma.inventory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const inventoryWithIdOnly = await prisma.inventory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends inventoryFindManyArgs>(args?: SelectSubset<T, inventoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Inventory.
+     * @param {inventoryCreateArgs} args - Arguments to create a Inventory.
+     * @example
+     * // Create one Inventory
+     * const Inventory = await prisma.inventory.create({
+     *   data: {
+     *     // ... data to create a Inventory
+     *   }
+     * })
+     * 
+     */
+    create<T extends inventoryCreateArgs>(args: SelectSubset<T, inventoryCreateArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Inventories.
+     * @param {inventoryCreateManyArgs} args - Arguments to create many Inventories.
+     * @example
+     * // Create many Inventories
+     * const inventory = await prisma.inventory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends inventoryCreateManyArgs>(args?: SelectSubset<T, inventoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Inventories and returns the data saved in the database.
+     * @param {inventoryCreateManyAndReturnArgs} args - Arguments to create many Inventories.
+     * @example
+     * // Create many Inventories
+     * const inventory = await prisma.inventory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Inventories and only return the `id`
+     * const inventoryWithIdOnly = await prisma.inventory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends inventoryCreateManyAndReturnArgs>(args?: SelectSubset<T, inventoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Inventory.
+     * @param {inventoryDeleteArgs} args - Arguments to delete one Inventory.
+     * @example
+     * // Delete one Inventory
+     * const Inventory = await prisma.inventory.delete({
+     *   where: {
+     *     // ... filter to delete one Inventory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends inventoryDeleteArgs>(args: SelectSubset<T, inventoryDeleteArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Inventory.
+     * @param {inventoryUpdateArgs} args - Arguments to update one Inventory.
+     * @example
+     * // Update one Inventory
+     * const inventory = await prisma.inventory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends inventoryUpdateArgs>(args: SelectSubset<T, inventoryUpdateArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Inventories.
+     * @param {inventoryDeleteManyArgs} args - Arguments to filter Inventories to delete.
+     * @example
+     * // Delete a few Inventories
+     * const { count } = await prisma.inventory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends inventoryDeleteManyArgs>(args?: SelectSubset<T, inventoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Inventories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inventoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Inventories
+     * const inventory = await prisma.inventory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends inventoryUpdateManyArgs>(args: SelectSubset<T, inventoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Inventories and returns the data updated in the database.
+     * @param {inventoryUpdateManyAndReturnArgs} args - Arguments to update many Inventories.
+     * @example
+     * // Update many Inventories
+     * const inventory = await prisma.inventory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Inventories and only return the `id`
+     * const inventoryWithIdOnly = await prisma.inventory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends inventoryUpdateManyAndReturnArgs>(args: SelectSubset<T, inventoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Inventory.
+     * @param {inventoryUpsertArgs} args - Arguments to update or create a Inventory.
+     * @example
+     * // Update or create a Inventory
+     * const inventory = await prisma.inventory.upsert({
+     *   create: {
+     *     // ... data to create a Inventory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Inventory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends inventoryUpsertArgs>(args: SelectSubset<T, inventoryUpsertArgs<ExtArgs>>): Prisma__inventoryClient<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Inventories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inventoryCountArgs} args - Arguments to filter Inventories to count.
+     * @example
+     * // Count the number of Inventories
+     * const count = await prisma.inventory.count({
+     *   where: {
+     *     // ... the filter for the Inventories we want to count
+     *   }
+     * })
+    **/
+    count<T extends inventoryCountArgs>(
+      args?: Subset<T, inventoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InventoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Inventory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InventoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InventoryAggregateArgs>(args: Subset<T, InventoryAggregateArgs>): Prisma.PrismaPromise<GetInventoryAggregateType<T>>
+
+    /**
+     * Group by Inventory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inventoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends inventoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: inventoryGroupByArgs['orderBy'] }
+        : { orderBy?: inventoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, inventoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInventoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the inventory model
+   */
+  readonly fields: inventoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for inventory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__inventoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    usageHistory<T extends inventory$usageHistoryArgs<ExtArgs> = {}>(args?: Subset<T, inventory$usageHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
    * Fields of the inventory model
    */
   interface inventoryFieldRefs {
@@ -5900,29 +9247,11 @@ export namespace Prisma {
     readonly lowStockAlert: FieldRef<"inventory", 'Int'>
     readonly createdAt: FieldRef<"inventory", 'DateTime'>
     readonly updatedAt: FieldRef<"inventory", 'DateTime'>
-=======
-   * Fields of the technician model
-   */
-  interface technicianFieldRefs {
-    readonly id: FieldRef<"technician", 'String'>
-    readonly fullName: FieldRef<"technician", 'String'>
-    readonly email: FieldRef<"technician", 'String'>
-    readonly phone: FieldRef<"technician", 'String'>
-    readonly employeeId: FieldRef<"technician", 'String'>
-    readonly specialization: FieldRef<"technician", 'String'>
-    readonly status: FieldRef<"technician", 'String'>
-    readonly experienceYears: FieldRef<"technician", 'String'>
-    readonly address: FieldRef<"technician", 'String'>
-    readonly profileImage: FieldRef<"technician", 'String'>
-    readonly createdAt: FieldRef<"technician", 'DateTime'>
-    readonly updatedAt: FieldRef<"technician", 'DateTime'>
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   }
     
 
   // Custom InputTypes
   /**
-<<<<<<< HEAD
    * inventory findUnique
    */
   export type inventoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5934,6 +9263,10 @@ export namespace Prisma {
      * Omit specific fields from the inventory
      */
     omit?: inventoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
     /**
      * Filter, which inventory to fetch.
      */
@@ -5953,6 +9286,10 @@ export namespace Prisma {
      */
     omit?: inventoryOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
+    /**
      * Filter, which inventory to fetch.
      */
     where: inventoryWhereUniqueInput
@@ -5971,6 +9308,10 @@ export namespace Prisma {
      */
     omit?: inventoryOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
+    /**
      * Filter, which inventory to fetch.
      */
     where?: inventoryWhereInput
@@ -5990,91 +9331,17 @@ export namespace Prisma {
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` inventories from the position of the cursor.
-=======
-   * technician findUnique
-   */
-  export type technicianFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * Filter, which technician to fetch.
-     */
-    where: technicianWhereUniqueInput
-  }
-
-  /**
-   * technician findUniqueOrThrow
-   */
-  export type technicianFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * Filter, which technician to fetch.
-     */
-    where: technicianWhereUniqueInput
-  }
-
-  /**
-   * technician findFirst
-   */
-  export type technicianFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * Filter, which technician to fetch.
-     */
-    where?: technicianWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of technicians to fetch.
-     */
-    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for technicians.
-     */
-    cursor?: technicianWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` technicians from the position of the cursor.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-<<<<<<< HEAD
      * Skip the first `n` inventories.
-=======
-     * Skip the first `n` technicians.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-<<<<<<< HEAD
      * Filter by unique combinations of inventories.
      */
     distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
@@ -6093,6 +9360,10 @@ export namespace Prisma {
      */
     omit?: inventoryOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
+    /**
      * Filter, which inventory to fetch.
      */
     where?: inventoryWhereInput
@@ -6112,61 +9383,17 @@ export namespace Prisma {
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` inventories from the position of the cursor.
-=======
-     * Filter by unique combinations of technicians.
-     */
-    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
-  }
-
-  /**
-   * technician findFirstOrThrow
-   */
-  export type technicianFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * Filter, which technician to fetch.
-     */
-    where?: technicianWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of technicians to fetch.
-     */
-    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for technicians.
-     */
-    cursor?: technicianWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` technicians from the position of the cursor.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-<<<<<<< HEAD
      * Skip the first `n` inventories.
-=======
-     * Skip the first `n` technicians.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-<<<<<<< HEAD
      * Filter by unique combinations of inventories.
      */
     distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
@@ -6184,6 +9411,10 @@ export namespace Prisma {
      * Omit specific fields from the inventory
      */
     omit?: inventoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
     /**
      * Filter, which inventories to fetch.
      */
@@ -6204,61 +9435,17 @@ export namespace Prisma {
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` inventories from the position of the cursor.
-=======
-     * Filter by unique combinations of technicians.
-     */
-    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
-  }
-
-  /**
-   * technician findMany
-   */
-  export type technicianFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * Filter, which technicians to fetch.
-     */
-    where?: technicianWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of technicians to fetch.
-     */
-    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing technicians.
-     */
-    cursor?: technicianWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` technicians from the position of the cursor.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-<<<<<<< HEAD
      * Skip the first `n` inventories.
-=======
-     * Skip the first `n` technicians.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-<<<<<<< HEAD
      * Filter by unique combinations of inventories.
      */
     distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
@@ -6277,6 +9464,10 @@ export namespace Prisma {
      */
     omit?: inventoryOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
+    /**
      * The data needed to create a inventory.
      */
     data: XOR<inventoryCreateInput, inventoryUncheckedCreateInput>
@@ -6290,44 +9481,10 @@ export namespace Prisma {
      * The data used to create many inventories.
      */
     data: inventoryCreateManyInput | inventoryCreateManyInput[]
-=======
-     * Filter by unique combinations of technicians.
-     */
-    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
-  }
-
-  /**
-   * technician create
-   */
-  export type technicianCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * The data needed to create a technician.
-     */
-    data: XOR<technicianCreateInput, technicianUncheckedCreateInput>
-  }
-
-  /**
-   * technician createMany
-   */
-  export type technicianCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many technicians.
-     */
-    data: technicianCreateManyInput | technicianCreateManyInput[]
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     skipDuplicates?: boolean
   }
 
   /**
-<<<<<<< HEAD
    * inventory createManyAndReturn
    */
   export type inventoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6343,28 +9500,10 @@ export namespace Prisma {
      * The data used to create many inventories.
      */
     data: inventoryCreateManyInput | inventoryCreateManyInput[]
-=======
-   * technician createManyAndReturn
-   */
-  export type technicianCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * The data used to create many technicians.
-     */
-    data: technicianCreateManyInput | technicianCreateManyInput[]
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     skipDuplicates?: boolean
   }
 
   /**
-<<<<<<< HEAD
    * inventory update
    */
   export type inventoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6376,6 +9515,10 @@ export namespace Prisma {
      * Omit specific fields from the inventory
      */
     omit?: inventoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
     /**
      * The data needed to update a inventory.
      */
@@ -6400,49 +9543,11 @@ export namespace Prisma {
     where?: inventoryWhereInput
     /**
      * Limit how many inventories to update.
-=======
-   * technician update
-   */
-  export type technicianUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * The data needed to update a technician.
-     */
-    data: XOR<technicianUpdateInput, technicianUncheckedUpdateInput>
-    /**
-     * Choose, which technician to update.
-     */
-    where: technicianWhereUniqueInput
-  }
-
-  /**
-   * technician updateMany
-   */
-  export type technicianUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update technicians.
-     */
-    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyInput>
-    /**
-     * Filter which technicians to update
-     */
-    where?: technicianWhereInput
-    /**
-     * Limit how many technicians to update.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     limit?: number
   }
 
   /**
-<<<<<<< HEAD
    * inventory updateManyAndReturn
    */
   export type inventoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6464,35 +9569,11 @@ export namespace Prisma {
     where?: inventoryWhereInput
     /**
      * Limit how many inventories to update.
-=======
-   * technician updateManyAndReturn
-   */
-  export type technicianUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * The data used to update technicians.
-     */
-    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyInput>
-    /**
-     * Filter which technicians to update
-     */
-    where?: technicianWhereInput
-    /**
-     * Limit how many technicians to update.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     limit?: number
   }
 
   /**
-<<<<<<< HEAD
    * inventory upsert
    */
   export type inventoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6504,6 +9585,10 @@ export namespace Prisma {
      * Omit specific fields from the inventory
      */
     omit?: inventoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
     /**
      * The filter to search for the inventory to update in case it exists.
      */
@@ -6531,6 +9616,10 @@ export namespace Prisma {
      */
     omit?: inventoryOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
+    /**
      * Filter which inventory to delete.
      */
     where: inventoryWhereUniqueInput
@@ -6546,67 +9635,35 @@ export namespace Prisma {
     where?: inventoryWhereInput
     /**
      * Limit how many inventories to delete.
-=======
-   * technician upsert
-   */
-  export type technicianUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * The filter to search for the technician to update in case it exists.
-     */
-    where: technicianWhereUniqueInput
-    /**
-     * In case the technician found by the `where` argument doesn't exist, create a new technician with this data.
-     */
-    create: XOR<technicianCreateInput, technicianUncheckedCreateInput>
-    /**
-     * In case the technician was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<technicianUpdateInput, technicianUncheckedUpdateInput>
-  }
-
-  /**
-   * technician delete
-   */
-  export type technicianDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the technician
-     */
-    select?: technicianSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the technician
-     */
-    omit?: technicianOmit<ExtArgs> | null
-    /**
-     * Filter which technician to delete.
-     */
-    where: technicianWhereUniqueInput
-  }
-
-  /**
-   * technician deleteMany
-   */
-  export type technicianDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which technicians to delete
-     */
-    where?: technicianWhereInput
-    /**
-     * Limit how many technicians to delete.
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
      */
     limit?: number
   }
 
   /**
-<<<<<<< HEAD
+   * inventory.usageHistory
+   */
+  export type inventory$usageHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usedPart
+     */
+    select?: usedPartSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usedPart
+     */
+    omit?: usedPartOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usedPartInclude<ExtArgs> | null
+    where?: usedPartWhereInput
+    orderBy?: usedPartOrderByWithRelationInput | usedPartOrderByWithRelationInput[]
+    cursor?: usedPartWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UsedPartScalarFieldEnum | UsedPartScalarFieldEnum[]
+  }
+
+  /**
    * inventory without action
    */
   export type inventoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6618,6 +9675,10 @@ export namespace Prisma {
      * Omit specific fields from the inventory
      */
     omit?: inventoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
   }
 
 
@@ -7751,7 +10812,1157 @@ export namespace Prisma {
      * Omit specific fields from the invoice
      */
     omit?: invoiceOmit<ExtArgs> | null
-=======
+  }
+
+
+  /**
+   * Model technician
+   */
+
+  export type AggregateTechnician = {
+    _count: TechnicianCountAggregateOutputType | null
+    _min: TechnicianMinAggregateOutputType | null
+    _max: TechnicianMaxAggregateOutputType | null
+  }
+
+  export type TechnicianMinAggregateOutputType = {
+    id: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    employeeId: string | null
+    specialization: string | null
+    status: string | null
+    experienceYears: string | null
+    address: string | null
+    profileImage: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TechnicianMaxAggregateOutputType = {
+    id: string | null
+    fullName: string | null
+    email: string | null
+    phone: string | null
+    employeeId: string | null
+    specialization: string | null
+    status: string | null
+    experienceYears: string | null
+    address: string | null
+    profileImage: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TechnicianCountAggregateOutputType = {
+    id: number
+    fullName: number
+    email: number
+    phone: number
+    employeeId: number
+    specialization: number
+    status: number
+    experienceYears: number
+    address: number
+    profileImage: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TechnicianMinAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TechnicianMaxAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TechnicianCountAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phone?: true
+    employeeId?: true
+    specialization?: true
+    status?: true
+    experienceYears?: true
+    address?: true
+    profileImage?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TechnicianAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which technician to aggregate.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicians.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned technicians
+    **/
+    _count?: true | TechnicianCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TechnicianMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TechnicianMaxAggregateInputType
+  }
+
+  export type GetTechnicianAggregateType<T extends TechnicianAggregateArgs> = {
+        [P in keyof T & keyof AggregateTechnician]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTechnician[P]>
+      : GetScalarType<T[P], AggregateTechnician[P]>
+  }
+
+
+
+
+  export type technicianGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: technicianWhereInput
+    orderBy?: technicianOrderByWithAggregationInput | technicianOrderByWithAggregationInput[]
+    by: TechnicianScalarFieldEnum[] | TechnicianScalarFieldEnum
+    having?: technicianScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TechnicianCountAggregateInputType | true
+    _min?: TechnicianMinAggregateInputType
+    _max?: TechnicianMaxAggregateInputType
+  }
+
+  export type TechnicianGroupByOutputType = {
+    id: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status: string
+    experienceYears: string
+    address: string | null
+    profileImage: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TechnicianCountAggregateOutputType | null
+    _min: TechnicianMinAggregateOutputType | null
+    _max: TechnicianMaxAggregateOutputType | null
+  }
+
+  type GetTechnicianGroupByPayload<T extends technicianGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TechnicianGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TechnicianGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TechnicianGroupByOutputType[P]>
+            : GetScalarType<T[P], TechnicianGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type technicianSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tickets?: boolean | technician$ticketsArgs<ExtArgs>
+    _count?: boolean | TechnicianCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["technician"]>
+
+  export type technicianSelectScalar = {
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phone?: boolean
+    employeeId?: boolean
+    specialization?: boolean
+    status?: boolean
+    experienceYears?: boolean
+    address?: boolean
+    profileImage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type technicianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phone" | "employeeId" | "specialization" | "status" | "experienceYears" | "address" | "profileImage" | "createdAt" | "updatedAt", ExtArgs["result"]["technician"]>
+  export type technicianInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tickets?: boolean | technician$ticketsArgs<ExtArgs>
+    _count?: boolean | TechnicianCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type technicianIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type technicianIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $technicianPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "technician"
+    objects: {
+      tickets: Prisma.$repairTicketPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fullName: string
+      email: string
+      phone: string
+      employeeId: string
+      specialization: string
+      status: string
+      experienceYears: string
+      address: string | null
+      profileImage: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["technician"]>
+    composites: {}
+  }
+
+  type technicianGetPayload<S extends boolean | null | undefined | technicianDefaultArgs> = $Result.GetResult<Prisma.$technicianPayload, S>
+
+  type technicianCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<technicianFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TechnicianCountAggregateInputType | true
+    }
+
+  export interface technicianDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['technician'], meta: { name: 'technician' } }
+    /**
+     * Find zero or one Technician that matches the filter.
+     * @param {technicianFindUniqueArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends technicianFindUniqueArgs>(args: SelectSubset<T, technicianFindUniqueArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Technician that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {technicianFindUniqueOrThrowArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends technicianFindUniqueOrThrowArgs>(args: SelectSubset<T, technicianFindUniqueOrThrowArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Technician that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindFirstArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends technicianFindFirstArgs>(args?: SelectSubset<T, technicianFindFirstArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Technician that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindFirstOrThrowArgs} args - Arguments to find a Technician
+     * @example
+     * // Get one Technician
+     * const technician = await prisma.technician.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends technicianFindFirstOrThrowArgs>(args?: SelectSubset<T, technicianFindFirstOrThrowArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Technicians that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Technicians
+     * const technicians = await prisma.technician.findMany()
+     * 
+     * // Get first 10 Technicians
+     * const technicians = await prisma.technician.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const technicianWithIdOnly = await prisma.technician.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends technicianFindManyArgs>(args?: SelectSubset<T, technicianFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Technician.
+     * @param {technicianCreateArgs} args - Arguments to create a Technician.
+     * @example
+     * // Create one Technician
+     * const Technician = await prisma.technician.create({
+     *   data: {
+     *     // ... data to create a Technician
+     *   }
+     * })
+     * 
+     */
+    create<T extends technicianCreateArgs>(args: SelectSubset<T, technicianCreateArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Technicians.
+     * @param {technicianCreateManyArgs} args - Arguments to create many Technicians.
+     * @example
+     * // Create many Technicians
+     * const technician = await prisma.technician.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends technicianCreateManyArgs>(args?: SelectSubset<T, technicianCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Technicians and returns the data saved in the database.
+     * @param {technicianCreateManyAndReturnArgs} args - Arguments to create many Technicians.
+     * @example
+     * // Create many Technicians
+     * const technician = await prisma.technician.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Technicians and only return the `id`
+     * const technicianWithIdOnly = await prisma.technician.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends technicianCreateManyAndReturnArgs>(args?: SelectSubset<T, technicianCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Technician.
+     * @param {technicianDeleteArgs} args - Arguments to delete one Technician.
+     * @example
+     * // Delete one Technician
+     * const Technician = await prisma.technician.delete({
+     *   where: {
+     *     // ... filter to delete one Technician
+     *   }
+     * })
+     * 
+     */
+    delete<T extends technicianDeleteArgs>(args: SelectSubset<T, technicianDeleteArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Technician.
+     * @param {technicianUpdateArgs} args - Arguments to update one Technician.
+     * @example
+     * // Update one Technician
+     * const technician = await prisma.technician.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends technicianUpdateArgs>(args: SelectSubset<T, technicianUpdateArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Technicians.
+     * @param {technicianDeleteManyArgs} args - Arguments to filter Technicians to delete.
+     * @example
+     * // Delete a few Technicians
+     * const { count } = await prisma.technician.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends technicianDeleteManyArgs>(args?: SelectSubset<T, technicianDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Technicians.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Technicians
+     * const technician = await prisma.technician.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends technicianUpdateManyArgs>(args: SelectSubset<T, technicianUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Technicians and returns the data updated in the database.
+     * @param {technicianUpdateManyAndReturnArgs} args - Arguments to update many Technicians.
+     * @example
+     * // Update many Technicians
+     * const technician = await prisma.technician.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Technicians and only return the `id`
+     * const technicianWithIdOnly = await prisma.technician.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends technicianUpdateManyAndReturnArgs>(args: SelectSubset<T, technicianUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Technician.
+     * @param {technicianUpsertArgs} args - Arguments to update or create a Technician.
+     * @example
+     * // Update or create a Technician
+     * const technician = await prisma.technician.upsert({
+     *   create: {
+     *     // ... data to create a Technician
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Technician we want to update
+     *   }
+     * })
+     */
+    upsert<T extends technicianUpsertArgs>(args: SelectSubset<T, technicianUpsertArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Technicians.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianCountArgs} args - Arguments to filter Technicians to count.
+     * @example
+     * // Count the number of Technicians
+     * const count = await prisma.technician.count({
+     *   where: {
+     *     // ... the filter for the Technicians we want to count
+     *   }
+     * })
+    **/
+    count<T extends technicianCountArgs>(
+      args?: Subset<T, technicianCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TechnicianCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Technician.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TechnicianAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TechnicianAggregateArgs>(args: Subset<T, TechnicianAggregateArgs>): Prisma.PrismaPromise<GetTechnicianAggregateType<T>>
+
+    /**
+     * Group by Technician.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {technicianGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends technicianGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: technicianGroupByArgs['orderBy'] }
+        : { orderBy?: technicianGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, technicianGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTechnicianGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the technician model
+   */
+  readonly fields: technicianFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for technician.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__technicianClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tickets<T extends technician$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, technician$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the technician model
+   */
+  interface technicianFieldRefs {
+    readonly id: FieldRef<"technician", 'String'>
+    readonly fullName: FieldRef<"technician", 'String'>
+    readonly email: FieldRef<"technician", 'String'>
+    readonly phone: FieldRef<"technician", 'String'>
+    readonly employeeId: FieldRef<"technician", 'String'>
+    readonly specialization: FieldRef<"technician", 'String'>
+    readonly status: FieldRef<"technician", 'String'>
+    readonly experienceYears: FieldRef<"technician", 'String'>
+    readonly address: FieldRef<"technician", 'String'>
+    readonly profileImage: FieldRef<"technician", 'String'>
+    readonly createdAt: FieldRef<"technician", 'DateTime'>
+    readonly updatedAt: FieldRef<"technician", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * technician findUnique
+   */
+  export type technicianFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician findUniqueOrThrow
+   */
+  export type technicianFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician findFirst
+   */
+  export type technicianFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicians.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician findFirstOrThrow
+   */
+  export type technicianFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * Filter, which technician to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicians.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician findMany
+   */
+  export type technicianFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * Filter, which technicians to fetch.
+     */
+    where?: technicianWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of technicians to fetch.
+     */
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing technicians.
+     */
+    cursor?: technicianWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` technicians from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` technicians.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of technicians.
+     */
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * technician create
+   */
+  export type technicianCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * The data needed to create a technician.
+     */
+    data: XOR<technicianCreateInput, technicianUncheckedCreateInput>
+  }
+
+  /**
+   * technician createMany
+   */
+  export type technicianCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many technicians.
+     */
+    data: technicianCreateManyInput | technicianCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * technician createManyAndReturn
+   */
+  export type technicianCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data used to create many technicians.
+     */
+    data: technicianCreateManyInput | technicianCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * technician update
+   */
+  export type technicianUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * The data needed to update a technician.
+     */
+    data: XOR<technicianUpdateInput, technicianUncheckedUpdateInput>
+    /**
+     * Choose, which technician to update.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician updateMany
+   */
+  export type technicianUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update technicians.
+     */
+    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyInput>
+    /**
+     * Filter which technicians to update
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * technician updateManyAndReturn
+   */
+  export type technicianUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * The data used to update technicians.
+     */
+    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyInput>
+    /**
+     * Filter which technicians to update
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * technician upsert
+   */
+  export type technicianUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * The filter to search for the technician to update in case it exists.
+     */
+    where: technicianWhereUniqueInput
+    /**
+     * In case the technician found by the `where` argument doesn't exist, create a new technician with this data.
+     */
+    create: XOR<technicianCreateInput, technicianUncheckedCreateInput>
+    /**
+     * In case the technician was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<technicianUpdateInput, technicianUncheckedUpdateInput>
+  }
+
+  /**
+   * technician delete
+   */
+  export type technicianDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    /**
+     * Filter which technician to delete.
+     */
+    where: technicianWhereUniqueInput
+  }
+
+  /**
+   * technician deleteMany
+   */
+  export type technicianDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which technicians to delete
+     */
+    where?: technicianWhereInput
+    /**
+     * Limit how many technicians to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * technician.tickets
+   */
+  export type technician$ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    where?: repairTicketWhereInput
+    orderBy?: repairTicketOrderByWithRelationInput | repairTicketOrderByWithRelationInput[]
+    cursor?: repairTicketWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairTicketScalarFieldEnum | RepairTicketScalarFieldEnum[]
+  }
+
+  /**
    * technician without action
    */
   export type technicianDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7763,7 +11974,10 @@ export namespace Prisma {
      * Omit specific fields from the technician
      */
     omit?: technicianOmit<ExtArgs> | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
   }
 
 
@@ -7812,15 +12026,52 @@ export namespace Prisma {
     issueCategory: 'issueCategory',
     description: 'description',
     status: 'status',
-    technicianNotes: 'technicianNotes',
+    bay: 'bay',
+    priority: 'priority',
     createdAt: 'createdAt',
-    customerId: 'customerId'
+    updatedAt: 'updatedAt',
+    customerId: 'customerId',
+    technicianId: 'technicianId'
   };
 
   export type RepairTicketScalarFieldEnum = (typeof RepairTicketScalarFieldEnum)[keyof typeof RepairTicketScalarFieldEnum]
 
 
-<<<<<<< HEAD
+  export const TechnicianNoteScalarFieldEnum: {
+    id: 'id',
+    ticketId: 'ticketId',
+    rawVoiceText: 'rawVoiceText',
+    structuredText: 'structuredText',
+    quickTags: 'quickTags',
+    imageUrls: 'imageUrls',
+    createdAt: 'createdAt'
+  };
+
+  export type TechnicianNoteScalarFieldEnum = (typeof TechnicianNoteScalarFieldEnum)[keyof typeof TechnicianNoteScalarFieldEnum]
+
+
+  export const TimelineEventScalarFieldEnum: {
+    id: 'id',
+    ticketId: 'ticketId',
+    status: 'status',
+    createdAt: 'createdAt'
+  };
+
+  export type TimelineEventScalarFieldEnum = (typeof TimelineEventScalarFieldEnum)[keyof typeof TimelineEventScalarFieldEnum]
+
+
+  export const UsedPartScalarFieldEnum: {
+    id: 'id',
+    ticketId: 'ticketId',
+    inventoryId: 'inventoryId',
+    quantity: 'quantity',
+    lockedCost: 'lockedCost',
+    createdAt: 'createdAt'
+  };
+
+  export type UsedPartScalarFieldEnum = (typeof UsedPartScalarFieldEnum)[keyof typeof UsedPartScalarFieldEnum]
+
+
   export const InventoryScalarFieldEnum: {
     id: 'id',
     partName: 'partName',
@@ -7829,24 +12080,10 @@ export namespace Prisma {
     stockLevel: 'stockLevel',
     retailPrice: 'retailPrice',
     lowStockAlert: 'lowStockAlert',
-=======
-  export const TechnicianScalarFieldEnum: {
-    id: 'id',
-    fullName: 'fullName',
-    email: 'email',
-    phone: 'phone',
-    employeeId: 'employeeId',
-    specialization: 'specialization',
-    status: 'status',
-    experienceYears: 'experienceYears',
-    address: 'address',
-    profileImage: 'profileImage',
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-<<<<<<< HEAD
   export type InventoryScalarFieldEnum = (typeof InventoryScalarFieldEnum)[keyof typeof InventoryScalarFieldEnum]
 
 
@@ -7866,9 +12103,24 @@ export namespace Prisma {
   };
 
   export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
-=======
+
+
+  export const TechnicianScalarFieldEnum: {
+    id: 'id',
+    fullName: 'fullName',
+    email: 'email',
+    phone: 'phone',
+    employeeId: 'employeeId',
+    specialization: 'specialization',
+    status: 'status',
+    experienceYears: 'experienceYears',
+    address: 'address',
+    profileImage: 'profileImage',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
   export type TechnicianScalarFieldEnum = (typeof TechnicianScalarFieldEnum)[keyof typeof TechnicianScalarFieldEnum]
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 
 
   export const SortOrder: {
@@ -8138,10 +12390,17 @@ export namespace Prisma {
     issueCategory?: StringFilter<"repairTicket"> | string
     description?: StringFilter<"repairTicket"> | string
     status?: StringFilter<"repairTicket"> | string
-    technicianNotes?: StringNullableFilter<"repairTicket"> | string | null
+    bay?: StringNullableFilter<"repairTicket"> | string | null
+    priority?: StringFilter<"repairTicket"> | string
     createdAt?: DateTimeFilter<"repairTicket"> | Date | string
+    updatedAt?: DateTimeFilter<"repairTicket"> | Date | string
     customerId?: StringFilter<"repairTicket"> | string
+    technicianId?: StringNullableFilter<"repairTicket"> | string | null
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
+    technician?: XOR<TechnicianNullableScalarRelationFilter, technicianWhereInput> | null
+    notes?: TechnicianNoteListRelationFilter
+    timeline?: TimelineEventListRelationFilter
+    parts?: UsedPartListRelationFilter
   }
 
   export type repairTicketOrderByWithRelationInput = {
@@ -8149,10 +12408,17 @@ export namespace Prisma {
     issueCategory?: SortOrder
     description?: SortOrder
     status?: SortOrder
-    technicianNotes?: SortOrderInput | SortOrder
+    bay?: SortOrderInput | SortOrder
+    priority?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     customerId?: SortOrder
+    technicianId?: SortOrderInput | SortOrder
     customer?: customerOrderByWithRelationInput
+    technician?: technicianOrderByWithRelationInput
+    notes?: technicianNoteOrderByRelationAggregateInput
+    timeline?: timelineEventOrderByRelationAggregateInput
+    parts?: usedPartOrderByRelationAggregateInput
   }
 
   export type repairTicketWhereUniqueInput = Prisma.AtLeast<{
@@ -8163,10 +12429,17 @@ export namespace Prisma {
     issueCategory?: StringFilter<"repairTicket"> | string
     description?: StringFilter<"repairTicket"> | string
     status?: StringFilter<"repairTicket"> | string
-    technicianNotes?: StringNullableFilter<"repairTicket"> | string | null
+    bay?: StringNullableFilter<"repairTicket"> | string | null
+    priority?: StringFilter<"repairTicket"> | string
     createdAt?: DateTimeFilter<"repairTicket"> | Date | string
+    updatedAt?: DateTimeFilter<"repairTicket"> | Date | string
     customerId?: StringFilter<"repairTicket"> | string
+    technicianId?: StringNullableFilter<"repairTicket"> | string | null
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
+    technician?: XOR<TechnicianNullableScalarRelationFilter, technicianWhereInput> | null
+    notes?: TechnicianNoteListRelationFilter
+    timeline?: TimelineEventListRelationFilter
+    parts?: UsedPartListRelationFilter
   }, "id">
 
   export type repairTicketOrderByWithAggregationInput = {
@@ -8174,9 +12447,12 @@ export namespace Prisma {
     issueCategory?: SortOrder
     description?: SortOrder
     status?: SortOrder
-    technicianNotes?: SortOrderInput | SortOrder
+    bay?: SortOrderInput | SortOrder
+    priority?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     customerId?: SortOrder
+    technicianId?: SortOrderInput | SortOrder
     _count?: repairTicketCountOrderByAggregateInput
     _avg?: repairTicketAvgOrderByAggregateInput
     _max?: repairTicketMaxOrderByAggregateInput
@@ -8192,12 +12468,198 @@ export namespace Prisma {
     issueCategory?: StringWithAggregatesFilter<"repairTicket"> | string
     description?: StringWithAggregatesFilter<"repairTicket"> | string
     status?: StringWithAggregatesFilter<"repairTicket"> | string
-    technicianNotes?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
+    bay?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
+    priority?: StringWithAggregatesFilter<"repairTicket"> | string
     createdAt?: DateTimeWithAggregatesFilter<"repairTicket"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"repairTicket"> | Date | string
     customerId?: StringWithAggregatesFilter<"repairTicket"> | string
+    technicianId?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
   }
 
-<<<<<<< HEAD
+  export type technicianNoteWhereInput = {
+    AND?: technicianNoteWhereInput | technicianNoteWhereInput[]
+    OR?: technicianNoteWhereInput[]
+    NOT?: technicianNoteWhereInput | technicianNoteWhereInput[]
+    id?: IntFilter<"technicianNote"> | number
+    ticketId?: IntFilter<"technicianNote"> | number
+    rawVoiceText?: StringNullableFilter<"technicianNote"> | string | null
+    structuredText?: StringFilter<"technicianNote"> | string
+    quickTags?: StringNullableListFilter<"technicianNote">
+    imageUrls?: StringNullableListFilter<"technicianNote">
+    createdAt?: DateTimeFilter<"technicianNote"> | Date | string
+    ticket?: XOR<RepairTicketScalarRelationFilter, repairTicketWhereInput>
+  }
+
+  export type technicianNoteOrderByWithRelationInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    rawVoiceText?: SortOrderInput | SortOrder
+    structuredText?: SortOrder
+    quickTags?: SortOrder
+    imageUrls?: SortOrder
+    createdAt?: SortOrder
+    ticket?: repairTicketOrderByWithRelationInput
+  }
+
+  export type technicianNoteWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: technicianNoteWhereInput | technicianNoteWhereInput[]
+    OR?: technicianNoteWhereInput[]
+    NOT?: technicianNoteWhereInput | technicianNoteWhereInput[]
+    ticketId?: IntFilter<"technicianNote"> | number
+    rawVoiceText?: StringNullableFilter<"technicianNote"> | string | null
+    structuredText?: StringFilter<"technicianNote"> | string
+    quickTags?: StringNullableListFilter<"technicianNote">
+    imageUrls?: StringNullableListFilter<"technicianNote">
+    createdAt?: DateTimeFilter<"technicianNote"> | Date | string
+    ticket?: XOR<RepairTicketScalarRelationFilter, repairTicketWhereInput>
+  }, "id">
+
+  export type technicianNoteOrderByWithAggregationInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    rawVoiceText?: SortOrderInput | SortOrder
+    structuredText?: SortOrder
+    quickTags?: SortOrder
+    imageUrls?: SortOrder
+    createdAt?: SortOrder
+    _count?: technicianNoteCountOrderByAggregateInput
+    _avg?: technicianNoteAvgOrderByAggregateInput
+    _max?: technicianNoteMaxOrderByAggregateInput
+    _min?: technicianNoteMinOrderByAggregateInput
+    _sum?: technicianNoteSumOrderByAggregateInput
+  }
+
+  export type technicianNoteScalarWhereWithAggregatesInput = {
+    AND?: technicianNoteScalarWhereWithAggregatesInput | technicianNoteScalarWhereWithAggregatesInput[]
+    OR?: technicianNoteScalarWhereWithAggregatesInput[]
+    NOT?: technicianNoteScalarWhereWithAggregatesInput | technicianNoteScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"technicianNote"> | number
+    ticketId?: IntWithAggregatesFilter<"technicianNote"> | number
+    rawVoiceText?: StringNullableWithAggregatesFilter<"technicianNote"> | string | null
+    structuredText?: StringWithAggregatesFilter<"technicianNote"> | string
+    quickTags?: StringNullableListFilter<"technicianNote">
+    imageUrls?: StringNullableListFilter<"technicianNote">
+    createdAt?: DateTimeWithAggregatesFilter<"technicianNote"> | Date | string
+  }
+
+  export type timelineEventWhereInput = {
+    AND?: timelineEventWhereInput | timelineEventWhereInput[]
+    OR?: timelineEventWhereInput[]
+    NOT?: timelineEventWhereInput | timelineEventWhereInput[]
+    id?: IntFilter<"timelineEvent"> | number
+    ticketId?: IntFilter<"timelineEvent"> | number
+    status?: StringFilter<"timelineEvent"> | string
+    createdAt?: DateTimeFilter<"timelineEvent"> | Date | string
+    ticket?: XOR<RepairTicketScalarRelationFilter, repairTicketWhereInput>
+  }
+
+  export type timelineEventOrderByWithRelationInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    ticket?: repairTicketOrderByWithRelationInput
+  }
+
+  export type timelineEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: timelineEventWhereInput | timelineEventWhereInput[]
+    OR?: timelineEventWhereInput[]
+    NOT?: timelineEventWhereInput | timelineEventWhereInput[]
+    ticketId?: IntFilter<"timelineEvent"> | number
+    status?: StringFilter<"timelineEvent"> | string
+    createdAt?: DateTimeFilter<"timelineEvent"> | Date | string
+    ticket?: XOR<RepairTicketScalarRelationFilter, repairTicketWhereInput>
+  }, "id">
+
+  export type timelineEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    _count?: timelineEventCountOrderByAggregateInput
+    _avg?: timelineEventAvgOrderByAggregateInput
+    _max?: timelineEventMaxOrderByAggregateInput
+    _min?: timelineEventMinOrderByAggregateInput
+    _sum?: timelineEventSumOrderByAggregateInput
+  }
+
+  export type timelineEventScalarWhereWithAggregatesInput = {
+    AND?: timelineEventScalarWhereWithAggregatesInput | timelineEventScalarWhereWithAggregatesInput[]
+    OR?: timelineEventScalarWhereWithAggregatesInput[]
+    NOT?: timelineEventScalarWhereWithAggregatesInput | timelineEventScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"timelineEvent"> | number
+    ticketId?: IntWithAggregatesFilter<"timelineEvent"> | number
+    status?: StringWithAggregatesFilter<"timelineEvent"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"timelineEvent"> | Date | string
+  }
+
+  export type usedPartWhereInput = {
+    AND?: usedPartWhereInput | usedPartWhereInput[]
+    OR?: usedPartWhereInput[]
+    NOT?: usedPartWhereInput | usedPartWhereInput[]
+    id?: IntFilter<"usedPart"> | number
+    ticketId?: IntFilter<"usedPart"> | number
+    inventoryId?: IntFilter<"usedPart"> | number
+    quantity?: IntFilter<"usedPart"> | number
+    lockedCost?: FloatFilter<"usedPart"> | number
+    createdAt?: DateTimeFilter<"usedPart"> | Date | string
+    ticket?: XOR<RepairTicketScalarRelationFilter, repairTicketWhereInput>
+    inventoryItem?: XOR<InventoryScalarRelationFilter, inventoryWhereInput>
+  }
+
+  export type usedPartOrderByWithRelationInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    inventoryId?: SortOrder
+    quantity?: SortOrder
+    lockedCost?: SortOrder
+    createdAt?: SortOrder
+    ticket?: repairTicketOrderByWithRelationInput
+    inventoryItem?: inventoryOrderByWithRelationInput
+  }
+
+  export type usedPartWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: usedPartWhereInput | usedPartWhereInput[]
+    OR?: usedPartWhereInput[]
+    NOT?: usedPartWhereInput | usedPartWhereInput[]
+    ticketId?: IntFilter<"usedPart"> | number
+    inventoryId?: IntFilter<"usedPart"> | number
+    quantity?: IntFilter<"usedPart"> | number
+    lockedCost?: FloatFilter<"usedPart"> | number
+    createdAt?: DateTimeFilter<"usedPart"> | Date | string
+    ticket?: XOR<RepairTicketScalarRelationFilter, repairTicketWhereInput>
+    inventoryItem?: XOR<InventoryScalarRelationFilter, inventoryWhereInput>
+  }, "id">
+
+  export type usedPartOrderByWithAggregationInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    inventoryId?: SortOrder
+    quantity?: SortOrder
+    lockedCost?: SortOrder
+    createdAt?: SortOrder
+    _count?: usedPartCountOrderByAggregateInput
+    _avg?: usedPartAvgOrderByAggregateInput
+    _max?: usedPartMaxOrderByAggregateInput
+    _min?: usedPartMinOrderByAggregateInput
+    _sum?: usedPartSumOrderByAggregateInput
+  }
+
+  export type usedPartScalarWhereWithAggregatesInput = {
+    AND?: usedPartScalarWhereWithAggregatesInput | usedPartScalarWhereWithAggregatesInput[]
+    OR?: usedPartScalarWhereWithAggregatesInput[]
+    NOT?: usedPartScalarWhereWithAggregatesInput | usedPartScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"usedPart"> | number
+    ticketId?: IntWithAggregatesFilter<"usedPart"> | number
+    inventoryId?: IntWithAggregatesFilter<"usedPart"> | number
+    quantity?: IntWithAggregatesFilter<"usedPart"> | number
+    lockedCost?: FloatWithAggregatesFilter<"usedPart"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"usedPart"> | Date | string
+  }
+
   export type inventoryWhereInput = {
     AND?: inventoryWhereInput | inventoryWhereInput[]
     OR?: inventoryWhereInput[]
@@ -8211,6 +12673,7 @@ export namespace Prisma {
     lowStockAlert?: IntFilter<"inventory"> | number
     createdAt?: DateTimeFilter<"inventory"> | Date | string
     updatedAt?: DateTimeFilter<"inventory"> | Date | string
+    usageHistory?: UsedPartListRelationFilter
   }
 
   export type inventoryOrderByWithRelationInput = {
@@ -8221,42 +12684,11 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
-=======
-  export type technicianWhereInput = {
-    AND?: technicianWhereInput | technicianWhereInput[]
-    OR?: technicianWhereInput[]
-    NOT?: technicianWhereInput | technicianWhereInput[]
-    id?: StringFilter<"technician"> | string
-    fullName?: StringFilter<"technician"> | string
-    email?: StringFilter<"technician"> | string
-    phone?: StringFilter<"technician"> | string
-    employeeId?: StringFilter<"technician"> | string
-    specialization?: StringFilter<"technician"> | string
-    status?: StringFilter<"technician"> | string
-    experienceYears?: StringFilter<"technician"> | string
-    address?: StringNullableFilter<"technician"> | string | null
-    profileImage?: StringNullableFilter<"technician"> | string | null
-    createdAt?: DateTimeFilter<"technician"> | Date | string
-    updatedAt?: DateTimeFilter<"technician"> | Date | string
-  }
-
-  export type technicianOrderByWithRelationInput = {
-    id?: SortOrder
-    fullName?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    employeeId?: SortOrder
-    specialization?: SortOrder
-    status?: SortOrder
-    experienceYears?: SortOrder
-    address?: SortOrderInput | SortOrder
-    profileImage?: SortOrderInput | SortOrder
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    usageHistory?: usedPartOrderByRelationAggregateInput
   }
 
-<<<<<<< HEAD
   export type inventoryWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     sku?: string
@@ -8270,6 +12702,7 @@ export namespace Prisma {
     lowStockAlert?: IntFilter<"inventory"> | number
     createdAt?: DateTimeFilter<"inventory"> | Date | string
     updatedAt?: DateTimeFilter<"inventory"> | Date | string
+    usageHistory?: UsedPartListRelationFilter
   }, "id" | "sku">
 
   export type inventoryOrderByWithAggregationInput = {
@@ -8391,7 +12824,43 @@ export namespace Prisma {
     paymentMethod?: StringWithAggregatesFilter<"invoice"> | string
     createdAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
-=======
+  }
+
+  export type technicianWhereInput = {
+    AND?: technicianWhereInput | technicianWhereInput[]
+    OR?: technicianWhereInput[]
+    NOT?: technicianWhereInput | technicianWhereInput[]
+    id?: StringFilter<"technician"> | string
+    fullName?: StringFilter<"technician"> | string
+    email?: StringFilter<"technician"> | string
+    phone?: StringFilter<"technician"> | string
+    employeeId?: StringFilter<"technician"> | string
+    specialization?: StringFilter<"technician"> | string
+    status?: StringFilter<"technician"> | string
+    experienceYears?: StringFilter<"technician"> | string
+    address?: StringNullableFilter<"technician"> | string | null
+    profileImage?: StringNullableFilter<"technician"> | string | null
+    createdAt?: DateTimeFilter<"technician"> | Date | string
+    updatedAt?: DateTimeFilter<"technician"> | Date | string
+    tickets?: RepairTicketListRelationFilter
+  }
+
+  export type technicianOrderByWithRelationInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tickets?: repairTicketOrderByRelationAggregateInput
+  }
+
   export type technicianWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
@@ -8408,6 +12877,7 @@ export namespace Prisma {
     profileImage?: StringNullableFilter<"technician"> | string | null
     createdAt?: DateTimeFilter<"technician"> | Date | string
     updatedAt?: DateTimeFilter<"technician"> | Date | string
+    tickets?: RepairTicketListRelationFilter
   }, "id" | "email" | "employeeId">
 
   export type technicianOrderByWithAggregationInput = {
@@ -8444,7 +12914,6 @@ export namespace Prisma {
     profileImage?: StringNullableWithAggregatesFilter<"technician"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   }
 
   export type UserCreateInput = {
@@ -8595,9 +13064,15 @@ export namespace Prisma {
     issueCategory: string
     description: string
     status?: string
-    technicianNotes?: string | null
+    bay?: string | null
+    priority?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     customer: customerCreateNestedOneWithoutTicketsInput
+    technician?: technicianCreateNestedOneWithoutTicketsInput
+    notes?: technicianNoteCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventCreateNestedManyWithoutTicketInput
+    parts?: usedPartCreateNestedManyWithoutTicketInput
   }
 
   export type repairTicketUncheckedCreateInput = {
@@ -8605,18 +13080,30 @@ export namespace Prisma {
     issueCategory: string
     description: string
     status?: string
-    technicianNotes?: string | null
+    bay?: string | null
+    priority?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     customerId: string
+    technicianId?: string | null
+    notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+    parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type repairTicketUpdateInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    technician?: technicianUpdateOneWithoutTicketsNestedInput
+    notes?: technicianNoteUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUpdateManyWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateInput = {
@@ -8624,9 +13111,15 @@ export namespace Prisma {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type repairTicketCreateManyInput = {
@@ -8634,17 +13127,22 @@ export namespace Prisma {
     issueCategory: string
     description: string
     status?: string
-    technicianNotes?: string | null
+    bay?: string | null
+    priority?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     customerId: string
+    technicianId?: string | null
   }
 
   export type repairTicketUpdateManyMutationInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type repairTicketUncheckedUpdateManyInput = {
@@ -8652,12 +13150,183 @@ export namespace Prisma {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-<<<<<<< HEAD
+  export type technicianNoteCreateInput = {
+    rawVoiceText?: string | null
+    structuredText: string
+    quickTags?: technicianNoteCreatequickTagsInput | string[]
+    imageUrls?: technicianNoteCreateimageUrlsInput | string[]
+    createdAt?: Date | string
+    ticket: repairTicketCreateNestedOneWithoutNotesInput
+  }
+
+  export type technicianNoteUncheckedCreateInput = {
+    id?: number
+    ticketId: number
+    rawVoiceText?: string | null
+    structuredText: string
+    quickTags?: technicianNoteCreatequickTagsInput | string[]
+    imageUrls?: technicianNoteCreateimageUrlsInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type technicianNoteUpdateInput = {
+    rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
+    structuredText?: StringFieldUpdateOperationsInput | string
+    quickTags?: technicianNoteUpdatequickTagsInput | string[]
+    imageUrls?: technicianNoteUpdateimageUrlsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ticket?: repairTicketUpdateOneRequiredWithoutNotesNestedInput
+  }
+
+  export type technicianNoteUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ticketId?: IntFieldUpdateOperationsInput | number
+    rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
+    structuredText?: StringFieldUpdateOperationsInput | string
+    quickTags?: technicianNoteUpdatequickTagsInput | string[]
+    imageUrls?: technicianNoteUpdateimageUrlsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianNoteCreateManyInput = {
+    id?: number
+    ticketId: number
+    rawVoiceText?: string | null
+    structuredText: string
+    quickTags?: technicianNoteCreatequickTagsInput | string[]
+    imageUrls?: technicianNoteCreateimageUrlsInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type technicianNoteUpdateManyMutationInput = {
+    rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
+    structuredText?: StringFieldUpdateOperationsInput | string
+    quickTags?: technicianNoteUpdatequickTagsInput | string[]
+    imageUrls?: technicianNoteUpdateimageUrlsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianNoteUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ticketId?: IntFieldUpdateOperationsInput | number
+    rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
+    structuredText?: StringFieldUpdateOperationsInput | string
+    quickTags?: technicianNoteUpdatequickTagsInput | string[]
+    imageUrls?: technicianNoteUpdateimageUrlsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type timelineEventCreateInput = {
+    status: string
+    createdAt?: Date | string
+    ticket: repairTicketCreateNestedOneWithoutTimelineInput
+  }
+
+  export type timelineEventUncheckedCreateInput = {
+    id?: number
+    ticketId: number
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type timelineEventUpdateInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ticket?: repairTicketUpdateOneRequiredWithoutTimelineNestedInput
+  }
+
+  export type timelineEventUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ticketId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type timelineEventCreateManyInput = {
+    id?: number
+    ticketId: number
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type timelineEventUpdateManyMutationInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type timelineEventUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ticketId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usedPartCreateInput = {
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+    ticket: repairTicketCreateNestedOneWithoutPartsInput
+    inventoryItem: inventoryCreateNestedOneWithoutUsageHistoryInput
+  }
+
+  export type usedPartUncheckedCreateInput = {
+    id?: number
+    ticketId: number
+    inventoryId: number
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+  }
+
+  export type usedPartUpdateInput = {
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ticket?: repairTicketUpdateOneRequiredWithoutPartsNestedInput
+    inventoryItem?: inventoryUpdateOneRequiredWithoutUsageHistoryNestedInput
+  }
+
+  export type usedPartUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ticketId?: IntFieldUpdateOperationsInput | number
+    inventoryId?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usedPartCreateManyInput = {
+    id?: number
+    ticketId: number
+    inventoryId: number
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+  }
+
+  export type usedPartUpdateManyMutationInput = {
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usedPartUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ticketId?: IntFieldUpdateOperationsInput | number
+    inventoryId?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type inventoryCreateInput = {
     partName: string
     sku: string
@@ -8665,24 +13334,11 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
-=======
-  export type technicianCreateInput = {
-    id?: string
-    fullName: string
-    email: string
-    phone: string
-    employeeId: string
-    specialization: string
-    status?: string
-    experienceYears: string
-    address?: string | null
-    profileImage?: string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: Date | string
     updatedAt?: Date | string
+    usageHistory?: usedPartCreateNestedManyWithoutInventoryItemInput
   }
 
-<<<<<<< HEAD
   export type inventoryUncheckedCreateInput = {
     id?: number
     partName: string
@@ -8691,24 +13347,11 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
-=======
-  export type technicianUncheckedCreateInput = {
-    id?: string
-    fullName: string
-    email: string
-    phone: string
-    employeeId: string
-    specialization: string
-    status?: string
-    experienceYears: string
-    address?: string | null
-    profileImage?: string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: Date | string
     updatedAt?: Date | string
+    usageHistory?: usedPartUncheckedCreateNestedManyWithoutInventoryItemInput
   }
 
-<<<<<<< HEAD
   export type inventoryUpdateInput = {
     partName?: StringFieldUpdateOperationsInput | string
     sku?: StringFieldUpdateOperationsInput | string
@@ -8716,24 +13359,11 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
-=======
-  export type technicianUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fullName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usageHistory?: usedPartUpdateManyWithoutInventoryItemNestedInput
   }
 
-<<<<<<< HEAD
   export type inventoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     partName?: StringFieldUpdateOperationsInput | string
@@ -8742,24 +13372,11 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
-=======
-  export type technicianUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fullName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usageHistory?: usedPartUncheckedUpdateManyWithoutInventoryItemNestedInput
   }
 
-<<<<<<< HEAD
   export type inventoryCreateManyInput = {
     id?: number
     partName: string
@@ -8768,24 +13385,10 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
-=======
-  export type technicianCreateManyInput = {
-    id?: string
-    fullName: string
-    email: string
-    phone: string
-    employeeId: string
-    specialization: string
-    status?: string
-    experienceYears: string
-    address?: string | null
-    profileImage?: string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-<<<<<<< HEAD
   export type inventoryUpdateManyMutationInput = {
     partName?: StringFieldUpdateOperationsInput | string
     sku?: StringFieldUpdateOperationsInput | string
@@ -8793,24 +13396,10 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
-=======
-  export type technicianUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fullName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-<<<<<<< HEAD
   export type inventoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     partName?: StringFieldUpdateOperationsInput | string
@@ -8921,7 +13510,104 @@ export namespace Prisma {
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
-=======
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tickets?: repairTicketCreateNestedManyWithoutTechnicianInput
+  }
+
+  export type technicianUncheckedCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutTechnicianInput
+  }
+
+  export type technicianUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUpdateManyWithoutTechnicianNestedInput
+  }
+
+  export type technicianUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUncheckedUpdateManyWithoutTechnicianNestedInput
+  }
+
+  export type technicianCreateManyInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type technicianUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type technicianUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
@@ -8933,7 +13619,6 @@ export namespace Prisma {
     experienceYears?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9137,14 +13822,52 @@ export namespace Prisma {
     isNot?: customerWhereInput
   }
 
+  export type TechnicianNullableScalarRelationFilter = {
+    is?: technicianWhereInput | null
+    isNot?: technicianWhereInput | null
+  }
+
+  export type TechnicianNoteListRelationFilter = {
+    every?: technicianNoteWhereInput
+    some?: technicianNoteWhereInput
+    none?: technicianNoteWhereInput
+  }
+
+  export type TimelineEventListRelationFilter = {
+    every?: timelineEventWhereInput
+    some?: timelineEventWhereInput
+    none?: timelineEventWhereInput
+  }
+
+  export type UsedPartListRelationFilter = {
+    every?: usedPartWhereInput
+    some?: usedPartWhereInput
+    none?: usedPartWhereInput
+  }
+
+  export type technicianNoteOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type timelineEventOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type usedPartOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type repairTicketCountOrderByAggregateInput = {
     id?: SortOrder
     issueCategory?: SortOrder
     description?: SortOrder
     status?: SortOrder
-    technicianNotes?: SortOrder
+    bay?: SortOrder
+    priority?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     customerId?: SortOrder
+    technicianId?: SortOrder
   }
 
   export type repairTicketAvgOrderByAggregateInput = {
@@ -9156,9 +13879,12 @@ export namespace Prisma {
     issueCategory?: SortOrder
     description?: SortOrder
     status?: SortOrder
-    technicianNotes?: SortOrder
+    bay?: SortOrder
+    priority?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     customerId?: SortOrder
+    technicianId?: SortOrder
   }
 
   export type repairTicketMinOrderByAggregateInput = {
@@ -9166,9 +13892,12 @@ export namespace Prisma {
     issueCategory?: SortOrder
     description?: SortOrder
     status?: SortOrder
-    technicianNotes?: SortOrder
+    bay?: SortOrder
+    priority?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     customerId?: SortOrder
+    technicianId?: SortOrder
   }
 
   export type repairTicketSumOrderByAggregateInput = {
@@ -9191,7 +13920,86 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-<<<<<<< HEAD
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type RepairTicketScalarRelationFilter = {
+    is?: repairTicketWhereInput
+    isNot?: repairTicketWhereInput
+  }
+
+  export type technicianNoteCountOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    rawVoiceText?: SortOrder
+    structuredText?: SortOrder
+    quickTags?: SortOrder
+    imageUrls?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type technicianNoteAvgOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+  }
+
+  export type technicianNoteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    rawVoiceText?: SortOrder
+    structuredText?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type technicianNoteMinOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    rawVoiceText?: SortOrder
+    structuredText?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type technicianNoteSumOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+  }
+
+  export type timelineEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type timelineEventAvgOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+  }
+
+  export type timelineEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type timelineEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type timelineEventSumOrderByAggregateInput = {
+    id?: SortOrder
+    ticketId?: SortOrder
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -9203,96 +14011,52 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type inventoryCountOrderByAggregateInput = {
+  export type InventoryScalarRelationFilter = {
+    is?: inventoryWhereInput
+    isNot?: inventoryWhereInput
+  }
+
+  export type usedPartCountOrderByAggregateInput = {
     id?: SortOrder
-    partName?: SortOrder
-    sku?: SortOrder
-    category?: SortOrder
-    stockLevel?: SortOrder
-    retailPrice?: SortOrder
-    lowStockAlert?: SortOrder
-=======
-  export type technicianCountOrderByAggregateInput = {
-    id?: SortOrder
-    fullName?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    employeeId?: SortOrder
-    specialization?: SortOrder
-    status?: SortOrder
-    experienceYears?: SortOrder
-    address?: SortOrder
-    profileImage?: SortOrder
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId?: SortOrder
+    inventoryId?: SortOrder
+    quantity?: SortOrder
+    lockedCost?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
-<<<<<<< HEAD
-  export type inventoryAvgOrderByAggregateInput = {
+  export type usedPartAvgOrderByAggregateInput = {
     id?: SortOrder
-    stockLevel?: SortOrder
-    retailPrice?: SortOrder
-    lowStockAlert?: SortOrder
+    ticketId?: SortOrder
+    inventoryId?: SortOrder
+    quantity?: SortOrder
+    lockedCost?: SortOrder
   }
 
-  export type inventoryMaxOrderByAggregateInput = {
+  export type usedPartMaxOrderByAggregateInput = {
     id?: SortOrder
-    partName?: SortOrder
-    sku?: SortOrder
-    category?: SortOrder
-    stockLevel?: SortOrder
-    retailPrice?: SortOrder
-    lowStockAlert?: SortOrder
-=======
-  export type technicianMaxOrderByAggregateInput = {
-    id?: SortOrder
-    fullName?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    employeeId?: SortOrder
-    specialization?: SortOrder
-    status?: SortOrder
-    experienceYears?: SortOrder
-    address?: SortOrder
-    profileImage?: SortOrder
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId?: SortOrder
+    inventoryId?: SortOrder
+    quantity?: SortOrder
+    lockedCost?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
-<<<<<<< HEAD
-  export type inventoryMinOrderByAggregateInput = {
+  export type usedPartMinOrderByAggregateInput = {
     id?: SortOrder
-    partName?: SortOrder
-    sku?: SortOrder
-    category?: SortOrder
-    stockLevel?: SortOrder
-    retailPrice?: SortOrder
-    lowStockAlert?: SortOrder
-=======
-  export type technicianMinOrderByAggregateInput = {
-    id?: SortOrder
-    fullName?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    employeeId?: SortOrder
-    specialization?: SortOrder
-    status?: SortOrder
-    experienceYears?: SortOrder
-    address?: SortOrder
-    profileImage?: SortOrder
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+    ticketId?: SortOrder
+    inventoryId?: SortOrder
+    quantity?: SortOrder
+    lockedCost?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
-<<<<<<< HEAD
-  export type inventorySumOrderByAggregateInput = {
+  export type usedPartSumOrderByAggregateInput = {
     id?: SortOrder
-    stockLevel?: SortOrder
-    retailPrice?: SortOrder
-    lowStockAlert?: SortOrder
+    ticketId?: SortOrder
+    inventoryId?: SortOrder
+    quantity?: SortOrder
+    lockedCost?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -9309,6 +14073,56 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type inventoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    partName?: SortOrder
+    sku?: SortOrder
+    category?: SortOrder
+    stockLevel?: SortOrder
+    retailPrice?: SortOrder
+    lowStockAlert?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type inventoryAvgOrderByAggregateInput = {
+    id?: SortOrder
+    stockLevel?: SortOrder
+    retailPrice?: SortOrder
+    lowStockAlert?: SortOrder
+  }
+
+  export type inventoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    partName?: SortOrder
+    sku?: SortOrder
+    category?: SortOrder
+    stockLevel?: SortOrder
+    retailPrice?: SortOrder
+    lowStockAlert?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type inventoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    partName?: SortOrder
+    sku?: SortOrder
+    category?: SortOrder
+    stockLevel?: SortOrder
+    retailPrice?: SortOrder
+    lowStockAlert?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type inventorySumOrderByAggregateInput = {
+    id?: SortOrder
+    stockLevel?: SortOrder
+    retailPrice?: SortOrder
+    lowStockAlert?: SortOrder
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -9444,8 +14258,51 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
-=======
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
+  export type technicianCountOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type technicianMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type technicianMinOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    employeeId?: SortOrder
+    specialization?: SortOrder
+    status?: SortOrder
+    experienceYears?: SortOrder
+    address?: SortOrder
+    profileImage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -9510,12 +14367,112 @@ export namespace Prisma {
     connect?: customerWhereUniqueInput
   }
 
+  export type technicianCreateNestedOneWithoutTicketsInput = {
+    create?: XOR<technicianCreateWithoutTicketsInput, technicianUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: technicianCreateOrConnectWithoutTicketsInput
+    connect?: technicianWhereUniqueInput
+  }
+
+  export type technicianNoteCreateNestedManyWithoutTicketInput = {
+    create?: XOR<technicianNoteCreateWithoutTicketInput, technicianNoteUncheckedCreateWithoutTicketInput> | technicianNoteCreateWithoutTicketInput[] | technicianNoteUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: technicianNoteCreateOrConnectWithoutTicketInput | technicianNoteCreateOrConnectWithoutTicketInput[]
+    createMany?: technicianNoteCreateManyTicketInputEnvelope
+    connect?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+  }
+
+  export type timelineEventCreateNestedManyWithoutTicketInput = {
+    create?: XOR<timelineEventCreateWithoutTicketInput, timelineEventUncheckedCreateWithoutTicketInput> | timelineEventCreateWithoutTicketInput[] | timelineEventUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: timelineEventCreateOrConnectWithoutTicketInput | timelineEventCreateOrConnectWithoutTicketInput[]
+    createMany?: timelineEventCreateManyTicketInputEnvelope
+    connect?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+  }
+
+  export type usedPartCreateNestedManyWithoutTicketInput = {
+    create?: XOR<usedPartCreateWithoutTicketInput, usedPartUncheckedCreateWithoutTicketInput> | usedPartCreateWithoutTicketInput[] | usedPartUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: usedPartCreateOrConnectWithoutTicketInput | usedPartCreateOrConnectWithoutTicketInput[]
+    createMany?: usedPartCreateManyTicketInputEnvelope
+    connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+  }
+
+  export type technicianNoteUncheckedCreateNestedManyWithoutTicketInput = {
+    create?: XOR<technicianNoteCreateWithoutTicketInput, technicianNoteUncheckedCreateWithoutTicketInput> | technicianNoteCreateWithoutTicketInput[] | technicianNoteUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: technicianNoteCreateOrConnectWithoutTicketInput | technicianNoteCreateOrConnectWithoutTicketInput[]
+    createMany?: technicianNoteCreateManyTicketInputEnvelope
+    connect?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+  }
+
+  export type timelineEventUncheckedCreateNestedManyWithoutTicketInput = {
+    create?: XOR<timelineEventCreateWithoutTicketInput, timelineEventUncheckedCreateWithoutTicketInput> | timelineEventCreateWithoutTicketInput[] | timelineEventUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: timelineEventCreateOrConnectWithoutTicketInput | timelineEventCreateOrConnectWithoutTicketInput[]
+    createMany?: timelineEventCreateManyTicketInputEnvelope
+    connect?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+  }
+
+  export type usedPartUncheckedCreateNestedManyWithoutTicketInput = {
+    create?: XOR<usedPartCreateWithoutTicketInput, usedPartUncheckedCreateWithoutTicketInput> | usedPartCreateWithoutTicketInput[] | usedPartUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: usedPartCreateOrConnectWithoutTicketInput | usedPartCreateOrConnectWithoutTicketInput[]
+    createMany?: usedPartCreateManyTicketInputEnvelope
+    connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+  }
+
   export type customerUpdateOneRequiredWithoutTicketsNestedInput = {
     create?: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
     connectOrCreate?: customerCreateOrConnectWithoutTicketsInput
     upsert?: customerUpsertWithoutTicketsInput
     connect?: customerWhereUniqueInput
     update?: XOR<XOR<customerUpdateToOneWithWhereWithoutTicketsInput, customerUpdateWithoutTicketsInput>, customerUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type technicianUpdateOneWithoutTicketsNestedInput = {
+    create?: XOR<technicianCreateWithoutTicketsInput, technicianUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: technicianCreateOrConnectWithoutTicketsInput
+    upsert?: technicianUpsertWithoutTicketsInput
+    disconnect?: technicianWhereInput | boolean
+    delete?: technicianWhereInput | boolean
+    connect?: technicianWhereUniqueInput
+    update?: XOR<XOR<technicianUpdateToOneWithWhereWithoutTicketsInput, technicianUpdateWithoutTicketsInput>, technicianUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type technicianNoteUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<technicianNoteCreateWithoutTicketInput, technicianNoteUncheckedCreateWithoutTicketInput> | technicianNoteCreateWithoutTicketInput[] | technicianNoteUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: technicianNoteCreateOrConnectWithoutTicketInput | technicianNoteCreateOrConnectWithoutTicketInput[]
+    upsert?: technicianNoteUpsertWithWhereUniqueWithoutTicketInput | technicianNoteUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: technicianNoteCreateManyTicketInputEnvelope
+    set?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+    disconnect?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+    delete?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+    connect?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+    update?: technicianNoteUpdateWithWhereUniqueWithoutTicketInput | technicianNoteUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: technicianNoteUpdateManyWithWhereWithoutTicketInput | technicianNoteUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: technicianNoteScalarWhereInput | technicianNoteScalarWhereInput[]
+  }
+
+  export type timelineEventUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<timelineEventCreateWithoutTicketInput, timelineEventUncheckedCreateWithoutTicketInput> | timelineEventCreateWithoutTicketInput[] | timelineEventUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: timelineEventCreateOrConnectWithoutTicketInput | timelineEventCreateOrConnectWithoutTicketInput[]
+    upsert?: timelineEventUpsertWithWhereUniqueWithoutTicketInput | timelineEventUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: timelineEventCreateManyTicketInputEnvelope
+    set?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+    disconnect?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+    delete?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+    connect?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+    update?: timelineEventUpdateWithWhereUniqueWithoutTicketInput | timelineEventUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: timelineEventUpdateManyWithWhereWithoutTicketInput | timelineEventUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: timelineEventScalarWhereInput | timelineEventScalarWhereInput[]
+  }
+
+  export type usedPartUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<usedPartCreateWithoutTicketInput, usedPartUncheckedCreateWithoutTicketInput> | usedPartCreateWithoutTicketInput[] | usedPartUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: usedPartCreateOrConnectWithoutTicketInput | usedPartCreateOrConnectWithoutTicketInput[]
+    upsert?: usedPartUpsertWithWhereUniqueWithoutTicketInput | usedPartUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: usedPartCreateManyTicketInputEnvelope
+    set?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    disconnect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    delete?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    update?: usedPartUpdateWithWhereUniqueWithoutTicketInput | usedPartUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: usedPartUpdateManyWithWhereWithoutTicketInput | usedPartUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -9526,6 +14483,106 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type technicianNoteUncheckedUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<technicianNoteCreateWithoutTicketInput, technicianNoteUncheckedCreateWithoutTicketInput> | technicianNoteCreateWithoutTicketInput[] | technicianNoteUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: technicianNoteCreateOrConnectWithoutTicketInput | technicianNoteCreateOrConnectWithoutTicketInput[]
+    upsert?: technicianNoteUpsertWithWhereUniqueWithoutTicketInput | technicianNoteUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: technicianNoteCreateManyTicketInputEnvelope
+    set?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+    disconnect?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+    delete?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+    connect?: technicianNoteWhereUniqueInput | technicianNoteWhereUniqueInput[]
+    update?: technicianNoteUpdateWithWhereUniqueWithoutTicketInput | technicianNoteUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: technicianNoteUpdateManyWithWhereWithoutTicketInput | technicianNoteUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: technicianNoteScalarWhereInput | technicianNoteScalarWhereInput[]
+  }
+
+  export type timelineEventUncheckedUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<timelineEventCreateWithoutTicketInput, timelineEventUncheckedCreateWithoutTicketInput> | timelineEventCreateWithoutTicketInput[] | timelineEventUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: timelineEventCreateOrConnectWithoutTicketInput | timelineEventCreateOrConnectWithoutTicketInput[]
+    upsert?: timelineEventUpsertWithWhereUniqueWithoutTicketInput | timelineEventUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: timelineEventCreateManyTicketInputEnvelope
+    set?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+    disconnect?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+    delete?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+    connect?: timelineEventWhereUniqueInput | timelineEventWhereUniqueInput[]
+    update?: timelineEventUpdateWithWhereUniqueWithoutTicketInput | timelineEventUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: timelineEventUpdateManyWithWhereWithoutTicketInput | timelineEventUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: timelineEventScalarWhereInput | timelineEventScalarWhereInput[]
+  }
+
+  export type usedPartUncheckedUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<usedPartCreateWithoutTicketInput, usedPartUncheckedCreateWithoutTicketInput> | usedPartCreateWithoutTicketInput[] | usedPartUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: usedPartCreateOrConnectWithoutTicketInput | usedPartCreateOrConnectWithoutTicketInput[]
+    upsert?: usedPartUpsertWithWhereUniqueWithoutTicketInput | usedPartUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: usedPartCreateManyTicketInputEnvelope
+    set?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    disconnect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    delete?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    update?: usedPartUpdateWithWhereUniqueWithoutTicketInput | usedPartUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: usedPartUpdateManyWithWhereWithoutTicketInput | usedPartUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
+  }
+
+  export type technicianNoteCreatequickTagsInput = {
+    set: string[]
+  }
+
+  export type technicianNoteCreateimageUrlsInput = {
+    set: string[]
+  }
+
+  export type repairTicketCreateNestedOneWithoutNotesInput = {
+    create?: XOR<repairTicketCreateWithoutNotesInput, repairTicketUncheckedCreateWithoutNotesInput>
+    connectOrCreate?: repairTicketCreateOrConnectWithoutNotesInput
+    connect?: repairTicketWhereUniqueInput
+  }
+
+  export type technicianNoteUpdatequickTagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type technicianNoteUpdateimageUrlsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type repairTicketUpdateOneRequiredWithoutNotesNestedInput = {
+    create?: XOR<repairTicketCreateWithoutNotesInput, repairTicketUncheckedCreateWithoutNotesInput>
+    connectOrCreate?: repairTicketCreateOrConnectWithoutNotesInput
+    upsert?: repairTicketUpsertWithoutNotesInput
+    connect?: repairTicketWhereUniqueInput
+    update?: XOR<XOR<repairTicketUpdateToOneWithWhereWithoutNotesInput, repairTicketUpdateWithoutNotesInput>, repairTicketUncheckedUpdateWithoutNotesInput>
+  }
+
+  export type repairTicketCreateNestedOneWithoutTimelineInput = {
+    create?: XOR<repairTicketCreateWithoutTimelineInput, repairTicketUncheckedCreateWithoutTimelineInput>
+    connectOrCreate?: repairTicketCreateOrConnectWithoutTimelineInput
+    connect?: repairTicketWhereUniqueInput
+  }
+
+  export type repairTicketUpdateOneRequiredWithoutTimelineNestedInput = {
+    create?: XOR<repairTicketCreateWithoutTimelineInput, repairTicketUncheckedCreateWithoutTimelineInput>
+    connectOrCreate?: repairTicketCreateOrConnectWithoutTimelineInput
+    upsert?: repairTicketUpsertWithoutTimelineInput
+    connect?: repairTicketWhereUniqueInput
+    update?: XOR<XOR<repairTicketUpdateToOneWithWhereWithoutTimelineInput, repairTicketUpdateWithoutTimelineInput>, repairTicketUncheckedUpdateWithoutTimelineInput>
+  }
+
+  export type repairTicketCreateNestedOneWithoutPartsInput = {
+    create?: XOR<repairTicketCreateWithoutPartsInput, repairTicketUncheckedCreateWithoutPartsInput>
+    connectOrCreate?: repairTicketCreateOrConnectWithoutPartsInput
+    connect?: repairTicketWhereUniqueInput
+  }
+
+  export type inventoryCreateNestedOneWithoutUsageHistoryInput = {
+    create?: XOR<inventoryCreateWithoutUsageHistoryInput, inventoryUncheckedCreateWithoutUsageHistoryInput>
+    connectOrCreate?: inventoryCreateOrConnectWithoutUsageHistoryInput
+    connect?: inventoryWhereUniqueInput
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9534,12 +14591,112 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type repairTicketUpdateOneRequiredWithoutPartsNestedInput = {
+    create?: XOR<repairTicketCreateWithoutPartsInput, repairTicketUncheckedCreateWithoutPartsInput>
+    connectOrCreate?: repairTicketCreateOrConnectWithoutPartsInput
+    upsert?: repairTicketUpsertWithoutPartsInput
+    connect?: repairTicketWhereUniqueInput
+    update?: XOR<XOR<repairTicketUpdateToOneWithWhereWithoutPartsInput, repairTicketUpdateWithoutPartsInput>, repairTicketUncheckedUpdateWithoutPartsInput>
+  }
+
+  export type inventoryUpdateOneRequiredWithoutUsageHistoryNestedInput = {
+    create?: XOR<inventoryCreateWithoutUsageHistoryInput, inventoryUncheckedCreateWithoutUsageHistoryInput>
+    connectOrCreate?: inventoryCreateOrConnectWithoutUsageHistoryInput
+    upsert?: inventoryUpsertWithoutUsageHistoryInput
+    connect?: inventoryWhereUniqueInput
+    update?: XOR<XOR<inventoryUpdateToOneWithWhereWithoutUsageHistoryInput, inventoryUpdateWithoutUsageHistoryInput>, inventoryUncheckedUpdateWithoutUsageHistoryInput>
+  }
+
+  export type usedPartCreateNestedManyWithoutInventoryItemInput = {
+    create?: XOR<usedPartCreateWithoutInventoryItemInput, usedPartUncheckedCreateWithoutInventoryItemInput> | usedPartCreateWithoutInventoryItemInput[] | usedPartUncheckedCreateWithoutInventoryItemInput[]
+    connectOrCreate?: usedPartCreateOrConnectWithoutInventoryItemInput | usedPartCreateOrConnectWithoutInventoryItemInput[]
+    createMany?: usedPartCreateManyInventoryItemInputEnvelope
+    connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+  }
+
+  export type usedPartUncheckedCreateNestedManyWithoutInventoryItemInput = {
+    create?: XOR<usedPartCreateWithoutInventoryItemInput, usedPartUncheckedCreateWithoutInventoryItemInput> | usedPartCreateWithoutInventoryItemInput[] | usedPartUncheckedCreateWithoutInventoryItemInput[]
+    connectOrCreate?: usedPartCreateOrConnectWithoutInventoryItemInput | usedPartCreateOrConnectWithoutInventoryItemInput[]
+    createMany?: usedPartCreateManyInventoryItemInputEnvelope
+    connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+  }
+
+  export type usedPartUpdateManyWithoutInventoryItemNestedInput = {
+    create?: XOR<usedPartCreateWithoutInventoryItemInput, usedPartUncheckedCreateWithoutInventoryItemInput> | usedPartCreateWithoutInventoryItemInput[] | usedPartUncheckedCreateWithoutInventoryItemInput[]
+    connectOrCreate?: usedPartCreateOrConnectWithoutInventoryItemInput | usedPartCreateOrConnectWithoutInventoryItemInput[]
+    upsert?: usedPartUpsertWithWhereUniqueWithoutInventoryItemInput | usedPartUpsertWithWhereUniqueWithoutInventoryItemInput[]
+    createMany?: usedPartCreateManyInventoryItemInputEnvelope
+    set?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    disconnect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    delete?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    update?: usedPartUpdateWithWhereUniqueWithoutInventoryItemInput | usedPartUpdateWithWhereUniqueWithoutInventoryItemInput[]
+    updateMany?: usedPartUpdateManyWithWhereWithoutInventoryItemInput | usedPartUpdateManyWithWhereWithoutInventoryItemInput[]
+    deleteMany?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
+  }
+
+  export type usedPartUncheckedUpdateManyWithoutInventoryItemNestedInput = {
+    create?: XOR<usedPartCreateWithoutInventoryItemInput, usedPartUncheckedCreateWithoutInventoryItemInput> | usedPartCreateWithoutInventoryItemInput[] | usedPartUncheckedCreateWithoutInventoryItemInput[]
+    connectOrCreate?: usedPartCreateOrConnectWithoutInventoryItemInput | usedPartCreateOrConnectWithoutInventoryItemInput[]
+    upsert?: usedPartUpsertWithWhereUniqueWithoutInventoryItemInput | usedPartUpsertWithWhereUniqueWithoutInventoryItemInput[]
+    createMany?: usedPartCreateManyInventoryItemInputEnvelope
+    set?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    disconnect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    delete?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+    update?: usedPartUpdateWithWhereUniqueWithoutInventoryItemInput | usedPartUpdateWithWhereUniqueWithoutInventoryItemInput[]
+    updateMany?: usedPartUpdateManyWithWhereWithoutInventoryItemInput | usedPartUpdateManyWithWhereWithoutInventoryItemInput[]
+    deleteMany?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type repairTicketCreateNestedManyWithoutTechnicianInput = {
+    create?: XOR<repairTicketCreateWithoutTechnicianInput, repairTicketUncheckedCreateWithoutTechnicianInput> | repairTicketCreateWithoutTechnicianInput[] | repairTicketUncheckedCreateWithoutTechnicianInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutTechnicianInput | repairTicketCreateOrConnectWithoutTechnicianInput[]
+    createMany?: repairTicketCreateManyTechnicianInputEnvelope
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type repairTicketUncheckedCreateNestedManyWithoutTechnicianInput = {
+    create?: XOR<repairTicketCreateWithoutTechnicianInput, repairTicketUncheckedCreateWithoutTechnicianInput> | repairTicketCreateWithoutTechnicianInput[] | repairTicketUncheckedCreateWithoutTechnicianInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutTechnicianInput | repairTicketCreateOrConnectWithoutTechnicianInput[]
+    createMany?: repairTicketCreateManyTechnicianInputEnvelope
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type repairTicketUpdateManyWithoutTechnicianNestedInput = {
+    create?: XOR<repairTicketCreateWithoutTechnicianInput, repairTicketUncheckedCreateWithoutTechnicianInput> | repairTicketCreateWithoutTechnicianInput[] | repairTicketUncheckedCreateWithoutTechnicianInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutTechnicianInput | repairTicketCreateOrConnectWithoutTechnicianInput[]
+    upsert?: repairTicketUpsertWithWhereUniqueWithoutTechnicianInput | repairTicketUpsertWithWhereUniqueWithoutTechnicianInput[]
+    createMany?: repairTicketCreateManyTechnicianInputEnvelope
+    set?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    disconnect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    delete?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    update?: repairTicketUpdateWithWhereUniqueWithoutTechnicianInput | repairTicketUpdateWithWhereUniqueWithoutTechnicianInput[]
+    updateMany?: repairTicketUpdateManyWithWhereWithoutTechnicianInput | repairTicketUpdateManyWithWhereWithoutTechnicianInput[]
+    deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+  }
+
+  export type repairTicketUncheckedUpdateManyWithoutTechnicianNestedInput = {
+    create?: XOR<repairTicketCreateWithoutTechnicianInput, repairTicketUncheckedCreateWithoutTechnicianInput> | repairTicketCreateWithoutTechnicianInput[] | repairTicketUncheckedCreateWithoutTechnicianInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutTechnicianInput | repairTicketCreateOrConnectWithoutTechnicianInput[]
+    upsert?: repairTicketUpsertWithWhereUniqueWithoutTechnicianInput | repairTicketUpsertWithWhereUniqueWithoutTechnicianInput[]
+    createMany?: repairTicketCreateManyTechnicianInputEnvelope
+    set?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    disconnect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    delete?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    update?: repairTicketUpdateWithWhereUniqueWithoutTechnicianInput | repairTicketUpdateWithWhereUniqueWithoutTechnicianInput[]
+    updateMany?: repairTicketUpdateManyWithWhereWithoutTechnicianInput | repairTicketUpdateManyWithWhereWithoutTechnicianInput[]
+    deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9765,8 +14922,14 @@ export namespace Prisma {
     issueCategory: string
     description: string
     status?: string
-    technicianNotes?: string | null
+    bay?: string | null
+    priority?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
+    technician?: technicianCreateNestedOneWithoutTicketsInput
+    notes?: technicianNoteCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventCreateNestedManyWithoutTicketInput
+    parts?: usedPartCreateNestedManyWithoutTicketInput
   }
 
   export type repairTicketUncheckedCreateWithoutCustomerInput = {
@@ -9774,8 +14937,14 @@ export namespace Prisma {
     issueCategory: string
     description: string
     status?: string
-    technicianNotes?: string | null
+    bay?: string | null
+    priority?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
+    technicianId?: string | null
+    notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+    parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type repairTicketCreateOrConnectWithoutCustomerInput = {
@@ -9812,9 +14981,12 @@ export namespace Prisma {
     issueCategory?: StringFilter<"repairTicket"> | string
     description?: StringFilter<"repairTicket"> | string
     status?: StringFilter<"repairTicket"> | string
-    technicianNotes?: StringNullableFilter<"repairTicket"> | string | null
+    bay?: StringNullableFilter<"repairTicket"> | string | null
+    priority?: StringFilter<"repairTicket"> | string
     createdAt?: DateTimeFilter<"repairTicket"> | Date | string
+    updatedAt?: DateTimeFilter<"repairTicket"> | Date | string
     customerId?: StringFilter<"repairTicket"> | string
+    technicianId?: StringNullableFilter<"repairTicket"> | string | null
   }
 
   export type customerCreateWithoutTicketsInput = {
@@ -9840,6 +15012,114 @@ export namespace Prisma {
   export type customerCreateOrConnectWithoutTicketsInput = {
     where: customerWhereUniqueInput
     create: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
+  }
+
+  export type technicianCreateWithoutTicketsInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type technicianUncheckedCreateWithoutTicketsInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: string
+    status?: string
+    experienceYears: string
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type technicianCreateOrConnectWithoutTicketsInput = {
+    where: technicianWhereUniqueInput
+    create: XOR<technicianCreateWithoutTicketsInput, technicianUncheckedCreateWithoutTicketsInput>
+  }
+
+  export type technicianNoteCreateWithoutTicketInput = {
+    rawVoiceText?: string | null
+    structuredText: string
+    quickTags?: technicianNoteCreatequickTagsInput | string[]
+    imageUrls?: technicianNoteCreateimageUrlsInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type technicianNoteUncheckedCreateWithoutTicketInput = {
+    id?: number
+    rawVoiceText?: string | null
+    structuredText: string
+    quickTags?: technicianNoteCreatequickTagsInput | string[]
+    imageUrls?: technicianNoteCreateimageUrlsInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type technicianNoteCreateOrConnectWithoutTicketInput = {
+    where: technicianNoteWhereUniqueInput
+    create: XOR<technicianNoteCreateWithoutTicketInput, technicianNoteUncheckedCreateWithoutTicketInput>
+  }
+
+  export type technicianNoteCreateManyTicketInputEnvelope = {
+    data: technicianNoteCreateManyTicketInput | technicianNoteCreateManyTicketInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type timelineEventCreateWithoutTicketInput = {
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type timelineEventUncheckedCreateWithoutTicketInput = {
+    id?: number
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type timelineEventCreateOrConnectWithoutTicketInput = {
+    where: timelineEventWhereUniqueInput
+    create: XOR<timelineEventCreateWithoutTicketInput, timelineEventUncheckedCreateWithoutTicketInput>
+  }
+
+  export type timelineEventCreateManyTicketInputEnvelope = {
+    data: timelineEventCreateManyTicketInput | timelineEventCreateManyTicketInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type usedPartCreateWithoutTicketInput = {
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+    inventoryItem: inventoryCreateNestedOneWithoutUsageHistoryInput
+  }
+
+  export type usedPartUncheckedCreateWithoutTicketInput = {
+    id?: number
+    inventoryId: number
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+  }
+
+  export type usedPartCreateOrConnectWithoutTicketInput = {
+    where: usedPartWhereUniqueInput
+    create: XOR<usedPartCreateWithoutTicketInput, usedPartUncheckedCreateWithoutTicketInput>
+  }
+
+  export type usedPartCreateManyTicketInputEnvelope = {
+    data: usedPartCreateManyTicketInput | usedPartCreateManyTicketInput[]
+    skipDuplicates?: boolean
   }
 
   export type customerUpsertWithoutTicketsInput = {
@@ -9873,21 +15153,534 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type technicianUpsertWithoutTicketsInput = {
+    update: XOR<technicianUpdateWithoutTicketsInput, technicianUncheckedUpdateWithoutTicketsInput>
+    create: XOR<technicianCreateWithoutTicketsInput, technicianUncheckedCreateWithoutTicketsInput>
+    where?: technicianWhereInput
+  }
+
+  export type technicianUpdateToOneWithWhereWithoutTicketsInput = {
+    where?: technicianWhereInput
+    data: XOR<technicianUpdateWithoutTicketsInput, technicianUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type technicianUpdateWithoutTicketsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianUncheckedUpdateWithoutTicketsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    experienceYears?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianNoteUpsertWithWhereUniqueWithoutTicketInput = {
+    where: technicianNoteWhereUniqueInput
+    update: XOR<technicianNoteUpdateWithoutTicketInput, technicianNoteUncheckedUpdateWithoutTicketInput>
+    create: XOR<technicianNoteCreateWithoutTicketInput, technicianNoteUncheckedCreateWithoutTicketInput>
+  }
+
+  export type technicianNoteUpdateWithWhereUniqueWithoutTicketInput = {
+    where: technicianNoteWhereUniqueInput
+    data: XOR<technicianNoteUpdateWithoutTicketInput, technicianNoteUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type technicianNoteUpdateManyWithWhereWithoutTicketInput = {
+    where: technicianNoteScalarWhereInput
+    data: XOR<technicianNoteUpdateManyMutationInput, technicianNoteUncheckedUpdateManyWithoutTicketInput>
+  }
+
+  export type technicianNoteScalarWhereInput = {
+    AND?: technicianNoteScalarWhereInput | technicianNoteScalarWhereInput[]
+    OR?: technicianNoteScalarWhereInput[]
+    NOT?: technicianNoteScalarWhereInput | technicianNoteScalarWhereInput[]
+    id?: IntFilter<"technicianNote"> | number
+    ticketId?: IntFilter<"technicianNote"> | number
+    rawVoiceText?: StringNullableFilter<"technicianNote"> | string | null
+    structuredText?: StringFilter<"technicianNote"> | string
+    quickTags?: StringNullableListFilter<"technicianNote">
+    imageUrls?: StringNullableListFilter<"technicianNote">
+    createdAt?: DateTimeFilter<"technicianNote"> | Date | string
+  }
+
+  export type timelineEventUpsertWithWhereUniqueWithoutTicketInput = {
+    where: timelineEventWhereUniqueInput
+    update: XOR<timelineEventUpdateWithoutTicketInput, timelineEventUncheckedUpdateWithoutTicketInput>
+    create: XOR<timelineEventCreateWithoutTicketInput, timelineEventUncheckedCreateWithoutTicketInput>
+  }
+
+  export type timelineEventUpdateWithWhereUniqueWithoutTicketInput = {
+    where: timelineEventWhereUniqueInput
+    data: XOR<timelineEventUpdateWithoutTicketInput, timelineEventUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type timelineEventUpdateManyWithWhereWithoutTicketInput = {
+    where: timelineEventScalarWhereInput
+    data: XOR<timelineEventUpdateManyMutationInput, timelineEventUncheckedUpdateManyWithoutTicketInput>
+  }
+
+  export type timelineEventScalarWhereInput = {
+    AND?: timelineEventScalarWhereInput | timelineEventScalarWhereInput[]
+    OR?: timelineEventScalarWhereInput[]
+    NOT?: timelineEventScalarWhereInput | timelineEventScalarWhereInput[]
+    id?: IntFilter<"timelineEvent"> | number
+    ticketId?: IntFilter<"timelineEvent"> | number
+    status?: StringFilter<"timelineEvent"> | string
+    createdAt?: DateTimeFilter<"timelineEvent"> | Date | string
+  }
+
+  export type usedPartUpsertWithWhereUniqueWithoutTicketInput = {
+    where: usedPartWhereUniqueInput
+    update: XOR<usedPartUpdateWithoutTicketInput, usedPartUncheckedUpdateWithoutTicketInput>
+    create: XOR<usedPartCreateWithoutTicketInput, usedPartUncheckedCreateWithoutTicketInput>
+  }
+
+  export type usedPartUpdateWithWhereUniqueWithoutTicketInput = {
+    where: usedPartWhereUniqueInput
+    data: XOR<usedPartUpdateWithoutTicketInput, usedPartUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type usedPartUpdateManyWithWhereWithoutTicketInput = {
+    where: usedPartScalarWhereInput
+    data: XOR<usedPartUpdateManyMutationInput, usedPartUncheckedUpdateManyWithoutTicketInput>
+  }
+
+  export type usedPartScalarWhereInput = {
+    AND?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
+    OR?: usedPartScalarWhereInput[]
+    NOT?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
+    id?: IntFilter<"usedPart"> | number
+    ticketId?: IntFilter<"usedPart"> | number
+    inventoryId?: IntFilter<"usedPart"> | number
+    quantity?: IntFilter<"usedPart"> | number
+    lockedCost?: FloatFilter<"usedPart"> | number
+    createdAt?: DateTimeFilter<"usedPart"> | Date | string
+  }
+
+  export type repairTicketCreateWithoutNotesInput = {
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: customerCreateNestedOneWithoutTicketsInput
+    technician?: technicianCreateNestedOneWithoutTicketsInput
+    timeline?: timelineEventCreateNestedManyWithoutTicketInput
+    parts?: usedPartCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketUncheckedCreateWithoutNotesInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customerId: string
+    technicianId?: string | null
+    timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+    parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketCreateOrConnectWithoutNotesInput = {
+    where: repairTicketWhereUniqueInput
+    create: XOR<repairTicketCreateWithoutNotesInput, repairTicketUncheckedCreateWithoutNotesInput>
+  }
+
+  export type repairTicketUpsertWithoutNotesInput = {
+    update: XOR<repairTicketUpdateWithoutNotesInput, repairTicketUncheckedUpdateWithoutNotesInput>
+    create: XOR<repairTicketCreateWithoutNotesInput, repairTicketUncheckedCreateWithoutNotesInput>
+    where?: repairTicketWhereInput
+  }
+
+  export type repairTicketUpdateToOneWithWhereWithoutNotesInput = {
+    where?: repairTicketWhereInput
+    data: XOR<repairTicketUpdateWithoutNotesInput, repairTicketUncheckedUpdateWithoutNotesInput>
+  }
+
+  export type repairTicketUpdateWithoutNotesInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    technician?: technicianUpdateOneWithoutTicketsNestedInput
+    timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateWithoutNotesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketCreateWithoutTimelineInput = {
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: customerCreateNestedOneWithoutTicketsInput
+    technician?: technicianCreateNestedOneWithoutTicketsInput
+    notes?: technicianNoteCreateNestedManyWithoutTicketInput
+    parts?: usedPartCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketUncheckedCreateWithoutTimelineInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customerId: string
+    technicianId?: string | null
+    notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
+    parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketCreateOrConnectWithoutTimelineInput = {
+    where: repairTicketWhereUniqueInput
+    create: XOR<repairTicketCreateWithoutTimelineInput, repairTicketUncheckedCreateWithoutTimelineInput>
+  }
+
+  export type repairTicketUpsertWithoutTimelineInput = {
+    update: XOR<repairTicketUpdateWithoutTimelineInput, repairTicketUncheckedUpdateWithoutTimelineInput>
+    create: XOR<repairTicketCreateWithoutTimelineInput, repairTicketUncheckedCreateWithoutTimelineInput>
+    where?: repairTicketWhereInput
+  }
+
+  export type repairTicketUpdateToOneWithWhereWithoutTimelineInput = {
+    where?: repairTicketWhereInput
+    data: XOR<repairTicketUpdateWithoutTimelineInput, repairTicketUncheckedUpdateWithoutTimelineInput>
+  }
+
+  export type repairTicketUpdateWithoutTimelineInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    technician?: technicianUpdateOneWithoutTicketsNestedInput
+    notes?: technicianNoteUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateWithoutTimelineInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketCreateWithoutPartsInput = {
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: customerCreateNestedOneWithoutTicketsInput
+    technician?: technicianCreateNestedOneWithoutTicketsInput
+    notes?: technicianNoteCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketUncheckedCreateWithoutPartsInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customerId: string
+    technicianId?: string | null
+    notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketCreateOrConnectWithoutPartsInput = {
+    where: repairTicketWhereUniqueInput
+    create: XOR<repairTicketCreateWithoutPartsInput, repairTicketUncheckedCreateWithoutPartsInput>
+  }
+
+  export type inventoryCreateWithoutUsageHistoryInput = {
+    partName: string
+    sku: string
+    category: string
+    stockLevel?: number
+    retailPrice: number
+    lowStockAlert?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type inventoryUncheckedCreateWithoutUsageHistoryInput = {
+    id?: number
+    partName: string
+    sku: string
+    category: string
+    stockLevel?: number
+    retailPrice: number
+    lowStockAlert?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type inventoryCreateOrConnectWithoutUsageHistoryInput = {
+    where: inventoryWhereUniqueInput
+    create: XOR<inventoryCreateWithoutUsageHistoryInput, inventoryUncheckedCreateWithoutUsageHistoryInput>
+  }
+
+  export type repairTicketUpsertWithoutPartsInput = {
+    update: XOR<repairTicketUpdateWithoutPartsInput, repairTicketUncheckedUpdateWithoutPartsInput>
+    create: XOR<repairTicketCreateWithoutPartsInput, repairTicketUncheckedCreateWithoutPartsInput>
+    where?: repairTicketWhereInput
+  }
+
+  export type repairTicketUpdateToOneWithWhereWithoutPartsInput = {
+    where?: repairTicketWhereInput
+    data: XOR<repairTicketUpdateWithoutPartsInput, repairTicketUncheckedUpdateWithoutPartsInput>
+  }
+
+  export type repairTicketUpdateWithoutPartsInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    technician?: technicianUpdateOneWithoutTicketsNestedInput
+    notes?: technicianNoteUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateWithoutPartsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type inventoryUpsertWithoutUsageHistoryInput = {
+    update: XOR<inventoryUpdateWithoutUsageHistoryInput, inventoryUncheckedUpdateWithoutUsageHistoryInput>
+    create: XOR<inventoryCreateWithoutUsageHistoryInput, inventoryUncheckedCreateWithoutUsageHistoryInput>
+    where?: inventoryWhereInput
+  }
+
+  export type inventoryUpdateToOneWithWhereWithoutUsageHistoryInput = {
+    where?: inventoryWhereInput
+    data: XOR<inventoryUpdateWithoutUsageHistoryInput, inventoryUncheckedUpdateWithoutUsageHistoryInput>
+  }
+
+  export type inventoryUpdateWithoutUsageHistoryInput = {
+    partName?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    stockLevel?: IntFieldUpdateOperationsInput | number
+    retailPrice?: FloatFieldUpdateOperationsInput | number
+    lowStockAlert?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type inventoryUncheckedUpdateWithoutUsageHistoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    partName?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    stockLevel?: IntFieldUpdateOperationsInput | number
+    retailPrice?: FloatFieldUpdateOperationsInput | number
+    lowStockAlert?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usedPartCreateWithoutInventoryItemInput = {
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+    ticket: repairTicketCreateNestedOneWithoutPartsInput
+  }
+
+  export type usedPartUncheckedCreateWithoutInventoryItemInput = {
+    id?: number
+    ticketId: number
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+  }
+
+  export type usedPartCreateOrConnectWithoutInventoryItemInput = {
+    where: usedPartWhereUniqueInput
+    create: XOR<usedPartCreateWithoutInventoryItemInput, usedPartUncheckedCreateWithoutInventoryItemInput>
+  }
+
+  export type usedPartCreateManyInventoryItemInputEnvelope = {
+    data: usedPartCreateManyInventoryItemInput | usedPartCreateManyInventoryItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type usedPartUpsertWithWhereUniqueWithoutInventoryItemInput = {
+    where: usedPartWhereUniqueInput
+    update: XOR<usedPartUpdateWithoutInventoryItemInput, usedPartUncheckedUpdateWithoutInventoryItemInput>
+    create: XOR<usedPartCreateWithoutInventoryItemInput, usedPartUncheckedCreateWithoutInventoryItemInput>
+  }
+
+  export type usedPartUpdateWithWhereUniqueWithoutInventoryItemInput = {
+    where: usedPartWhereUniqueInput
+    data: XOR<usedPartUpdateWithoutInventoryItemInput, usedPartUncheckedUpdateWithoutInventoryItemInput>
+  }
+
+  export type usedPartUpdateManyWithWhereWithoutInventoryItemInput = {
+    where: usedPartScalarWhereInput
+    data: XOR<usedPartUpdateManyMutationInput, usedPartUncheckedUpdateManyWithoutInventoryItemInput>
+  }
+
+  export type repairTicketCreateWithoutTechnicianInput = {
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customer: customerCreateNestedOneWithoutTicketsInput
+    notes?: technicianNoteCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventCreateNestedManyWithoutTicketInput
+    parts?: usedPartCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketUncheckedCreateWithoutTechnicianInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customerId: string
+    notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+    parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketCreateOrConnectWithoutTechnicianInput = {
+    where: repairTicketWhereUniqueInput
+    create: XOR<repairTicketCreateWithoutTechnicianInput, repairTicketUncheckedCreateWithoutTechnicianInput>
+  }
+
+  export type repairTicketCreateManyTechnicianInputEnvelope = {
+    data: repairTicketCreateManyTechnicianInput | repairTicketCreateManyTechnicianInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type repairTicketUpsertWithWhereUniqueWithoutTechnicianInput = {
+    where: repairTicketWhereUniqueInput
+    update: XOR<repairTicketUpdateWithoutTechnicianInput, repairTicketUncheckedUpdateWithoutTechnicianInput>
+    create: XOR<repairTicketCreateWithoutTechnicianInput, repairTicketUncheckedCreateWithoutTechnicianInput>
+  }
+
+  export type repairTicketUpdateWithWhereUniqueWithoutTechnicianInput = {
+    where: repairTicketWhereUniqueInput
+    data: XOR<repairTicketUpdateWithoutTechnicianInput, repairTicketUncheckedUpdateWithoutTechnicianInput>
+  }
+
+  export type repairTicketUpdateManyWithWhereWithoutTechnicianInput = {
+    where: repairTicketScalarWhereInput
+    data: XOR<repairTicketUpdateManyMutationInput, repairTicketUncheckedUpdateManyWithoutTechnicianInput>
+  }
+
   export type repairTicketCreateManyCustomerInput = {
     id?: number
     issueCategory: string
     description: string
     status?: string
-    technicianNotes?: string | null
+    bay?: string | null
+    priority?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
+    technicianId?: string | null
   }
 
   export type repairTicketUpdateWithoutCustomerInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    technician?: technicianUpdateOneWithoutTicketsNestedInput
+    notes?: technicianNoteUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUpdateManyWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateWithoutCustomerInput = {
@@ -9895,8 +15688,14 @@ export namespace Prisma {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateManyWithoutCustomerInput = {
@@ -9904,8 +15703,184 @@ export namespace Prisma {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    technicianNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type technicianNoteCreateManyTicketInput = {
+    id?: number
+    rawVoiceText?: string | null
+    structuredText: string
+    quickTags?: technicianNoteCreatequickTagsInput | string[]
+    imageUrls?: technicianNoteCreateimageUrlsInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type timelineEventCreateManyTicketInput = {
+    id?: number
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type usedPartCreateManyTicketInput = {
+    id?: number
+    inventoryId: number
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+  }
+
+  export type technicianNoteUpdateWithoutTicketInput = {
+    rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
+    structuredText?: StringFieldUpdateOperationsInput | string
+    quickTags?: technicianNoteUpdatequickTagsInput | string[]
+    imageUrls?: technicianNoteUpdateimageUrlsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianNoteUncheckedUpdateWithoutTicketInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
+    structuredText?: StringFieldUpdateOperationsInput | string
+    quickTags?: technicianNoteUpdatequickTagsInput | string[]
+    imageUrls?: technicianNoteUpdateimageUrlsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianNoteUncheckedUpdateManyWithoutTicketInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
+    structuredText?: StringFieldUpdateOperationsInput | string
+    quickTags?: technicianNoteUpdatequickTagsInput | string[]
+    imageUrls?: technicianNoteUpdateimageUrlsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type timelineEventUpdateWithoutTicketInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type timelineEventUncheckedUpdateWithoutTicketInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type timelineEventUncheckedUpdateManyWithoutTicketInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usedPartUpdateWithoutTicketInput = {
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inventoryItem?: inventoryUpdateOneRequiredWithoutUsageHistoryNestedInput
+  }
+
+  export type usedPartUncheckedUpdateWithoutTicketInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    inventoryId?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usedPartUncheckedUpdateManyWithoutTicketInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    inventoryId?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usedPartCreateManyInventoryItemInput = {
+    id?: number
+    ticketId: number
+    quantity?: number
+    lockedCost: number
+    createdAt?: Date | string
+  }
+
+  export type usedPartUpdateWithoutInventoryItemInput = {
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ticket?: repairTicketUpdateOneRequiredWithoutPartsNestedInput
+  }
+
+  export type usedPartUncheckedUpdateWithoutInventoryItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ticketId?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usedPartUncheckedUpdateManyWithoutInventoryItemInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ticketId?: IntFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    lockedCost?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type repairTicketCreateManyTechnicianInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: string
+    bay?: string | null
+    priority?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    customerId: string
+  }
+
+  export type repairTicketUpdateWithoutTechnicianInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    notes?: technicianNoteUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateWithoutTechnicianInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateManyWithoutTechnicianInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerId?: StringFieldUpdateOperationsInput | string
   }
 
 

@@ -126,3 +126,62 @@ export const loginUser = async (req, res) => {
     });
   }
 };
+
+
+
+
+
+// ============================================================
+// PROFILE VERIFICATION CONTROLLER
+// ============================================================
+export const getCurrentUser = async (req, res) => {
+  try {
+    // 1. Extract the credential User ID verified by your authMiddleware
+    const authUserId = req.user?.id;
+
+    if (!authUserId) {
+      return res.status(401).json({ error: "Unauthorized. Session identity missing." });
+    }
+
+    // 2. Fetch the base credentials account from the User table
+    const userAccount = await prisma.user.findUnique({
+      where: { id: authUserId }
+    });
+
+    if (!userAccount) {
+      return res.status(404).json({ error: "User login account records not found." });
+    }
+
+    // 🎯 THE GOLDEN BRIDGE FIX:
+    // This variable starts as the userAccount ID (perfect for Owners)
+    let targetWorkspaceId = userAccount.id;
+
+    // If the logging-in user is a TECHNICIAN, discover their real Profile ID!
+    if (userAccount.role === 'TECHNICIAN') {
+      const technicianProfile = await prisma.technician.findFirst({
+        where: { email: userAccount.email.toLowerCase().trim() }
+      });
+
+      if (technicianProfile) {
+        // OVERWRITE the returned ID with the ID that the repairTicket table uses!
+        targetWorkspaceId = technicianProfile.id; 
+      }
+    }
+
+    // 3. Return the payload. The frontend gets the exact ID it needs to query tickets!
+    return res.status(200).json({
+      success: true,
+      user: {
+        id: targetWorkspaceId, // ⚡ Switches dynamically to Technician ID or User ID based on role
+        name: userAccount.name,
+        email: userAccount.email,
+        role: userAccount.role
+      }
+    });
+
+  } catch (error) {
+    console.error("Profile Resolution Gateway Mismatch Error:", err);
+    return res.status(500).json({ error: "Internal server data compilation error." });
+  }
+};
+

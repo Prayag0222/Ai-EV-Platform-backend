@@ -145,12 +145,40 @@ exports.Prisma.RepairTicketScalarFieldEnum = {
   issueCategory: 'issueCategory',
   description: 'description',
   status: 'status',
-  technicianNotes: 'technicianNotes',
+  bay: 'bay',
+  priority: 'priority',
   createdAt: 'createdAt',
-  customerId: 'customerId'
+  updatedAt: 'updatedAt',
+  customerId: 'customerId',
+  technicianId: 'technicianId'
 };
 
-<<<<<<< HEAD
+exports.Prisma.TechnicianNoteScalarFieldEnum = {
+  id: 'id',
+  ticketId: 'ticketId',
+  rawVoiceText: 'rawVoiceText',
+  structuredText: 'structuredText',
+  quickTags: 'quickTags',
+  imageUrls: 'imageUrls',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.TimelineEventScalarFieldEnum = {
+  id: 'id',
+  ticketId: 'ticketId',
+  status: 'status',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UsedPartScalarFieldEnum = {
+  id: 'id',
+  ticketId: 'ticketId',
+  inventoryId: 'inventoryId',
+  quantity: 'quantity',
+  lockedCost: 'lockedCost',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.InventoryScalarFieldEnum = {
   id: 'id',
   partName: 'partName',
@@ -174,7 +202,10 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   grandTotal: 'grandTotal',
   paymentStatus: 'paymentStatus',
   paymentMethod: 'paymentMethod',
-=======
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.TechnicianScalarFieldEnum = {
   id: 'id',
   fullName: 'fullName',
@@ -186,7 +217,6 @@ exports.Prisma.TechnicianScalarFieldEnum = {
   experienceYears: 'experienceYears',
   address: 'address',
   profileImage: 'profileImage',
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -225,12 +255,12 @@ exports.Prisma.ModelName = {
   User: 'User',
   customer: 'customer',
   repairTicket: 'repairTicket',
-<<<<<<< HEAD
+  technicianNote: 'technicianNote',
+  timelineEvent: 'timelineEvent',
+  usedPart: 'usedPart',
   inventory: 'inventory',
-  invoice: 'invoice'
-=======
+  invoice: 'invoice',
   technician: 'technician'
->>>>>>> 2d71252b8acec7ab52862cb9594d0bfa8e63019d
 };
 
 /**

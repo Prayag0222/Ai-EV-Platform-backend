@@ -1,20 +1,19 @@
-import type { Request, Response } from 'express';
+import { type Request, type Response } from 'express';
 import { prisma } from '../config/prisma.js';
-
-// Explicit interfaces for strictly checking incoming payload shapes
+import bcrypt from 'bcryptjs'; // ⚡ Ensure bcrypt is imported at the top of this file!
+import type { loginUser } from './authController.js';
 interface CreateTechnicianInput {
   fullName: string;
   email: string;
   phone: string;
-  employeeId: string;
   specialization: 'BATTERY' | 'MOTOR' | 'CONTROLLER' | 'GENERAL_EV';
-  experienceYears: string;
+  experienceYears: string | number;
   address?: string;
   profileImage?: string;
 }
 
 // ==========================================
-// 1. CREATE A NEW TECHNICIAN (POST)
+// 1. REGISTER A NEW TECHNICIAN (POST)
 // ==========================================
 export const createTechnician = async (req: Request, res: Response): Promise<Response> => {
   try {
@@ -22,167 +21,399 @@ export const createTechnician = async (req: Request, res: Response): Promise<Res
       fullName, 
       email, 
       phone, 
-      employeeId, 
       specialization, 
       experienceYears, 
       address, 
       profileImage 
-    }: CreateTechnicianInput = req.body;
+    } = req.body as CreateTechnicianInput;
 
-    
-    // Validation Guard: Ensure all non-nullable payload keys are provided
-    if (!fullName || !email || !phone || !employeeId || !specialization || experienceYears === undefined || experienceYears === null) {
+    // 🛡️ Guard 1: Ensure all mandatory parameters are present
+    if (!fullName || !email || !phone || !specialization || experienceYears === undefined || experienceYears === null) {
       return res.status(400).json({ message: 'Missing required technician account fields.' });
     }
 
+    // 🛡️ Guard 2: Enforce strict human experience boundaries (Max 60 Years)
+    const parsedExperience = Number(experienceYears);
+    if (isNaN(parsedExperience) || parsedExperience < 0 || parsedExperience > 60) {
+      return res.status(400).json({ 
+        message: 'Validation Failure: Experience must be a realistic number between 0 and 60 years.' 
+      });
+    }
+    const normalizedEmail = email.toLowerCase().trim();
+    // 🛡️ Guard 3: Double Check BOTH tables to prevent unique email constraint crashes
+    const emailInUserTable = await prisma.user.findUnique({ where: { email: normalizedEmail } });
+    const emailInTechTable = await prisma.technician.findFirst({ where: { email: normalizedEmail } });
 
-
-    // Uniqueness Safety Check: Prevent accidental data duplication
-    const duplicateCheck = await prisma.technician.findFirst({
-      where: {
-        OR: [
-          { email: email.toLowerCase().trim() },
-          { employeeId: employeeId.trim() }
-        ]
-      }
-    });
-
-    if (duplicateCheck) {
-      return res.status(400).json({ message: 'A technician with this email or Employee ID already exists.' });
+    if (emailInUserTable || emailInTechTable) {
+      return res.status(400).json({ message: 'A user or technician account with this email already exists.' });
     }
 
-    const newTechnician = await prisma.technician.create({
+    // Auto-Generate Unique Employee ID Tracking Code
+    const uniqueSuffix = Math.floor(1000 + Math.random() * 9000);
+    const autoEmployeeId = `TECH-2026-${uniqueSuffix}`;
+
+// 🔒 SECURITY ADDITION: Auto-generate a secure temporary password using your suffix!
+    // Example output: VoltOps@4829
+    const temporaryPassword = `VoltOpsWelcome`;
+    const saltRounds = 10;
+    const hashedUserPassword = await bcrypt.hash(temporaryPassword, saltRounds);
+
+    // 👥 SYSTEM PIPELINE STEP 1: Create the login account inside the master USER table
+    const createdLoginAccount = await prisma.user.create({
+      data: {
+        name: fullName,
+        email: normalizedEmail,
+        password: hashedUserPassword,
+        role: 'TECHNICIAN' // Hardcoded: Ensures your login controller catches this role and routes perfectly!
+      }
+    });
+    
+// 🔧 SYSTEM PIPELINE STEP 2: Create the workspace metadata inside your TECHNICIAN table
+    const newTechnicianProfile = await prisma.technician.create({
       data: {
         fullName,
-        email ,
+        email: normalizedEmail,
         phone,
-        employeeId,
+        employeeId: autoEmployeeId,
         specialization,
-        experienceYears,
+        experienceYears: String(parsedExperience), 
         address: address || null,
         profileImage: profileImage || null
+        // NOTE: If your technician schema has a relation field linking to User, 
+        // you can cleanly add: userId: createdLoginAccount.id right here!
       }
     });
 
     return res.status(201).json({
-      message: 'Technician registered successfully.',
-      technician: newTechnician
+      success: true,
+      message: 'Technician registered successfully with automated corporate ID tracking!',
+      temporaryPassword: temporaryPassword,
+      technician: newTechnicianProfile,
+      loginUser:createdLoginAccount
     });
-  } catch (error) {
-    console.error('Create Technician Error:', error);
+  } catch (err: unknown) {
+    const errorInstance = err instanceof Error ? err : new Error(String(err));
+    console.error('Create Technician Error:', errorInstance);
     return res.status(500).json({ message: 'Internal server error.' });
   }
 };
 
-
-
-
+// ==========================================
+// 2. FETCH ALL TECHNICIANS (GET)
+// ==========================================
 export const getAllTechnicians = async (req: Request, res: Response): Promise<Response> => {
   try {
-    // We removed the 'include' block so TypeScript stops complaining
-    const technicians = await prisma.technician.findMany();
-
+    const technicians = await prisma.technician.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
     return res.status(200).json(technicians);
-  } catch (error) {
-    console.error('Get All Technicians Error:', error);
+  } catch (err: unknown) {
+    const errorInstance = err instanceof Error ? err : new Error(String(err));
+    console.error('Get All Technicians Error:', errorInstance);
     return res.status(500).json({ message: 'Internal server error.' });
   }
 };
 
-
-
+// ==========================================
+// 3. MODIFY EXISTING TECHNICIAN RECORD (PUT)
+// ==========================================
 export const updateTechnician = async (req: Request, res: Response): Promise<Response> => {
   try {
-    // 1. Grab the raw ID from Express parameters
     const idParam = req.params.id;
-    
-    // 2. Unpack it if it is accidentally wrapped in a list/array
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
-    // 🚨 NEW FIX: The TypeScript Guard! 
-    // This removes 'undefined' and proves to the compiler that 'id' is strictly a string.
     if (!id || typeof id !== 'string') {
       return res.status(400).json({ message: 'A valid technician ID parameter is required.' });
     }
 
-    // 3. Capture the updates object from the form body safely
     const updates = req.body;
 
-    // 4. Clean up unique fields safely if they are strings
+    // 🛡️ Guard 3: Intercept update requests to check experience parameters
+    if (updates.experienceYears !== undefined && updates.experienceYears !== null) {
+      const parsedUpdateExperience = Number(updates.experienceYears);
+      if (isNaN(parsedUpdateExperience) || parsedUpdateExperience < 0 || parsedUpdateExperience > 60) {
+        return res.status(400).json({ 
+          message: 'Validation Failure: Experience modifications must stay between 0 and 60 years.' 
+        });
+      }
+      updates.experienceYears = String(parsedUpdateExperience); // Force string normalization
+    }
+
     if (typeof updates.email === 'string') {
       updates.email = updates.email.toLowerCase().trim();
     }
-    if (typeof updates.employeeId === 'string') {
-      updates.employeeId = updates.employeeId.trim();
-    }
 
-    // 5. Fix optional fields so they match what Prisma expects (string or null)
-    if (updates.address === '' || updates.address === undefined) {
-      updates.address = null;
-    } else if (Array.isArray(updates.address)) {
-      updates.address = updates.address[0];
-    }
-
-    if (updates.profileImage === '' || updates.profileImage === undefined) {
-      updates.profileImage = null;
-    } else if (Array.isArray(updates.profileImage)) {
-      updates.profileImage = updates.profileImage[0];
-    }
-
-    // 6. Tell Prisma to update the record. (This will compile cleanly now!)
     const updatedTechnician = await prisma.technician.update({
-      where: { id }, // TypeScript is happy now because 'id' is guaranteed to be a string
+      where: { id },
       data: updates
     });
 
-    // 7. Return the successful response
     return res.status(200).json({
       message: 'Technician record updated successfully.',
       technician: updatedTechnician
     });
-
-  } catch (error) {
-    console.error('Update Technician Error:', error);
+  } catch (err: unknown) {
+    const errorInstance = err instanceof Error ? err : new Error(String(err));
+    console.error('Update Technician Error:', errorInstance);
     return res.status(500).json({ message: 'Failed to modify technician record.' });
   }
 };
 
-
+// ==========================================
+// 4. PURGE TECHNICIAN DELETION LINK (DELETE)
+// ==========================================
 export const deleteTechnician = async (req: Request, res: Response): Promise<Response> => {
   try {
-    // 1. Grab the raw ID from the dynamic URL parameter
     const idParam = req.params.id;
-    
-    // 2. Safety Check: Extract the string if it is inside a list/array
     const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
-    // 3. The TypeScript Guard: Proves to the compiler that 'id' is strictly a string
     if (!id || typeof id !== 'string') {
       return res.status(400).json({ message: 'A valid technician ID parameter is required.' });
     }
 
-    // 🚨 NEW CHECK: Look up the technician first before trying to delete!
     const existingTechnician = await prisma.technician.findUnique({
       where: { id }
     });
 
-    // If the record does not exist in the table, return a nice error to the user
     if (!existingTechnician) {
       return res.status(404).json({ message: 'Technician profile not found or already deleted.' });
     }
 
-    // 4. Instruct Prisma to erase them from the table (Safe to do now!)
     await prisma.technician.delete({
       where: { id }
     });
 
-    // 5. Send back a clean validation message to the frontend
+    return res.status(200).json({ message: 'Technician permanently removed.' });
+  } catch (err: unknown) {
+    const errorInstance = err instanceof Error ? err : new Error(String(err));
+    console.error('Delete Technician Error:', errorInstance);
+    return res.status(500).json({ message: 'Failed to purge technician data.' });
+  }
+};
+
+
+
+export const getMobileWorkspaceTicket = async (req: Request, res: Response): Promise<any> => {
+  try {
+    // 1. 🛡️ STRICT TYPE GUARD: Safely extract the ID from the URL
+    const idParam = req.params.id;
+
+    // Reject if it's missing, undefined, or an array
+    if (!idParam || typeof idParam !== 'string') {
+      return res.status(400).json({ success: false, message: "Invalid or missing ticket ID." });
+    }
+
+    const ticketId = parseInt(idParam, 10);
+
+    if (isNaN(ticketId)) {
+      return res.status(400).json({ success: false, message: "Ticket ID must be a valid number." });
+    }
+
+    // ⚡ 2. THE MASTER QUERY: Fetch the ticket and ALL nested mobile data in one shot!
+    const ticket = await prisma.repairTicket.findUnique({
+      where: { id: ticketId },
+      include: {
+        customer: {
+          select: { name: true, phone: true, vehicleModel: true }
+        },
+        timeline: {
+          orderBy: { createdAt: 'desc' } 
+        },
+        notes: {
+          orderBy: { createdAt: 'desc' } 
+        },
+        parts: {
+          include: {
+            inventoryItem: {
+              select: { partName: true, sku: true }
+            }
+          }
+        }
+      }
+    });
+
+    if (!ticket) {
+      return res.status(404).json({ success: false, message: "Repair ticket not found." });
+    }
+
+    // 3. Send the massive, perfectly structured payload back to the mobile app
+    return res.status(200).json({ success: true, ticket });
+
+  } catch (error) {
+    console.error("Error fetching mobile workspace data:", error);
+    return res.status(500).json({ success: false, message: "Internal server crash." });
+  }}
+
+
+  // 📱 PATCH: /api/technician/workspace/:id/status
+export const updateMobileTicketStatus = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const idParam = req.params.id;
+    const { newStatus } = req.body; // e.g., "IN_SERVICE", "RESOLVED"
+
+    // 1. Strict Validation
+    if (!idParam || typeof idParam !== 'string') {
+      return res.status(400).json({ success: false, message: "Invalid ticket ID." });
+    }
+    
+    if (!newStatus || typeof newStatus !== 'string') {
+      return res.status(400).json({ success: false, message: "Missing newStatus in request body." });
+    }
+
+    const ticketId = parseInt(idParam, 10);
+    if (isNaN(ticketId)) {
+      return res.status(400).json({ success: false, message: "Ticket ID must be a number." });
+    }
+
+    // ⚡ 2. THE PRISMA TRANSACTION (Atomic Operation)
+    // Both of these database calls run together safely!
+    const [updatedTicket, newTimelineEvent] = await prisma.$transaction([
+      
+      // Action A: Update the main ticket status
+      prisma.repairTicket.update({
+        where: { id: ticketId },
+        data: { 
+          status: newStatus,
+          updatedAt: new Date() // Force timestamp update
+        }
+      }),
+
+      // Action B: Create the historical timeline log
+      prisma.timelineEvent.create({
+        data: {
+          ticketId: ticketId,
+          status: newStatus
+          // createdAt is handled automatically by the database default(now())
+        }
+      })
+
+    ]);
+
+    // 3. Return the newly created timeline event so the mobile UI can instantly draw it on screen
     return res.status(200).json({ 
-      message: 'Technician permanently removed from database ecosystem.' 
+      success: true, 
+      message: `Ticket upgraded to ${newStatus}`,
+      timelineEvent: newTimelineEvent 
     });
 
   } catch (error) {
-    console.error('Delete Technician Error:', error);
-    return res.status(500).json({ message: 'Failed to purge technician data.' });
+    console.error("Error updating mobile ticket status:", error);
+    return res.status(500).json({ success: false, message: "Server crash during status update." });
+  }
+};
+
+
+
+
+// 📱 POST: /api/technician/workspace/:id/notes
+export const addMobileTicketNote = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const idParam = req.params.id;
+    const { rawVoiceText, structuredText, quickTags, imageUrls } = req.body;
+
+    // 1. Strict Validation
+    if (!idParam || typeof idParam !== 'string') {
+      return res.status(400).json({ success: false, message: "Invalid ticket ID." });
+    }
+    
+    // The only thing we STRICTLY require is the final structured text.
+    if (!structuredText || typeof structuredText !== 'string') {
+      return res.status(400).json({ success: false, message: "Missing structured note text." });
+    }
+
+    const ticketId = parseInt(idParam, 10);
+    if (isNaN(ticketId)) {
+      return res.status(400).json({ success: false, message: "Ticket ID must be a number." });
+    }
+
+    // ⚡ 2. Save the Note directly to the new Database Table
+    const newNote = await prisma.technicianNote.create({
+      data: {
+        ticketId: ticketId,
+        rawVoiceText: rawVoiceText || null, // Optional: What they actually said
+        structuredText: structuredText,     // Required: What the AI cleaned up
+        quickTags: quickTags || [],         // Optional: e.g., ["BMS", "Fuse"]
+        imageUrls: imageUrls || []          // Optional: e.g., ["https://..."]
+      }
+    });
+
+    // 3. Return success
+    return res.status(201).json({ 
+      success: true, 
+      message: "Note logged successfully.",
+      note: newNote 
+    });
+
+  } catch (error) {
+    console.error("Error saving mobile technician note:", error);
+    return res.status(500).json({ success: false, message: "Server crash while saving note." });
+  }
+};
+
+
+
+// 📱 POST: /api/technician/workspace/:id/parts
+export const addUsedPartToTicket = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const idParam = req.params.id;
+    const { inventoryId, quantity = 1 } = req.body;
+
+    if (!idParam || typeof idParam !== 'string') {
+      return res.status(400).json({ success: false, message: "Invalid ticket ID." });
+    }
+    
+    const ticketId = parseInt(idParam, 10);
+    
+    if (isNaN(ticketId) || !inventoryId) {
+      return res.status(400).json({ success: false, message: "Missing required fields." });
+    }
+
+    // 1. Fetch the current price from the Owner's inventory
+    const inventoryItem = await prisma.inventory.findUnique({
+      where: { id: inventoryId }
+    });
+
+    if (!inventoryItem) {
+      return res.status(404).json({ success: false, message: "Part not found in inventory." });
+    }
+
+    if (inventoryItem.stockLevel < quantity) {
+        return res.status(400).json({ success: false, message: "Not enough stock available!"});
+    }
+
+    // ⚡ 2. THE TRANSACTION
+    const [newUsedPart, updatedInventory] = await prisma.$transaction([
+      
+      // Action A: Log the part to the ticket, locking in the price
+      prisma.usedPart.create({
+        data: {
+          ticketId: ticketId,
+          inventoryId: inventoryId,
+          quantity: quantity,
+          lockedCost: inventoryItem.retailPrice // Lock the price!
+        }
+      }),
+
+      // Action B: Subtract the quantity safely using atomic decrement
+      prisma.inventory.update({
+        where: { id: inventoryId },
+        data: {
+          stockLevel: {
+            decrement: quantity
+          }
+        }
+      })
+      
+    ]);
+
+    return res.status(201).json({ 
+      success: true, 
+      message: "Part added to ticket and inventory deducted.",
+      part: newUsedPart 
+    });
+
+  } catch (error) {
+    console.error("Error logging used part:", error);
+    return res.status(500).json({ success: false, message: "Server crash." });
   }
 };
