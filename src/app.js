@@ -10,6 +10,8 @@ import invoiceRoutes from './routes/invoiceRoutes.js';
 import technicianRoutes from './routes/technicianRoutes.ts';
 import cors from 'cors';
 import voiceNotes from './routes/voiceNotes.js'
+import vehicleRoutes from './routes/vehicleRoutes.ts'
+import ownersRoutes from './routes/ownersRoutes.ts'
 
 
 const app = express();
@@ -41,6 +43,8 @@ app.use('/api/operation', operationRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/invoice', invoiceRoutes);
 app.use('/api/technician', technicianRoutes);
+app.use('/api/vehicles',vehicleRoutes)
+app.use('/api/owner',ownersRoutes)
 
 app.listen(PORT,()=>{
     console.log(`Industry grade server is running on port ${PORT}`)

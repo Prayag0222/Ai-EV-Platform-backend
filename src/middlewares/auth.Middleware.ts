@@ -1,12 +1,13 @@
 import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import type { Role } from '../generated/client/index.js';
 
 
     interface AuthenticatedRequest extends Request {
         user?:{
             id:string;
             email:string;
-            password:string;
+            role:Role
         };
     }
 
@@ -20,10 +21,14 @@ export const authMiddleware = async (req: AuthenticatedRequest, res:Response,nex
     }
     
     try{
+        if(!process.env.JWT_SECRET){
+        throw new Error("JWT Secret missing");
+        }
+
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string)as {
             id:string;
             email:string;
-            password:string;
+            role:Role
         }
 
         req.user = decoded;

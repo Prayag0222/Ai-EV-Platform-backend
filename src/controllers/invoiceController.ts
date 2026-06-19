@@ -24,6 +24,30 @@ export const createInvoice = async (req: Request, res: Response) => {
       paymentMethod 
     } = req.body;
 
+
+    if (ticketId) {
+    const ticket =
+        await prisma.repairTicket.findUnique({
+            where:{
+                id:Number(ticketId)
+            }
+        });
+
+    if(!ticket){
+        return res.status(404).json({
+            success:false,
+            error:"Repair ticket not found."
+        });
+    }
+}
+const saleType =
+ticketId
+?
+"REPAIR"
+:
+"COUNTER";
+
+
     // 🛡️ Strict Request Validation
     if (!customerName || !customerPhone || !items || !paymentStatus || !paymentMethod) {
       return res.status(400).json({
@@ -48,7 +72,9 @@ export const createInvoice = async (req: Request, res: Response) => {
 
     // ⚡ AUTO-GENERATE UNIQUE INVOICE NUMBER (e.g., INV-2026-4821)
     const uniqueSuffix = Math.floor(1000 + Math.random() * 9000);
-    const generatedInvoiceNo = `INV-2026-${uniqueSuffix}`;
+    const generatedInvoiceNo = `INV-${Date.now()}-${uniqueSuffix}`;
+
+    
 
     // Write record to PostgreSQL via Prisma
     const newInvoice = await prisma.invoice.create({
@@ -57,6 +83,7 @@ export const createInvoice = async (req: Request, res: Response) => {
         customerName,
         customerPhone,
         ticketId: ticketId ? Number(ticketId) : null,
+        saleType,
         items, // Saves cleanly into the JSON column data frame
         laborCharge: flatLabor,
         grandTotal: calculatedGrandTotal,
@@ -88,6 +115,9 @@ export const createInvoice = async (req: Request, res: Response) => {
 export const getAllInvoices = async (req: Request, res: Response) => {
   try {
     const invoices = await prisma.invoice.findMany({
+      include:{
+    ticket:true
+},
       orderBy: {
         createdAt: 'desc', // Latest transaction statements pop up at the top
       },

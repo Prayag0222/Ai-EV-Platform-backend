@@ -1,10 +1,13 @@
 import { type Request, type Response } from 'express';
 import { prisma } from '../config/prisma.js'; // Reusing your central connection pipeline
+import { TicketStatus } from '../generated/client/client.js';
 
 
 export const getAssignedTickets = async (req:Request,res:Response): Promise<any>=>{
     try {
         const {technicianId} = req.query
+
+     
 
         if(!technicianId || typeof technicianId !== "string"){
             return res.status(500).json({error:"Technician Id parameter required to load worspace "})
@@ -41,6 +44,9 @@ export const updateTicketProgress = async (req:Request,res:Response): Promise<an
         const {status , technicianNotes} = req.body;
 
         const ticketIdNumber = Number(id)
+           if(!Object.values(TicketStatus).includes(status as TicketStatus)){
+            return res.status(400).json({message:'status is not valid'})
+           }
 
         if(isNaN(ticketIdNumber)){
       return res.status(400).json({ error: "Invalid ticket tracking identifier." });

@@ -108,6 +108,19 @@ router.post(
         res.status(400).json({ success: false, error: 'Invalid Ticket ID numerical format.' });
         return;
       }
+      const ticket = await prisma.repairTicket.findUnique({
+    where:{
+        id: parsedTicketId
+    }
+});
+
+if(!ticket){
+    res.status(404).json({
+        success:false,
+        error:"Repair ticket not found."
+    });
+    return;
+}
 
       const newNote = await prisma.technicianNote.create({
         data: {

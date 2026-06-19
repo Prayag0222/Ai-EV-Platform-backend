@@ -10,7 +10,7 @@ export const createInventoryItem = async (req: Request, res: Response) => {
     const { partName, category, stockLevel, retailPrice, lowStockAlert } = req.body;
 
     // 🛡️ Validation: SKU is removed from required checks because the server builds it now!
-    if (!partName || !category || retailPrice === undefined) {
+    if (!partName || !category || retailPrice === undefined ||Number(retailPrice) >= 0||Number(stockLevel) >= 0) {
       return res.status(400).json({
         success: false,
         error: 'Missing required fields. Please provide partName, category, and retailPrice.',

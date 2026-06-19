@@ -1,5 +1,6 @@
 import { prisma } from '../config/prisma.js';
 import { type Request, type Response } from 'express';
+import { TicketPriority , TicketStatus } from '../generated/client/index.js';
 
 interface UpdateTicketStatusBody {
   status: 'PENDING' | 'DIAGNOSING' | 'RESOLVED';
@@ -16,8 +17,10 @@ interface CreateTicketInputBody {
   address?: string;
   issueCategory: string;
   description: string;
-  technicianNotes?: string;
-  technicianId?: string; // 🔌 NEW LINK PARAMETER KEY
+  technicianId?: string;
+  vin?:string;
+  priority?:TicketPriority;
+  bay?:string;
 }
 
 export const createTicket = async (req: Request, res: Response): Promise<void> => {
@@ -26,11 +29,12 @@ export const createTicket = async (req: Request, res: Response): Promise<void> =
     const { 
       customerId, 
       name, phone, vehicleModel, email, address, 
-      issueCategory, description, technicianNotes,
+      issueCategory, description, 
+      vin, priority,
       technicianId // Capture our optional mechanic relationship token
     } = req.body as CreateTicketInputBody;
 
-    // 🛡️ 2. Absolute Mandatory Checks (✅ BUG FIXED: customerId removed from hard global constraint!)
+    // 🛡️ 2. Absolute Mandatory Checks
     if (!issueCategory || !description) {
       res.status(400).json({ error: "Missing core ticket tracking parameters (issueCategory or description notes)." });
       return;
@@ -48,64 +52,106 @@ export const createTicket = async (req: Request, res: Response): Promise<void> =
       }
     }
 
-    // 🔩 4. Setup our target holder pointer to capture the definitive customer primary key badge string
-    let finalCustomerId: string;
+    // ⚡ 4. ATOMIC DATABASE TRANSACTION ENGINE
+    // We wrap our customer, vehicle, and ticket writes together. If any phase crashes, the database safely rolls back.
+    const finalTicket = await prisma.$transaction(async (tx) => {
+      let finalCustomerId: string;
+      let customerPhoneForVin = phone;
 
-    if (customerId) {
-      // 🔍 TRACK A: MAP OPERATION TO AN EXISTING CUSTOMER LEAF RECORD
-      const existingCustomer = await prisma.customer.findUnique({
-        where: { id: customerId }
-      });
-
-      if (!existingCustomer) {
-        res.status(404).json({ error: "Provided customer identity tracking badge not found inside database files." });
-        return;
-      }
-
-      finalCustomerId = customerId;
-
-    } else {
-      // 🆕 TRACK B: DYNAMICALLY REGISTER WALK-IN PROFILE INLINE UNIFIED INTAKE
-      if (!name || !phone || !vehicleModel) {
-        res.status(400).json({ 
-          error: "Missing walk-in customer parameters. Provide name, phone, and vehicleModel to register profile inline first." 
+      // 🔍 PHASE A: RESOLVE CUSTOMER IDENTITY
+      if (customerId) {
+        // TRACK A: MAP OPERATION TO AN EXISTING CUSTOMER LEAF RECORD
+        const existingCustomer = await tx.customer.findUnique({
+          where: { id: customerId }
         });
-        return;
+
+        if (!existingCustomer) {
+          throw new Error("TRANS_CUSTOMER_NOT_FOUND");
+        }
+
+        finalCustomerId = customerId;
+        customerPhoneForVin = existingCustomer.phone; // Pull original phone identifier to back up our fallback VIN matrix
+      } else {
+        // TRACK B: DYNAMICALLY REGISTER WALK-IN PROFILE INLINE UNIFIED INTAKE
+        if (!name || !phone ) {
+          throw new Error("TRANS_MISSING_WALK_IN_FIELDS");
+        }
+
+        const newCustomer = await tx.customer.create({
+          data: {
+            name,
+            phone,
+            email: email || null,
+            address: address || null
+          }
+        });
+
+        finalCustomerId = newCustomer.id;
       }
 
-      // Action: Commit the new customer profile row down into the lowercase customer table
-      const newCustomer = await prisma.customer.create({
-        data: {
-          name,
-          phone,
-          vehicleModel,
-          email: email || null,
-          address: address || null
+      // 🚗 PHASE B: DYNAMIC VEHICLE LIFECYCLE LINK (The Optional VIN Fallback Logic!)
+      const targetModel = vehicleModel ?? "Unknown EV";      
+      // Generate an airtight unique registration placeholder if the user leaves the VIN input box empty
+      const sliceKey = customerPhoneForVin ? customerPhoneForVin.slice(-5) : finalCustomerId.slice(-5);
+      const resolvedVin = vin && vin.trim() !== "" 
+        ? vin.toUpperCase().trim()
+        : `VOLT-REG-${sliceKey}-${Math.floor(Date.now() / 1000)}`;
+
+      // Find the existing vehicle tracker record by unique VIN index, or instantiate it if it's the vehicle's first visit
+      const targetVehicle = await tx.vehicle.upsert({
+        where: { vin: resolvedVin },
+        update: {}, // If vehicle exists, keep its historical floor telemetry completely untouched
+        create: {
+          vin: resolvedVin,
+          vehicleModel: targetModel,
+          customerId: finalCustomerId
         }
       });
 
-      finalCustomerId = newCustomer.id;
-    }
+      // 🏗️ PHASE C: MANIFEST SPECIFIC SERVICE REPAIR TICKET
+      // Connects cleanly to both the resolved customer AND the validated vehicle id anchor!
+      const newTicket = await tx.repairTicket.create({
+        data: {
+          issueCategory,
+          description,
+          priority: priority ?? TicketPriority.STANDARD,    
+          customerId: finalCustomerId,
+          vehicleId: targetVehicle.id, // ⚡ Fully linked! No more orphan arrays on the vehicle dashboard page
+          technicianId: technicianId || null
+        }
+      });
 
-    // 🏗️ 5. CREATE THE REPAIR TICKET (Both customer and technician links are verified and ready!)
-    const newTicket = await prisma.repairTicket.create({
-      data: {
-        issueCategory,
-        description,
-        technicianNotes: technicianNotes || null,
-        customerId: finalCustomerId, // Connects smoothly to our customer model tracking key socket slot
-        technicianId: technicianId || null // 🔌 Connects cleanly to our optional technician table column layout slot
-      }
+      // Initialize the tracking logging timeline
+      await tx.timelineEvent.create({
+        data: {
+          ticketId: newTicket.id,
+          status: TicketStatus.PENDING
+        }
+      });
+
+      return newTicket;
     });
 
-    // 📤 6. Dispatch clean standardized response payload envelope
+    // 📤 5. Dispatch clean standardized response payload envelope
     res.status(201).json({
       success: true,
       message: "Unified service queue workspace entry deployed successfully across data ecosystems.",
-      ticket: newTicket
+      ticket: finalTicket
     });
 
   } catch (err: unknown) {
+    // 🛡️ Catch transaction thrown strings and transform them into semantic REST status errors
+    if (err instanceof Error) {
+      if (err.message === "TRANS_CUSTOMER_NOT_FOUND") {
+        res.status(404).json({ error: "Provided customer identity tracking badge not found inside database files." });
+        return;
+      }
+      if (err.message === "TRANS_MISSING_WALK_IN_FIELDS") {
+        res.status(400).json({ error: "Missing walk-in customer parameters. Provide name, phone, and vehicleModel to register profile inline first." });
+        return;
+      }
+    }
+
     // ✅ STRICT LINTER SHIELD: Guarding unknown catch instances to prevent environment compiler warnings
     const errorInstance = err instanceof Error ? err : new Error(String(err));
     console.error("💥 Unified Ticket Controller Failure:", errorInstance);

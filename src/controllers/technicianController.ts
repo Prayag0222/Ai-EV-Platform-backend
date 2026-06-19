@@ -1,13 +1,14 @@
 import { type Request, type Response } from 'express';
 import { prisma } from '../config/prisma.js';
 import bcrypt from 'bcryptjs'; // ⚡ Ensure bcrypt is imported at the top of this file!
-import type { loginUser } from './authController.js';
+import { Role } from '../generated/client/client.js';
+import { TechnicianSpecialization ,TicketStatus } from '../generated/client/client.js';
 interface CreateTechnicianInput {
   fullName: string;
   email: string;
   phone: string;
-  specialization: 'BATTERY' | 'MOTOR' | 'CONTROLLER' | 'GENERAL_EV';
-  experienceYears: string | number;
+  specialization: TechnicianSpecialization;
+  experienceYears:  number;
   address?: string;
   profileImage?: string;
 }
@@ -26,6 +27,17 @@ export const createTechnician = async (req: Request, res: Response): Promise<Res
       address, 
       profileImage 
     } = req.body as CreateTechnicianInput;
+
+    // ✅ Validate Specialization Enum
+if (
+  !Object.values(TechnicianSpecialization).includes(
+    specialization as TechnicianSpecialization
+  )
+) {
+  return res.status(400).json({
+    message: "Invalid technician specialization."
+  });
+}
 
     // 🛡️ Guard 1: Ensure all mandatory parameters are present
     if (!fullName || !email || !phone || !specialization || experienceYears === undefined || experienceYears === null) {
@@ -59,37 +71,39 @@ export const createTechnician = async (req: Request, res: Response): Promise<Res
     const hashedUserPassword = await bcrypt.hash(temporaryPassword, saltRounds);
 
     // 👥 SYSTEM PIPELINE STEP 1: Create the login account inside the master USER table
-    const createdLoginAccount = await prisma.user.create({
-      data: {
-        name: fullName,
-        email: normalizedEmail,
-        password: hashedUserPassword,
-        role: 'TECHNICIAN' // Hardcoded: Ensures your login controller catches this role and routes perfectly!
-      }
-    });
-    
-// 🔧 SYSTEM PIPELINE STEP 2: Create the workspace metadata inside your TECHNICIAN table
-    const newTechnicianProfile = await prisma.technician.create({
-      data: {
-        fullName,
-        email: normalizedEmail,
-        phone,
-        employeeId: autoEmployeeId,
-        specialization,
-        experienceYears: String(parsedExperience), 
-        address: address || null,
-        profileImage: profileImage || null
-        // NOTE: If your technician schema has a relation field linking to User, 
-        // you can cleanly add: userId: createdLoginAccount.id right here!
-      }
-    });
+    const [createdLoginAccount, newTechnicianProfile] = await prisma.$transaction([
+      prisma.user.create({
+        data: {
+          name: fullName,
+          email: normalizedEmail,
+          password: hashedUserPassword,
+          role: Role.TECHNICIAN // Hardcoded: Ensures your login controller catches this role and routes perfectly!
+        }
+      }),
+
+      // 🔧 SYSTEM PIPELINE STEP 2: Create the workspace metadata inside your TECHNICIAN table
+      prisma.technician.create({
+        data: {
+          fullName,
+          email: normalizedEmail,
+          phone,
+          employeeId: autoEmployeeId,
+          specialization,
+         experienceYears: parseInt(experienceYears as unknown as string, 10),
+          address: address || null,
+          profileImage: profileImage || null
+          // NOTE: If your technician schema has a relation field linking to User, 
+          // you can cleanly add: userId: createdLoginAccount.id right here!
+        }
+      })
+    ]);
 
     return res.status(201).json({
       success: true,
       message: 'Technician registered successfully with automated corporate ID tracking!',
       temporaryPassword: temporaryPassword,
       technician: newTechnicianProfile,
-      loginUser:createdLoginAccount
+      loginUser: createdLoginAccount
     });
   } catch (err: unknown) {
     const errorInstance = err instanceof Error ? err : new Error(String(err));
@@ -214,8 +228,13 @@ export const getMobileWorkspaceTicket = async (req: Request, res: Response): Pro
       where: { id: ticketId },
       include: {
         customer: {
-          select: { name: true, phone: true, vehicleModel: true }
+          select: { name: true, phone: true }
         },
+        technician:{
+          select:{fullName:true}
+        },  
+        vehicle:true,
+
         timeline: {
           orderBy: { createdAt: 'desc' } 
         },
@@ -250,6 +269,18 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
   try {
     const idParam = req.params.id;
     const { newStatus } = req.body; // e.g., "IN_SERVICE", "RESOLVED"
+    // ✅ Validate Ticket Status Enum
+if (
+  !Object.values(TicketStatus).includes(
+    newStatus as TicketStatus
+  )
+) {
+  return res.status(400).json({
+    success: false,
+    message: "Invalid ticket status."
+  });
+}
+const validatedStatus = newStatus as TicketStatus;
 
     // 1. Strict Validation
     if (!idParam || typeof idParam !== 'string') {
@@ -273,7 +304,7 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
       prisma.repairTicket.update({
         where: { id: ticketId },
         data: { 
-          status: newStatus,
+          status: validatedStatus,
           updatedAt: new Date() // Force timestamp update
         }
       }),
@@ -282,7 +313,7 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
       prisma.timelineEvent.create({
         data: {
           ticketId: ticketId,
-          status: newStatus
+          status: validatedStatus
           // createdAt is handled automatically by the database default(now())
         }
       })
@@ -417,3 +448,5 @@ export const addUsedPartToTicket = async (req: Request, res: Response): Promise<
     return res.status(500).json({ success: false, message: "Server crash." });
   }
 };
+
+

@@ -58,6 +58,11 @@ export type invoice = $Result.DefaultSelection<Prisma.$invoicePayload>
  * 
  */
 export type technician = $Result.DefaultSelection<Prisma.$technicianPayload>
+/**
+ * Model Vehicle
+ * 
+ */
+export type Vehicle = $Result.DefaultSelection<Prisma.$VehiclePayload>
 
 /**
  * Enums
@@ -80,6 +85,46 @@ export const TechnicianStatus: {
 
 export type TechnicianStatus = (typeof TechnicianStatus)[keyof typeof TechnicianStatus]
 
+
+export const TicketStatus: {
+  PENDING: 'PENDING',
+  DIAGNOSING: 'DIAGNOSING',
+  IN_SERVICE: 'IN_SERVICE',
+  RESOLVED: 'RESOLVED',
+  DELIVERED: 'DELIVERED'
+};
+
+export type TicketStatus = (typeof TicketStatus)[keyof typeof TicketStatus]
+
+
+export const TicketPriority: {
+  LOW: 'LOW',
+  STANDARD: 'STANDARD',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+};
+
+export type TicketPriority = (typeof TicketPriority)[keyof typeof TicketPriority]
+
+
+export const TechnicianSpecialization: {
+  BATTERY: 'BATTERY',
+  BMS: 'BMS',
+  CONTROLLER: 'CONTROLLER',
+  MOTOR: 'MOTOR',
+  GENERAL: 'GENERAL'
+};
+
+export type TechnicianSpecialization = (typeof TechnicianSpecialization)[keyof typeof TechnicianSpecialization]
+
+
+export const SaleType: {
+  REPAIR: 'REPAIR',
+  COUNTER: 'COUNTER'
+};
+
+export type SaleType = (typeof SaleType)[keyof typeof SaleType]
+
 }
 
 export type Role = $Enums.Role
@@ -89,6 +134,22 @@ export const Role: typeof $Enums.Role
 export type TechnicianStatus = $Enums.TechnicianStatus
 
 export const TechnicianStatus: typeof $Enums.TechnicianStatus
+
+export type TicketStatus = $Enums.TicketStatus
+
+export const TicketStatus: typeof $Enums.TicketStatus
+
+export type TicketPriority = $Enums.TicketPriority
+
+export const TicketPriority: typeof $Enums.TicketPriority
+
+export type TechnicianSpecialization = $Enums.TechnicianSpecialization
+
+export const TechnicianSpecialization: typeof $Enums.TechnicianSpecialization
+
+export type SaleType = $Enums.SaleType
+
+export const SaleType: typeof $Enums.SaleType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -300,6 +361,16 @@ export class PrismaClient<
     * ```
     */
   get technician(): Prisma.technicianDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.vehicle`: Exposes CRUD operations for the **Vehicle** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Vehicles
+    * const vehicles = await prisma.vehicle.findMany()
+    * ```
+    */
+  get vehicle(): Prisma.VehicleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -742,7 +813,8 @@ export namespace Prisma {
     usedPart: 'usedPart',
     inventory: 'inventory',
     invoice: 'invoice',
-    technician: 'technician'
+    technician: 'technician',
+    Vehicle: 'Vehicle'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -758,7 +830,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "customer" | "repairTicket" | "technicianNote" | "timelineEvent" | "usedPart" | "inventory" | "invoice" | "technician"
+      modelProps: "user" | "customer" | "repairTicket" | "technicianNote" | "timelineEvent" | "usedPart" | "inventory" | "invoice" | "technician" | "vehicle"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1428,6 +1500,80 @@ export namespace Prisma {
           }
         }
       }
+      Vehicle: {
+        payload: Prisma.$VehiclePayload<ExtArgs>
+        fields: Prisma.VehicleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VehicleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VehicleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          findFirst: {
+            args: Prisma.VehicleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VehicleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          findMany: {
+            args: Prisma.VehicleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>[]
+          }
+          create: {
+            args: Prisma.VehicleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          createMany: {
+            args: Prisma.VehicleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VehicleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>[]
+          }
+          delete: {
+            args: Prisma.VehicleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          update: {
+            args: Prisma.VehicleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          deleteMany: {
+            args: Prisma.VehicleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VehicleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VehicleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>[]
+          }
+          upsert: {
+            args: Prisma.VehicleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          aggregate: {
+            args: Prisma.VehicleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVehicle>
+          }
+          groupBy: {
+            args: Prisma.VehicleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VehicleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VehicleCountArgs<ExtArgs>
+            result: $Utils.Optional<VehicleCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1545,6 +1691,7 @@ export namespace Prisma {
     inventory?: inventoryOmit
     invoice?: invoiceOmit
     technician?: technicianOmit
+    vehicle?: VehicleOmit
   }
 
   /* Types for Logging */
@@ -1626,10 +1773,12 @@ export namespace Prisma {
 
   export type CustomerCountOutputType = {
     tickets: number
+    vehicles: number
   }
 
   export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tickets?: boolean | CustomerCountOutputTypeCountTicketsArgs
+    vehicles?: boolean | CustomerCountOutputTypeCountVehiclesArgs
   }
 
   // Custom InputTypes
@@ -1648,6 +1797,13 @@ export namespace Prisma {
    */
   export type CustomerCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: repairTicketWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountVehiclesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VehicleWhereInput
   }
 
 
@@ -1758,6 +1914,37 @@ export namespace Prisma {
    * TechnicianCountOutputType without action
    */
   export type TechnicianCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: repairTicketWhereInput
+  }
+
+
+  /**
+   * Count Type VehicleCountOutputType
+   */
+
+  export type VehicleCountOutputType = {
+    tickets: number
+  }
+
+  export type VehicleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tickets?: boolean | VehicleCountOutputTypeCountTicketsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VehicleCountOutputType without action
+   */
+  export type VehicleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VehicleCountOutputType
+     */
+    select?: VehicleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VehicleCountOutputType without action
+   */
+  export type VehicleCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: repairTicketWhereInput
   }
 
@@ -2807,7 +2994,6 @@ export namespace Prisma {
     name: string | null
     email: string | null
     phone: string | null
-    vehicleModel: string | null
     address: string | null
     createdAt: Date | null
   }
@@ -2817,7 +3003,6 @@ export namespace Prisma {
     name: string | null
     email: string | null
     phone: string | null
-    vehicleModel: string | null
     address: string | null
     createdAt: Date | null
   }
@@ -2827,7 +3012,6 @@ export namespace Prisma {
     name: number
     email: number
     phone: number
-    vehicleModel: number
     address: number
     createdAt: number
     _all: number
@@ -2839,7 +3023,6 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
-    vehicleModel?: true
     address?: true
     createdAt?: true
   }
@@ -2849,7 +3032,6 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
-    vehicleModel?: true
     address?: true
     createdAt?: true
   }
@@ -2859,7 +3041,6 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
-    vehicleModel?: true
     address?: true
     createdAt?: true
     _all?: true
@@ -2942,7 +3123,6 @@ export namespace Prisma {
     name: string
     email: string | null
     phone: string
-    vehicleModel: string
     address: string | null
     createdAt: Date
     _count: CustomerCountAggregateOutputType | null
@@ -2969,10 +3149,10 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
-    vehicleModel?: boolean
     address?: boolean
     createdAt?: boolean
     tickets?: boolean | customer$ticketsArgs<ExtArgs>
+    vehicles?: boolean | customer$vehiclesArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
@@ -2981,7 +3161,6 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
-    vehicleModel?: boolean
     address?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["customer"]>
@@ -2991,7 +3170,6 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
-    vehicleModel?: boolean
     address?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["customer"]>
@@ -3001,14 +3179,14 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
-    vehicleModel?: boolean
     address?: boolean
     createdAt?: boolean
   }
 
-  export type customerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "vehicleModel" | "address" | "createdAt", ExtArgs["result"]["customer"]>
+  export type customerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "address" | "createdAt", ExtArgs["result"]["customer"]>
   export type customerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tickets?: boolean | customer$ticketsArgs<ExtArgs>
+    vehicles?: boolean | customer$vehiclesArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type customerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3018,13 +3196,13 @@ export namespace Prisma {
     name: "customer"
     objects: {
       tickets: Prisma.$repairTicketPayload<ExtArgs>[]
+      vehicles: Prisma.$VehiclePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       email: string | null
       phone: string
-      vehicleModel: string
       address: string | null
       createdAt: Date
     }, ExtArgs["result"]["customer"]>
@@ -3422,6 +3600,7 @@ export namespace Prisma {
   export interface Prisma__customerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tickets<T extends customer$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, customer$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    vehicles<T extends customer$vehiclesArgs<ExtArgs> = {}>(args?: Subset<T, customer$vehiclesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3455,7 +3634,6 @@ export namespace Prisma {
     readonly name: FieldRef<"customer", 'String'>
     readonly email: FieldRef<"customer", 'String'>
     readonly phone: FieldRef<"customer", 'String'>
-    readonly vehicleModel: FieldRef<"customer", 'String'>
     readonly address: FieldRef<"customer", 'String'>
     readonly createdAt: FieldRef<"customer", 'DateTime'>
   }
@@ -3875,6 +4053,30 @@ export namespace Prisma {
   }
 
   /**
+   * customer.vehicles
+   */
+  export type customer$vehiclesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    where?: VehicleWhereInput
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    cursor?: VehicleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
    * customer without action
    */
   export type customerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3907,36 +4109,54 @@ export namespace Prisma {
 
   export type RepairTicketAvgAggregateOutputType = {
     id: number | null
+    estimatedCost: number | null
+    finalCost: number | null
+    vehicleId: number | null
   }
 
   export type RepairTicketSumAggregateOutputType = {
     id: number | null
+    estimatedCost: number | null
+    finalCost: number | null
+    vehicleId: number | null
   }
 
   export type RepairTicketMinAggregateOutputType = {
     id: number | null
     issueCategory: string | null
     description: string | null
-    status: string | null
+    status: $Enums.TicketStatus | null
     bay: string | null
-    priority: string | null
+    priority: $Enums.TicketPriority | null
     createdAt: Date | null
     updatedAt: Date | null
+    closedAt: Date | null
+    estimatedCost: number | null
+    finalCost: number | null
+    aiSummary: string | null
+    manufacturer: string | null
     customerId: string | null
     technicianId: string | null
+    vehicleId: number | null
   }
 
   export type RepairTicketMaxAggregateOutputType = {
     id: number | null
     issueCategory: string | null
     description: string | null
-    status: string | null
+    status: $Enums.TicketStatus | null
     bay: string | null
-    priority: string | null
+    priority: $Enums.TicketPriority | null
     createdAt: Date | null
     updatedAt: Date | null
+    closedAt: Date | null
+    estimatedCost: number | null
+    finalCost: number | null
+    aiSummary: string | null
+    manufacturer: string | null
     customerId: string | null
     technicianId: string | null
+    vehicleId: number | null
   }
 
   export type RepairTicketCountAggregateOutputType = {
@@ -3948,18 +4168,30 @@ export namespace Prisma {
     priority: number
     createdAt: number
     updatedAt: number
+    closedAt: number
+    estimatedCost: number
+    finalCost: number
+    aiSummary: number
+    manufacturer: number
     customerId: number
     technicianId: number
+    vehicleId: number
     _all: number
   }
 
 
   export type RepairTicketAvgAggregateInputType = {
     id?: true
+    estimatedCost?: true
+    finalCost?: true
+    vehicleId?: true
   }
 
   export type RepairTicketSumAggregateInputType = {
     id?: true
+    estimatedCost?: true
+    finalCost?: true
+    vehicleId?: true
   }
 
   export type RepairTicketMinAggregateInputType = {
@@ -3971,8 +4203,14 @@ export namespace Prisma {
     priority?: true
     createdAt?: true
     updatedAt?: true
+    closedAt?: true
+    estimatedCost?: true
+    finalCost?: true
+    aiSummary?: true
+    manufacturer?: true
     customerId?: true
     technicianId?: true
+    vehicleId?: true
   }
 
   export type RepairTicketMaxAggregateInputType = {
@@ -3984,8 +4222,14 @@ export namespace Prisma {
     priority?: true
     createdAt?: true
     updatedAt?: true
+    closedAt?: true
+    estimatedCost?: true
+    finalCost?: true
+    aiSummary?: true
+    manufacturer?: true
     customerId?: true
     technicianId?: true
+    vehicleId?: true
   }
 
   export type RepairTicketCountAggregateInputType = {
@@ -3997,8 +4241,14 @@ export namespace Prisma {
     priority?: true
     createdAt?: true
     updatedAt?: true
+    closedAt?: true
+    estimatedCost?: true
+    finalCost?: true
+    aiSummary?: true
+    manufacturer?: true
     customerId?: true
     technicianId?: true
+    vehicleId?: true
     _all?: true
   }
 
@@ -4092,13 +4342,19 @@ export namespace Prisma {
     id: number
     issueCategory: string
     description: string
-    status: string
+    status: $Enums.TicketStatus
     bay: string | null
-    priority: string
+    priority: $Enums.TicketPriority
     createdAt: Date
     updatedAt: Date
+    closedAt: Date | null
+    estimatedCost: number | null
+    finalCost: number | null
+    aiSummary: string | null
+    manufacturer: string | null
     customerId: string
     technicianId: string | null
+    vehicleId: number | null
     _count: RepairTicketCountAggregateOutputType | null
     _avg: RepairTicketAvgAggregateOutputType | null
     _sum: RepairTicketSumAggregateOutputType | null
@@ -4129,13 +4385,21 @@ export namespace Prisma {
     priority?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    closedAt?: boolean
+    estimatedCost?: boolean
+    finalCost?: boolean
+    aiSummary?: boolean
+    manufacturer?: boolean
     customerId?: boolean
     technicianId?: boolean
+    vehicleId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
+    vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
     notes?: boolean | repairTicket$notesArgs<ExtArgs>
     timeline?: boolean | repairTicket$timelineArgs<ExtArgs>
     parts?: boolean | repairTicket$partsArgs<ExtArgs>
+    invoice?: boolean | repairTicket$invoiceArgs<ExtArgs>
     _count?: boolean | RepairTicketCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repairTicket"]>
 
@@ -4148,10 +4412,17 @@ export namespace Prisma {
     priority?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    closedAt?: boolean
+    estimatedCost?: boolean
+    finalCost?: boolean
+    aiSummary?: boolean
+    manufacturer?: boolean
     customerId?: boolean
     technicianId?: boolean
+    vehicleId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
+    vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
   }, ExtArgs["result"]["repairTicket"]>
 
   export type repairTicketSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4163,10 +4434,17 @@ export namespace Prisma {
     priority?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    closedAt?: boolean
+    estimatedCost?: boolean
+    finalCost?: boolean
+    aiSummary?: boolean
+    manufacturer?: boolean
     customerId?: boolean
     technicianId?: boolean
+    vehicleId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
+    vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
   }, ExtArgs["result"]["repairTicket"]>
 
   export type repairTicketSelectScalar = {
@@ -4178,26 +4456,36 @@ export namespace Prisma {
     priority?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    closedAt?: boolean
+    estimatedCost?: boolean
+    finalCost?: boolean
+    aiSummary?: boolean
+    manufacturer?: boolean
     customerId?: boolean
     technicianId?: boolean
+    vehicleId?: boolean
   }
 
-  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "bay" | "priority" | "createdAt" | "updatedAt" | "customerId" | "technicianId", ExtArgs["result"]["repairTicket"]>
+  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "bay" | "priority" | "createdAt" | "updatedAt" | "closedAt" | "estimatedCost" | "finalCost" | "aiSummary" | "manufacturer" | "customerId" | "technicianId" | "vehicleId", ExtArgs["result"]["repairTicket"]>
   export type repairTicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
+    vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
     notes?: boolean | repairTicket$notesArgs<ExtArgs>
     timeline?: boolean | repairTicket$timelineArgs<ExtArgs>
     parts?: boolean | repairTicket$partsArgs<ExtArgs>
+    invoice?: boolean | repairTicket$invoiceArgs<ExtArgs>
     _count?: boolean | RepairTicketCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type repairTicketIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
+    vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
   }
   export type repairTicketIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
+    vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
   }
 
   export type $repairTicketPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4205,21 +4493,29 @@ export namespace Prisma {
     objects: {
       customer: Prisma.$customerPayload<ExtArgs>
       technician: Prisma.$technicianPayload<ExtArgs> | null
+      vehicle: Prisma.$VehiclePayload<ExtArgs> | null
       notes: Prisma.$technicianNotePayload<ExtArgs>[]
       timeline: Prisma.$timelineEventPayload<ExtArgs>[]
       parts: Prisma.$usedPartPayload<ExtArgs>[]
+      invoice: Prisma.$invoicePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       issueCategory: string
       description: string
-      status: string
+      status: $Enums.TicketStatus
       bay: string | null
-      priority: string
+      priority: $Enums.TicketPriority
       createdAt: Date
       updatedAt: Date
+      closedAt: Date | null
+      estimatedCost: number | null
+      finalCost: number | null
+      aiSummary: string | null
+      manufacturer: string | null
       customerId: string
       technicianId: string | null
+      vehicleId: number | null
     }, ExtArgs["result"]["repairTicket"]>
     composites: {}
   }
@@ -4616,9 +4912,11 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     customer<T extends customerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, customerDefaultArgs<ExtArgs>>): Prisma__customerClient<$Result.GetResult<Prisma.$customerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     technician<T extends repairTicket$technicianArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$technicianArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    vehicle<T extends repairTicket$vehicleArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$vehicleArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     notes<T extends repairTicket$notesArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$notesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeline<T extends repairTicket$timelineArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$timelineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     parts<T extends repairTicket$partsArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$partsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    invoice<T extends repairTicket$invoiceArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$invoiceArgs<ExtArgs>>): Prisma__invoiceClient<$Result.GetResult<Prisma.$invoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4651,13 +4949,19 @@ export namespace Prisma {
     readonly id: FieldRef<"repairTicket", 'Int'>
     readonly issueCategory: FieldRef<"repairTicket", 'String'>
     readonly description: FieldRef<"repairTicket", 'String'>
-    readonly status: FieldRef<"repairTicket", 'String'>
+    readonly status: FieldRef<"repairTicket", 'TicketStatus'>
     readonly bay: FieldRef<"repairTicket", 'String'>
-    readonly priority: FieldRef<"repairTicket", 'String'>
+    readonly priority: FieldRef<"repairTicket", 'TicketPriority'>
     readonly createdAt: FieldRef<"repairTicket", 'DateTime'>
     readonly updatedAt: FieldRef<"repairTicket", 'DateTime'>
+    readonly closedAt: FieldRef<"repairTicket", 'DateTime'>
+    readonly estimatedCost: FieldRef<"repairTicket", 'Float'>
+    readonly finalCost: FieldRef<"repairTicket", 'Float'>
+    readonly aiSummary: FieldRef<"repairTicket", 'String'>
+    readonly manufacturer: FieldRef<"repairTicket", 'String'>
     readonly customerId: FieldRef<"repairTicket", 'String'>
     readonly technicianId: FieldRef<"repairTicket", 'String'>
+    readonly vehicleId: FieldRef<"repairTicket", 'Int'>
   }
     
 
@@ -5078,6 +5382,25 @@ export namespace Prisma {
   }
 
   /**
+   * repairTicket.vehicle
+   */
+  export type repairTicket$vehicleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    where?: VehicleWhereInput
+  }
+
+  /**
    * repairTicket.notes
    */
   export type repairTicket$notesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5150,6 +5473,25 @@ export namespace Prisma {
   }
 
   /**
+   * repairTicket.invoice
+   */
+  export type repairTicket$invoiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the invoice
+     */
+    select?: invoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the invoice
+     */
+    omit?: invoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
+    where?: invoiceWhereInput
+  }
+
+  /**
    * repairTicket without action
    */
   export type repairTicketDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5193,6 +5535,7 @@ export namespace Prisma {
   export type TechnicianNoteMinAggregateOutputType = {
     id: number | null
     ticketId: number | null
+    aiSummary: string | null
     rawVoiceText: string | null
     structuredText: string | null
     createdAt: Date | null
@@ -5201,6 +5544,7 @@ export namespace Prisma {
   export type TechnicianNoteMaxAggregateOutputType = {
     id: number | null
     ticketId: number | null
+    aiSummary: string | null
     rawVoiceText: string | null
     structuredText: string | null
     createdAt: Date | null
@@ -5209,6 +5553,7 @@ export namespace Prisma {
   export type TechnicianNoteCountAggregateOutputType = {
     id: number
     ticketId: number
+    aiSummary: number
     rawVoiceText: number
     structuredText: number
     quickTags: number
@@ -5231,6 +5576,7 @@ export namespace Prisma {
   export type TechnicianNoteMinAggregateInputType = {
     id?: true
     ticketId?: true
+    aiSummary?: true
     rawVoiceText?: true
     structuredText?: true
     createdAt?: true
@@ -5239,6 +5585,7 @@ export namespace Prisma {
   export type TechnicianNoteMaxAggregateInputType = {
     id?: true
     ticketId?: true
+    aiSummary?: true
     rawVoiceText?: true
     structuredText?: true
     createdAt?: true
@@ -5247,6 +5594,7 @@ export namespace Prisma {
   export type TechnicianNoteCountAggregateInputType = {
     id?: true
     ticketId?: true
+    aiSummary?: true
     rawVoiceText?: true
     structuredText?: true
     quickTags?: true
@@ -5344,6 +5692,7 @@ export namespace Prisma {
   export type TechnicianNoteGroupByOutputType = {
     id: number
     ticketId: number
+    aiSummary: string | null
     rawVoiceText: string | null
     structuredText: string
     quickTags: string[]
@@ -5373,6 +5722,7 @@ export namespace Prisma {
   export type technicianNoteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     ticketId?: boolean
+    aiSummary?: boolean
     rawVoiceText?: boolean
     structuredText?: boolean
     quickTags?: boolean
@@ -5384,6 +5734,7 @@ export namespace Prisma {
   export type technicianNoteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     ticketId?: boolean
+    aiSummary?: boolean
     rawVoiceText?: boolean
     structuredText?: boolean
     quickTags?: boolean
@@ -5395,6 +5746,7 @@ export namespace Prisma {
   export type technicianNoteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     ticketId?: boolean
+    aiSummary?: boolean
     rawVoiceText?: boolean
     structuredText?: boolean
     quickTags?: boolean
@@ -5406,6 +5758,7 @@ export namespace Prisma {
   export type technicianNoteSelectScalar = {
     id?: boolean
     ticketId?: boolean
+    aiSummary?: boolean
     rawVoiceText?: boolean
     structuredText?: boolean
     quickTags?: boolean
@@ -5413,7 +5766,7 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type technicianNoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticketId" | "rawVoiceText" | "structuredText" | "quickTags" | "imageUrls" | "createdAt", ExtArgs["result"]["technicianNote"]>
+  export type technicianNoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticketId" | "aiSummary" | "rawVoiceText" | "structuredText" | "quickTags" | "imageUrls" | "createdAt", ExtArgs["result"]["technicianNote"]>
   export type technicianNoteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ticket?: boolean | repairTicketDefaultArgs<ExtArgs>
   }
@@ -5432,6 +5785,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       ticketId: number
+      aiSummary: string | null
       rawVoiceText: string | null
       structuredText: string
       quickTags: string[]
@@ -5863,6 +6217,7 @@ export namespace Prisma {
   interface technicianNoteFieldRefs {
     readonly id: FieldRef<"technicianNote", 'Int'>
     readonly ticketId: FieldRef<"technicianNote", 'Int'>
+    readonly aiSummary: FieldRef<"technicianNote", 'String'>
     readonly rawVoiceText: FieldRef<"technicianNote", 'String'>
     readonly structuredText: FieldRef<"technicianNote", 'String'>
     readonly quickTags: FieldRef<"technicianNote", 'String[]'>
@@ -9696,16 +10051,16 @@ export namespace Prisma {
 
   export type InvoiceAvgAggregateOutputType = {
     id: number | null
-    ticketId: number | null
     laborCharge: number | null
     grandTotal: number | null
+    ticketId: number | null
   }
 
   export type InvoiceSumAggregateOutputType = {
     id: number | null
-    ticketId: number | null
     laborCharge: number | null
     grandTotal: number | null
+    ticketId: number | null
   }
 
   export type InvoiceMinAggregateOutputType = {
@@ -9713,11 +10068,12 @@ export namespace Prisma {
     invoiceNo: string | null
     customerName: string | null
     customerPhone: string | null
-    ticketId: number | null
     laborCharge: number | null
     grandTotal: number | null
     paymentStatus: string | null
     paymentMethod: string | null
+    saleType: $Enums.SaleType | null
+    ticketId: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9727,11 +10083,12 @@ export namespace Prisma {
     invoiceNo: string | null
     customerName: string | null
     customerPhone: string | null
-    ticketId: number | null
     laborCharge: number | null
     grandTotal: number | null
     paymentStatus: string | null
     paymentMethod: string | null
+    saleType: $Enums.SaleType | null
+    ticketId: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9741,12 +10098,13 @@ export namespace Prisma {
     invoiceNo: number
     customerName: number
     customerPhone: number
-    ticketId: number
     items: number
     laborCharge: number
     grandTotal: number
     paymentStatus: number
     paymentMethod: number
+    saleType: number
+    ticketId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -9755,16 +10113,16 @@ export namespace Prisma {
 
   export type InvoiceAvgAggregateInputType = {
     id?: true
-    ticketId?: true
     laborCharge?: true
     grandTotal?: true
+    ticketId?: true
   }
 
   export type InvoiceSumAggregateInputType = {
     id?: true
-    ticketId?: true
     laborCharge?: true
     grandTotal?: true
+    ticketId?: true
   }
 
   export type InvoiceMinAggregateInputType = {
@@ -9772,11 +10130,12 @@ export namespace Prisma {
     invoiceNo?: true
     customerName?: true
     customerPhone?: true
-    ticketId?: true
     laborCharge?: true
     grandTotal?: true
     paymentStatus?: true
     paymentMethod?: true
+    saleType?: true
+    ticketId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9786,11 +10145,12 @@ export namespace Prisma {
     invoiceNo?: true
     customerName?: true
     customerPhone?: true
-    ticketId?: true
     laborCharge?: true
     grandTotal?: true
     paymentStatus?: true
     paymentMethod?: true
+    saleType?: true
+    ticketId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9800,12 +10160,13 @@ export namespace Prisma {
     invoiceNo?: true
     customerName?: true
     customerPhone?: true
-    ticketId?: true
     items?: true
     laborCharge?: true
     grandTotal?: true
     paymentStatus?: true
     paymentMethod?: true
+    saleType?: true
+    ticketId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -9902,12 +10263,13 @@ export namespace Prisma {
     invoiceNo: string
     customerName: string
     customerPhone: string
-    ticketId: number | null
     items: JsonValue
     laborCharge: number
     grandTotal: number
     paymentStatus: string
     paymentMethod: string
+    saleType: $Enums.SaleType
+    ticketId: number | null
     createdAt: Date
     updatedAt: Date
     _count: InvoiceCountAggregateOutputType | null
@@ -9936,14 +10298,16 @@ export namespace Prisma {
     invoiceNo?: boolean
     customerName?: boolean
     customerPhone?: boolean
-    ticketId?: boolean
     items?: boolean
     laborCharge?: boolean
     grandTotal?: boolean
     paymentStatus?: boolean
     paymentMethod?: boolean
+    saleType?: boolean
+    ticketId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ticket?: boolean | invoice$ticketArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
   export type invoiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9951,14 +10315,16 @@ export namespace Prisma {
     invoiceNo?: boolean
     customerName?: boolean
     customerPhone?: boolean
-    ticketId?: boolean
     items?: boolean
     laborCharge?: boolean
     grandTotal?: boolean
     paymentStatus?: boolean
     paymentMethod?: boolean
+    saleType?: boolean
+    ticketId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ticket?: boolean | invoice$ticketArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
   export type invoiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9966,14 +10332,16 @@ export namespace Prisma {
     invoiceNo?: boolean
     customerName?: boolean
     customerPhone?: boolean
-    ticketId?: boolean
     items?: boolean
     laborCharge?: boolean
     grandTotal?: boolean
     paymentStatus?: boolean
     paymentMethod?: boolean
+    saleType?: boolean
+    ticketId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ticket?: boolean | invoice$ticketArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
   export type invoiceSelectScalar = {
@@ -9981,32 +10349,45 @@ export namespace Prisma {
     invoiceNo?: boolean
     customerName?: boolean
     customerPhone?: boolean
-    ticketId?: boolean
     items?: boolean
     laborCharge?: boolean
     grandTotal?: boolean
     paymentStatus?: boolean
     paymentMethod?: boolean
+    saleType?: boolean
+    ticketId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type invoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNo" | "customerName" | "customerPhone" | "ticketId" | "items" | "laborCharge" | "grandTotal" | "paymentStatus" | "paymentMethod" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
+  export type invoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNo" | "customerName" | "customerPhone" | "items" | "laborCharge" | "grandTotal" | "paymentStatus" | "paymentMethod" | "saleType" | "ticketId" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
+  export type invoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | invoice$ticketArgs<ExtArgs>
+  }
+  export type invoiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | invoice$ticketArgs<ExtArgs>
+  }
+  export type invoiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | invoice$ticketArgs<ExtArgs>
+  }
 
   export type $invoicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "invoice"
-    objects: {}
+    objects: {
+      ticket: Prisma.$repairTicketPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       invoiceNo: string
       customerName: string
       customerPhone: string
-      ticketId: number | null
       items: Prisma.JsonValue
       laborCharge: number
       grandTotal: number
       paymentStatus: string
       paymentMethod: string
+      saleType: $Enums.SaleType
+      ticketId: number | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["invoice"]>
@@ -10403,6 +10784,7 @@ export namespace Prisma {
    */
   export interface Prisma__invoiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    ticket<T extends invoice$ticketArgs<ExtArgs> = {}>(args?: Subset<T, invoice$ticketArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10436,12 +10818,13 @@ export namespace Prisma {
     readonly invoiceNo: FieldRef<"invoice", 'String'>
     readonly customerName: FieldRef<"invoice", 'String'>
     readonly customerPhone: FieldRef<"invoice", 'String'>
-    readonly ticketId: FieldRef<"invoice", 'Int'>
     readonly items: FieldRef<"invoice", 'Json'>
     readonly laborCharge: FieldRef<"invoice", 'Float'>
     readonly grandTotal: FieldRef<"invoice", 'Float'>
     readonly paymentStatus: FieldRef<"invoice", 'String'>
     readonly paymentMethod: FieldRef<"invoice", 'String'>
+    readonly saleType: FieldRef<"invoice", 'SaleType'>
+    readonly ticketId: FieldRef<"invoice", 'Int'>
     readonly createdAt: FieldRef<"invoice", 'DateTime'>
     readonly updatedAt: FieldRef<"invoice", 'DateTime'>
   }
@@ -10461,6 +10844,10 @@ export namespace Prisma {
      */
     omit?: invoiceOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
+    /**
      * Filter, which invoice to fetch.
      */
     where: invoiceWhereUniqueInput
@@ -10479,6 +10866,10 @@ export namespace Prisma {
      */
     omit?: invoiceOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
+    /**
      * Filter, which invoice to fetch.
      */
     where: invoiceWhereUniqueInput
@@ -10496,6 +10887,10 @@ export namespace Prisma {
      * Omit specific fields from the invoice
      */
     omit?: invoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
     /**
      * Filter, which invoice to fetch.
      */
@@ -10545,6 +10940,10 @@ export namespace Prisma {
      */
     omit?: invoiceOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
+    /**
      * Filter, which invoice to fetch.
      */
     where?: invoiceWhereInput
@@ -10592,6 +10991,10 @@ export namespace Prisma {
      * Omit specific fields from the invoice
      */
     omit?: invoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
     /**
      * Filter, which invoices to fetch.
      */
@@ -10641,6 +11044,10 @@ export namespace Prisma {
      */
     omit?: invoiceOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
+    /**
      * The data needed to create a invoice.
      */
     data: XOR<invoiceCreateInput, invoiceUncheckedCreateInput>
@@ -10674,6 +11081,10 @@ export namespace Prisma {
      */
     data: invoiceCreateManyInput | invoiceCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -10688,6 +11099,10 @@ export namespace Prisma {
      * Omit specific fields from the invoice
      */
     omit?: invoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
     /**
      * The data needed to update a invoice.
      */
@@ -10740,6 +11155,10 @@ export namespace Prisma {
      * Limit how many invoices to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -10754,6 +11173,10 @@ export namespace Prisma {
      * Omit specific fields from the invoice
      */
     omit?: invoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
     /**
      * The filter to search for the invoice to update in case it exists.
      */
@@ -10781,6 +11204,10 @@ export namespace Prisma {
      */
     omit?: invoiceOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
+    /**
      * Filter which invoice to delete.
      */
     where: invoiceWhereUniqueInput
@@ -10801,6 +11228,25 @@ export namespace Prisma {
   }
 
   /**
+   * invoice.ticket
+   */
+  export type invoice$ticketArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    where?: repairTicketWhereInput
+  }
+
+  /**
    * invoice without action
    */
   export type invoiceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10812,6 +11258,10 @@ export namespace Prisma {
      * Omit specific fields from the invoice
      */
     omit?: invoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
   }
 
 
@@ -10821,8 +11271,18 @@ export namespace Prisma {
 
   export type AggregateTechnician = {
     _count: TechnicianCountAggregateOutputType | null
+    _avg: TechnicianAvgAggregateOutputType | null
+    _sum: TechnicianSumAggregateOutputType | null
     _min: TechnicianMinAggregateOutputType | null
     _max: TechnicianMaxAggregateOutputType | null
+  }
+
+  export type TechnicianAvgAggregateOutputType = {
+    experienceYears: number | null
+  }
+
+  export type TechnicianSumAggregateOutputType = {
+    experienceYears: number | null
   }
 
   export type TechnicianMinAggregateOutputType = {
@@ -10831,9 +11291,9 @@ export namespace Prisma {
     email: string | null
     phone: string | null
     employeeId: string | null
-    specialization: string | null
-    status: string | null
-    experienceYears: string | null
+    specialization: $Enums.TechnicianSpecialization | null
+    status: $Enums.TechnicianStatus | null
+    experienceYears: number | null
     address: string | null
     profileImage: string | null
     createdAt: Date | null
@@ -10846,9 +11306,9 @@ export namespace Prisma {
     email: string | null
     phone: string | null
     employeeId: string | null
-    specialization: string | null
-    status: string | null
-    experienceYears: string | null
+    specialization: $Enums.TechnicianSpecialization | null
+    status: $Enums.TechnicianStatus | null
+    experienceYears: number | null
     address: string | null
     profileImage: string | null
     createdAt: Date | null
@@ -10871,6 +11331,14 @@ export namespace Prisma {
     _all: number
   }
 
+
+  export type TechnicianAvgAggregateInputType = {
+    experienceYears?: true
+  }
+
+  export type TechnicianSumAggregateInputType = {
+    experienceYears?: true
+  }
 
   export type TechnicianMinAggregateInputType = {
     id?: true
@@ -10956,6 +11424,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: TechnicianAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TechnicianSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: TechnicianMinAggregateInputType
@@ -10986,6 +11466,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: TechnicianCountAggregateInputType | true
+    _avg?: TechnicianAvgAggregateInputType
+    _sum?: TechnicianSumAggregateInputType
     _min?: TechnicianMinAggregateInputType
     _max?: TechnicianMaxAggregateInputType
   }
@@ -10996,14 +11478,16 @@ export namespace Prisma {
     email: string
     phone: string
     employeeId: string
-    specialization: string
-    status: string
-    experienceYears: string
+    specialization: $Enums.TechnicianSpecialization
+    status: $Enums.TechnicianStatus
+    experienceYears: number
     address: string | null
     profileImage: string | null
     createdAt: Date
     updatedAt: Date
     _count: TechnicianCountAggregateOutputType | null
+    _avg: TechnicianAvgAggregateOutputType | null
+    _sum: TechnicianSumAggregateOutputType | null
     _min: TechnicianMinAggregateOutputType | null
     _max: TechnicianMaxAggregateOutputType | null
   }
@@ -11103,9 +11587,9 @@ export namespace Prisma {
       email: string
       phone: string
       employeeId: string
-      specialization: string
-      status: string
-      experienceYears: string
+      specialization: $Enums.TechnicianSpecialization
+      status: $Enums.TechnicianStatus
+      experienceYears: number
       address: string | null
       profileImage: string | null
       createdAt: Date
@@ -11539,9 +12023,9 @@ export namespace Prisma {
     readonly email: FieldRef<"technician", 'String'>
     readonly phone: FieldRef<"technician", 'String'>
     readonly employeeId: FieldRef<"technician", 'String'>
-    readonly specialization: FieldRef<"technician", 'String'>
-    readonly status: FieldRef<"technician", 'String'>
-    readonly experienceYears: FieldRef<"technician", 'String'>
+    readonly specialization: FieldRef<"technician", 'TechnicianSpecialization'>
+    readonly status: FieldRef<"technician", 'TechnicianStatus'>
+    readonly experienceYears: FieldRef<"technician", 'Int'>
     readonly address: FieldRef<"technician", 'String'>
     readonly profileImage: FieldRef<"technician", 'String'>
     readonly createdAt: FieldRef<"technician", 'DateTime'>
@@ -11982,6 +12466,1283 @@ export namespace Prisma {
 
 
   /**
+   * Model Vehicle
+   */
+
+  export type AggregateVehicle = {
+    _count: VehicleCountAggregateOutputType | null
+    _avg: VehicleAvgAggregateOutputType | null
+    _sum: VehicleSumAggregateOutputType | null
+    _min: VehicleMinAggregateOutputType | null
+    _max: VehicleMaxAggregateOutputType | null
+  }
+
+  export type VehicleAvgAggregateOutputType = {
+    id: number | null
+    batterySoh: number | null
+    batteryCycles: number | null
+    lastServiceDaysAgo: number | null
+    modelYear: number | null
+    healthScore: number | null
+  }
+
+  export type VehicleSumAggregateOutputType = {
+    id: number | null
+    batterySoh: number | null
+    batteryCycles: number | null
+    lastServiceDaysAgo: number | null
+    modelYear: number | null
+    healthScore: number | null
+  }
+
+  export type VehicleMinAggregateOutputType = {
+    id: number | null
+    vin: string | null
+    vehicleModel: string | null
+    batteryPackSerial: string | null
+    batteryCapacity: string | null
+    batterySoh: number | null
+    batteryCycles: number | null
+    batteryTemp: string | null
+    odometer: string | null
+    lastServiceDaysAgo: number | null
+    manufacturer: string | null
+    modelYear: number | null
+    healthScore: number | null
+    lastAiCheck: Date | null
+    customerId: string | null
+  }
+
+  export type VehicleMaxAggregateOutputType = {
+    id: number | null
+    vin: string | null
+    vehicleModel: string | null
+    batteryPackSerial: string | null
+    batteryCapacity: string | null
+    batterySoh: number | null
+    batteryCycles: number | null
+    batteryTemp: string | null
+    odometer: string | null
+    lastServiceDaysAgo: number | null
+    manufacturer: string | null
+    modelYear: number | null
+    healthScore: number | null
+    lastAiCheck: Date | null
+    customerId: string | null
+  }
+
+  export type VehicleCountAggregateOutputType = {
+    id: number
+    vin: number
+    vehicleModel: number
+    batteryPackSerial: number
+    batteryCapacity: number
+    batterySoh: number
+    batteryCycles: number
+    batteryTemp: number
+    odometer: number
+    lastServiceDaysAgo: number
+    manufacturer: number
+    modelYear: number
+    healthScore: number
+    lastAiCheck: number
+    customerId: number
+    _all: number
+  }
+
+
+  export type VehicleAvgAggregateInputType = {
+    id?: true
+    batterySoh?: true
+    batteryCycles?: true
+    lastServiceDaysAgo?: true
+    modelYear?: true
+    healthScore?: true
+  }
+
+  export type VehicleSumAggregateInputType = {
+    id?: true
+    batterySoh?: true
+    batteryCycles?: true
+    lastServiceDaysAgo?: true
+    modelYear?: true
+    healthScore?: true
+  }
+
+  export type VehicleMinAggregateInputType = {
+    id?: true
+    vin?: true
+    vehicleModel?: true
+    batteryPackSerial?: true
+    batteryCapacity?: true
+    batterySoh?: true
+    batteryCycles?: true
+    batteryTemp?: true
+    odometer?: true
+    lastServiceDaysAgo?: true
+    manufacturer?: true
+    modelYear?: true
+    healthScore?: true
+    lastAiCheck?: true
+    customerId?: true
+  }
+
+  export type VehicleMaxAggregateInputType = {
+    id?: true
+    vin?: true
+    vehicleModel?: true
+    batteryPackSerial?: true
+    batteryCapacity?: true
+    batterySoh?: true
+    batteryCycles?: true
+    batteryTemp?: true
+    odometer?: true
+    lastServiceDaysAgo?: true
+    manufacturer?: true
+    modelYear?: true
+    healthScore?: true
+    lastAiCheck?: true
+    customerId?: true
+  }
+
+  export type VehicleCountAggregateInputType = {
+    id?: true
+    vin?: true
+    vehicleModel?: true
+    batteryPackSerial?: true
+    batteryCapacity?: true
+    batterySoh?: true
+    batteryCycles?: true
+    batteryTemp?: true
+    odometer?: true
+    lastServiceDaysAgo?: true
+    manufacturer?: true
+    modelYear?: true
+    healthScore?: true
+    lastAiCheck?: true
+    customerId?: true
+    _all?: true
+  }
+
+  export type VehicleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Vehicle to aggregate.
+     */
+    where?: VehicleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vehicles to fetch.
+     */
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VehicleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vehicles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vehicles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Vehicles
+    **/
+    _count?: true | VehicleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VehicleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VehicleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VehicleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VehicleMaxAggregateInputType
+  }
+
+  export type GetVehicleAggregateType<T extends VehicleAggregateArgs> = {
+        [P in keyof T & keyof AggregateVehicle]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVehicle[P]>
+      : GetScalarType<T[P], AggregateVehicle[P]>
+  }
+
+
+
+
+  export type VehicleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VehicleWhereInput
+    orderBy?: VehicleOrderByWithAggregationInput | VehicleOrderByWithAggregationInput[]
+    by: VehicleScalarFieldEnum[] | VehicleScalarFieldEnum
+    having?: VehicleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VehicleCountAggregateInputType | true
+    _avg?: VehicleAvgAggregateInputType
+    _sum?: VehicleSumAggregateInputType
+    _min?: VehicleMinAggregateInputType
+    _max?: VehicleMaxAggregateInputType
+  }
+
+  export type VehicleGroupByOutputType = {
+    id: number
+    vin: string
+    vehicleModel: string
+    batteryPackSerial: string | null
+    batteryCapacity: string | null
+    batterySoh: number | null
+    batteryCycles: number | null
+    batteryTemp: string | null
+    odometer: string | null
+    lastServiceDaysAgo: number | null
+    manufacturer: string | null
+    modelYear: number | null
+    healthScore: number | null
+    lastAiCheck: Date | null
+    customerId: string
+    _count: VehicleCountAggregateOutputType | null
+    _avg: VehicleAvgAggregateOutputType | null
+    _sum: VehicleSumAggregateOutputType | null
+    _min: VehicleMinAggregateOutputType | null
+    _max: VehicleMaxAggregateOutputType | null
+  }
+
+  type GetVehicleGroupByPayload<T extends VehicleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VehicleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VehicleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VehicleGroupByOutputType[P]>
+            : GetScalarType<T[P], VehicleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VehicleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vin?: boolean
+    vehicleModel?: boolean
+    batteryPackSerial?: boolean
+    batteryCapacity?: boolean
+    batterySoh?: boolean
+    batteryCycles?: boolean
+    batteryTemp?: boolean
+    odometer?: boolean
+    lastServiceDaysAgo?: boolean
+    manufacturer?: boolean
+    modelYear?: boolean
+    healthScore?: boolean
+    lastAiCheck?: boolean
+    customerId?: boolean
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+    tickets?: boolean | Vehicle$ticketsArgs<ExtArgs>
+    _count?: boolean | VehicleCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vehicle"]>
+
+  export type VehicleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vin?: boolean
+    vehicleModel?: boolean
+    batteryPackSerial?: boolean
+    batteryCapacity?: boolean
+    batterySoh?: boolean
+    batteryCycles?: boolean
+    batteryTemp?: boolean
+    odometer?: boolean
+    lastServiceDaysAgo?: boolean
+    manufacturer?: boolean
+    modelYear?: boolean
+    healthScore?: boolean
+    lastAiCheck?: boolean
+    customerId?: boolean
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vehicle"]>
+
+  export type VehicleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vin?: boolean
+    vehicleModel?: boolean
+    batteryPackSerial?: boolean
+    batteryCapacity?: boolean
+    batterySoh?: boolean
+    batteryCycles?: boolean
+    batteryTemp?: boolean
+    odometer?: boolean
+    lastServiceDaysAgo?: boolean
+    manufacturer?: boolean
+    modelYear?: boolean
+    healthScore?: boolean
+    lastAiCheck?: boolean
+    customerId?: boolean
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vehicle"]>
+
+  export type VehicleSelectScalar = {
+    id?: boolean
+    vin?: boolean
+    vehicleModel?: boolean
+    batteryPackSerial?: boolean
+    batteryCapacity?: boolean
+    batterySoh?: boolean
+    batteryCycles?: boolean
+    batteryTemp?: boolean
+    odometer?: boolean
+    lastServiceDaysAgo?: boolean
+    manufacturer?: boolean
+    modelYear?: boolean
+    healthScore?: boolean
+    lastAiCheck?: boolean
+    customerId?: boolean
+  }
+
+  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vin" | "vehicleModel" | "batteryPackSerial" | "batteryCapacity" | "batterySoh" | "batteryCycles" | "batteryTemp" | "odometer" | "lastServiceDaysAgo" | "manufacturer" | "modelYear" | "healthScore" | "lastAiCheck" | "customerId", ExtArgs["result"]["vehicle"]>
+  export type VehicleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+    tickets?: boolean | Vehicle$ticketsArgs<ExtArgs>
+    _count?: boolean | VehicleCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type VehicleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }
+  export type VehicleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | customerDefaultArgs<ExtArgs>
+  }
+
+  export type $VehiclePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Vehicle"
+    objects: {
+      customer: Prisma.$customerPayload<ExtArgs>
+      tickets: Prisma.$repairTicketPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      vin: string
+      vehicleModel: string
+      batteryPackSerial: string | null
+      batteryCapacity: string | null
+      batterySoh: number | null
+      batteryCycles: number | null
+      batteryTemp: string | null
+      odometer: string | null
+      lastServiceDaysAgo: number | null
+      manufacturer: string | null
+      modelYear: number | null
+      healthScore: number | null
+      lastAiCheck: Date | null
+      customerId: string
+    }, ExtArgs["result"]["vehicle"]>
+    composites: {}
+  }
+
+  type VehicleGetPayload<S extends boolean | null | undefined | VehicleDefaultArgs> = $Result.GetResult<Prisma.$VehiclePayload, S>
+
+  type VehicleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VehicleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VehicleCountAggregateInputType | true
+    }
+
+  export interface VehicleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Vehicle'], meta: { name: 'Vehicle' } }
+    /**
+     * Find zero or one Vehicle that matches the filter.
+     * @param {VehicleFindUniqueArgs} args - Arguments to find a Vehicle
+     * @example
+     * // Get one Vehicle
+     * const vehicle = await prisma.vehicle.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VehicleFindUniqueArgs>(args: SelectSubset<T, VehicleFindUniqueArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Vehicle that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VehicleFindUniqueOrThrowArgs} args - Arguments to find a Vehicle
+     * @example
+     * // Get one Vehicle
+     * const vehicle = await prisma.vehicle.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VehicleFindUniqueOrThrowArgs>(args: SelectSubset<T, VehicleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Vehicle that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleFindFirstArgs} args - Arguments to find a Vehicle
+     * @example
+     * // Get one Vehicle
+     * const vehicle = await prisma.vehicle.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VehicleFindFirstArgs>(args?: SelectSubset<T, VehicleFindFirstArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Vehicle that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleFindFirstOrThrowArgs} args - Arguments to find a Vehicle
+     * @example
+     * // Get one Vehicle
+     * const vehicle = await prisma.vehicle.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VehicleFindFirstOrThrowArgs>(args?: SelectSubset<T, VehicleFindFirstOrThrowArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Vehicles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Vehicles
+     * const vehicles = await prisma.vehicle.findMany()
+     * 
+     * // Get first 10 Vehicles
+     * const vehicles = await prisma.vehicle.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const vehicleWithIdOnly = await prisma.vehicle.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VehicleFindManyArgs>(args?: SelectSubset<T, VehicleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Vehicle.
+     * @param {VehicleCreateArgs} args - Arguments to create a Vehicle.
+     * @example
+     * // Create one Vehicle
+     * const Vehicle = await prisma.vehicle.create({
+     *   data: {
+     *     // ... data to create a Vehicle
+     *   }
+     * })
+     * 
+     */
+    create<T extends VehicleCreateArgs>(args: SelectSubset<T, VehicleCreateArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Vehicles.
+     * @param {VehicleCreateManyArgs} args - Arguments to create many Vehicles.
+     * @example
+     * // Create many Vehicles
+     * const vehicle = await prisma.vehicle.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VehicleCreateManyArgs>(args?: SelectSubset<T, VehicleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Vehicles and returns the data saved in the database.
+     * @param {VehicleCreateManyAndReturnArgs} args - Arguments to create many Vehicles.
+     * @example
+     * // Create many Vehicles
+     * const vehicle = await prisma.vehicle.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Vehicles and only return the `id`
+     * const vehicleWithIdOnly = await prisma.vehicle.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VehicleCreateManyAndReturnArgs>(args?: SelectSubset<T, VehicleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Vehicle.
+     * @param {VehicleDeleteArgs} args - Arguments to delete one Vehicle.
+     * @example
+     * // Delete one Vehicle
+     * const Vehicle = await prisma.vehicle.delete({
+     *   where: {
+     *     // ... filter to delete one Vehicle
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VehicleDeleteArgs>(args: SelectSubset<T, VehicleDeleteArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Vehicle.
+     * @param {VehicleUpdateArgs} args - Arguments to update one Vehicle.
+     * @example
+     * // Update one Vehicle
+     * const vehicle = await prisma.vehicle.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VehicleUpdateArgs>(args: SelectSubset<T, VehicleUpdateArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Vehicles.
+     * @param {VehicleDeleteManyArgs} args - Arguments to filter Vehicles to delete.
+     * @example
+     * // Delete a few Vehicles
+     * const { count } = await prisma.vehicle.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VehicleDeleteManyArgs>(args?: SelectSubset<T, VehicleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Vehicles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Vehicles
+     * const vehicle = await prisma.vehicle.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VehicleUpdateManyArgs>(args: SelectSubset<T, VehicleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Vehicles and returns the data updated in the database.
+     * @param {VehicleUpdateManyAndReturnArgs} args - Arguments to update many Vehicles.
+     * @example
+     * // Update many Vehicles
+     * const vehicle = await prisma.vehicle.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Vehicles and only return the `id`
+     * const vehicleWithIdOnly = await prisma.vehicle.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VehicleUpdateManyAndReturnArgs>(args: SelectSubset<T, VehicleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Vehicle.
+     * @param {VehicleUpsertArgs} args - Arguments to update or create a Vehicle.
+     * @example
+     * // Update or create a Vehicle
+     * const vehicle = await prisma.vehicle.upsert({
+     *   create: {
+     *     // ... data to create a Vehicle
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Vehicle we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VehicleUpsertArgs>(args: SelectSubset<T, VehicleUpsertArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Vehicles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleCountArgs} args - Arguments to filter Vehicles to count.
+     * @example
+     * // Count the number of Vehicles
+     * const count = await prisma.vehicle.count({
+     *   where: {
+     *     // ... the filter for the Vehicles we want to count
+     *   }
+     * })
+    **/
+    count<T extends VehicleCountArgs>(
+      args?: Subset<T, VehicleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VehicleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Vehicle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VehicleAggregateArgs>(args: Subset<T, VehicleAggregateArgs>): Prisma.PrismaPromise<GetVehicleAggregateType<T>>
+
+    /**
+     * Group by Vehicle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VehicleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VehicleGroupByArgs['orderBy'] }
+        : { orderBy?: VehicleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VehicleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVehicleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Vehicle model
+   */
+  readonly fields: VehicleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Vehicle.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends customerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, customerDefaultArgs<ExtArgs>>): Prisma__customerClient<$Result.GetResult<Prisma.$customerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tickets<T extends Vehicle$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, Vehicle$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Vehicle model
+   */
+  interface VehicleFieldRefs {
+    readonly id: FieldRef<"Vehicle", 'Int'>
+    readonly vin: FieldRef<"Vehicle", 'String'>
+    readonly vehicleModel: FieldRef<"Vehicle", 'String'>
+    readonly batteryPackSerial: FieldRef<"Vehicle", 'String'>
+    readonly batteryCapacity: FieldRef<"Vehicle", 'String'>
+    readonly batterySoh: FieldRef<"Vehicle", 'Int'>
+    readonly batteryCycles: FieldRef<"Vehicle", 'Int'>
+    readonly batteryTemp: FieldRef<"Vehicle", 'String'>
+    readonly odometer: FieldRef<"Vehicle", 'String'>
+    readonly lastServiceDaysAgo: FieldRef<"Vehicle", 'Int'>
+    readonly manufacturer: FieldRef<"Vehicle", 'String'>
+    readonly modelYear: FieldRef<"Vehicle", 'Int'>
+    readonly healthScore: FieldRef<"Vehicle", 'Int'>
+    readonly lastAiCheck: FieldRef<"Vehicle", 'DateTime'>
+    readonly customerId: FieldRef<"Vehicle", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Vehicle findUnique
+   */
+  export type VehicleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicle to fetch.
+     */
+    where: VehicleWhereUniqueInput
+  }
+
+  /**
+   * Vehicle findUniqueOrThrow
+   */
+  export type VehicleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicle to fetch.
+     */
+    where: VehicleWhereUniqueInput
+  }
+
+  /**
+   * Vehicle findFirst
+   */
+  export type VehicleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicle to fetch.
+     */
+    where?: VehicleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vehicles to fetch.
+     */
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Vehicles.
+     */
+    cursor?: VehicleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vehicles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vehicles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vehicles.
+     */
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
+   * Vehicle findFirstOrThrow
+   */
+  export type VehicleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicle to fetch.
+     */
+    where?: VehicleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vehicles to fetch.
+     */
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Vehicles.
+     */
+    cursor?: VehicleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vehicles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vehicles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vehicles.
+     */
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
+   * Vehicle findMany
+   */
+  export type VehicleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicles to fetch.
+     */
+    where?: VehicleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vehicles to fetch.
+     */
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Vehicles.
+     */
+    cursor?: VehicleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vehicles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vehicles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vehicles.
+     */
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
+   * Vehicle create
+   */
+  export type VehicleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Vehicle.
+     */
+    data: XOR<VehicleCreateInput, VehicleUncheckedCreateInput>
+  }
+
+  /**
+   * Vehicle createMany
+   */
+  export type VehicleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Vehicles.
+     */
+    data: VehicleCreateManyInput | VehicleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Vehicle createManyAndReturn
+   */
+  export type VehicleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * The data used to create many Vehicles.
+     */
+    data: VehicleCreateManyInput | VehicleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Vehicle update
+   */
+  export type VehicleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Vehicle.
+     */
+    data: XOR<VehicleUpdateInput, VehicleUncheckedUpdateInput>
+    /**
+     * Choose, which Vehicle to update.
+     */
+    where: VehicleWhereUniqueInput
+  }
+
+  /**
+   * Vehicle updateMany
+   */
+  export type VehicleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Vehicles.
+     */
+    data: XOR<VehicleUpdateManyMutationInput, VehicleUncheckedUpdateManyInput>
+    /**
+     * Filter which Vehicles to update
+     */
+    where?: VehicleWhereInput
+    /**
+     * Limit how many Vehicles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Vehicle updateManyAndReturn
+   */
+  export type VehicleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * The data used to update Vehicles.
+     */
+    data: XOR<VehicleUpdateManyMutationInput, VehicleUncheckedUpdateManyInput>
+    /**
+     * Filter which Vehicles to update
+     */
+    where?: VehicleWhereInput
+    /**
+     * Limit how many Vehicles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Vehicle upsert
+   */
+  export type VehicleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Vehicle to update in case it exists.
+     */
+    where: VehicleWhereUniqueInput
+    /**
+     * In case the Vehicle found by the `where` argument doesn't exist, create a new Vehicle with this data.
+     */
+    create: XOR<VehicleCreateInput, VehicleUncheckedCreateInput>
+    /**
+     * In case the Vehicle was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VehicleUpdateInput, VehicleUncheckedUpdateInput>
+  }
+
+  /**
+   * Vehicle delete
+   */
+  export type VehicleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter which Vehicle to delete.
+     */
+    where: VehicleWhereUniqueInput
+  }
+
+  /**
+   * Vehicle deleteMany
+   */
+  export type VehicleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Vehicles to delete
+     */
+    where?: VehicleWhereInput
+    /**
+     * Limit how many Vehicles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Vehicle.tickets
+   */
+  export type Vehicle$ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    where?: repairTicketWhereInput
+    orderBy?: repairTicketOrderByWithRelationInput | repairTicketOrderByWithRelationInput[]
+    cursor?: repairTicketWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairTicketScalarFieldEnum | RepairTicketScalarFieldEnum[]
+  }
+
+  /**
+   * Vehicle without action
+   */
+  export type VehicleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -12013,7 +13774,6 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     phone: 'phone',
-    vehicleModel: 'vehicleModel',
     address: 'address',
     createdAt: 'createdAt'
   };
@@ -12030,8 +13790,14 @@ export namespace Prisma {
     priority: 'priority',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    closedAt: 'closedAt',
+    estimatedCost: 'estimatedCost',
+    finalCost: 'finalCost',
+    aiSummary: 'aiSummary',
+    manufacturer: 'manufacturer',
     customerId: 'customerId',
-    technicianId: 'technicianId'
+    technicianId: 'technicianId',
+    vehicleId: 'vehicleId'
   };
 
   export type RepairTicketScalarFieldEnum = (typeof RepairTicketScalarFieldEnum)[keyof typeof RepairTicketScalarFieldEnum]
@@ -12040,6 +13806,7 @@ export namespace Prisma {
   export const TechnicianNoteScalarFieldEnum: {
     id: 'id',
     ticketId: 'ticketId',
+    aiSummary: 'aiSummary',
     rawVoiceText: 'rawVoiceText',
     structuredText: 'structuredText',
     quickTags: 'quickTags',
@@ -12092,12 +13859,13 @@ export namespace Prisma {
     invoiceNo: 'invoiceNo',
     customerName: 'customerName',
     customerPhone: 'customerPhone',
-    ticketId: 'ticketId',
     items: 'items',
     laborCharge: 'laborCharge',
     grandTotal: 'grandTotal',
     paymentStatus: 'paymentStatus',
     paymentMethod: 'paymentMethod',
+    saleType: 'saleType',
+    ticketId: 'ticketId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12121,6 +13889,27 @@ export namespace Prisma {
   };
 
   export type TechnicianScalarFieldEnum = (typeof TechnicianScalarFieldEnum)[keyof typeof TechnicianScalarFieldEnum]
+
+
+  export const VehicleScalarFieldEnum: {
+    id: 'id',
+    vin: 'vin',
+    vehicleModel: 'vehicleModel',
+    batteryPackSerial: 'batteryPackSerial',
+    batteryCapacity: 'batteryCapacity',
+    batterySoh: 'batterySoh',
+    batteryCycles: 'batteryCycles',
+    batteryTemp: 'batteryTemp',
+    odometer: 'odometer',
+    lastServiceDaysAgo: 'lastServiceDaysAgo',
+    manufacturer: 'manufacturer',
+    modelYear: 'modelYear',
+    healthScore: 'healthScore',
+    lastAiCheck: 'lastAiCheck',
+    customerId: 'customerId'
+  };
+
+  export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12225,6 +14014,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'TicketStatus'
+   */
+  export type EnumTicketStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'TicketStatus[]'
+   */
+  export type ListEnumTicketStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TicketPriority'
+   */
+  export type EnumTicketPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketPriority'>
+    
+
+
+  /**
+   * Reference to a field of type 'TicketPriority[]'
+   */
+  export type ListEnumTicketPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketPriority[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -12249,6 +14066,48 @@ export namespace Prisma {
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'SaleType'
+   */
+  export type EnumSaleTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SaleType'>
+    
+
+
+  /**
+   * Reference to a field of type 'SaleType[]'
+   */
+  export type ListEnumSaleTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SaleType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TechnicianSpecialization'
+   */
+  export type EnumTechnicianSpecializationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TechnicianSpecialization'>
+    
+
+
+  /**
+   * Reference to a field of type 'TechnicianSpecialization[]'
+   */
+  export type ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TechnicianSpecialization[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TechnicianStatus'
+   */
+  export type EnumTechnicianStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TechnicianStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'TechnicianStatus[]'
+   */
+  export type ListEnumTechnicianStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TechnicianStatus[]'>
     
   /**
    * Deep Input Types
@@ -12325,10 +14184,10 @@ export namespace Prisma {
     name?: StringFilter<"customer"> | string
     email?: StringNullableFilter<"customer"> | string | null
     phone?: StringFilter<"customer"> | string
-    vehicleModel?: StringFilter<"customer"> | string
     address?: StringNullableFilter<"customer"> | string | null
     createdAt?: DateTimeFilter<"customer"> | Date | string
     tickets?: RepairTicketListRelationFilter
+    vehicles?: VehicleListRelationFilter
   }
 
   export type customerOrderByWithRelationInput = {
@@ -12336,10 +14195,10 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrderInput | SortOrder
     phone?: SortOrder
-    vehicleModel?: SortOrder
     address?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     tickets?: repairTicketOrderByRelationAggregateInput
+    vehicles?: VehicleOrderByRelationAggregateInput
   }
 
   export type customerWhereUniqueInput = Prisma.AtLeast<{
@@ -12350,10 +14209,10 @@ export namespace Prisma {
     NOT?: customerWhereInput | customerWhereInput[]
     name?: StringFilter<"customer"> | string
     email?: StringNullableFilter<"customer"> | string | null
-    vehicleModel?: StringFilter<"customer"> | string
     address?: StringNullableFilter<"customer"> | string | null
     createdAt?: DateTimeFilter<"customer"> | Date | string
     tickets?: RepairTicketListRelationFilter
+    vehicles?: VehicleListRelationFilter
   }, "id" | "phone">
 
   export type customerOrderByWithAggregationInput = {
@@ -12361,7 +14220,6 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrderInput | SortOrder
     phone?: SortOrder
-    vehicleModel?: SortOrder
     address?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: customerCountOrderByAggregateInput
@@ -12377,7 +14235,6 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"customer"> | string
     email?: StringNullableWithAggregatesFilter<"customer"> | string | null
     phone?: StringWithAggregatesFilter<"customer"> | string
-    vehicleModel?: StringWithAggregatesFilter<"customer"> | string
     address?: StringNullableWithAggregatesFilter<"customer"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"customer"> | Date | string
   }
@@ -12389,18 +14246,26 @@ export namespace Prisma {
     id?: IntFilter<"repairTicket"> | number
     issueCategory?: StringFilter<"repairTicket"> | string
     description?: StringFilter<"repairTicket"> | string
-    status?: StringFilter<"repairTicket"> | string
+    status?: EnumTicketStatusFilter<"repairTicket"> | $Enums.TicketStatus
     bay?: StringNullableFilter<"repairTicket"> | string | null
-    priority?: StringFilter<"repairTicket"> | string
+    priority?: EnumTicketPriorityFilter<"repairTicket"> | $Enums.TicketPriority
     createdAt?: DateTimeFilter<"repairTicket"> | Date | string
     updatedAt?: DateTimeFilter<"repairTicket"> | Date | string
+    closedAt?: DateTimeNullableFilter<"repairTicket"> | Date | string | null
+    estimatedCost?: FloatNullableFilter<"repairTicket"> | number | null
+    finalCost?: FloatNullableFilter<"repairTicket"> | number | null
+    aiSummary?: StringNullableFilter<"repairTicket"> | string | null
+    manufacturer?: StringNullableFilter<"repairTicket"> | string | null
     customerId?: StringFilter<"repairTicket"> | string
     technicianId?: StringNullableFilter<"repairTicket"> | string | null
+    vehicleId?: IntNullableFilter<"repairTicket"> | number | null
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
     technician?: XOR<TechnicianNullableScalarRelationFilter, technicianWhereInput> | null
+    vehicle?: XOR<VehicleNullableScalarRelationFilter, VehicleWhereInput> | null
     notes?: TechnicianNoteListRelationFilter
     timeline?: TimelineEventListRelationFilter
     parts?: UsedPartListRelationFilter
+    invoice?: XOR<InvoiceNullableScalarRelationFilter, invoiceWhereInput> | null
   }
 
   export type repairTicketOrderByWithRelationInput = {
@@ -12412,13 +14277,21 @@ export namespace Prisma {
     priority?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    closedAt?: SortOrderInput | SortOrder
+    estimatedCost?: SortOrderInput | SortOrder
+    finalCost?: SortOrderInput | SortOrder
+    aiSummary?: SortOrderInput | SortOrder
+    manufacturer?: SortOrderInput | SortOrder
     customerId?: SortOrder
     technicianId?: SortOrderInput | SortOrder
+    vehicleId?: SortOrderInput | SortOrder
     customer?: customerOrderByWithRelationInput
     technician?: technicianOrderByWithRelationInput
+    vehicle?: VehicleOrderByWithRelationInput
     notes?: technicianNoteOrderByRelationAggregateInput
     timeline?: timelineEventOrderByRelationAggregateInput
     parts?: usedPartOrderByRelationAggregateInput
+    invoice?: invoiceOrderByWithRelationInput
   }
 
   export type repairTicketWhereUniqueInput = Prisma.AtLeast<{
@@ -12428,18 +14301,26 @@ export namespace Prisma {
     NOT?: repairTicketWhereInput | repairTicketWhereInput[]
     issueCategory?: StringFilter<"repairTicket"> | string
     description?: StringFilter<"repairTicket"> | string
-    status?: StringFilter<"repairTicket"> | string
+    status?: EnumTicketStatusFilter<"repairTicket"> | $Enums.TicketStatus
     bay?: StringNullableFilter<"repairTicket"> | string | null
-    priority?: StringFilter<"repairTicket"> | string
+    priority?: EnumTicketPriorityFilter<"repairTicket"> | $Enums.TicketPriority
     createdAt?: DateTimeFilter<"repairTicket"> | Date | string
     updatedAt?: DateTimeFilter<"repairTicket"> | Date | string
+    closedAt?: DateTimeNullableFilter<"repairTicket"> | Date | string | null
+    estimatedCost?: FloatNullableFilter<"repairTicket"> | number | null
+    finalCost?: FloatNullableFilter<"repairTicket"> | number | null
+    aiSummary?: StringNullableFilter<"repairTicket"> | string | null
+    manufacturer?: StringNullableFilter<"repairTicket"> | string | null
     customerId?: StringFilter<"repairTicket"> | string
     technicianId?: StringNullableFilter<"repairTicket"> | string | null
+    vehicleId?: IntNullableFilter<"repairTicket"> | number | null
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
     technician?: XOR<TechnicianNullableScalarRelationFilter, technicianWhereInput> | null
+    vehicle?: XOR<VehicleNullableScalarRelationFilter, VehicleWhereInput> | null
     notes?: TechnicianNoteListRelationFilter
     timeline?: TimelineEventListRelationFilter
     parts?: UsedPartListRelationFilter
+    invoice?: XOR<InvoiceNullableScalarRelationFilter, invoiceWhereInput> | null
   }, "id">
 
   export type repairTicketOrderByWithAggregationInput = {
@@ -12451,8 +14332,14 @@ export namespace Prisma {
     priority?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    closedAt?: SortOrderInput | SortOrder
+    estimatedCost?: SortOrderInput | SortOrder
+    finalCost?: SortOrderInput | SortOrder
+    aiSummary?: SortOrderInput | SortOrder
+    manufacturer?: SortOrderInput | SortOrder
     customerId?: SortOrder
     technicianId?: SortOrderInput | SortOrder
+    vehicleId?: SortOrderInput | SortOrder
     _count?: repairTicketCountOrderByAggregateInput
     _avg?: repairTicketAvgOrderByAggregateInput
     _max?: repairTicketMaxOrderByAggregateInput
@@ -12467,13 +14354,19 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"repairTicket"> | number
     issueCategory?: StringWithAggregatesFilter<"repairTicket"> | string
     description?: StringWithAggregatesFilter<"repairTicket"> | string
-    status?: StringWithAggregatesFilter<"repairTicket"> | string
+    status?: EnumTicketStatusWithAggregatesFilter<"repairTicket"> | $Enums.TicketStatus
     bay?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
-    priority?: StringWithAggregatesFilter<"repairTicket"> | string
+    priority?: EnumTicketPriorityWithAggregatesFilter<"repairTicket"> | $Enums.TicketPriority
     createdAt?: DateTimeWithAggregatesFilter<"repairTicket"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"repairTicket"> | Date | string
+    closedAt?: DateTimeNullableWithAggregatesFilter<"repairTicket"> | Date | string | null
+    estimatedCost?: FloatNullableWithAggregatesFilter<"repairTicket"> | number | null
+    finalCost?: FloatNullableWithAggregatesFilter<"repairTicket"> | number | null
+    aiSummary?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
+    manufacturer?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
     customerId?: StringWithAggregatesFilter<"repairTicket"> | string
     technicianId?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
+    vehicleId?: IntNullableWithAggregatesFilter<"repairTicket"> | number | null
   }
 
   export type technicianNoteWhereInput = {
@@ -12482,6 +14375,7 @@ export namespace Prisma {
     NOT?: technicianNoteWhereInput | technicianNoteWhereInput[]
     id?: IntFilter<"technicianNote"> | number
     ticketId?: IntFilter<"technicianNote"> | number
+    aiSummary?: StringNullableFilter<"technicianNote"> | string | null
     rawVoiceText?: StringNullableFilter<"technicianNote"> | string | null
     structuredText?: StringFilter<"technicianNote"> | string
     quickTags?: StringNullableListFilter<"technicianNote">
@@ -12493,6 +14387,7 @@ export namespace Prisma {
   export type technicianNoteOrderByWithRelationInput = {
     id?: SortOrder
     ticketId?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
     rawVoiceText?: SortOrderInput | SortOrder
     structuredText?: SortOrder
     quickTags?: SortOrder
@@ -12507,6 +14402,7 @@ export namespace Prisma {
     OR?: technicianNoteWhereInput[]
     NOT?: technicianNoteWhereInput | technicianNoteWhereInput[]
     ticketId?: IntFilter<"technicianNote"> | number
+    aiSummary?: StringNullableFilter<"technicianNote"> | string | null
     rawVoiceText?: StringNullableFilter<"technicianNote"> | string | null
     structuredText?: StringFilter<"technicianNote"> | string
     quickTags?: StringNullableListFilter<"technicianNote">
@@ -12518,6 +14414,7 @@ export namespace Prisma {
   export type technicianNoteOrderByWithAggregationInput = {
     id?: SortOrder
     ticketId?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
     rawVoiceText?: SortOrderInput | SortOrder
     structuredText?: SortOrder
     quickTags?: SortOrder
@@ -12536,6 +14433,7 @@ export namespace Prisma {
     NOT?: technicianNoteScalarWhereWithAggregatesInput | technicianNoteScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"technicianNote"> | number
     ticketId?: IntWithAggregatesFilter<"technicianNote"> | number
+    aiSummary?: StringNullableWithAggregatesFilter<"technicianNote"> | string | null
     rawVoiceText?: StringNullableWithAggregatesFilter<"technicianNote"> | string | null
     structuredText?: StringWithAggregatesFilter<"technicianNote"> | string
     quickTags?: StringNullableListFilter<"technicianNote">
@@ -12745,14 +14643,16 @@ export namespace Prisma {
     invoiceNo?: StringFilter<"invoice"> | string
     customerName?: StringFilter<"invoice"> | string
     customerPhone?: StringFilter<"invoice"> | string
-    ticketId?: IntNullableFilter<"invoice"> | number | null
     items?: JsonFilter<"invoice">
     laborCharge?: FloatFilter<"invoice"> | number
     grandTotal?: FloatFilter<"invoice"> | number
     paymentStatus?: StringFilter<"invoice"> | string
     paymentMethod?: StringFilter<"invoice"> | string
+    saleType?: EnumSaleTypeFilter<"invoice"> | $Enums.SaleType
+    ticketId?: IntNullableFilter<"invoice"> | number | null
     createdAt?: DateTimeFilter<"invoice"> | Date | string
     updatedAt?: DateTimeFilter<"invoice"> | Date | string
+    ticket?: XOR<RepairTicketNullableScalarRelationFilter, repairTicketWhereInput> | null
   }
 
   export type invoiceOrderByWithRelationInput = {
@@ -12760,45 +14660,50 @@ export namespace Prisma {
     invoiceNo?: SortOrder
     customerName?: SortOrder
     customerPhone?: SortOrder
-    ticketId?: SortOrderInput | SortOrder
     items?: SortOrder
     laborCharge?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    saleType?: SortOrder
+    ticketId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ticket?: repairTicketOrderByWithRelationInput
   }
 
   export type invoiceWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     invoiceNo?: string
+    ticketId?: number
     AND?: invoiceWhereInput | invoiceWhereInput[]
     OR?: invoiceWhereInput[]
     NOT?: invoiceWhereInput | invoiceWhereInput[]
     customerName?: StringFilter<"invoice"> | string
     customerPhone?: StringFilter<"invoice"> | string
-    ticketId?: IntNullableFilter<"invoice"> | number | null
     items?: JsonFilter<"invoice">
     laborCharge?: FloatFilter<"invoice"> | number
     grandTotal?: FloatFilter<"invoice"> | number
     paymentStatus?: StringFilter<"invoice"> | string
     paymentMethod?: StringFilter<"invoice"> | string
+    saleType?: EnumSaleTypeFilter<"invoice"> | $Enums.SaleType
     createdAt?: DateTimeFilter<"invoice"> | Date | string
     updatedAt?: DateTimeFilter<"invoice"> | Date | string
-  }, "id" | "invoiceNo">
+    ticket?: XOR<RepairTicketNullableScalarRelationFilter, repairTicketWhereInput> | null
+  }, "id" | "invoiceNo" | "ticketId">
 
   export type invoiceOrderByWithAggregationInput = {
     id?: SortOrder
     invoiceNo?: SortOrder
     customerName?: SortOrder
     customerPhone?: SortOrder
-    ticketId?: SortOrderInput | SortOrder
     items?: SortOrder
     laborCharge?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    saleType?: SortOrder
+    ticketId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: invoiceCountOrderByAggregateInput
@@ -12816,12 +14721,13 @@ export namespace Prisma {
     invoiceNo?: StringWithAggregatesFilter<"invoice"> | string
     customerName?: StringWithAggregatesFilter<"invoice"> | string
     customerPhone?: StringWithAggregatesFilter<"invoice"> | string
-    ticketId?: IntNullableWithAggregatesFilter<"invoice"> | number | null
     items?: JsonWithAggregatesFilter<"invoice">
     laborCharge?: FloatWithAggregatesFilter<"invoice"> | number
     grandTotal?: FloatWithAggregatesFilter<"invoice"> | number
     paymentStatus?: StringWithAggregatesFilter<"invoice"> | string
     paymentMethod?: StringWithAggregatesFilter<"invoice"> | string
+    saleType?: EnumSaleTypeWithAggregatesFilter<"invoice"> | $Enums.SaleType
+    ticketId?: IntNullableWithAggregatesFilter<"invoice"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
   }
@@ -12835,9 +14741,9 @@ export namespace Prisma {
     email?: StringFilter<"technician"> | string
     phone?: StringFilter<"technician"> | string
     employeeId?: StringFilter<"technician"> | string
-    specialization?: StringFilter<"technician"> | string
-    status?: StringFilter<"technician"> | string
-    experienceYears?: StringFilter<"technician"> | string
+    specialization?: EnumTechnicianSpecializationFilter<"technician"> | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFilter<"technician"> | $Enums.TechnicianStatus
+    experienceYears?: IntFilter<"technician"> | number
     address?: StringNullableFilter<"technician"> | string | null
     profileImage?: StringNullableFilter<"technician"> | string | null
     createdAt?: DateTimeFilter<"technician"> | Date | string
@@ -12870,9 +14776,9 @@ export namespace Prisma {
     NOT?: technicianWhereInput | technicianWhereInput[]
     fullName?: StringFilter<"technician"> | string
     phone?: StringFilter<"technician"> | string
-    specialization?: StringFilter<"technician"> | string
-    status?: StringFilter<"technician"> | string
-    experienceYears?: StringFilter<"technician"> | string
+    specialization?: EnumTechnicianSpecializationFilter<"technician"> | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFilter<"technician"> | $Enums.TechnicianStatus
+    experienceYears?: IntFilter<"technician"> | number
     address?: StringNullableFilter<"technician"> | string | null
     profileImage?: StringNullableFilter<"technician"> | string | null
     createdAt?: DateTimeFilter<"technician"> | Date | string
@@ -12894,8 +14800,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: technicianCountOrderByAggregateInput
+    _avg?: technicianAvgOrderByAggregateInput
     _max?: technicianMaxOrderByAggregateInput
     _min?: technicianMinOrderByAggregateInput
+    _sum?: technicianSumOrderByAggregateInput
   }
 
   export type technicianScalarWhereWithAggregatesInput = {
@@ -12907,13 +14815,123 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"technician"> | string
     phone?: StringWithAggregatesFilter<"technician"> | string
     employeeId?: StringWithAggregatesFilter<"technician"> | string
-    specialization?: StringWithAggregatesFilter<"technician"> | string
-    status?: StringWithAggregatesFilter<"technician"> | string
-    experienceYears?: StringWithAggregatesFilter<"technician"> | string
+    specialization?: EnumTechnicianSpecializationWithAggregatesFilter<"technician"> | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusWithAggregatesFilter<"technician"> | $Enums.TechnicianStatus
+    experienceYears?: IntWithAggregatesFilter<"technician"> | number
     address?: StringNullableWithAggregatesFilter<"technician"> | string | null
     profileImage?: StringNullableWithAggregatesFilter<"technician"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
+  }
+
+  export type VehicleWhereInput = {
+    AND?: VehicleWhereInput | VehicleWhereInput[]
+    OR?: VehicleWhereInput[]
+    NOT?: VehicleWhereInput | VehicleWhereInput[]
+    id?: IntFilter<"Vehicle"> | number
+    vin?: StringFilter<"Vehicle"> | string
+    vehicleModel?: StringFilter<"Vehicle"> | string
+    batteryPackSerial?: StringNullableFilter<"Vehicle"> | string | null
+    batteryCapacity?: StringNullableFilter<"Vehicle"> | string | null
+    batterySoh?: IntNullableFilter<"Vehicle"> | number | null
+    batteryCycles?: IntNullableFilter<"Vehicle"> | number | null
+    batteryTemp?: StringNullableFilter<"Vehicle"> | string | null
+    odometer?: StringNullableFilter<"Vehicle"> | string | null
+    lastServiceDaysAgo?: IntNullableFilter<"Vehicle"> | number | null
+    manufacturer?: StringNullableFilter<"Vehicle"> | string | null
+    modelYear?: IntNullableFilter<"Vehicle"> | number | null
+    healthScore?: IntNullableFilter<"Vehicle"> | number | null
+    lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
+    customerId?: StringFilter<"Vehicle"> | string
+    customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
+    tickets?: RepairTicketListRelationFilter
+  }
+
+  export type VehicleOrderByWithRelationInput = {
+    id?: SortOrder
+    vin?: SortOrder
+    vehicleModel?: SortOrder
+    batteryPackSerial?: SortOrderInput | SortOrder
+    batteryCapacity?: SortOrderInput | SortOrder
+    batterySoh?: SortOrderInput | SortOrder
+    batteryCycles?: SortOrderInput | SortOrder
+    batteryTemp?: SortOrderInput | SortOrder
+    odometer?: SortOrderInput | SortOrder
+    lastServiceDaysAgo?: SortOrderInput | SortOrder
+    manufacturer?: SortOrderInput | SortOrder
+    modelYear?: SortOrderInput | SortOrder
+    healthScore?: SortOrderInput | SortOrder
+    lastAiCheck?: SortOrderInput | SortOrder
+    customerId?: SortOrder
+    customer?: customerOrderByWithRelationInput
+    tickets?: repairTicketOrderByRelationAggregateInput
+  }
+
+  export type VehicleWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    vin?: string
+    AND?: VehicleWhereInput | VehicleWhereInput[]
+    OR?: VehicleWhereInput[]
+    NOT?: VehicleWhereInput | VehicleWhereInput[]
+    vehicleModel?: StringFilter<"Vehicle"> | string
+    batteryPackSerial?: StringNullableFilter<"Vehicle"> | string | null
+    batteryCapacity?: StringNullableFilter<"Vehicle"> | string | null
+    batterySoh?: IntNullableFilter<"Vehicle"> | number | null
+    batteryCycles?: IntNullableFilter<"Vehicle"> | number | null
+    batteryTemp?: StringNullableFilter<"Vehicle"> | string | null
+    odometer?: StringNullableFilter<"Vehicle"> | string | null
+    lastServiceDaysAgo?: IntNullableFilter<"Vehicle"> | number | null
+    manufacturer?: StringNullableFilter<"Vehicle"> | string | null
+    modelYear?: IntNullableFilter<"Vehicle"> | number | null
+    healthScore?: IntNullableFilter<"Vehicle"> | number | null
+    lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
+    customerId?: StringFilter<"Vehicle"> | string
+    customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
+    tickets?: RepairTicketListRelationFilter
+  }, "id" | "vin">
+
+  export type VehicleOrderByWithAggregationInput = {
+    id?: SortOrder
+    vin?: SortOrder
+    vehicleModel?: SortOrder
+    batteryPackSerial?: SortOrderInput | SortOrder
+    batteryCapacity?: SortOrderInput | SortOrder
+    batterySoh?: SortOrderInput | SortOrder
+    batteryCycles?: SortOrderInput | SortOrder
+    batteryTemp?: SortOrderInput | SortOrder
+    odometer?: SortOrderInput | SortOrder
+    lastServiceDaysAgo?: SortOrderInput | SortOrder
+    manufacturer?: SortOrderInput | SortOrder
+    modelYear?: SortOrderInput | SortOrder
+    healthScore?: SortOrderInput | SortOrder
+    lastAiCheck?: SortOrderInput | SortOrder
+    customerId?: SortOrder
+    _count?: VehicleCountOrderByAggregateInput
+    _avg?: VehicleAvgOrderByAggregateInput
+    _max?: VehicleMaxOrderByAggregateInput
+    _min?: VehicleMinOrderByAggregateInput
+    _sum?: VehicleSumOrderByAggregateInput
+  }
+
+  export type VehicleScalarWhereWithAggregatesInput = {
+    AND?: VehicleScalarWhereWithAggregatesInput | VehicleScalarWhereWithAggregatesInput[]
+    OR?: VehicleScalarWhereWithAggregatesInput[]
+    NOT?: VehicleScalarWhereWithAggregatesInput | VehicleScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Vehicle"> | number
+    vin?: StringWithAggregatesFilter<"Vehicle"> | string
+    vehicleModel?: StringWithAggregatesFilter<"Vehicle"> | string
+    batteryPackSerial?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    batteryCapacity?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    batterySoh?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
+    batteryCycles?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
+    batteryTemp?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    odometer?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    lastServiceDaysAgo?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
+    manufacturer?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    modelYear?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
+    healthScore?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
+    lastAiCheck?: DateTimeNullableWithAggregatesFilter<"Vehicle"> | Date | string | null
+    customerId?: StringWithAggregatesFilter<"Vehicle"> | string
   }
 
   export type UserCreateInput = {
@@ -12991,10 +15009,10 @@ export namespace Prisma {
     name: string
     email?: string | null
     phone: string
-    vehicleModel: string
     address?: string | null
     createdAt?: Date | string
     tickets?: repairTicketCreateNestedManyWithoutCustomerInput
+    vehicles?: VehicleCreateNestedManyWithoutCustomerInput
   }
 
   export type customerUncheckedCreateInput = {
@@ -13002,10 +15020,10 @@ export namespace Prisma {
     name: string
     email?: string | null
     phone: string
-    vehicleModel: string
     address?: string | null
     createdAt?: Date | string
     tickets?: repairTicketUncheckedCreateNestedManyWithoutCustomerInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type customerUpdateInput = {
@@ -13013,10 +15031,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: StringFieldUpdateOperationsInput | string
-    vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tickets?: repairTicketUpdateManyWithoutCustomerNestedInput
+    vehicles?: VehicleUpdateManyWithoutCustomerNestedInput
   }
 
   export type customerUncheckedUpdateInput = {
@@ -13024,10 +15042,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: StringFieldUpdateOperationsInput | string
-    vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tickets?: repairTicketUncheckedUpdateManyWithoutCustomerNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type customerCreateManyInput = {
@@ -13035,7 +15053,6 @@ export namespace Prisma {
     name: string
     email?: string | null
     phone: string
-    vehicleModel: string
     address?: string | null
     createdAt?: Date | string
   }
@@ -13045,7 +15062,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: StringFieldUpdateOperationsInput | string
-    vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13055,7 +15071,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: StringFieldUpdateOperationsInput | string
-    vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13063,102 +15078,148 @@ export namespace Prisma {
   export type repairTicketCreateInput = {
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
+    vehicle?: VehicleCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
+    invoice?: invoiceCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketUncheckedCreateInput = {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customerId: string
     technicianId?: string | null
+    vehicleId?: number | null
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+    invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketUpdateInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
+    vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketCreateManyInput = {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customerId: string
     technicianId?: string | null
+    vehicleId?: number | null
   }
 
   export type repairTicketUpdateManyMutationInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type repairTicketUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type technicianNoteCreateInput = {
+    aiSummary?: string | null
     rawVoiceText?: string | null
     structuredText: string
     quickTags?: technicianNoteCreatequickTagsInput | string[]
@@ -13170,6 +15231,7 @@ export namespace Prisma {
   export type technicianNoteUncheckedCreateInput = {
     id?: number
     ticketId: number
+    aiSummary?: string | null
     rawVoiceText?: string | null
     structuredText: string
     quickTags?: technicianNoteCreatequickTagsInput | string[]
@@ -13178,6 +15240,7 @@ export namespace Prisma {
   }
 
   export type technicianNoteUpdateInput = {
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
     structuredText?: StringFieldUpdateOperationsInput | string
     quickTags?: technicianNoteUpdatequickTagsInput | string[]
@@ -13189,6 +15252,7 @@ export namespace Prisma {
   export type technicianNoteUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     ticketId?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
     structuredText?: StringFieldUpdateOperationsInput | string
     quickTags?: technicianNoteUpdatequickTagsInput | string[]
@@ -13199,6 +15263,7 @@ export namespace Prisma {
   export type technicianNoteCreateManyInput = {
     id?: number
     ticketId: number
+    aiSummary?: string | null
     rawVoiceText?: string | null
     structuredText: string
     quickTags?: technicianNoteCreatequickTagsInput | string[]
@@ -13207,6 +15272,7 @@ export namespace Prisma {
   }
 
   export type technicianNoteUpdateManyMutationInput = {
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
     structuredText?: StringFieldUpdateOperationsInput | string
     quickTags?: technicianNoteUpdatequickTagsInput | string[]
@@ -13217,6 +15283,7 @@ export namespace Prisma {
   export type technicianNoteUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     ticketId?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
     structuredText?: StringFieldUpdateOperationsInput | string
     quickTags?: technicianNoteUpdatequickTagsInput | string[]
@@ -13416,14 +15483,15 @@ export namespace Prisma {
     invoiceNo: string
     customerName: string
     customerPhone: string
-    ticketId?: number | null
     items: JsonNullValueInput | InputJsonValue
     laborCharge?: number
     grandTotal: number
     paymentStatus: string
     paymentMethod: string
+    saleType: $Enums.SaleType
     createdAt?: Date | string
     updatedAt?: Date | string
+    ticket?: repairTicketCreateNestedOneWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateInput = {
@@ -13431,12 +15499,13 @@ export namespace Prisma {
     invoiceNo: string
     customerName: string
     customerPhone: string
-    ticketId?: number | null
     items: JsonNullValueInput | InputJsonValue
     laborCharge?: number
     grandTotal: number
     paymentStatus: string
     paymentMethod: string
+    saleType: $Enums.SaleType
+    ticketId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13445,14 +15514,15 @@ export namespace Prisma {
     invoiceNo?: StringFieldUpdateOperationsInput | string
     customerName?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
-    ticketId?: NullableIntFieldUpdateOperationsInput | number | null
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ticket?: repairTicketUpdateOneWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateInput = {
@@ -13460,12 +15530,13 @@ export namespace Prisma {
     invoiceNo?: StringFieldUpdateOperationsInput | string
     customerName?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
-    ticketId?: NullableIntFieldUpdateOperationsInput | number | null
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
+    ticketId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13475,12 +15546,13 @@ export namespace Prisma {
     invoiceNo: string
     customerName: string
     customerPhone: string
-    ticketId?: number | null
     items: JsonNullValueInput | InputJsonValue
     laborCharge?: number
     grandTotal: number
     paymentStatus: string
     paymentMethod: string
+    saleType: $Enums.SaleType
+    ticketId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13489,12 +15561,12 @@ export namespace Prisma {
     invoiceNo?: StringFieldUpdateOperationsInput | string
     customerName?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
-    ticketId?: NullableIntFieldUpdateOperationsInput | number | null
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13504,12 +15576,13 @@ export namespace Prisma {
     invoiceNo?: StringFieldUpdateOperationsInput | string
     customerName?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
-    ticketId?: NullableIntFieldUpdateOperationsInput | number | null
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
+    ticketId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13520,9 +15593,9 @@ export namespace Prisma {
     email: string
     phone: string
     employeeId: string
-    specialization: string
-    status?: string
-    experienceYears: string
+    specialization: $Enums.TechnicianSpecialization
+    status?: $Enums.TechnicianStatus
+    experienceYears: number
     address?: string | null
     profileImage?: string | null
     createdAt?: Date | string
@@ -13536,9 +15609,9 @@ export namespace Prisma {
     email: string
     phone: string
     employeeId: string
-    specialization: string
-    status?: string
-    experienceYears: string
+    specialization: $Enums.TechnicianSpecialization
+    status?: $Enums.TechnicianStatus
+    experienceYears: number
     address?: string | null
     profileImage?: string | null
     createdAt?: Date | string
@@ -13552,9 +15625,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
     address?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13568,9 +15641,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
     address?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13584,9 +15657,9 @@ export namespace Prisma {
     email: string
     phone: string
     employeeId: string
-    specialization: string
-    status?: string
-    experienceYears: string
+    specialization: $Enums.TechnicianSpecialization
+    status?: $Enums.TechnicianStatus
+    experienceYears: number
     address?: string | null
     profileImage?: string | null
     createdAt?: Date | string
@@ -13599,9 +15672,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
     address?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13614,13 +15687,139 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
     address?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VehicleCreateInput = {
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDaysAgo?: number | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    customer: customerCreateNestedOneWithoutVehiclesInput
+    tickets?: repairTicketCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleUncheckedCreateInput = {
+    id?: number
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDaysAgo?: number | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    customerId: string
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleUpdateInput = {
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer?: customerUpdateOneRequiredWithoutVehiclesNestedInput
+    tickets?: repairTicketUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    tickets?: repairTicketUncheckedUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleCreateManyInput = {
+    id?: number
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDaysAgo?: number | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    customerId: string
+  }
+
+  export type VehicleUpdateManyMutationInput = {
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VehicleUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -13749,6 +15948,12 @@ export namespace Prisma {
     none?: repairTicketWhereInput
   }
 
+  export type VehicleListRelationFilter = {
+    every?: VehicleWhereInput
+    some?: VehicleWhereInput
+    none?: VehicleWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -13758,12 +15963,15 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type VehicleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type customerCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    vehicleModel?: SortOrder
     address?: SortOrder
     createdAt?: SortOrder
   }
@@ -13773,7 +15981,6 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    vehicleModel?: SortOrder
     address?: SortOrder
     createdAt?: SortOrder
   }
@@ -13783,7 +15990,6 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    vehicleModel?: SortOrder
     address?: SortOrder
     createdAt?: SortOrder
   }
@@ -13817,6 +16023,53 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type EnumTicketStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketStatus | EnumTicketStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TicketStatus[] | ListEnumTicketStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TicketStatus[] | ListEnumTicketStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTicketStatusFilter<$PrismaModel> | $Enums.TicketStatus
+  }
+
+  export type EnumTicketPriorityFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketPriority | EnumTicketPriorityFieldRefInput<$PrismaModel>
+    in?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel>
+    not?: NestedEnumTicketPriorityFilter<$PrismaModel> | $Enums.TicketPriority
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type CustomerScalarRelationFilter = {
     is?: customerWhereInput
     isNot?: customerWhereInput
@@ -13825,6 +16078,11 @@ export namespace Prisma {
   export type TechnicianNullableScalarRelationFilter = {
     is?: technicianWhereInput | null
     isNot?: technicianWhereInput | null
+  }
+
+  export type VehicleNullableScalarRelationFilter = {
+    is?: VehicleWhereInput | null
+    isNot?: VehicleWhereInput | null
   }
 
   export type TechnicianNoteListRelationFilter = {
@@ -13843,6 +16101,11 @@ export namespace Prisma {
     every?: usedPartWhereInput
     some?: usedPartWhereInput
     none?: usedPartWhereInput
+  }
+
+  export type InvoiceNullableScalarRelationFilter = {
+    is?: invoiceWhereInput | null
+    isNot?: invoiceWhereInput | null
   }
 
   export type technicianNoteOrderByRelationAggregateInput = {
@@ -13866,12 +16129,21 @@ export namespace Prisma {
     priority?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    closedAt?: SortOrder
+    estimatedCost?: SortOrder
+    finalCost?: SortOrder
+    aiSummary?: SortOrder
+    manufacturer?: SortOrder
     customerId?: SortOrder
     technicianId?: SortOrder
+    vehicleId?: SortOrder
   }
 
   export type repairTicketAvgOrderByAggregateInput = {
     id?: SortOrder
+    estimatedCost?: SortOrder
+    finalCost?: SortOrder
+    vehicleId?: SortOrder
   }
 
   export type repairTicketMaxOrderByAggregateInput = {
@@ -13883,8 +16155,14 @@ export namespace Prisma {
     priority?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    closedAt?: SortOrder
+    estimatedCost?: SortOrder
+    finalCost?: SortOrder
+    aiSummary?: SortOrder
+    manufacturer?: SortOrder
     customerId?: SortOrder
     technicianId?: SortOrder
+    vehicleId?: SortOrder
   }
 
   export type repairTicketMinOrderByAggregateInput = {
@@ -13896,12 +16174,21 @@ export namespace Prisma {
     priority?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    closedAt?: SortOrder
+    estimatedCost?: SortOrder
+    finalCost?: SortOrder
+    aiSummary?: SortOrder
+    manufacturer?: SortOrder
     customerId?: SortOrder
     technicianId?: SortOrder
+    vehicleId?: SortOrder
   }
 
   export type repairTicketSumOrderByAggregateInput = {
     id?: SortOrder
+    estimatedCost?: SortOrder
+    finalCost?: SortOrder
+    vehicleId?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -13920,6 +16207,72 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type EnumTicketStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketStatus | EnumTicketStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TicketStatus[] | ListEnumTicketStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TicketStatus[] | ListEnumTicketStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTicketStatusWithAggregatesFilter<$PrismaModel> | $Enums.TicketStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTicketStatusFilter<$PrismaModel>
+    _max?: NestedEnumTicketStatusFilter<$PrismaModel>
+  }
+
+  export type EnumTicketPriorityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketPriority | EnumTicketPriorityFieldRefInput<$PrismaModel>
+    in?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel>
+    not?: NestedEnumTicketPriorityWithAggregatesFilter<$PrismaModel> | $Enums.TicketPriority
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTicketPriorityFilter<$PrismaModel>
+    _max?: NestedEnumTicketPriorityFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -13936,6 +16289,7 @@ export namespace Prisma {
   export type technicianNoteCountOrderByAggregateInput = {
     id?: SortOrder
     ticketId?: SortOrder
+    aiSummary?: SortOrder
     rawVoiceText?: SortOrder
     structuredText?: SortOrder
     quickTags?: SortOrder
@@ -13951,6 +16305,7 @@ export namespace Prisma {
   export type technicianNoteMaxOrderByAggregateInput = {
     id?: SortOrder
     ticketId?: SortOrder
+    aiSummary?: SortOrder
     rawVoiceText?: SortOrder
     structuredText?: SortOrder
     createdAt?: SortOrder
@@ -13959,6 +16314,7 @@ export namespace Prisma {
   export type technicianNoteMinOrderByAggregateInput = {
     id?: SortOrder
     ticketId?: SortOrder
+    aiSummary?: SortOrder
     rawVoiceText?: SortOrder
     structuredText?: SortOrder
     createdAt?: SortOrder
@@ -14124,17 +16480,6 @@ export namespace Prisma {
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
   }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -14159,26 +16504,39 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type EnumSaleTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SaleType | EnumSaleTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SaleType[] | ListEnumSaleTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SaleType[] | ListEnumSaleTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSaleTypeFilter<$PrismaModel> | $Enums.SaleType
+  }
+
+  export type RepairTicketNullableScalarRelationFilter = {
+    is?: repairTicketWhereInput | null
+    isNot?: repairTicketWhereInput | null
+  }
+
   export type invoiceCountOrderByAggregateInput = {
     id?: SortOrder
     invoiceNo?: SortOrder
     customerName?: SortOrder
     customerPhone?: SortOrder
-    ticketId?: SortOrder
     items?: SortOrder
     laborCharge?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    saleType?: SortOrder
+    ticketId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type invoiceAvgOrderByAggregateInput = {
     id?: SortOrder
-    ticketId?: SortOrder
     laborCharge?: SortOrder
     grandTotal?: SortOrder
+    ticketId?: SortOrder
   }
 
   export type invoiceMaxOrderByAggregateInput = {
@@ -14186,11 +16544,12 @@ export namespace Prisma {
     invoiceNo?: SortOrder
     customerName?: SortOrder
     customerPhone?: SortOrder
-    ticketId?: SortOrder
     laborCharge?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    saleType?: SortOrder
+    ticketId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14200,36 +16559,21 @@ export namespace Prisma {
     invoiceNo?: SortOrder
     customerName?: SortOrder
     customerPhone?: SortOrder
-    ticketId?: SortOrder
     laborCharge?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    saleType?: SortOrder
+    ticketId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type invoiceSumOrderByAggregateInput = {
     id?: SortOrder
-    ticketId?: SortOrder
     laborCharge?: SortOrder
     grandTotal?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
+    ticketId?: SortOrder
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -14258,6 +16602,30 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
+  export type EnumSaleTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SaleType | EnumSaleTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SaleType[] | ListEnumSaleTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SaleType[] | ListEnumSaleTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSaleTypeWithAggregatesFilter<$PrismaModel> | $Enums.SaleType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSaleTypeFilter<$PrismaModel>
+    _max?: NestedEnumSaleTypeFilter<$PrismaModel>
+  }
+
+  export type EnumTechnicianSpecializationFilter<$PrismaModel = never> = {
+    equals?: $Enums.TechnicianSpecialization | EnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    in?: $Enums.TechnicianSpecialization[] | ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TechnicianSpecialization[] | ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    not?: NestedEnumTechnicianSpecializationFilter<$PrismaModel> | $Enums.TechnicianSpecialization
+  }
+
+  export type EnumTechnicianStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TechnicianStatus | EnumTechnicianStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TechnicianStatus[] | ListEnumTechnicianStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TechnicianStatus[] | ListEnumTechnicianStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTechnicianStatusFilter<$PrismaModel> | $Enums.TechnicianStatus
+  }
+
   export type technicianCountOrderByAggregateInput = {
     id?: SortOrder
     fullName?: SortOrder
@@ -14271,6 +16639,10 @@ export namespace Prisma {
     profileImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type technicianAvgOrderByAggregateInput = {
+    experienceYears?: SortOrder
   }
 
   export type technicianMaxOrderByAggregateInput = {
@@ -14303,6 +16675,102 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type technicianSumOrderByAggregateInput = {
+    experienceYears?: SortOrder
+  }
+
+  export type EnumTechnicianSpecializationWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TechnicianSpecialization | EnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    in?: $Enums.TechnicianSpecialization[] | ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TechnicianSpecialization[] | ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    not?: NestedEnumTechnicianSpecializationWithAggregatesFilter<$PrismaModel> | $Enums.TechnicianSpecialization
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTechnicianSpecializationFilter<$PrismaModel>
+    _max?: NestedEnumTechnicianSpecializationFilter<$PrismaModel>
+  }
+
+  export type EnumTechnicianStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TechnicianStatus | EnumTechnicianStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TechnicianStatus[] | ListEnumTechnicianStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TechnicianStatus[] | ListEnumTechnicianStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTechnicianStatusWithAggregatesFilter<$PrismaModel> | $Enums.TechnicianStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTechnicianStatusFilter<$PrismaModel>
+    _max?: NestedEnumTechnicianStatusFilter<$PrismaModel>
+  }
+
+  export type VehicleCountOrderByAggregateInput = {
+    id?: SortOrder
+    vin?: SortOrder
+    vehicleModel?: SortOrder
+    batteryPackSerial?: SortOrder
+    batteryCapacity?: SortOrder
+    batterySoh?: SortOrder
+    batteryCycles?: SortOrder
+    batteryTemp?: SortOrder
+    odometer?: SortOrder
+    lastServiceDaysAgo?: SortOrder
+    manufacturer?: SortOrder
+    modelYear?: SortOrder
+    healthScore?: SortOrder
+    lastAiCheck?: SortOrder
+    customerId?: SortOrder
+  }
+
+  export type VehicleAvgOrderByAggregateInput = {
+    id?: SortOrder
+    batterySoh?: SortOrder
+    batteryCycles?: SortOrder
+    lastServiceDaysAgo?: SortOrder
+    modelYear?: SortOrder
+    healthScore?: SortOrder
+  }
+
+  export type VehicleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vin?: SortOrder
+    vehicleModel?: SortOrder
+    batteryPackSerial?: SortOrder
+    batteryCapacity?: SortOrder
+    batterySoh?: SortOrder
+    batteryCycles?: SortOrder
+    batteryTemp?: SortOrder
+    odometer?: SortOrder
+    lastServiceDaysAgo?: SortOrder
+    manufacturer?: SortOrder
+    modelYear?: SortOrder
+    healthScore?: SortOrder
+    lastAiCheck?: SortOrder
+    customerId?: SortOrder
+  }
+
+  export type VehicleMinOrderByAggregateInput = {
+    id?: SortOrder
+    vin?: SortOrder
+    vehicleModel?: SortOrder
+    batteryPackSerial?: SortOrder
+    batteryCapacity?: SortOrder
+    batterySoh?: SortOrder
+    batteryCycles?: SortOrder
+    batteryTemp?: SortOrder
+    odometer?: SortOrder
+    lastServiceDaysAgo?: SortOrder
+    manufacturer?: SortOrder
+    modelYear?: SortOrder
+    healthScore?: SortOrder
+    lastAiCheck?: SortOrder
+    customerId?: SortOrder
+  }
+
+  export type VehicleSumOrderByAggregateInput = {
+    id?: SortOrder
+    batterySoh?: SortOrder
+    batteryCycles?: SortOrder
+    lastServiceDaysAgo?: SortOrder
+    modelYear?: SortOrder
+    healthScore?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -14322,11 +16790,25 @@ export namespace Prisma {
     connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
   }
 
+  export type VehicleCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<VehicleCreateWithoutCustomerInput, VehicleUncheckedCreateWithoutCustomerInput> | VehicleCreateWithoutCustomerInput[] | VehicleUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutCustomerInput | VehicleCreateOrConnectWithoutCustomerInput[]
+    createMany?: VehicleCreateManyCustomerInputEnvelope
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+  }
+
   export type repairTicketUncheckedCreateNestedManyWithoutCustomerInput = {
     create?: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput> | repairTicketCreateWithoutCustomerInput[] | repairTicketUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: repairTicketCreateOrConnectWithoutCustomerInput | repairTicketCreateOrConnectWithoutCustomerInput[]
     createMany?: repairTicketCreateManyCustomerInputEnvelope
     connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type VehicleUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<VehicleCreateWithoutCustomerInput, VehicleUncheckedCreateWithoutCustomerInput> | VehicleCreateWithoutCustomerInput[] | VehicleUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutCustomerInput | VehicleCreateOrConnectWithoutCustomerInput[]
+    createMany?: VehicleCreateManyCustomerInputEnvelope
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -14347,6 +16829,20 @@ export namespace Prisma {
     deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
   }
 
+  export type VehicleUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<VehicleCreateWithoutCustomerInput, VehicleUncheckedCreateWithoutCustomerInput> | VehicleCreateWithoutCustomerInput[] | VehicleUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutCustomerInput | VehicleCreateOrConnectWithoutCustomerInput[]
+    upsert?: VehicleUpsertWithWhereUniqueWithoutCustomerInput | VehicleUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: VehicleCreateManyCustomerInputEnvelope
+    set?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    disconnect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    delete?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    update?: VehicleUpdateWithWhereUniqueWithoutCustomerInput | VehicleUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: VehicleUpdateManyWithWhereWithoutCustomerInput | VehicleUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+  }
+
   export type repairTicketUncheckedUpdateManyWithoutCustomerNestedInput = {
     create?: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput> | repairTicketCreateWithoutCustomerInput[] | repairTicketUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: repairTicketCreateOrConnectWithoutCustomerInput | repairTicketCreateOrConnectWithoutCustomerInput[]
@@ -14361,6 +16857,20 @@ export namespace Prisma {
     deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
   }
 
+  export type VehicleUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<VehicleCreateWithoutCustomerInput, VehicleUncheckedCreateWithoutCustomerInput> | VehicleCreateWithoutCustomerInput[] | VehicleUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutCustomerInput | VehicleCreateOrConnectWithoutCustomerInput[]
+    upsert?: VehicleUpsertWithWhereUniqueWithoutCustomerInput | VehicleUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: VehicleCreateManyCustomerInputEnvelope
+    set?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    disconnect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    delete?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    update?: VehicleUpdateWithWhereUniqueWithoutCustomerInput | VehicleUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: VehicleUpdateManyWithWhereWithoutCustomerInput | VehicleUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+  }
+
   export type customerCreateNestedOneWithoutTicketsInput = {
     create?: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
     connectOrCreate?: customerCreateOrConnectWithoutTicketsInput
@@ -14371,6 +16881,12 @@ export namespace Prisma {
     create?: XOR<technicianCreateWithoutTicketsInput, technicianUncheckedCreateWithoutTicketsInput>
     connectOrCreate?: technicianCreateOrConnectWithoutTicketsInput
     connect?: technicianWhereUniqueInput
+  }
+
+  export type VehicleCreateNestedOneWithoutTicketsInput = {
+    create?: XOR<VehicleCreateWithoutTicketsInput, VehicleUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: VehicleCreateOrConnectWithoutTicketsInput
+    connect?: VehicleWhereUniqueInput
   }
 
   export type technicianNoteCreateNestedManyWithoutTicketInput = {
@@ -14394,6 +16910,12 @@ export namespace Prisma {
     connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
   }
 
+  export type invoiceCreateNestedOneWithoutTicketInput = {
+    create?: XOR<invoiceCreateWithoutTicketInput, invoiceUncheckedCreateWithoutTicketInput>
+    connectOrCreate?: invoiceCreateOrConnectWithoutTicketInput
+    connect?: invoiceWhereUniqueInput
+  }
+
   export type technicianNoteUncheckedCreateNestedManyWithoutTicketInput = {
     create?: XOR<technicianNoteCreateWithoutTicketInput, technicianNoteUncheckedCreateWithoutTicketInput> | technicianNoteCreateWithoutTicketInput[] | technicianNoteUncheckedCreateWithoutTicketInput[]
     connectOrCreate?: technicianNoteCreateOrConnectWithoutTicketInput | technicianNoteCreateOrConnectWithoutTicketInput[]
@@ -14415,6 +16937,32 @@ export namespace Prisma {
     connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
   }
 
+  export type invoiceUncheckedCreateNestedOneWithoutTicketInput = {
+    create?: XOR<invoiceCreateWithoutTicketInput, invoiceUncheckedCreateWithoutTicketInput>
+    connectOrCreate?: invoiceCreateOrConnectWithoutTicketInput
+    connect?: invoiceWhereUniqueInput
+  }
+
+  export type EnumTicketStatusFieldUpdateOperationsInput = {
+    set?: $Enums.TicketStatus
+  }
+
+  export type EnumTicketPriorityFieldUpdateOperationsInput = {
+    set?: $Enums.TicketPriority
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type customerUpdateOneRequiredWithoutTicketsNestedInput = {
     create?: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
     connectOrCreate?: customerCreateOrConnectWithoutTicketsInput
@@ -14431,6 +16979,16 @@ export namespace Prisma {
     delete?: technicianWhereInput | boolean
     connect?: technicianWhereUniqueInput
     update?: XOR<XOR<technicianUpdateToOneWithWhereWithoutTicketsInput, technicianUpdateWithoutTicketsInput>, technicianUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type VehicleUpdateOneWithoutTicketsNestedInput = {
+    create?: XOR<VehicleCreateWithoutTicketsInput, VehicleUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: VehicleCreateOrConnectWithoutTicketsInput
+    upsert?: VehicleUpsertWithoutTicketsInput
+    disconnect?: VehicleWhereInput | boolean
+    delete?: VehicleWhereInput | boolean
+    connect?: VehicleWhereUniqueInput
+    update?: XOR<XOR<VehicleUpdateToOneWithWhereWithoutTicketsInput, VehicleUpdateWithoutTicketsInput>, VehicleUncheckedUpdateWithoutTicketsInput>
   }
 
   export type technicianNoteUpdateManyWithoutTicketNestedInput = {
@@ -14475,8 +17033,26 @@ export namespace Prisma {
     deleteMany?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
   }
 
+  export type invoiceUpdateOneWithoutTicketNestedInput = {
+    create?: XOR<invoiceCreateWithoutTicketInput, invoiceUncheckedCreateWithoutTicketInput>
+    connectOrCreate?: invoiceCreateOrConnectWithoutTicketInput
+    upsert?: invoiceUpsertWithoutTicketInput
+    disconnect?: invoiceWhereInput | boolean
+    delete?: invoiceWhereInput | boolean
+    connect?: invoiceWhereUniqueInput
+    update?: XOR<XOR<invoiceUpdateToOneWithWhereWithoutTicketInput, invoiceUpdateWithoutTicketInput>, invoiceUncheckedUpdateWithoutTicketInput>
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -14523,6 +17099,16 @@ export namespace Prisma {
     update?: usedPartUpdateWithWhereUniqueWithoutTicketInput | usedPartUpdateWithWhereUniqueWithoutTicketInput[]
     updateMany?: usedPartUpdateManyWithWhereWithoutTicketInput | usedPartUpdateManyWithWhereWithoutTicketInput[]
     deleteMany?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
+  }
+
+  export type invoiceUncheckedUpdateOneWithoutTicketNestedInput = {
+    create?: XOR<invoiceCreateWithoutTicketInput, invoiceUncheckedCreateWithoutTicketInput>
+    connectOrCreate?: invoiceCreateOrConnectWithoutTicketInput
+    upsert?: invoiceUpsertWithoutTicketInput
+    disconnect?: invoiceWhereInput | boolean
+    delete?: invoiceWhereInput | boolean
+    connect?: invoiceWhereUniqueInput
+    update?: XOR<XOR<invoiceUpdateToOneWithWhereWithoutTicketInput, invoiceUpdateWithoutTicketInput>, invoiceUncheckedUpdateWithoutTicketInput>
   }
 
   export type technicianNoteCreatequickTagsInput = {
@@ -14649,12 +17235,24 @@ export namespace Prisma {
     deleteMany?: usedPartScalarWhereInput | usedPartScalarWhereInput[]
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type repairTicketCreateNestedOneWithoutInvoiceInput = {
+    create?: XOR<repairTicketCreateWithoutInvoiceInput, repairTicketUncheckedCreateWithoutInvoiceInput>
+    connectOrCreate?: repairTicketCreateOrConnectWithoutInvoiceInput
+    connect?: repairTicketWhereUniqueInput
+  }
+
+  export type EnumSaleTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SaleType
+  }
+
+  export type repairTicketUpdateOneWithoutInvoiceNestedInput = {
+    create?: XOR<repairTicketCreateWithoutInvoiceInput, repairTicketUncheckedCreateWithoutInvoiceInput>
+    connectOrCreate?: repairTicketCreateOrConnectWithoutInvoiceInput
+    upsert?: repairTicketUpsertWithoutInvoiceInput
+    disconnect?: repairTicketWhereInput | boolean
+    delete?: repairTicketWhereInput | boolean
+    connect?: repairTicketWhereUniqueInput
+    update?: XOR<XOR<repairTicketUpdateToOneWithWhereWithoutInvoiceInput, repairTicketUpdateWithoutInvoiceInput>, repairTicketUncheckedUpdateWithoutInvoiceInput>
   }
 
   export type repairTicketCreateNestedManyWithoutTechnicianInput = {
@@ -14669,6 +17267,14 @@ export namespace Prisma {
     connectOrCreate?: repairTicketCreateOrConnectWithoutTechnicianInput | repairTicketCreateOrConnectWithoutTechnicianInput[]
     createMany?: repairTicketCreateManyTechnicianInputEnvelope
     connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type EnumTechnicianSpecializationFieldUpdateOperationsInput = {
+    set?: $Enums.TechnicianSpecialization
+  }
+
+  export type EnumTechnicianStatusFieldUpdateOperationsInput = {
+    set?: $Enums.TechnicianStatus
   }
 
   export type repairTicketUpdateManyWithoutTechnicianNestedInput = {
@@ -14696,6 +17302,62 @@ export namespace Prisma {
     connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
     update?: repairTicketUpdateWithWhereUniqueWithoutTechnicianInput | repairTicketUpdateWithWhereUniqueWithoutTechnicianInput[]
     updateMany?: repairTicketUpdateManyWithWhereWithoutTechnicianInput | repairTicketUpdateManyWithWhereWithoutTechnicianInput[]
+    deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+  }
+
+  export type customerCreateNestedOneWithoutVehiclesInput = {
+    create?: XOR<customerCreateWithoutVehiclesInput, customerUncheckedCreateWithoutVehiclesInput>
+    connectOrCreate?: customerCreateOrConnectWithoutVehiclesInput
+    connect?: customerWhereUniqueInput
+  }
+
+  export type repairTicketCreateNestedManyWithoutVehicleInput = {
+    create?: XOR<repairTicketCreateWithoutVehicleInput, repairTicketUncheckedCreateWithoutVehicleInput> | repairTicketCreateWithoutVehicleInput[] | repairTicketUncheckedCreateWithoutVehicleInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutVehicleInput | repairTicketCreateOrConnectWithoutVehicleInput[]
+    createMany?: repairTicketCreateManyVehicleInputEnvelope
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type repairTicketUncheckedCreateNestedManyWithoutVehicleInput = {
+    create?: XOR<repairTicketCreateWithoutVehicleInput, repairTicketUncheckedCreateWithoutVehicleInput> | repairTicketCreateWithoutVehicleInput[] | repairTicketUncheckedCreateWithoutVehicleInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutVehicleInput | repairTicketCreateOrConnectWithoutVehicleInput[]
+    createMany?: repairTicketCreateManyVehicleInputEnvelope
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type customerUpdateOneRequiredWithoutVehiclesNestedInput = {
+    create?: XOR<customerCreateWithoutVehiclesInput, customerUncheckedCreateWithoutVehiclesInput>
+    connectOrCreate?: customerCreateOrConnectWithoutVehiclesInput
+    upsert?: customerUpsertWithoutVehiclesInput
+    connect?: customerWhereUniqueInput
+    update?: XOR<XOR<customerUpdateToOneWithWhereWithoutVehiclesInput, customerUpdateWithoutVehiclesInput>, customerUncheckedUpdateWithoutVehiclesInput>
+  }
+
+  export type repairTicketUpdateManyWithoutVehicleNestedInput = {
+    create?: XOR<repairTicketCreateWithoutVehicleInput, repairTicketUncheckedCreateWithoutVehicleInput> | repairTicketCreateWithoutVehicleInput[] | repairTicketUncheckedCreateWithoutVehicleInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutVehicleInput | repairTicketCreateOrConnectWithoutVehicleInput[]
+    upsert?: repairTicketUpsertWithWhereUniqueWithoutVehicleInput | repairTicketUpsertWithWhereUniqueWithoutVehicleInput[]
+    createMany?: repairTicketCreateManyVehicleInputEnvelope
+    set?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    disconnect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    delete?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    update?: repairTicketUpdateWithWhereUniqueWithoutVehicleInput | repairTicketUpdateWithWhereUniqueWithoutVehicleInput[]
+    updateMany?: repairTicketUpdateManyWithWhereWithoutVehicleInput | repairTicketUpdateManyWithWhereWithoutVehicleInput[]
+    deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+  }
+
+  export type repairTicketUncheckedUpdateManyWithoutVehicleNestedInput = {
+    create?: XOR<repairTicketCreateWithoutVehicleInput, repairTicketUncheckedCreateWithoutVehicleInput> | repairTicketCreateWithoutVehicleInput[] | repairTicketUncheckedCreateWithoutVehicleInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutVehicleInput | repairTicketCreateOrConnectWithoutVehicleInput[]
+    upsert?: repairTicketUpsertWithWhereUniqueWithoutVehicleInput | repairTicketUpsertWithWhereUniqueWithoutVehicleInput[]
+    createMany?: repairTicketCreateManyVehicleInputEnvelope
+    set?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    disconnect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    delete?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    update?: repairTicketUpdateWithWhereUniqueWithoutVehicleInput | repairTicketUpdateWithWhereUniqueWithoutVehicleInput[]
+    updateMany?: repairTicketUpdateManyWithWhereWithoutVehicleInput | repairTicketUpdateManyWithWhereWithoutVehicleInput[]
     deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
   }
 
@@ -14825,6 +17487,42 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumTicketStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketStatus | EnumTicketStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TicketStatus[] | ListEnumTicketStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TicketStatus[] | ListEnumTicketStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTicketStatusFilter<$PrismaModel> | $Enums.TicketStatus
+  }
+
+  export type NestedEnumTicketPriorityFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketPriority | EnumTicketPriorityFieldRefInput<$PrismaModel>
+    in?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel>
+    not?: NestedEnumTicketPriorityFilter<$PrismaModel> | $Enums.TicketPriority
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -14852,20 +17550,54 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type NestedEnumTicketStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketStatus | EnumTicketStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TicketStatus[] | ListEnumTicketStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TicketStatus[] | ListEnumTicketStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTicketStatusWithAggregatesFilter<$PrismaModel> | $Enums.TicketStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTicketStatusFilter<$PrismaModel>
+    _max?: NestedEnumTicketStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTicketPriorityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketPriority | EnumTicketPriorityFieldRefInput<$PrismaModel>
+    in?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel>
+    not?: NestedEnumTicketPriorityWithAggregatesFilter<$PrismaModel> | $Enums.TicketPriority
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTicketPriorityFilter<$PrismaModel>
+    _max?: NestedEnumTicketPriorityFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -14884,15 +17616,27 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSaleTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SaleType | EnumSaleTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SaleType[] | ListEnumSaleTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SaleType[] | ListEnumSaleTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSaleTypeFilter<$PrismaModel> | $Enums.SaleType
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -14918,33 +17662,91 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedEnumSaleTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SaleType | EnumSaleTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SaleType[] | ListEnumSaleTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SaleType[] | ListEnumSaleTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSaleTypeWithAggregatesFilter<$PrismaModel> | $Enums.SaleType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSaleTypeFilter<$PrismaModel>
+    _max?: NestedEnumSaleTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTechnicianSpecializationFilter<$PrismaModel = never> = {
+    equals?: $Enums.TechnicianSpecialization | EnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    in?: $Enums.TechnicianSpecialization[] | ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TechnicianSpecialization[] | ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    not?: NestedEnumTechnicianSpecializationFilter<$PrismaModel> | $Enums.TechnicianSpecialization
+  }
+
+  export type NestedEnumTechnicianStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TechnicianStatus | EnumTechnicianStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TechnicianStatus[] | ListEnumTechnicianStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TechnicianStatus[] | ListEnumTechnicianStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTechnicianStatusFilter<$PrismaModel> | $Enums.TechnicianStatus
+  }
+
+  export type NestedEnumTechnicianSpecializationWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TechnicianSpecialization | EnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    in?: $Enums.TechnicianSpecialization[] | ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TechnicianSpecialization[] | ListEnumTechnicianSpecializationFieldRefInput<$PrismaModel>
+    not?: NestedEnumTechnicianSpecializationWithAggregatesFilter<$PrismaModel> | $Enums.TechnicianSpecialization
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTechnicianSpecializationFilter<$PrismaModel>
+    _max?: NestedEnumTechnicianSpecializationFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTechnicianStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TechnicianStatus | EnumTechnicianStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TechnicianStatus[] | ListEnumTechnicianStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TechnicianStatus[] | ListEnumTechnicianStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTechnicianStatusWithAggregatesFilter<$PrismaModel> | $Enums.TechnicianStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTechnicianStatusFilter<$PrismaModel>
+    _max?: NestedEnumTechnicianStatusFilter<$PrismaModel>
+  }
+
   export type repairTicketCreateWithoutCustomerInput = {
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     technician?: technicianCreateNestedOneWithoutTicketsInput
+    vehicle?: VehicleCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
+    invoice?: invoiceCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketUncheckedCreateWithoutCustomerInput = {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     technicianId?: string | null
+    vehicleId?: number | null
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+    invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketCreateOrConnectWithoutCustomerInput = {
@@ -14954,6 +17756,51 @@ export namespace Prisma {
 
   export type repairTicketCreateManyCustomerInputEnvelope = {
     data: repairTicketCreateManyCustomerInput | repairTicketCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type VehicleCreateWithoutCustomerInput = {
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDaysAgo?: number | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    tickets?: repairTicketCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleUncheckedCreateWithoutCustomerInput = {
+    id?: number
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDaysAgo?: number | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleCreateOrConnectWithoutCustomerInput = {
+    where: VehicleWhereUniqueInput
+    create: XOR<VehicleCreateWithoutCustomerInput, VehicleUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type VehicleCreateManyCustomerInputEnvelope = {
+    data: VehicleCreateManyCustomerInput | VehicleCreateManyCustomerInput[]
     skipDuplicates?: boolean
   }
 
@@ -14980,13 +17827,56 @@ export namespace Prisma {
     id?: IntFilter<"repairTicket"> | number
     issueCategory?: StringFilter<"repairTicket"> | string
     description?: StringFilter<"repairTicket"> | string
-    status?: StringFilter<"repairTicket"> | string
+    status?: EnumTicketStatusFilter<"repairTicket"> | $Enums.TicketStatus
     bay?: StringNullableFilter<"repairTicket"> | string | null
-    priority?: StringFilter<"repairTicket"> | string
+    priority?: EnumTicketPriorityFilter<"repairTicket"> | $Enums.TicketPriority
     createdAt?: DateTimeFilter<"repairTicket"> | Date | string
     updatedAt?: DateTimeFilter<"repairTicket"> | Date | string
+    closedAt?: DateTimeNullableFilter<"repairTicket"> | Date | string | null
+    estimatedCost?: FloatNullableFilter<"repairTicket"> | number | null
+    finalCost?: FloatNullableFilter<"repairTicket"> | number | null
+    aiSummary?: StringNullableFilter<"repairTicket"> | string | null
+    manufacturer?: StringNullableFilter<"repairTicket"> | string | null
     customerId?: StringFilter<"repairTicket"> | string
     technicianId?: StringNullableFilter<"repairTicket"> | string | null
+    vehicleId?: IntNullableFilter<"repairTicket"> | number | null
+  }
+
+  export type VehicleUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: VehicleWhereUniqueInput
+    update: XOR<VehicleUpdateWithoutCustomerInput, VehicleUncheckedUpdateWithoutCustomerInput>
+    create: XOR<VehicleCreateWithoutCustomerInput, VehicleUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type VehicleUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: VehicleWhereUniqueInput
+    data: XOR<VehicleUpdateWithoutCustomerInput, VehicleUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type VehicleUpdateManyWithWhereWithoutCustomerInput = {
+    where: VehicleScalarWhereInput
+    data: XOR<VehicleUpdateManyMutationInput, VehicleUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type VehicleScalarWhereInput = {
+    AND?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+    OR?: VehicleScalarWhereInput[]
+    NOT?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+    id?: IntFilter<"Vehicle"> | number
+    vin?: StringFilter<"Vehicle"> | string
+    vehicleModel?: StringFilter<"Vehicle"> | string
+    batteryPackSerial?: StringNullableFilter<"Vehicle"> | string | null
+    batteryCapacity?: StringNullableFilter<"Vehicle"> | string | null
+    batterySoh?: IntNullableFilter<"Vehicle"> | number | null
+    batteryCycles?: IntNullableFilter<"Vehicle"> | number | null
+    batteryTemp?: StringNullableFilter<"Vehicle"> | string | null
+    odometer?: StringNullableFilter<"Vehicle"> | string | null
+    lastServiceDaysAgo?: IntNullableFilter<"Vehicle"> | number | null
+    manufacturer?: StringNullableFilter<"Vehicle"> | string | null
+    modelYear?: IntNullableFilter<"Vehicle"> | number | null
+    healthScore?: IntNullableFilter<"Vehicle"> | number | null
+    lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
+    customerId?: StringFilter<"Vehicle"> | string
   }
 
   export type customerCreateWithoutTicketsInput = {
@@ -14994,9 +17884,9 @@ export namespace Prisma {
     name: string
     email?: string | null
     phone: string
-    vehicleModel: string
     address?: string | null
     createdAt?: Date | string
+    vehicles?: VehicleCreateNestedManyWithoutCustomerInput
   }
 
   export type customerUncheckedCreateWithoutTicketsInput = {
@@ -15004,9 +17894,9 @@ export namespace Prisma {
     name: string
     email?: string | null
     phone: string
-    vehicleModel: string
     address?: string | null
     createdAt?: Date | string
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type customerCreateOrConnectWithoutTicketsInput = {
@@ -15020,9 +17910,9 @@ export namespace Prisma {
     email: string
     phone: string
     employeeId: string
-    specialization: string
-    status?: string
-    experienceYears: string
+    specialization: $Enums.TechnicianSpecialization
+    status?: $Enums.TechnicianStatus
+    experienceYears: number
     address?: string | null
     profileImage?: string | null
     createdAt?: Date | string
@@ -15035,9 +17925,9 @@ export namespace Prisma {
     email: string
     phone: string
     employeeId: string
-    specialization: string
-    status?: string
-    experienceYears: string
+    specialization: $Enums.TechnicianSpecialization
+    status?: $Enums.TechnicianStatus
+    experienceYears: number
     address?: string | null
     profileImage?: string | null
     createdAt?: Date | string
@@ -15049,7 +17939,48 @@ export namespace Prisma {
     create: XOR<technicianCreateWithoutTicketsInput, technicianUncheckedCreateWithoutTicketsInput>
   }
 
+  export type VehicleCreateWithoutTicketsInput = {
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDaysAgo?: number | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    customer: customerCreateNestedOneWithoutVehiclesInput
+  }
+
+  export type VehicleUncheckedCreateWithoutTicketsInput = {
+    id?: number
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDaysAgo?: number | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    customerId: string
+  }
+
+  export type VehicleCreateOrConnectWithoutTicketsInput = {
+    where: VehicleWhereUniqueInput
+    create: XOR<VehicleCreateWithoutTicketsInput, VehicleUncheckedCreateWithoutTicketsInput>
+  }
+
   export type technicianNoteCreateWithoutTicketInput = {
+    aiSummary?: string | null
     rawVoiceText?: string | null
     structuredText: string
     quickTags?: technicianNoteCreatequickTagsInput | string[]
@@ -15059,6 +17990,7 @@ export namespace Prisma {
 
   export type technicianNoteUncheckedCreateWithoutTicketInput = {
     id?: number
+    aiSummary?: string | null
     rawVoiceText?: string | null
     structuredText: string
     quickTags?: technicianNoteCreatequickTagsInput | string[]
@@ -15122,6 +18054,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type invoiceCreateWithoutTicketInput = {
+    invoiceNo: string
+    customerName: string
+    customerPhone: string
+    items: JsonNullValueInput | InputJsonValue
+    laborCharge?: number
+    grandTotal: number
+    paymentStatus: string
+    paymentMethod: string
+    saleType: $Enums.SaleType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type invoiceUncheckedCreateWithoutTicketInput = {
+    id?: number
+    invoiceNo: string
+    customerName: string
+    customerPhone: string
+    items: JsonNullValueInput | InputJsonValue
+    laborCharge?: number
+    grandTotal: number
+    paymentStatus: string
+    paymentMethod: string
+    saleType: $Enums.SaleType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type invoiceCreateOrConnectWithoutTicketInput = {
+    where: invoiceWhereUniqueInput
+    create: XOR<invoiceCreateWithoutTicketInput, invoiceUncheckedCreateWithoutTicketInput>
+  }
+
   export type customerUpsertWithoutTicketsInput = {
     update: XOR<customerUpdateWithoutTicketsInput, customerUncheckedUpdateWithoutTicketsInput>
     create: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
@@ -15138,9 +18104,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: StringFieldUpdateOperationsInput | string
-    vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehicles?: VehicleUpdateManyWithoutCustomerNestedInput
   }
 
   export type customerUncheckedUpdateWithoutTicketsInput = {
@@ -15148,9 +18114,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: StringFieldUpdateOperationsInput | string
-    vehicleModel?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehicles?: VehicleUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type technicianUpsertWithoutTicketsInput = {
@@ -15170,9 +18136,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
     address?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15185,13 +18151,59 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    specialization?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    experienceYears?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
     address?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VehicleUpsertWithoutTicketsInput = {
+    update: XOR<VehicleUpdateWithoutTicketsInput, VehicleUncheckedUpdateWithoutTicketsInput>
+    create: XOR<VehicleCreateWithoutTicketsInput, VehicleUncheckedCreateWithoutTicketsInput>
+    where?: VehicleWhereInput
+  }
+
+  export type VehicleUpdateToOneWithWhereWithoutTicketsInput = {
+    where?: VehicleWhereInput
+    data: XOR<VehicleUpdateWithoutTicketsInput, VehicleUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type VehicleUpdateWithoutTicketsInput = {
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer?: customerUpdateOneRequiredWithoutVehiclesNestedInput
+  }
+
+  export type VehicleUncheckedUpdateWithoutTicketsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type technicianNoteUpsertWithWhereUniqueWithoutTicketInput = {
@@ -15216,6 +18228,7 @@ export namespace Prisma {
     NOT?: technicianNoteScalarWhereInput | technicianNoteScalarWhereInput[]
     id?: IntFilter<"technicianNote"> | number
     ticketId?: IntFilter<"technicianNote"> | number
+    aiSummary?: StringNullableFilter<"technicianNote"> | string | null
     rawVoiceText?: StringNullableFilter<"technicianNote"> | string | null
     structuredText?: StringFilter<"technicianNote"> | string
     quickTags?: StringNullableListFilter<"technicianNote">
@@ -15277,33 +18290,87 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"usedPart"> | Date | string
   }
 
+  export type invoiceUpsertWithoutTicketInput = {
+    update: XOR<invoiceUpdateWithoutTicketInput, invoiceUncheckedUpdateWithoutTicketInput>
+    create: XOR<invoiceCreateWithoutTicketInput, invoiceUncheckedCreateWithoutTicketInput>
+    where?: invoiceWhereInput
+  }
+
+  export type invoiceUpdateToOneWithWhereWithoutTicketInput = {
+    where?: invoiceWhereInput
+    data: XOR<invoiceUpdateWithoutTicketInput, invoiceUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type invoiceUpdateWithoutTicketInput = {
+    invoiceNo?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    items?: JsonNullValueInput | InputJsonValue
+    laborCharge?: FloatFieldUpdateOperationsInput | number
+    grandTotal?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: StringFieldUpdateOperationsInput | string
+    paymentMethod?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type invoiceUncheckedUpdateWithoutTicketInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    invoiceNo?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    items?: JsonNullValueInput | InputJsonValue
+    laborCharge?: FloatFieldUpdateOperationsInput | number
+    grandTotal?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: StringFieldUpdateOperationsInput | string
+    paymentMethod?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type repairTicketCreateWithoutNotesInput = {
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
+    vehicle?: VehicleCreateNestedOneWithoutTicketsInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
+    invoice?: invoiceCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketUncheckedCreateWithoutNotesInput = {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customerId: string
     technicianId?: string | null
+    vehicleId?: number | null
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+    invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketCreateOrConnectWithoutNotesInput = {
@@ -15325,59 +18392,87 @@ export namespace Prisma {
   export type repairTicketUpdateWithoutNotesInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
+    vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateWithoutNotesInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketCreateWithoutTimelineInput = {
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
+    vehicle?: VehicleCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
+    invoice?: invoiceCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketUncheckedCreateWithoutTimelineInput = {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customerId: string
     technicianId?: string | null
+    vehicleId?: number | null
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+    invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketCreateOrConnectWithoutTimelineInput = {
@@ -15399,59 +18494,87 @@ export namespace Prisma {
   export type repairTicketUpdateWithoutTimelineInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
+    vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateWithoutTimelineInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketCreateWithoutPartsInput = {
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
+    vehicle?: VehicleCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
+    invoice?: invoiceCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketUncheckedCreateWithoutPartsInput = {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customerId: string
     technicianId?: string | null
+    vehicleId?: number | null
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+    invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketCreateOrConnectWithoutPartsInput = {
@@ -15501,30 +18624,44 @@ export namespace Prisma {
   export type repairTicketUpdateWithoutPartsInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
+    vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateWithoutPartsInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type inventoryUpsertWithoutUsageHistoryInput = {
@@ -15602,33 +18739,149 @@ export namespace Prisma {
     data: XOR<usedPartUpdateManyMutationInput, usedPartUncheckedUpdateManyWithoutInventoryItemInput>
   }
 
-  export type repairTicketCreateWithoutTechnicianInput = {
+  export type repairTicketCreateWithoutInvoiceInput = {
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
+    technician?: technicianCreateNestedOneWithoutTicketsInput
+    vehicle?: VehicleCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketUncheckedCreateWithoutInvoiceInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: $Enums.TicketStatus
+    bay?: string | null
+    priority?: $Enums.TicketPriority
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
+    customerId: string
+    technicianId?: string | null
+    vehicleId?: number | null
+    notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+    parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type repairTicketCreateOrConnectWithoutInvoiceInput = {
+    where: repairTicketWhereUniqueInput
+    create: XOR<repairTicketCreateWithoutInvoiceInput, repairTicketUncheckedCreateWithoutInvoiceInput>
+  }
+
+  export type repairTicketUpsertWithoutInvoiceInput = {
+    update: XOR<repairTicketUpdateWithoutInvoiceInput, repairTicketUncheckedUpdateWithoutInvoiceInput>
+    create: XOR<repairTicketCreateWithoutInvoiceInput, repairTicketUncheckedCreateWithoutInvoiceInput>
+    where?: repairTicketWhereInput
+  }
+
+  export type repairTicketUpdateToOneWithWhereWithoutInvoiceInput = {
+    where?: repairTicketWhereInput
+    data: XOR<repairTicketUpdateWithoutInvoiceInput, repairTicketUncheckedUpdateWithoutInvoiceInput>
+  }
+
+  export type repairTicketUpdateWithoutInvoiceInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    technician?: technicianUpdateOneWithoutTicketsNestedInput
+    vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    notes?: technicianNoteUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateWithoutInvoiceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type repairTicketCreateWithoutTechnicianInput = {
+    issueCategory: string
+    description: string
+    status?: $Enums.TicketStatus
+    bay?: string | null
+    priority?: $Enums.TicketPriority
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
+    customer: customerCreateNestedOneWithoutTicketsInput
+    vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    notes?: technicianNoteCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventCreateNestedManyWithoutTicketInput
+    parts?: usedPartCreateNestedManyWithoutTicketInput
+    invoice?: invoiceCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketUncheckedCreateWithoutTechnicianInput = {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customerId: string
+    vehicleId?: number | null
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+    invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type repairTicketCreateOrConnectWithoutTechnicianInput = {
@@ -15657,61 +18910,282 @@ export namespace Prisma {
     data: XOR<repairTicketUpdateManyMutationInput, repairTicketUncheckedUpdateManyWithoutTechnicianInput>
   }
 
+  export type customerCreateWithoutVehiclesInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    address?: string | null
+    createdAt?: Date | string
+    tickets?: repairTicketCreateNestedManyWithoutCustomerInput
+  }
+
+  export type customerUncheckedCreateWithoutVehiclesInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    address?: string | null
+    createdAt?: Date | string
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type customerCreateOrConnectWithoutVehiclesInput = {
+    where: customerWhereUniqueInput
+    create: XOR<customerCreateWithoutVehiclesInput, customerUncheckedCreateWithoutVehiclesInput>
+  }
+
+  export type repairTicketCreateWithoutVehicleInput = {
+    issueCategory: string
+    description: string
+    status?: $Enums.TicketStatus
+    bay?: string | null
+    priority?: $Enums.TicketPriority
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
+    customer: customerCreateNestedOneWithoutTicketsInput
+    technician?: technicianCreateNestedOneWithoutTicketsInput
+    notes?: technicianNoteCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventCreateNestedManyWithoutTicketInput
+    parts?: usedPartCreateNestedManyWithoutTicketInput
+    invoice?: invoiceCreateNestedOneWithoutTicketInput
+  }
+
+  export type repairTicketUncheckedCreateWithoutVehicleInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: $Enums.TicketStatus
+    bay?: string | null
+    priority?: $Enums.TicketPriority
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
+    customerId: string
+    technicianId?: string | null
+    notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+    parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+    invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
+  }
+
+  export type repairTicketCreateOrConnectWithoutVehicleInput = {
+    where: repairTicketWhereUniqueInput
+    create: XOR<repairTicketCreateWithoutVehicleInput, repairTicketUncheckedCreateWithoutVehicleInput>
+  }
+
+  export type repairTicketCreateManyVehicleInputEnvelope = {
+    data: repairTicketCreateManyVehicleInput | repairTicketCreateManyVehicleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type customerUpsertWithoutVehiclesInput = {
+    update: XOR<customerUpdateWithoutVehiclesInput, customerUncheckedUpdateWithoutVehiclesInput>
+    create: XOR<customerCreateWithoutVehiclesInput, customerUncheckedCreateWithoutVehiclesInput>
+    where?: customerWhereInput
+  }
+
+  export type customerUpdateToOneWithWhereWithoutVehiclesInput = {
+    where?: customerWhereInput
+    data: XOR<customerUpdateWithoutVehiclesInput, customerUncheckedUpdateWithoutVehiclesInput>
+  }
+
+  export type customerUpdateWithoutVehiclesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type customerUncheckedUpdateWithoutVehiclesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type repairTicketUpsertWithWhereUniqueWithoutVehicleInput = {
+    where: repairTicketWhereUniqueInput
+    update: XOR<repairTicketUpdateWithoutVehicleInput, repairTicketUncheckedUpdateWithoutVehicleInput>
+    create: XOR<repairTicketCreateWithoutVehicleInput, repairTicketUncheckedCreateWithoutVehicleInput>
+  }
+
+  export type repairTicketUpdateWithWhereUniqueWithoutVehicleInput = {
+    where: repairTicketWhereUniqueInput
+    data: XOR<repairTicketUpdateWithoutVehicleInput, repairTicketUncheckedUpdateWithoutVehicleInput>
+  }
+
+  export type repairTicketUpdateManyWithWhereWithoutVehicleInput = {
+    where: repairTicketScalarWhereInput
+    data: XOR<repairTicketUpdateManyMutationInput, repairTicketUncheckedUpdateManyWithoutVehicleInput>
+  }
+
   export type repairTicketCreateManyCustomerInput = {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     technicianId?: string | null
+    vehicleId?: number | null
+  }
+
+  export type VehicleCreateManyCustomerInput = {
+    id?: number
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDaysAgo?: number | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
   }
 
   export type repairTicketUpdateWithoutCustomerInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technician?: technicianUpdateOneWithoutTicketsNestedInput
+    vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateWithoutCustomerInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateManyWithoutCustomerInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type VehicleUpdateWithoutCustomerInput = {
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tickets?: repairTicketUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tickets?: repairTicketUncheckedUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateManyWithoutCustomerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type technicianNoteCreateManyTicketInput = {
     id?: number
+    aiSummary?: string | null
     rawVoiceText?: string | null
     structuredText: string
     quickTags?: technicianNoteCreatequickTagsInput | string[]
@@ -15734,6 +19208,7 @@ export namespace Prisma {
   }
 
   export type technicianNoteUpdateWithoutTicketInput = {
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
     structuredText?: StringFieldUpdateOperationsInput | string
     quickTags?: technicianNoteUpdatequickTagsInput | string[]
@@ -15743,6 +19218,7 @@ export namespace Prisma {
 
   export type technicianNoteUncheckedUpdateWithoutTicketInput = {
     id?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
     structuredText?: StringFieldUpdateOperationsInput | string
     quickTags?: technicianNoteUpdatequickTagsInput | string[]
@@ -15752,6 +19228,7 @@ export namespace Prisma {
 
   export type technicianNoteUncheckedUpdateManyWithoutTicketInput = {
     id?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     rawVoiceText?: NullableStringFieldUpdateOperationsInput | string | null
     structuredText?: StringFieldUpdateOperationsInput | string
     quickTags?: technicianNoteUpdatequickTagsInput | string[]
@@ -15834,53 +19311,158 @@ export namespace Prisma {
     id?: number
     issueCategory: string
     description: string
-    status?: string
+    status?: $Enums.TicketStatus
     bay?: string | null
-    priority?: string
+    priority?: $Enums.TicketPriority
     createdAt?: Date | string
     updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
     customerId: string
+    vehicleId?: number | null
   }
 
   export type repairTicketUpdateWithoutTechnicianInput = {
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateWithoutTechnicianInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type repairTicketUncheckedUpdateManyWithoutTechnicianInput = {
     id?: IntFieldUpdateOperationsInput | number
     issueCategory?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     bay?: NullableStringFieldUpdateOperationsInput | string | null
-    priority?: StringFieldUpdateOperationsInput | string
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type repairTicketCreateManyVehicleInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: $Enums.TicketStatus
+    bay?: string | null
+    priority?: $Enums.TicketPriority
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    aiSummary?: string | null
+    manufacturer?: string | null
+    customerId: string
+    technicianId?: string | null
+  }
+
+  export type repairTicketUpdateWithoutVehicleInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    technician?: technicianUpdateOneWithoutTicketsNestedInput
+    notes?: technicianNoteUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUpdateOneWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateWithoutVehicleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateManyWithoutVehicleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

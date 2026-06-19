@@ -135,7 +135,6 @@ exports.Prisma.CustomerScalarFieldEnum = {
   name: 'name',
   email: 'email',
   phone: 'phone',
-  vehicleModel: 'vehicleModel',
   address: 'address',
   createdAt: 'createdAt'
 };
@@ -149,13 +148,20 @@ exports.Prisma.RepairTicketScalarFieldEnum = {
   priority: 'priority',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  closedAt: 'closedAt',
+  estimatedCost: 'estimatedCost',
+  finalCost: 'finalCost',
+  aiSummary: 'aiSummary',
+  manufacturer: 'manufacturer',
   customerId: 'customerId',
-  technicianId: 'technicianId'
+  technicianId: 'technicianId',
+  vehicleId: 'vehicleId'
 };
 
 exports.Prisma.TechnicianNoteScalarFieldEnum = {
   id: 'id',
   ticketId: 'ticketId',
+  aiSummary: 'aiSummary',
   rawVoiceText: 'rawVoiceText',
   structuredText: 'structuredText',
   quickTags: 'quickTags',
@@ -196,12 +202,13 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   invoiceNo: 'invoiceNo',
   customerName: 'customerName',
   customerPhone: 'customerPhone',
-  ticketId: 'ticketId',
   items: 'items',
   laborCharge: 'laborCharge',
   grandTotal: 'grandTotal',
   paymentStatus: 'paymentStatus',
   paymentMethod: 'paymentMethod',
+  saleType: 'saleType',
+  ticketId: 'ticketId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -219,6 +226,24 @@ exports.Prisma.TechnicianScalarFieldEnum = {
   profileImage: 'profileImage',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VehicleScalarFieldEnum = {
+  id: 'id',
+  vin: 'vin',
+  vehicleModel: 'vehicleModel',
+  batteryPackSerial: 'batteryPackSerial',
+  batteryCapacity: 'batteryCapacity',
+  batterySoh: 'batterySoh',
+  batteryCycles: 'batteryCycles',
+  batteryTemp: 'batteryTemp',
+  odometer: 'odometer',
+  lastServiceDaysAgo: 'lastServiceDaysAgo',
+  manufacturer: 'manufacturer',
+  modelYear: 'modelYear',
+  healthScore: 'healthScore',
+  lastAiCheck: 'lastAiCheck',
+  customerId: 'customerId'
 };
 
 exports.Prisma.SortOrder = {
@@ -251,6 +276,40 @@ exports.Role = exports.$Enums.Role = {
   TECHNICIAN: 'TECHNICIAN'
 };
 
+exports.TicketStatus = exports.$Enums.TicketStatus = {
+  PENDING: 'PENDING',
+  DIAGNOSING: 'DIAGNOSING',
+  IN_SERVICE: 'IN_SERVICE',
+  RESOLVED: 'RESOLVED',
+  DELIVERED: 'DELIVERED'
+};
+
+exports.TicketPriority = exports.$Enums.TicketPriority = {
+  LOW: 'LOW',
+  STANDARD: 'STANDARD',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+};
+
+exports.SaleType = exports.$Enums.SaleType = {
+  REPAIR: 'REPAIR',
+  COUNTER: 'COUNTER'
+};
+
+exports.TechnicianSpecialization = exports.$Enums.TechnicianSpecialization = {
+  BATTERY: 'BATTERY',
+  BMS: 'BMS',
+  CONTROLLER: 'CONTROLLER',
+  MOTOR: 'MOTOR',
+  GENERAL: 'GENERAL'
+};
+
+exports.TechnicianStatus = exports.$Enums.TechnicianStatus = {
+  AVAILABLE: 'AVAILABLE',
+  BUSY: 'BUSY',
+  ON_LEAVE: 'ON_LEAVE'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   customer: 'customer',
@@ -260,7 +319,8 @@ exports.Prisma.ModelName = {
   usedPart: 'usedPart',
   inventory: 'inventory',
   invoice: 'invoice',
-  technician: 'technician'
+  technician: 'technician',
+  Vehicle: 'Vehicle'
 };
 
 /**
