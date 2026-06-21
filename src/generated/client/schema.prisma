@@ -49,13 +49,17 @@ enum SaleType {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  name      String
-  password  String
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  email       String   @unique
+  name        String
+  password    String
+  role        Role     @default(USER)
+  shopName    String?
+  shopAddress String?
+  gstNumber   String?
+  shopPhone   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@map("users")
 }
@@ -178,8 +182,8 @@ model inventory {
 model invoice {
   id              Int      @id @default(autoincrement())
   invoiceNo       String   @unique
-  shopName        String   @default("VoltOps")
-  shopAddress     String   @default("")
+  shopName        String?  @default("VoltOps")
+  shopAddress     String?  @default("")
   gstNumber       String?
   customerName    String
   customerAddress String   @default("")

@@ -127,7 +127,11 @@ export const loginUser = async (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
-        role: user.role 
+        role: user.role,
+        shopName: user.shopName,
+        shopAddress: user.shopAddress,
+        gstNumber: user.gstNumber,
+        shopPhone: user.shopPhone
       }
     });
 
