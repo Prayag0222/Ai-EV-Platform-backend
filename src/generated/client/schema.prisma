@@ -90,6 +90,11 @@ model repairTicket {
 
   finalCost Float?
 
+  laborHours Float @default(0)
+  laborRate  Float @default(0)
+  taxRate    Float @default(0)
+  discount   Float @default(0)
+
   aiSummary    String?
   manufacturer String?
 

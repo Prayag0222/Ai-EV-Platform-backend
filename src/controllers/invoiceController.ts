@@ -116,8 +116,13 @@ export const getAllInvoices = async (req: Request, res: Response) => {
   try {
     const invoices = await prisma.invoice.findMany({
       include:{
-    ticket:true
-},
+        ticket: {
+          include: {
+            vehicle: { select: { vehicleModel: true, vin: true } },
+            technician: { select: { fullName: true } }
+          }
+        }
+      },
       orderBy: {
         createdAt: 'desc', // Latest transaction statements pop up at the top
       },
@@ -131,5 +136,38 @@ export const getAllInvoices = async (req: Request, res: Response) => {
     const errorInstance = err instanceof Error ? err : new Error(String(err));
     console.error('Error retrieving historical billing ledgers:', errorInstance);
     return res.status(500).json({ success: false, error: 'Failed to synchronize financial histories.' });
+  }
+};
+
+/** Additive history action: updates payment fields without changing invoice creation. */
+export const updateInvoicePayment = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const { paymentStatus, paymentMethod } = req.body;
+  if (!Number.isInteger(id) || !['PAID', 'UNPAID'].includes(paymentStatus)) {
+    return res.status(400).json({ success: false, error: 'A valid invoice and payment status are required.' });
+  }
+  try {
+    const invoice = await prisma.invoice.update({
+      where: { id },
+      data: { paymentStatus, ...(paymentMethod ? { paymentMethod: String(paymentMethod) } : {}) },
+      include: { ticket: { include: { vehicle: true, technician: true } } }
+    });
+    return res.status(200).json({ success: true, invoice });
+  } catch (error) {
+    console.error('Invoice payment update failed:', error);
+    return res.status(404).json({ success: false, error: 'Invoice not found.' });
+  }
+};
+
+/** Additive history action used by the owner ledger. */
+export const deleteInvoice = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id)) return res.status(400).json({ success: false, error: 'Invalid invoice id.' });
+  try {
+    await prisma.invoice.delete({ where: { id } });
+    return res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Invoice deletion failed:', error);
+    return res.status(404).json({ success: false, error: 'Invoice not found.' });
   }
 };

@@ -24,7 +24,7 @@ router.post(
         return;
       }
 
-      console.log(`🎙️ Audio received (${req.file.size} bytes). Sending to Groq LPU speed engine...`);
+      console.log(`🎙️ Multilingual audio received (${req.file.size} bytes). Sending to Groq LPU speed engine...`);
 
       // --- STAGE 1: LIGHTNING FAST TRANSCRIPTION ---
       const audioForm = new FormData();
@@ -32,7 +32,7 @@ router.post(
       
       audioForm.append('file', audioBlob, 'audio.webm');
       audioForm.append('model', 'whisper-large-v3');
-      audioForm.append('language', 'hi'); 
+      
 
       const groqAudioResponse = await fetch(
         'https://api.groq.com/openai/v1/audio/transcriptions',

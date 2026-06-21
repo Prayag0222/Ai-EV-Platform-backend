@@ -10,7 +10,7 @@ export const createInventoryItem = async (req: Request, res: Response) => {
     const { partName, category, stockLevel, retailPrice, lowStockAlert } = req.body;
 
     // 🛡️ Validation: SKU is removed from required checks because the server builds it now!
-    if (!partName || !category || retailPrice === undefined ||Number(retailPrice) >= 0||Number(stockLevel) >= 0) {
+    if (!partName || !category || retailPrice === undefined || Number(retailPrice) < 0 || Number(stockLevel) < 0) {
       return res.status(400).json({
         success: false,
         error: 'Missing required fields. Please provide partName, category, and retailPrice.',
@@ -83,6 +83,173 @@ export const getAllInventory = async (req: Request, res: Response) => {
     const errorInstance = err instanceof Error ? err : new Error(String(err));
     console.error('Error fetching inventory:', errorInstance);
     return res.status(500).json({ success: false, error: 'Failed to retrieve inventory data.' });
+  }
+};
+
+/**
+ * ✏️ ENDPOINT: Update an inventory item
+ * Route: PUT /api/inventory/:id
+ */
+export const updateInventoryItem = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { partName, category, stockLevel, retailPrice, lowStockAlert } = req.body;
+
+    if (!id || isNaN(Number(id))) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid inventory item ID.',
+      });
+    }
+
+    // 🛡️ Validation
+    if (!partName && !category && stockLevel === undefined && retailPrice === undefined && lowStockAlert === undefined) {
+      return res.status(400).json({
+        success: false,
+        error: 'At least one field must be provided to update.',
+      });
+    }
+
+    // Check if item exists
+    const existingItem = await prisma.inventory.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!existingItem) {
+      return res.status(404).json({
+        success: false,
+        error: 'Inventory item not found.',
+      });
+    }
+
+    // Prepare update data
+    const updateData: Record<string, unknown> = {};
+    if (partName) updateData.partName = partName;
+    if (category) updateData.category = category;
+    if (stockLevel !== undefined) updateData.stockLevel = Number(stockLevel);
+    if (retailPrice !== undefined) updateData.retailPrice = Number(retailPrice);
+    if (lowStockAlert !== undefined) updateData.lowStockAlert = Number(lowStockAlert);
+
+    const updatedItem = await prisma.inventory.update({
+      where: { id: Number(id) },
+      data: updateData,
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: 'Inventory item updated successfully.',
+      item: updatedItem,
+    });
+  } catch (err: unknown) {
+    const errorInstance = err instanceof Error ? err : new Error(String(err));
+    console.error('Error updating inventory item:', errorInstance);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error occurred while updating inventory item.',
+    });
+  }
+};
+
+/**
+ * 🗑️ ENDPOINT: Delete an inventory item
+ * Route: DELETE /api/inventory/:id
+ */
+export const deleteInventoryItem = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    if (!id || isNaN(Number(id))) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid inventory item ID.',
+      });
+    }
+
+    // Check if item exists
+    const existingItem = await prisma.inventory.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!existingItem) {
+      return res.status(404).json({
+        success: false,
+        error: 'Inventory item not found.',
+      });
+    }
+
+    await prisma.inventory.delete({
+      where: { id: Number(id) },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: 'Inventory item deleted successfully.',
+    });
+  } catch (err: unknown) {
+    const errorInstance = err instanceof Error ? err : new Error(String(err));
+    console.error('Error deleting inventory item:', errorInstance);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error occurred while deleting inventory item.',
+    });
+  }
+};
+
+/**
+ * 📦 ENDPOINT: Add stock to an inventory item
+ * Route: PATCH /api/inventory/:id/stock
+ */
+export const addStockToItem = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { quantity } = req.body;
+
+    if (!id || isNaN(Number(id))) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid inventory item ID.',
+      });
+    }
+
+    if (quantity === undefined || isNaN(Number(quantity)) || Number(quantity) < 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'Quantity must be a non-negative number.',
+      });
+    }
+
+    // Check if item exists
+    const existingItem = await prisma.inventory.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!existingItem) {
+      return res.status(404).json({
+        success: false,
+        error: 'Inventory item not found.',
+      });
+    }
+
+    // Add to stock level
+    const updatedItem = await prisma.inventory.update({
+      where: { id: Number(id) },
+      data: {
+        stockLevel: existingItem.stockLevel + Number(quantity),
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: `Added ${quantity} unit(s) to inventory.`,
+      item: updatedItem,
+    });
+  } catch (err: unknown) {
+    const errorInstance = err instanceof Error ? err : new Error(String(err));
+    console.error('Error adding stock:', errorInstance);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error occurred while adding stock.',
+    });
   }
 };
 

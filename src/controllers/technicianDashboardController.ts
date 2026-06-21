@@ -18,7 +18,15 @@ export const getAssignedTickets = async (req:Request,res:Response): Promise<any>
                 technicianId: technicianId
             },
             include:{
-                customer:true
+                customer: {
+                  select: { name: true, phone: true }
+                },
+                vehicle: {
+                  select: { vehicleModel: true, vin: true }
+                },
+                technician: {
+                  select: { id: true, fullName: true, employeeId: true }
+                }
             },
             orderBy:{
                 id:"desc"
@@ -52,6 +60,18 @@ export const updateTicketProgress = async (req:Request,res:Response): Promise<an
       return res.status(400).json({ error: "Invalid ticket tracking identifier." });
     }
 
+    const existingTicket = await prisma.repairTicket.findUnique({
+      where: { id: ticketIdNumber },
+      select: { closedAt: true }
+    });
+    if (!existingTicket) {
+      return res.status(404).json({ error: "Repair ticket not found." });
+    }
+
+    const validatedStatus = status as TicketStatus;
+    const isCompleted = validatedStatus === TicketStatus.RESOLVED || validatedStatus === TicketStatus.DELIVERED;
+    const completionTimestamp = isCompleted ? (existingTicket.closedAt ?? new Date()) : null;
+
     // Tell Prisma to find the row by its ID and overwrite only the provided modifications
         const updatedTicket = await prisma.repairTicket.update({
             where: { 
@@ -60,7 +80,7 @@ export const updateTicketProgress = async (req:Request,res:Response): Promise<an
       data: {
         // If status is passed, update it; if technicianNotes is passed, update it.
         // If either is missing, JavaScript leaves the existing column untouched!
-        ...(status !== undefined && { status }),
+        ...(status !== undefined && { status: validatedStatus, closedAt: completionTimestamp }),
         ...(technicianNotes !== undefined && { technicianNotes })
       }
     });

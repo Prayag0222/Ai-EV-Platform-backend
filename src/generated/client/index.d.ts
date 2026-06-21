@@ -4111,6 +4111,10 @@ export namespace Prisma {
     id: number | null
     estimatedCost: number | null
     finalCost: number | null
+    laborHours: number | null
+    laborRate: number | null
+    taxRate: number | null
+    discount: number | null
     vehicleId: number | null
   }
 
@@ -4118,6 +4122,10 @@ export namespace Prisma {
     id: number | null
     estimatedCost: number | null
     finalCost: number | null
+    laborHours: number | null
+    laborRate: number | null
+    taxRate: number | null
+    discount: number | null
     vehicleId: number | null
   }
 
@@ -4133,6 +4141,10 @@ export namespace Prisma {
     closedAt: Date | null
     estimatedCost: number | null
     finalCost: number | null
+    laborHours: number | null
+    laborRate: number | null
+    taxRate: number | null
+    discount: number | null
     aiSummary: string | null
     manufacturer: string | null
     customerId: string | null
@@ -4152,6 +4164,10 @@ export namespace Prisma {
     closedAt: Date | null
     estimatedCost: number | null
     finalCost: number | null
+    laborHours: number | null
+    laborRate: number | null
+    taxRate: number | null
+    discount: number | null
     aiSummary: string | null
     manufacturer: string | null
     customerId: string | null
@@ -4171,6 +4187,10 @@ export namespace Prisma {
     closedAt: number
     estimatedCost: number
     finalCost: number
+    laborHours: number
+    laborRate: number
+    taxRate: number
+    discount: number
     aiSummary: number
     manufacturer: number
     customerId: number
@@ -4184,6 +4204,10 @@ export namespace Prisma {
     id?: true
     estimatedCost?: true
     finalCost?: true
+    laborHours?: true
+    laborRate?: true
+    taxRate?: true
+    discount?: true
     vehicleId?: true
   }
 
@@ -4191,6 +4215,10 @@ export namespace Prisma {
     id?: true
     estimatedCost?: true
     finalCost?: true
+    laborHours?: true
+    laborRate?: true
+    taxRate?: true
+    discount?: true
     vehicleId?: true
   }
 
@@ -4206,6 +4234,10 @@ export namespace Prisma {
     closedAt?: true
     estimatedCost?: true
     finalCost?: true
+    laborHours?: true
+    laborRate?: true
+    taxRate?: true
+    discount?: true
     aiSummary?: true
     manufacturer?: true
     customerId?: true
@@ -4225,6 +4257,10 @@ export namespace Prisma {
     closedAt?: true
     estimatedCost?: true
     finalCost?: true
+    laborHours?: true
+    laborRate?: true
+    taxRate?: true
+    discount?: true
     aiSummary?: true
     manufacturer?: true
     customerId?: true
@@ -4244,6 +4280,10 @@ export namespace Prisma {
     closedAt?: true
     estimatedCost?: true
     finalCost?: true
+    laborHours?: true
+    laborRate?: true
+    taxRate?: true
+    discount?: true
     aiSummary?: true
     manufacturer?: true
     customerId?: true
@@ -4350,6 +4390,10 @@ export namespace Prisma {
     closedAt: Date | null
     estimatedCost: number | null
     finalCost: number | null
+    laborHours: number
+    laborRate: number
+    taxRate: number
+    discount: number
     aiSummary: string | null
     manufacturer: string | null
     customerId: string
@@ -4388,6 +4432,10 @@ export namespace Prisma {
     closedAt?: boolean
     estimatedCost?: boolean
     finalCost?: boolean
+    laborHours?: boolean
+    laborRate?: boolean
+    taxRate?: boolean
+    discount?: boolean
     aiSummary?: boolean
     manufacturer?: boolean
     customerId?: boolean
@@ -4415,6 +4463,10 @@ export namespace Prisma {
     closedAt?: boolean
     estimatedCost?: boolean
     finalCost?: boolean
+    laborHours?: boolean
+    laborRate?: boolean
+    taxRate?: boolean
+    discount?: boolean
     aiSummary?: boolean
     manufacturer?: boolean
     customerId?: boolean
@@ -4437,6 +4489,10 @@ export namespace Prisma {
     closedAt?: boolean
     estimatedCost?: boolean
     finalCost?: boolean
+    laborHours?: boolean
+    laborRate?: boolean
+    taxRate?: boolean
+    discount?: boolean
     aiSummary?: boolean
     manufacturer?: boolean
     customerId?: boolean
@@ -4459,6 +4515,10 @@ export namespace Prisma {
     closedAt?: boolean
     estimatedCost?: boolean
     finalCost?: boolean
+    laborHours?: boolean
+    laborRate?: boolean
+    taxRate?: boolean
+    discount?: boolean
     aiSummary?: boolean
     manufacturer?: boolean
     customerId?: boolean
@@ -4466,7 +4526,7 @@ export namespace Prisma {
     vehicleId?: boolean
   }
 
-  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "bay" | "priority" | "createdAt" | "updatedAt" | "closedAt" | "estimatedCost" | "finalCost" | "aiSummary" | "manufacturer" | "customerId" | "technicianId" | "vehicleId", ExtArgs["result"]["repairTicket"]>
+  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "bay" | "priority" | "createdAt" | "updatedAt" | "closedAt" | "estimatedCost" | "finalCost" | "laborHours" | "laborRate" | "taxRate" | "discount" | "aiSummary" | "manufacturer" | "customerId" | "technicianId" | "vehicleId", ExtArgs["result"]["repairTicket"]>
   export type repairTicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
@@ -4511,6 +4571,10 @@ export namespace Prisma {
       closedAt: Date | null
       estimatedCost: number | null
       finalCost: number | null
+      laborHours: number
+      laborRate: number
+      taxRate: number
+      discount: number
       aiSummary: string | null
       manufacturer: string | null
       customerId: string
@@ -4957,6 +5021,10 @@ export namespace Prisma {
     readonly closedAt: FieldRef<"repairTicket", 'DateTime'>
     readonly estimatedCost: FieldRef<"repairTicket", 'Float'>
     readonly finalCost: FieldRef<"repairTicket", 'Float'>
+    readonly laborHours: FieldRef<"repairTicket", 'Float'>
+    readonly laborRate: FieldRef<"repairTicket", 'Float'>
+    readonly taxRate: FieldRef<"repairTicket", 'Float'>
+    readonly discount: FieldRef<"repairTicket", 'Float'>
     readonly aiSummary: FieldRef<"repairTicket", 'String'>
     readonly manufacturer: FieldRef<"repairTicket", 'String'>
     readonly customerId: FieldRef<"repairTicket", 'String'>
@@ -13793,6 +13861,10 @@ export namespace Prisma {
     closedAt: 'closedAt',
     estimatedCost: 'estimatedCost',
     finalCost: 'finalCost',
+    laborHours: 'laborHours',
+    laborRate: 'laborRate',
+    taxRate: 'taxRate',
+    discount: 'discount',
     aiSummary: 'aiSummary',
     manufacturer: 'manufacturer',
     customerId: 'customerId',
@@ -14254,6 +14326,10 @@ export namespace Prisma {
     closedAt?: DateTimeNullableFilter<"repairTicket"> | Date | string | null
     estimatedCost?: FloatNullableFilter<"repairTicket"> | number | null
     finalCost?: FloatNullableFilter<"repairTicket"> | number | null
+    laborHours?: FloatFilter<"repairTicket"> | number
+    laborRate?: FloatFilter<"repairTicket"> | number
+    taxRate?: FloatFilter<"repairTicket"> | number
+    discount?: FloatFilter<"repairTicket"> | number
     aiSummary?: StringNullableFilter<"repairTicket"> | string | null
     manufacturer?: StringNullableFilter<"repairTicket"> | string | null
     customerId?: StringFilter<"repairTicket"> | string
@@ -14280,6 +14356,10 @@ export namespace Prisma {
     closedAt?: SortOrderInput | SortOrder
     estimatedCost?: SortOrderInput | SortOrder
     finalCost?: SortOrderInput | SortOrder
+    laborHours?: SortOrder
+    laborRate?: SortOrder
+    taxRate?: SortOrder
+    discount?: SortOrder
     aiSummary?: SortOrderInput | SortOrder
     manufacturer?: SortOrderInput | SortOrder
     customerId?: SortOrder
@@ -14309,6 +14389,10 @@ export namespace Prisma {
     closedAt?: DateTimeNullableFilter<"repairTicket"> | Date | string | null
     estimatedCost?: FloatNullableFilter<"repairTicket"> | number | null
     finalCost?: FloatNullableFilter<"repairTicket"> | number | null
+    laborHours?: FloatFilter<"repairTicket"> | number
+    laborRate?: FloatFilter<"repairTicket"> | number
+    taxRate?: FloatFilter<"repairTicket"> | number
+    discount?: FloatFilter<"repairTicket"> | number
     aiSummary?: StringNullableFilter<"repairTicket"> | string | null
     manufacturer?: StringNullableFilter<"repairTicket"> | string | null
     customerId?: StringFilter<"repairTicket"> | string
@@ -14335,6 +14419,10 @@ export namespace Prisma {
     closedAt?: SortOrderInput | SortOrder
     estimatedCost?: SortOrderInput | SortOrder
     finalCost?: SortOrderInput | SortOrder
+    laborHours?: SortOrder
+    laborRate?: SortOrder
+    taxRate?: SortOrder
+    discount?: SortOrder
     aiSummary?: SortOrderInput | SortOrder
     manufacturer?: SortOrderInput | SortOrder
     customerId?: SortOrder
@@ -14362,6 +14450,10 @@ export namespace Prisma {
     closedAt?: DateTimeNullableWithAggregatesFilter<"repairTicket"> | Date | string | null
     estimatedCost?: FloatNullableWithAggregatesFilter<"repairTicket"> | number | null
     finalCost?: FloatNullableWithAggregatesFilter<"repairTicket"> | number | null
+    laborHours?: FloatWithAggregatesFilter<"repairTicket"> | number
+    laborRate?: FloatWithAggregatesFilter<"repairTicket"> | number
+    taxRate?: FloatWithAggregatesFilter<"repairTicket"> | number
+    discount?: FloatWithAggregatesFilter<"repairTicket"> | number
     aiSummary?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
     manufacturer?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
     customerId?: StringWithAggregatesFilter<"repairTicket"> | string
@@ -15086,6 +15178,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
@@ -15109,6 +15205,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -15131,6 +15231,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
@@ -15154,6 +15258,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -15177,6 +15285,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -15195,6 +15307,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -15211,6 +15327,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -16059,6 +16179,17 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -16132,6 +16263,10 @@ export namespace Prisma {
     closedAt?: SortOrder
     estimatedCost?: SortOrder
     finalCost?: SortOrder
+    laborHours?: SortOrder
+    laborRate?: SortOrder
+    taxRate?: SortOrder
+    discount?: SortOrder
     aiSummary?: SortOrder
     manufacturer?: SortOrder
     customerId?: SortOrder
@@ -16143,6 +16278,10 @@ export namespace Prisma {
     id?: SortOrder
     estimatedCost?: SortOrder
     finalCost?: SortOrder
+    laborHours?: SortOrder
+    laborRate?: SortOrder
+    taxRate?: SortOrder
+    discount?: SortOrder
     vehicleId?: SortOrder
   }
 
@@ -16158,6 +16297,10 @@ export namespace Prisma {
     closedAt?: SortOrder
     estimatedCost?: SortOrder
     finalCost?: SortOrder
+    laborHours?: SortOrder
+    laborRate?: SortOrder
+    taxRate?: SortOrder
+    discount?: SortOrder
     aiSummary?: SortOrder
     manufacturer?: SortOrder
     customerId?: SortOrder
@@ -16177,6 +16320,10 @@ export namespace Prisma {
     closedAt?: SortOrder
     estimatedCost?: SortOrder
     finalCost?: SortOrder
+    laborHours?: SortOrder
+    laborRate?: SortOrder
+    taxRate?: SortOrder
+    discount?: SortOrder
     aiSummary?: SortOrder
     manufacturer?: SortOrder
     customerId?: SortOrder
@@ -16188,6 +16335,10 @@ export namespace Prisma {
     id?: SortOrder
     estimatedCost?: SortOrder
     finalCost?: SortOrder
+    laborHours?: SortOrder
+    laborRate?: SortOrder
+    taxRate?: SortOrder
+    discount?: SortOrder
     vehicleId?: SortOrder
   }
 
@@ -16255,6 +16406,22 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -16356,17 +16523,6 @@ export namespace Prisma {
     ticketId?: SortOrder
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type InventoryScalarRelationFilter = {
     is?: inventoryWhereInput
     isNot?: inventoryWhereInput
@@ -16413,22 +16569,6 @@ export namespace Prisma {
     inventoryId?: SortOrder
     quantity?: SortOrder
     lockedCost?: SortOrder
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type inventoryCountOrderByAggregateInput = {
@@ -16963,6 +17103,14 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type customerUpdateOneRequiredWithoutTicketsNestedInput = {
     create?: XOR<customerCreateWithoutTicketsInput, customerUncheckedCreateWithoutTicketsInput>
     connectOrCreate?: customerCreateOrConnectWithoutTicketsInput
@@ -17167,14 +17315,6 @@ export namespace Prisma {
     create?: XOR<inventoryCreateWithoutUsageHistoryInput, inventoryUncheckedCreateWithoutUsageHistoryInput>
     connectOrCreate?: inventoryCreateOrConnectWithoutUsageHistoryInput
     connect?: inventoryWhereUniqueInput
-  }
-
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type repairTicketUpdateOneRequiredWithoutPartsNestedInput = {
@@ -17523,6 +17663,17 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -17537,17 +17688,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedEnumTicketStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -17600,22 +17740,6 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -17630,6 +17754,22 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumSaleTypeFilter<$PrismaModel = never> = {
@@ -17717,6 +17857,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     technician?: technicianCreateNestedOneWithoutTicketsInput
@@ -17739,6 +17883,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     technicianId?: string | null
@@ -17835,6 +17983,10 @@ export namespace Prisma {
     closedAt?: DateTimeNullableFilter<"repairTicket"> | Date | string | null
     estimatedCost?: FloatNullableFilter<"repairTicket"> | number | null
     finalCost?: FloatNullableFilter<"repairTicket"> | number | null
+    laborHours?: FloatFilter<"repairTicket"> | number
+    laborRate?: FloatFilter<"repairTicket"> | number
+    taxRate?: FloatFilter<"repairTicket"> | number
+    discount?: FloatFilter<"repairTicket"> | number
     aiSummary?: StringNullableFilter<"repairTicket"> | string | null
     manufacturer?: StringNullableFilter<"repairTicket"> | string | null
     customerId?: StringFilter<"repairTicket"> | string
@@ -18341,6 +18493,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
@@ -18363,6 +18519,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -18400,6 +18560,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
@@ -18422,6 +18586,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -18443,6 +18611,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
@@ -18465,6 +18637,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -18502,6 +18678,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
@@ -18524,6 +18704,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -18545,6 +18729,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
@@ -18567,6 +18755,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -18632,6 +18824,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
@@ -18654,6 +18850,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -18750,6 +18950,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
@@ -18772,6 +18976,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -18809,6 +19017,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
@@ -18831,6 +19043,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -18852,6 +19068,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
@@ -18874,6 +19094,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -18946,6 +19170,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
@@ -18968,6 +19196,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -19047,6 +19279,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     technicianId?: string | null
@@ -19081,6 +19317,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technician?: technicianUpdateOneWithoutTicketsNestedInput
@@ -19103,6 +19343,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19125,6 +19369,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19319,6 +19567,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -19336,6 +19588,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
@@ -19358,6 +19614,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -19380,6 +19640,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -19398,6 +19662,10 @@ export namespace Prisma {
     closedAt?: Date | string | null
     estimatedCost?: number | null
     finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
     aiSummary?: string | null
     manufacturer?: string | null
     customerId: string
@@ -19415,6 +19683,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
@@ -19437,6 +19709,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -19459,6 +19735,10 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
     finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string

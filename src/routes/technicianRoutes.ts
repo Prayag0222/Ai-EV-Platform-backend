@@ -7,7 +7,12 @@ import {
   getMobileWorkspaceTicket,
   updateMobileTicketStatus,
   addMobileTicketNote,
-  addUsedPartToTicket 
+  addUsedPartToTicket,
+  removeUsedPartFromTicket,
+  createManualNote,
+  updateNote,
+  deleteNote,
+  updateRepairCosts
 } from '../controllers/technicianController.js';
 
 import { getAssignedTickets,updateTicketProgress } from '../controllers/technicianDashboardController.js';
@@ -28,4 +33,24 @@ router.patch('/workspace/:id/status', updateMobileTicketStatus);
 router.post('/workspace/:id/notes', addMobileTicketNote);
 // 🚀 The new Used Parts Inventory Route
 router.post('/workspace/:id/parts', addUsedPartToTicket);
+router.delete('/workspace/:id/parts/:partId', removeUsedPartFromTicket);
+router.patch('/workspace/:id/costs', updateRepairCosts);
+// 🚀 Manual note CRUD endpoints
+router.post('/workspace/:ticketId/notes/manual', createManualNote);
+router.put('/notes/:noteId', updateNote);
+router.delete('/notes/:noteId', deleteNote);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default router;
