@@ -8,55 +8,46 @@ interface InvoiceItemInput {
   price: number;
 }
 
-/**
- * 💰 ENDPOINT 1: Create a flat, direct invoice (Repair loop or Quick counter sale)
- * Route: POST /api/invoice
- */
 export const createInvoice = async (req: Request, res: Response) => {
   try {
-    const { 
-      customerName, 
-      customerPhone, 
-      ticketId, 
-      items, 
-      laborCharge, 
-      paymentStatus, 
-      paymentMethod 
+    const {
+      customerName,
+      customerAddress,
+      customerPhone,
+      shopName,
+      shopAddress,
+      gstNumber,
+      ticketId,
+      items,
+      laborCharge,
+      tax,
+      discount,
+      notes,
+      paymentStatus,
+      paymentMethod
     } = req.body;
 
-
     if (ticketId) {
-    const ticket =
-        await prisma.repairTicket.findUnique({
-            where:{
-                id:Number(ticketId)
-            }
-        });
-
-    if(!ticket){
+      const ticket = await prisma.repairTicket.findUnique({
+        where: { id: Number(ticketId) }
+      });
+      if (!ticket) {
         return res.status(404).json({
-            success:false,
-            error:"Repair ticket not found."
+          success: false,
+          error: "Repair ticket not found."
         });
+      }
     }
-}
-const saleType =
-ticketId
-?
-"REPAIR"
-:
-"COUNTER";
 
+    const saleType = ticketId ? "REPAIR" : "COUNTER";
 
-    // 🛡️ Strict Request Validation
     if (!customerName || !customerPhone || !items || !paymentStatus || !paymentMethod) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields. Provide customerName, customerPhone, items, paymentStatus, and paymentMethod.',
+        error: 'Missing required fields.',
       });
     }
 
-    // 🧮 CALCULATE PARTS TOTAL
     let partsTotal = 0;
     if (Array.isArray(items)) {
       const typedItems = items as InvoiceItemInput[];
@@ -68,50 +59,51 @@ ticketId
     }
 
     const flatLabor = Number(laborCharge) || 0;
-    const calculatedGrandTotal = partsTotal + flatLabor;
+    const taxAmount = Number(tax) || 0;
+    const discountAmount = Number(discount) || 0;
+    const calculatedGrandTotal = partsTotal + flatLabor + taxAmount - discountAmount;
 
-    // ⚡ AUTO-GENERATE UNIQUE INVOICE NUMBER (e.g., INV-2026-4821)
     const uniqueSuffix = Math.floor(1000 + Math.random() * 9000);
     const generatedInvoiceNo = `INV-${Date.now()}-${uniqueSuffix}`;
 
-    
-
-    // Write record to PostgreSQL via Prisma
     const newInvoice = await prisma.invoice.create({
       data: {
         invoiceNo: generatedInvoiceNo,
+        shopName: shopName || "VoltOps",
+        shopAddress: shopAddress || "",
+        gstNumber: gstNumber || null,
         customerName,
+        customerAddress: customerAddress || "",
         customerPhone,
         ticketId: ticketId ? Number(ticketId) : null,
         saleType,
-        items, // Saves cleanly into the JSON column data frame
+        items,
         laborCharge: flatLabor,
+        tax: taxAmount,
+        discount: discountAmount,
         grandTotal: calculatedGrandTotal,
         paymentStatus,
         paymentMethod,
+        notes: notes || "",
       },
     });
 
     return res.status(201).json({
       success: true,
-      message: 'Invoice processed cleanly inside the ledger matrix!',
+      message: 'Invoice created successfully.',
       invoice: newInvoice,
     });
 
   } catch (err: unknown) {
     const errorInstance = err instanceof Error ? err : new Error(String(err));
     console.error('Error creating invoice record:', errorInstance);
-    return res.status(500).json({ 
-      success: false, 
-      error: 'Server error occurred while executing financial validation.' 
+    return res.status(500).json({
+      success: false,
+      error: 'Server error occurred while creating invoice.'
     });
   }
 };
 
-/**
- * 📋 ENDPOINT 2: Fetch the entire billing ledger history
- * Route: GET /api/invoice
- */
 export const getAllInvoices = async (req: Request, res: Response) => {
   try {
     const invoices = await prisma.invoice.findMany({
@@ -124,7 +116,7 @@ export const getAllInvoices = async (req: Request, res: Response) => {
         }
       },
       orderBy: {
-        createdAt: 'desc', // Latest transaction statements pop up at the top
+        createdAt: 'desc',
       },
     });
 
@@ -134,12 +126,11 @@ export const getAllInvoices = async (req: Request, res: Response) => {
     });
   } catch (err: unknown) {
     const errorInstance = err instanceof Error ? err : new Error(String(err));
-    console.error('Error retrieving historical billing ledgers:', errorInstance);
-    return res.status(500).json({ success: false, error: 'Failed to synchronize financial histories.' });
+    console.error('Error retrieving invoices:', errorInstance);
+    return res.status(500).json({ success: false, error: 'Failed to retrieve invoices.' });
   }
 };
 
-/** Additive history action: updates payment fields without changing invoice creation. */
 export const updateInvoicePayment = async (req: Request, res: Response) => {
   const id = Number(req.params.id);
   const { paymentStatus, paymentMethod } = req.body;
@@ -159,7 +150,6 @@ export const updateInvoicePayment = async (req: Request, res: Response) => {
   }
 };
 
-/** Additive history action used by the owner ledger. */
 export const deleteInvoice = async (req: Request, res: Response) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ success: false, error: 'Invalid invoice id.' });

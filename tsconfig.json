@@ -14,6 +14,7 @@
     "types": [],
     "allowJs":true,
     "noEmit": true,
+    
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -21,8 +22,8 @@
 
     // Other Outputs
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "declaration": false,
+    "declarationMap": false,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
@@ -44,5 +45,7 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+    
   }
+  
 }

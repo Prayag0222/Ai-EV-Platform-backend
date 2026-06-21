@@ -176,16 +176,23 @@ model inventory {
 }
 
 model invoice {
-  id            Int      @id @default(autoincrement())
-  invoiceNo     String   @unique // e.g., "INV-2026-1001" (Automated unique string)
-  customerName  String // Customer's name
-  customerPhone String // Customer's contact phone number
-  items         Json // Stores array list of items: [{"name": "Brake Pads", "sku": "CON-BP-1234", "qty": 1, "price": 450}]
-  laborCharge   Float    @default(0.0) // Flat labor costs in Rupees
-  grandTotal    Float // Final flat total in Rupees (Sum of parts + labor)
-  paymentStatus String // Current billing state (e.g., "PAID", "UNPAID")
-  paymentMethod String // Transaction category tracker (e.g., "CASH", "UPI", "CARD", "NONE")
-  saleType      SaleType
+  id              Int      @id @default(autoincrement())
+  invoiceNo       String   @unique
+  shopName        String   @default("VoltOps")
+  shopAddress     String   @default("")
+  gstNumber       String?
+  customerName    String
+  customerAddress String   @default("")
+  customerPhone   String
+  items           Json
+  laborCharge     Float    @default(0.0)
+  tax             Float    @default(0.0)
+  discount        Float    @default(0.0)
+  grandTotal      Float
+  paymentStatus   String   @default("UNPAID")
+  paymentMethod   String   @default("NONE")
+  notes           String   @default("")
+  saleType        SaleType
 
   ticketId Int?          @unique
   ticket   repairTicket? @relation(fields: [ticketId], references: [id], onDelete: SetNull)

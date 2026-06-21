@@ -10120,6 +10120,8 @@ export namespace Prisma {
   export type InvoiceAvgAggregateOutputType = {
     id: number | null
     laborCharge: number | null
+    tax: number | null
+    discount: number | null
     grandTotal: number | null
     ticketId: number | null
   }
@@ -10127,6 +10129,8 @@ export namespace Prisma {
   export type InvoiceSumAggregateOutputType = {
     id: number | null
     laborCharge: number | null
+    tax: number | null
+    discount: number | null
     grandTotal: number | null
     ticketId: number | null
   }
@@ -10134,12 +10138,19 @@ export namespace Prisma {
   export type InvoiceMinAggregateOutputType = {
     id: number | null
     invoiceNo: string | null
+    shopName: string | null
+    shopAddress: string | null
+    gstNumber: string | null
     customerName: string | null
+    customerAddress: string | null
     customerPhone: string | null
     laborCharge: number | null
+    tax: number | null
+    discount: number | null
     grandTotal: number | null
     paymentStatus: string | null
     paymentMethod: string | null
+    notes: string | null
     saleType: $Enums.SaleType | null
     ticketId: number | null
     createdAt: Date | null
@@ -10149,12 +10160,19 @@ export namespace Prisma {
   export type InvoiceMaxAggregateOutputType = {
     id: number | null
     invoiceNo: string | null
+    shopName: string | null
+    shopAddress: string | null
+    gstNumber: string | null
     customerName: string | null
+    customerAddress: string | null
     customerPhone: string | null
     laborCharge: number | null
+    tax: number | null
+    discount: number | null
     grandTotal: number | null
     paymentStatus: string | null
     paymentMethod: string | null
+    notes: string | null
     saleType: $Enums.SaleType | null
     ticketId: number | null
     createdAt: Date | null
@@ -10164,13 +10182,20 @@ export namespace Prisma {
   export type InvoiceCountAggregateOutputType = {
     id: number
     invoiceNo: number
+    shopName: number
+    shopAddress: number
+    gstNumber: number
     customerName: number
+    customerAddress: number
     customerPhone: number
     items: number
     laborCharge: number
+    tax: number
+    discount: number
     grandTotal: number
     paymentStatus: number
     paymentMethod: number
+    notes: number
     saleType: number
     ticketId: number
     createdAt: number
@@ -10182,6 +10207,8 @@ export namespace Prisma {
   export type InvoiceAvgAggregateInputType = {
     id?: true
     laborCharge?: true
+    tax?: true
+    discount?: true
     grandTotal?: true
     ticketId?: true
   }
@@ -10189,6 +10216,8 @@ export namespace Prisma {
   export type InvoiceSumAggregateInputType = {
     id?: true
     laborCharge?: true
+    tax?: true
+    discount?: true
     grandTotal?: true
     ticketId?: true
   }
@@ -10196,12 +10225,19 @@ export namespace Prisma {
   export type InvoiceMinAggregateInputType = {
     id?: true
     invoiceNo?: true
+    shopName?: true
+    shopAddress?: true
+    gstNumber?: true
     customerName?: true
+    customerAddress?: true
     customerPhone?: true
     laborCharge?: true
+    tax?: true
+    discount?: true
     grandTotal?: true
     paymentStatus?: true
     paymentMethod?: true
+    notes?: true
     saleType?: true
     ticketId?: true
     createdAt?: true
@@ -10211,12 +10247,19 @@ export namespace Prisma {
   export type InvoiceMaxAggregateInputType = {
     id?: true
     invoiceNo?: true
+    shopName?: true
+    shopAddress?: true
+    gstNumber?: true
     customerName?: true
+    customerAddress?: true
     customerPhone?: true
     laborCharge?: true
+    tax?: true
+    discount?: true
     grandTotal?: true
     paymentStatus?: true
     paymentMethod?: true
+    notes?: true
     saleType?: true
     ticketId?: true
     createdAt?: true
@@ -10226,13 +10269,20 @@ export namespace Prisma {
   export type InvoiceCountAggregateInputType = {
     id?: true
     invoiceNo?: true
+    shopName?: true
+    shopAddress?: true
+    gstNumber?: true
     customerName?: true
+    customerAddress?: true
     customerPhone?: true
     items?: true
     laborCharge?: true
+    tax?: true
+    discount?: true
     grandTotal?: true
     paymentStatus?: true
     paymentMethod?: true
+    notes?: true
     saleType?: true
     ticketId?: true
     createdAt?: true
@@ -10329,13 +10379,20 @@ export namespace Prisma {
   export type InvoiceGroupByOutputType = {
     id: number
     invoiceNo: string
+    shopName: string
+    shopAddress: string
+    gstNumber: string | null
     customerName: string
+    customerAddress: string
     customerPhone: string
     items: JsonValue
     laborCharge: number
+    tax: number
+    discount: number
     grandTotal: number
     paymentStatus: string
     paymentMethod: string
+    notes: string
     saleType: $Enums.SaleType
     ticketId: number | null
     createdAt: Date
@@ -10364,13 +10421,20 @@ export namespace Prisma {
   export type invoiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     invoiceNo?: boolean
+    shopName?: boolean
+    shopAddress?: boolean
+    gstNumber?: boolean
     customerName?: boolean
+    customerAddress?: boolean
     customerPhone?: boolean
     items?: boolean
     laborCharge?: boolean
+    tax?: boolean
+    discount?: boolean
     grandTotal?: boolean
     paymentStatus?: boolean
     paymentMethod?: boolean
+    notes?: boolean
     saleType?: boolean
     ticketId?: boolean
     createdAt?: boolean
@@ -10381,13 +10445,20 @@ export namespace Prisma {
   export type invoiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     invoiceNo?: boolean
+    shopName?: boolean
+    shopAddress?: boolean
+    gstNumber?: boolean
     customerName?: boolean
+    customerAddress?: boolean
     customerPhone?: boolean
     items?: boolean
     laborCharge?: boolean
+    tax?: boolean
+    discount?: boolean
     grandTotal?: boolean
     paymentStatus?: boolean
     paymentMethod?: boolean
+    notes?: boolean
     saleType?: boolean
     ticketId?: boolean
     createdAt?: boolean
@@ -10398,13 +10469,20 @@ export namespace Prisma {
   export type invoiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     invoiceNo?: boolean
+    shopName?: boolean
+    shopAddress?: boolean
+    gstNumber?: boolean
     customerName?: boolean
+    customerAddress?: boolean
     customerPhone?: boolean
     items?: boolean
     laborCharge?: boolean
+    tax?: boolean
+    discount?: boolean
     grandTotal?: boolean
     paymentStatus?: boolean
     paymentMethod?: boolean
+    notes?: boolean
     saleType?: boolean
     ticketId?: boolean
     createdAt?: boolean
@@ -10415,20 +10493,27 @@ export namespace Prisma {
   export type invoiceSelectScalar = {
     id?: boolean
     invoiceNo?: boolean
+    shopName?: boolean
+    shopAddress?: boolean
+    gstNumber?: boolean
     customerName?: boolean
+    customerAddress?: boolean
     customerPhone?: boolean
     items?: boolean
     laborCharge?: boolean
+    tax?: boolean
+    discount?: boolean
     grandTotal?: boolean
     paymentStatus?: boolean
     paymentMethod?: boolean
+    notes?: boolean
     saleType?: boolean
     ticketId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type invoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNo" | "customerName" | "customerPhone" | "items" | "laborCharge" | "grandTotal" | "paymentStatus" | "paymentMethod" | "saleType" | "ticketId" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
+  export type invoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNo" | "shopName" | "shopAddress" | "gstNumber" | "customerName" | "customerAddress" | "customerPhone" | "items" | "laborCharge" | "tax" | "discount" | "grandTotal" | "paymentStatus" | "paymentMethod" | "notes" | "saleType" | "ticketId" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
   export type invoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ticket?: boolean | invoice$ticketArgs<ExtArgs>
   }
@@ -10447,13 +10532,20 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       invoiceNo: string
+      shopName: string
+      shopAddress: string
+      gstNumber: string | null
       customerName: string
+      customerAddress: string
       customerPhone: string
       items: Prisma.JsonValue
       laborCharge: number
+      tax: number
+      discount: number
       grandTotal: number
       paymentStatus: string
       paymentMethod: string
+      notes: string
       saleType: $Enums.SaleType
       ticketId: number | null
       createdAt: Date
@@ -10884,13 +10976,20 @@ export namespace Prisma {
   interface invoiceFieldRefs {
     readonly id: FieldRef<"invoice", 'Int'>
     readonly invoiceNo: FieldRef<"invoice", 'String'>
+    readonly shopName: FieldRef<"invoice", 'String'>
+    readonly shopAddress: FieldRef<"invoice", 'String'>
+    readonly gstNumber: FieldRef<"invoice", 'String'>
     readonly customerName: FieldRef<"invoice", 'String'>
+    readonly customerAddress: FieldRef<"invoice", 'String'>
     readonly customerPhone: FieldRef<"invoice", 'String'>
     readonly items: FieldRef<"invoice", 'Json'>
     readonly laborCharge: FieldRef<"invoice", 'Float'>
+    readonly tax: FieldRef<"invoice", 'Float'>
+    readonly discount: FieldRef<"invoice", 'Float'>
     readonly grandTotal: FieldRef<"invoice", 'Float'>
     readonly paymentStatus: FieldRef<"invoice", 'String'>
     readonly paymentMethod: FieldRef<"invoice", 'String'>
+    readonly notes: FieldRef<"invoice", 'String'>
     readonly saleType: FieldRef<"invoice", 'SaleType'>
     readonly ticketId: FieldRef<"invoice", 'Int'>
     readonly createdAt: FieldRef<"invoice", 'DateTime'>
@@ -13929,13 +14028,20 @@ export namespace Prisma {
   export const InvoiceScalarFieldEnum: {
     id: 'id',
     invoiceNo: 'invoiceNo',
+    shopName: 'shopName',
+    shopAddress: 'shopAddress',
+    gstNumber: 'gstNumber',
     customerName: 'customerName',
+    customerAddress: 'customerAddress',
     customerPhone: 'customerPhone',
     items: 'items',
     laborCharge: 'laborCharge',
+    tax: 'tax',
+    discount: 'discount',
     grandTotal: 'grandTotal',
     paymentStatus: 'paymentStatus',
     paymentMethod: 'paymentMethod',
+    notes: 'notes',
     saleType: 'saleType',
     ticketId: 'ticketId',
     createdAt: 'createdAt',
@@ -14733,13 +14839,20 @@ export namespace Prisma {
     NOT?: invoiceWhereInput | invoiceWhereInput[]
     id?: IntFilter<"invoice"> | number
     invoiceNo?: StringFilter<"invoice"> | string
+    shopName?: StringFilter<"invoice"> | string
+    shopAddress?: StringFilter<"invoice"> | string
+    gstNumber?: StringNullableFilter<"invoice"> | string | null
     customerName?: StringFilter<"invoice"> | string
+    customerAddress?: StringFilter<"invoice"> | string
     customerPhone?: StringFilter<"invoice"> | string
     items?: JsonFilter<"invoice">
     laborCharge?: FloatFilter<"invoice"> | number
+    tax?: FloatFilter<"invoice"> | number
+    discount?: FloatFilter<"invoice"> | number
     grandTotal?: FloatFilter<"invoice"> | number
     paymentStatus?: StringFilter<"invoice"> | string
     paymentMethod?: StringFilter<"invoice"> | string
+    notes?: StringFilter<"invoice"> | string
     saleType?: EnumSaleTypeFilter<"invoice"> | $Enums.SaleType
     ticketId?: IntNullableFilter<"invoice"> | number | null
     createdAt?: DateTimeFilter<"invoice"> | Date | string
@@ -14750,13 +14863,20 @@ export namespace Prisma {
   export type invoiceOrderByWithRelationInput = {
     id?: SortOrder
     invoiceNo?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrder
+    gstNumber?: SortOrderInput | SortOrder
     customerName?: SortOrder
+    customerAddress?: SortOrder
     customerPhone?: SortOrder
     items?: SortOrder
     laborCharge?: SortOrder
+    tax?: SortOrder
+    discount?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -14771,13 +14891,20 @@ export namespace Prisma {
     AND?: invoiceWhereInput | invoiceWhereInput[]
     OR?: invoiceWhereInput[]
     NOT?: invoiceWhereInput | invoiceWhereInput[]
+    shopName?: StringFilter<"invoice"> | string
+    shopAddress?: StringFilter<"invoice"> | string
+    gstNumber?: StringNullableFilter<"invoice"> | string | null
     customerName?: StringFilter<"invoice"> | string
+    customerAddress?: StringFilter<"invoice"> | string
     customerPhone?: StringFilter<"invoice"> | string
     items?: JsonFilter<"invoice">
     laborCharge?: FloatFilter<"invoice"> | number
+    tax?: FloatFilter<"invoice"> | number
+    discount?: FloatFilter<"invoice"> | number
     grandTotal?: FloatFilter<"invoice"> | number
     paymentStatus?: StringFilter<"invoice"> | string
     paymentMethod?: StringFilter<"invoice"> | string
+    notes?: StringFilter<"invoice"> | string
     saleType?: EnumSaleTypeFilter<"invoice"> | $Enums.SaleType
     createdAt?: DateTimeFilter<"invoice"> | Date | string
     updatedAt?: DateTimeFilter<"invoice"> | Date | string
@@ -14787,13 +14914,20 @@ export namespace Prisma {
   export type invoiceOrderByWithAggregationInput = {
     id?: SortOrder
     invoiceNo?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrder
+    gstNumber?: SortOrderInput | SortOrder
     customerName?: SortOrder
+    customerAddress?: SortOrder
     customerPhone?: SortOrder
     items?: SortOrder
     laborCharge?: SortOrder
+    tax?: SortOrder
+    discount?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -14811,13 +14945,20 @@ export namespace Prisma {
     NOT?: invoiceScalarWhereWithAggregatesInput | invoiceScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"invoice"> | number
     invoiceNo?: StringWithAggregatesFilter<"invoice"> | string
+    shopName?: StringWithAggregatesFilter<"invoice"> | string
+    shopAddress?: StringWithAggregatesFilter<"invoice"> | string
+    gstNumber?: StringNullableWithAggregatesFilter<"invoice"> | string | null
     customerName?: StringWithAggregatesFilter<"invoice"> | string
+    customerAddress?: StringWithAggregatesFilter<"invoice"> | string
     customerPhone?: StringWithAggregatesFilter<"invoice"> | string
     items?: JsonWithAggregatesFilter<"invoice">
     laborCharge?: FloatWithAggregatesFilter<"invoice"> | number
+    tax?: FloatWithAggregatesFilter<"invoice"> | number
+    discount?: FloatWithAggregatesFilter<"invoice"> | number
     grandTotal?: FloatWithAggregatesFilter<"invoice"> | number
     paymentStatus?: StringWithAggregatesFilter<"invoice"> | string
     paymentMethod?: StringWithAggregatesFilter<"invoice"> | string
+    notes?: StringWithAggregatesFilter<"invoice"> | string
     saleType?: EnumSaleTypeWithAggregatesFilter<"invoice"> | $Enums.SaleType
     ticketId?: IntNullableWithAggregatesFilter<"invoice"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
@@ -15601,13 +15742,20 @@ export namespace Prisma {
 
   export type invoiceCreateInput = {
     invoiceNo: string
+    shopName?: string
+    shopAddress?: string
+    gstNumber?: string | null
     customerName: string
+    customerAddress?: string
     customerPhone: string
     items: JsonNullValueInput | InputJsonValue
     laborCharge?: number
+    tax?: number
+    discount?: number
     grandTotal: number
-    paymentStatus: string
-    paymentMethod: string
+    paymentStatus?: string
+    paymentMethod?: string
+    notes?: string
     saleType: $Enums.SaleType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15617,13 +15765,20 @@ export namespace Prisma {
   export type invoiceUncheckedCreateInput = {
     id?: number
     invoiceNo: string
+    shopName?: string
+    shopAddress?: string
+    gstNumber?: string | null
     customerName: string
+    customerAddress?: string
     customerPhone: string
     items: JsonNullValueInput | InputJsonValue
     laborCharge?: number
+    tax?: number
+    discount?: number
     grandTotal: number
-    paymentStatus: string
-    paymentMethod: string
+    paymentStatus?: string
+    paymentMethod?: string
+    notes?: string
     saleType: $Enums.SaleType
     ticketId?: number | null
     createdAt?: Date | string
@@ -15632,13 +15787,20 @@ export namespace Prisma {
 
   export type invoiceUpdateInput = {
     invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: StringFieldUpdateOperationsInput | string
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
     customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15648,13 +15810,20 @@ export namespace Prisma {
   export type invoiceUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: StringFieldUpdateOperationsInput | string
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
     customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     ticketId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15664,13 +15833,20 @@ export namespace Prisma {
   export type invoiceCreateManyInput = {
     id?: number
     invoiceNo: string
+    shopName?: string
+    shopAddress?: string
+    gstNumber?: string | null
     customerName: string
+    customerAddress?: string
     customerPhone: string
     items: JsonNullValueInput | InputJsonValue
     laborCharge?: number
+    tax?: number
+    discount?: number
     grandTotal: number
-    paymentStatus: string
-    paymentMethod: string
+    paymentStatus?: string
+    paymentMethod?: string
+    notes?: string
     saleType: $Enums.SaleType
     ticketId?: number | null
     createdAt?: Date | string
@@ -15679,13 +15855,20 @@ export namespace Prisma {
 
   export type invoiceUpdateManyMutationInput = {
     invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: StringFieldUpdateOperationsInput | string
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
     customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15694,13 +15877,20 @@ export namespace Prisma {
   export type invoiceUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: StringFieldUpdateOperationsInput | string
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
     customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     ticketId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16659,13 +16849,20 @@ export namespace Prisma {
   export type invoiceCountOrderByAggregateInput = {
     id?: SortOrder
     invoiceNo?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrder
+    gstNumber?: SortOrder
     customerName?: SortOrder
+    customerAddress?: SortOrder
     customerPhone?: SortOrder
     items?: SortOrder
     laborCharge?: SortOrder
+    tax?: SortOrder
+    discount?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrder
     createdAt?: SortOrder
@@ -16675,6 +16872,8 @@ export namespace Prisma {
   export type invoiceAvgOrderByAggregateInput = {
     id?: SortOrder
     laborCharge?: SortOrder
+    tax?: SortOrder
+    discount?: SortOrder
     grandTotal?: SortOrder
     ticketId?: SortOrder
   }
@@ -16682,12 +16881,19 @@ export namespace Prisma {
   export type invoiceMaxOrderByAggregateInput = {
     id?: SortOrder
     invoiceNo?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrder
+    gstNumber?: SortOrder
     customerName?: SortOrder
+    customerAddress?: SortOrder
     customerPhone?: SortOrder
     laborCharge?: SortOrder
+    tax?: SortOrder
+    discount?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrder
     createdAt?: SortOrder
@@ -16697,12 +16903,19 @@ export namespace Prisma {
   export type invoiceMinOrderByAggregateInput = {
     id?: SortOrder
     invoiceNo?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrder
+    gstNumber?: SortOrder
     customerName?: SortOrder
+    customerAddress?: SortOrder
     customerPhone?: SortOrder
     laborCharge?: SortOrder
+    tax?: SortOrder
+    discount?: SortOrder
     grandTotal?: SortOrder
     paymentStatus?: SortOrder
     paymentMethod?: SortOrder
+    notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrder
     createdAt?: SortOrder
@@ -16712,6 +16925,8 @@ export namespace Prisma {
   export type invoiceSumOrderByAggregateInput = {
     id?: SortOrder
     laborCharge?: SortOrder
+    tax?: SortOrder
+    discount?: SortOrder
     grandTotal?: SortOrder
     ticketId?: SortOrder
   }
@@ -18208,13 +18423,20 @@ export namespace Prisma {
 
   export type invoiceCreateWithoutTicketInput = {
     invoiceNo: string
+    shopName?: string
+    shopAddress?: string
+    gstNumber?: string | null
     customerName: string
+    customerAddress?: string
     customerPhone: string
     items: JsonNullValueInput | InputJsonValue
     laborCharge?: number
+    tax?: number
+    discount?: number
     grandTotal: number
-    paymentStatus: string
-    paymentMethod: string
+    paymentStatus?: string
+    paymentMethod?: string
+    notes?: string
     saleType: $Enums.SaleType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18223,13 +18445,20 @@ export namespace Prisma {
   export type invoiceUncheckedCreateWithoutTicketInput = {
     id?: number
     invoiceNo: string
+    shopName?: string
+    shopAddress?: string
+    gstNumber?: string | null
     customerName: string
+    customerAddress?: string
     customerPhone: string
     items: JsonNullValueInput | InputJsonValue
     laborCharge?: number
+    tax?: number
+    discount?: number
     grandTotal: number
-    paymentStatus: string
-    paymentMethod: string
+    paymentStatus?: string
+    paymentMethod?: string
+    notes?: string
     saleType: $Enums.SaleType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18455,13 +18684,20 @@ export namespace Prisma {
 
   export type invoiceUpdateWithoutTicketInput = {
     invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: StringFieldUpdateOperationsInput | string
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
     customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18470,13 +18706,20 @@ export namespace Prisma {
   export type invoiceUncheckedUpdateWithoutTicketInput = {
     id?: IntFieldUpdateOperationsInput | number
     invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: StringFieldUpdateOperationsInput | string
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
     customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
     customerPhone?: StringFieldUpdateOperationsInput | string
     items?: JsonNullValueInput | InputJsonValue
     laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
     grandTotal?: FloatFieldUpdateOperationsInput | number
     paymentStatus?: StringFieldUpdateOperationsInput | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
