@@ -1,12 +1,22 @@
 import { Router } from 'express';
-import { createInventoryItem, getAllInventory } from '../controllers/inventoryController.js';
+import {
+  createInventoryItem,
+  getAllInventory,
+  searchInventory,
+  updateInventoryItem,
+  deleteInventoryItem,
+  addStockToItem,
+  deductStockFromItems,
+} from '../controllers/inventoryController.js';
 
 const router = Router();
 
-// 🟢 POST request to add a new item
 router.post('/', createInventoryItem);
-
-// 🔵 GET request to fetch all items
+router.get('/search', searchInventory);
 router.get('/', getAllInventory);
+router.put('/:id', updateInventoryItem);
+router.delete('/:id', deleteInventoryItem);
+router.patch('/:id/stock', addStockToItem);
+router.post('/deduct/items', deductStockFromItems);
 
 export default router;

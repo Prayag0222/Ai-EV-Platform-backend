@@ -1,6 +1,7 @@
 import { prisma } from '../config/prisma.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'; // Imported for secure session signing
+import { Role } from '../generated/client/client.js';
 
 /**
  * @desc   Register a new user account
@@ -11,12 +12,19 @@ export const signupUser = async (req, res) => {
     const { email, name, password, role } = req.body;
     console.log("Received role:", role);
 
+  if(role && !Object.values(Role).includes(role))
+  {
+     return res.status(400).json({
+        message:"Invalid role."});
+  }
+
     if (!email || !name || !password) {
       return res.status(400).json({ message: 'Missing required account fields' });
     }
-
+      const normalizedEmail =
+        email.toLowerCase().trim();
     const existingUser = await prisma.user.findUnique({
-      where: { email: email }
+      where: { email: normalizedEmail }
     });
 
     if (existingUser) {
@@ -28,7 +36,7 @@ export const signupUser = async (req, res) => {
     const hashedResponse = await bcrypt.hash(password, saltRounds);
 
     // Safe handling for role conversion to avoid crashes if role is missing
-    const finalRole = role ? role.toUpperCase() : 'USER';
+    const finalRole = role || Role.USER;
 
     const newuser = await prisma.user.create({
       data: {
@@ -92,6 +100,10 @@ export const loginUser = async (req, res) => {
       });
     }
 
+
+    if (!process.env.JWT_SECRET) {
+    throw new Error("JWT_SECRET missing");
+}
     // 6. GENERATE THE JWT TOKEN DYNAMICALLY
     // We bundle the user metadata securely inside the token signature
     const token = jwt.sign(
@@ -115,7 +127,11 @@ export const loginUser = async (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
-        role: user.role 
+        role: user.role,
+        shopName: user.shopName,
+        shopAddress: user.shopAddress,
+        gstNumber: user.gstNumber,
+        shopPhone: user.shopPhone
       }
     });
 
@@ -180,7 +196,7 @@ export const getCurrentUser = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Profile Resolution Gateway Mismatch Error:", err);
+    console.error("Profile Resolution Gateway Mismatch Error:", error);
     return res.status(500).json({ error: "Internal server data compilation error." });
   }
 };

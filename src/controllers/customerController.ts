@@ -8,13 +8,13 @@ export const createCustomer = async (req: Request, res: Response) => {
 
 try{
 
-    const {name , phone , vehicleModel, email , address} = req.body
+    const {name , phone , email , address , vehicleModel ,vin , manufacturer,modelYear} = req.body
 
-    if(!name || !phone || !vehicleModel){
+    if(!name || !phone|| !vehicleModel || !vin ){
         return res.status(400).json({message:"Missing required fields: name, phone, vehicleModel"})
     }
     const existingCustomer = await prisma.customer.findFirst({
-        where:{phone:phone}
+        where:{phone}
     });
 
     // 3. Optional Sanity Check (Optional): If an email was typed, make sure it has an @ symbol
@@ -27,19 +27,31 @@ try{
 
     }
 
-    const newCustomer = await prisma.customer.create({
-        data:{
-            name:name,
-            phone:phone,
-            vehicleModel:vehicleModel,
-            // ⚡ Prisma Power: If email or address are empty strings or missing altogether, 
-             // passing them here as undefined/null tells Prisma to safely mark them as NULL in Postgres!
-            email: email || null, 
-            address: address || null,
-        }
-    })
+   const newCustomer = await prisma.$transaction(async (tx) => {
 
-    return res.status(201).json({message: 'Customer created successfully', newCustomer})
+    const createCustomer = await tx.customer.create({
+        data:{
+            name,
+            phone,
+            email,
+            address
+        }
+    });
+
+    await tx.vehicle.create({
+        data:{
+            vehicleModel,
+            vin,
+            manufacturer,
+            modelYear,
+            customerId:createCustomer.id
+        }
+    });
+    return createCustomer
+});
+  
+ return res.status(201).json({message: 'Customer created successfully', newCustomer ,})
+
 
 }catch(error){
     console.error('Error creating customer:', error)
@@ -53,6 +65,9 @@ export const getCustomer = async (req:Request,res:Response) =>{
 
     try {
         const customers = await prisma.customer.findMany({
+            include:{
+                vehicles:true
+            },
             orderBy:{
                 id:'desc'
             }
@@ -97,7 +112,7 @@ export const getCustomer = async (req:Request,res:Response) =>{
 export const updateCustomer = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { name, phone, vehicleModel, email, address } = req.body;
+    const { name, phone, email, address } = req.body;
 
     // 1. 🛡️ TYPE NARROWING: Strictly verify that ID is a single, populated string primitive!
     // This removes string[], undefined, or blank entities completely before Prisma reads it.
@@ -106,7 +121,7 @@ export const updateCustomer = async (req: Request, res: Response) => {
     }
 
     // 2. Data Validation: Ensure mandatory fields aren't empty
-    if (!name || !phone || !vehicleModel) {
+    if (!name || !phone ) {
       return res.status(400).json({ error: 'Name, phone, and vehicle model fields cannot be empty.' });
     }
 
@@ -119,7 +134,6 @@ export const updateCustomer = async (req: Request, res: Response) => {
       data: {
         name,
         phone,
-        vehicleModel,
         email: email || null,     // Uses clean database null instead of undefined text strings
         address: address || null, // Uses clean database null instead of undefined text strings
       },

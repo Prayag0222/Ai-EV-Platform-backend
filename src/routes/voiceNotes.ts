@@ -24,7 +24,7 @@ router.post(
         return;
       }
 
-      console.log(`🎙️ Audio received (${req.file.size} bytes). Sending to Groq LPU speed engine...`);
+      console.log(`🎙️ Multilingual audio received (${req.file.size} bytes). Sending to Groq LPU speed engine...`);
 
       // --- STAGE 1: LIGHTNING FAST TRANSCRIPTION ---
       const audioForm = new FormData();
@@ -32,7 +32,7 @@ router.post(
       
       audioForm.append('file', audioBlob, 'audio.webm');
       audioForm.append('model', 'whisper-large-v3');
-      audioForm.append('language', 'hi'); 
+      
 
       const groqAudioResponse = await fetch(
         'https://api.groq.com/openai/v1/audio/transcriptions',
@@ -108,6 +108,19 @@ router.post(
         res.status(400).json({ success: false, error: 'Invalid Ticket ID numerical format.' });
         return;
       }
+      const ticket = await prisma.repairTicket.findUnique({
+    where:{
+        id: parsedTicketId
+    }
+});
+
+if(!ticket){
+    res.status(404).json({
+        success:false,
+        error:"Repair ticket not found."
+    });
+    return;
+}
 
       const newNote = await prisma.technicianNote.create({
         data: {

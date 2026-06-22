@@ -1,13 +1,14 @@
 import { type Request, type Response } from 'express';
 import { prisma } from '../config/prisma.js';
 import bcrypt from 'bcryptjs'; // ⚡ Ensure bcrypt is imported at the top of this file!
-import type { loginUser } from './authController.js';
+import { Role } from '../generated/client/client.js';
+import { TechnicianSpecialization ,TicketStatus } from '../generated/client/client.js';
 interface CreateTechnicianInput {
   fullName: string;
   email: string;
   phone: string;
-  specialization: 'BATTERY' | 'MOTOR' | 'CONTROLLER' | 'GENERAL_EV';
-  experienceYears: string | number;
+  specialization: TechnicianSpecialization;
+  experienceYears:  number;
   address?: string;
   profileImage?: string;
 }
@@ -26,6 +27,17 @@ export const createTechnician = async (req: Request, res: Response): Promise<Res
       address, 
       profileImage 
     } = req.body as CreateTechnicianInput;
+
+    // ✅ Validate Specialization Enum
+if (
+  !Object.values(TechnicianSpecialization).includes(
+    specialization as TechnicianSpecialization
+  )
+) {
+  return res.status(400).json({
+    message: "Invalid technician specialization."
+  });
+}
 
     // 🛡️ Guard 1: Ensure all mandatory parameters are present
     if (!fullName || !email || !phone || !specialization || experienceYears === undefined || experienceYears === null) {
@@ -59,37 +71,39 @@ export const createTechnician = async (req: Request, res: Response): Promise<Res
     const hashedUserPassword = await bcrypt.hash(temporaryPassword, saltRounds);
 
     // 👥 SYSTEM PIPELINE STEP 1: Create the login account inside the master USER table
-    const createdLoginAccount = await prisma.user.create({
-      data: {
-        name: fullName,
-        email: normalizedEmail,
-        password: hashedUserPassword,
-        role: 'TECHNICIAN' // Hardcoded: Ensures your login controller catches this role and routes perfectly!
-      }
-    });
-    
-// 🔧 SYSTEM PIPELINE STEP 2: Create the workspace metadata inside your TECHNICIAN table
-    const newTechnicianProfile = await prisma.technician.create({
-      data: {
-        fullName,
-        email: normalizedEmail,
-        phone,
-        employeeId: autoEmployeeId,
-        specialization,
-        experienceYears: String(parsedExperience), 
-        address: address || null,
-        profileImage: profileImage || null
-        // NOTE: If your technician schema has a relation field linking to User, 
-        // you can cleanly add: userId: createdLoginAccount.id right here!
-      }
-    });
+    const [createdLoginAccount, newTechnicianProfile] = await prisma.$transaction([
+      prisma.user.create({
+        data: {
+          name: fullName,
+          email: normalizedEmail,
+          password: hashedUserPassword,
+          role: Role.TECHNICIAN // Hardcoded: Ensures your login controller catches this role and routes perfectly!
+        }
+      }),
+
+      // 🔧 SYSTEM PIPELINE STEP 2: Create the workspace metadata inside your TECHNICIAN table
+      prisma.technician.create({
+        data: {
+          fullName,
+          email: normalizedEmail,
+          phone,
+          employeeId: autoEmployeeId,
+          specialization,
+         experienceYears: parseInt(experienceYears as unknown as string, 10),
+          address: address || null,
+          profileImage: profileImage || null
+          // NOTE: If your technician schema has a relation field linking to User, 
+          // you can cleanly add: userId: createdLoginAccount.id right here!
+        }
+      })
+    ]);
 
     return res.status(201).json({
       success: true,
       message: 'Technician registered successfully with automated corporate ID tracking!',
       temporaryPassword: temporaryPassword,
       technician: newTechnicianProfile,
-      loginUser:createdLoginAccount
+      loginUser: createdLoginAccount
     });
   } catch (err: unknown) {
     const errorInstance = err instanceof Error ? err : new Error(String(err));
@@ -214,8 +228,13 @@ export const getMobileWorkspaceTicket = async (req: Request, res: Response): Pro
       where: { id: ticketId },
       include: {
         customer: {
-          select: { name: true, phone: true, vehicleModel: true }
+          select: { name: true, phone: true }
         },
+        technician:{
+          select:{fullName:true}
+        },  
+        vehicle:true,
+
         timeline: {
           orderBy: { createdAt: 'desc' } 
         },
@@ -225,7 +244,7 @@ export const getMobileWorkspaceTicket = async (req: Request, res: Response): Pro
         parts: {
           include: {
             inventoryItem: {
-              select: { partName: true, sku: true }
+              select: { partName: true, sku: true, retailPrice: true }
             }
           }
         }
@@ -250,6 +269,18 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
   try {
     const idParam = req.params.id;
     const { newStatus } = req.body; // e.g., "IN_SERVICE", "RESOLVED"
+    // ✅ Validate Ticket Status Enum
+if (
+  !Object.values(TicketStatus).includes(
+    newStatus as TicketStatus
+  )
+) {
+  return res.status(400).json({
+    success: false,
+    message: "Invalid ticket status."
+  });
+}
+const validatedStatus = newStatus as TicketStatus;
 
     // 1. Strict Validation
     if (!idParam || typeof idParam !== 'string') {
@@ -265,6 +296,17 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
       return res.status(400).json({ success: false, message: "Ticket ID must be a number." });
     }
 
+    const existingTicket = await prisma.repairTicket.findUnique({
+      where: { id: ticketId },
+      select: { closedAt: true }
+    });
+    if (!existingTicket) {
+      return res.status(404).json({ success: false, message: "Repair ticket not found." });
+    }
+
+    const isCompleted = validatedStatus === TicketStatus.RESOLVED || validatedStatus === TicketStatus.DELIVERED;
+    const completionTimestamp = isCompleted ? (existingTicket.closedAt ?? new Date()) : null;
+
     // ⚡ 2. THE PRISMA TRANSACTION (Atomic Operation)
     // Both of these database calls run together safely!
     const [updatedTicket, newTimelineEvent] = await prisma.$transaction([
@@ -273,8 +315,9 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
       prisma.repairTicket.update({
         where: { id: ticketId },
         data: { 
-          status: newStatus,
-          updatedAt: new Date() // Force timestamp update
+          status: validatedStatus,
+          updatedAt: new Date(),
+          closedAt: completionTimestamp
         }
       }),
 
@@ -282,7 +325,7 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
       prisma.timelineEvent.create({
         data: {
           ticketId: ticketId,
-          status: newStatus
+          status: validatedStatus
           // createdAt is handled automatically by the database default(now())
         }
       })
@@ -293,6 +336,7 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
     return res.status(200).json({ 
       success: true, 
       message: `Ticket upgraded to ${newStatus}`,
+      ticket: updatedTicket,
       timelineEvent: newTimelineEvent 
     });
 
@@ -364,7 +408,8 @@ export const addUsedPartToTicket = async (req: Request, res: Response): Promise<
     
     const ticketId = parseInt(idParam, 10);
     
-    if (isNaN(ticketId) || !inventoryId) {
+    const safeQuantity = Number(quantity);
+    if (isNaN(ticketId) || !inventoryId || !Number.isInteger(safeQuantity) || safeQuantity < 1) {
       return res.status(400).json({ success: false, message: "Missing required fields." });
     }
 
@@ -377,21 +422,22 @@ export const addUsedPartToTicket = async (req: Request, res: Response): Promise<
       return res.status(404).json({ success: false, message: "Part not found in inventory." });
     }
 
-    if (inventoryItem.stockLevel < quantity) {
+    if (inventoryItem.stockLevel < safeQuantity) {
         return res.status(400).json({ success: false, message: "Not enough stock available!"});
     }
 
     // ⚡ 2. THE TRANSACTION
-    const [newUsedPart, updatedInventory] = await prisma.$transaction([
+    const [newUsedPart] = await prisma.$transaction([
       
       // Action A: Log the part to the ticket, locking in the price
       prisma.usedPart.create({
         data: {
           ticketId: ticketId,
           inventoryId: inventoryId,
-          quantity: quantity,
+          quantity: safeQuantity,
           lockedCost: inventoryItem.retailPrice // Lock the price!
-        }
+        },
+        include: { inventoryItem: { select: { partName: true, sku: true, retailPrice: true } } }
       }),
 
       // Action B: Subtract the quantity safely using atomic decrement
@@ -399,9 +445,12 @@ export const addUsedPartToTicket = async (req: Request, res: Response): Promise<
         where: { id: inventoryId },
         data: {
           stockLevel: {
-            decrement: quantity
+            decrement: safeQuantity
           }
         }
+      }),
+      prisma.timelineEvent.create({
+        data: { ticketId, status: `PART_ADDED:${inventoryItem.partName}:x${safeQuantity}` }
       })
       
     ]);
@@ -415,5 +464,216 @@ export const addUsedPartToTicket = async (req: Request, res: Response): Promise<
   } catch (error) {
     console.error("Error logging used part:", error);
     return res.status(500).json({ success: false, message: "Server crash." });
+  }
+};
+
+export const removeUsedPartFromTicket = async (req: Request, res: Response): Promise<any> => {
+  const ticketId = Number(req.params.id);
+  const partId = Number(req.params.partId);
+  if (!Number.isInteger(ticketId) || !Number.isInteger(partId)) {
+    return res.status(400).json({ success: false, message: "Invalid ticket or part ID." });
+  }
+  try {
+    const usedPart = await prisma.usedPart.findFirst({
+      where: { id: partId, ticketId },
+      include: { inventoryItem: { select: { partName: true } } }
+    });
+    if (!usedPart) return res.status(404).json({ success: false, message: "Allocated part not found." });
+
+    await prisma.$transaction([
+      prisma.usedPart.delete({ where: { id: partId } }),
+      prisma.inventory.update({
+        where: { id: usedPart.inventoryId },
+        data: { stockLevel: { increment: usedPart.quantity } }
+      }),
+      prisma.timelineEvent.create({
+        data: { ticketId, status: `PART_REMOVED:${usedPart.inventoryItem.partName}:x${usedPart.quantity}` }
+      })
+    ]);
+    return res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Error removing used part:", error);
+    return res.status(500).json({ success: false, message: "Part removal failed." });
+  }
+};
+
+
+// manual notes with ai integration
+
+
+
+
+export const createManualNote = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { ticketId } = req.params;
+    const { text } = req.body;
+
+    if (!ticketId || !text) {
+      res.status(400).json({ success: false, error: 'Ticket ID and text are required.' });
+      return;
+    }
+
+    const parsedTicketId = parseInt(String(ticketId), 10);
+    console.log(`🤖 Passing manual text to Llama-3.3-70b-versatile for structuring...`);
+
+    let polishedEnglishText = text;
+    let computedTags: string[] = ['Manual-Entry'];
+
+    const systemPrompt = `You are an expert EV diagnostic assistant.
+Your task is to take a raw manual text note typed by a workshop mechanic and translate/format it into a structured JSON object.
+
+CRITICAL RULES:
+1. Translate and polish the core diagnostic meaning into clean, professional engineering English.
+2. Extract relevant component quick-tags if explicitly or implicitly mentioned.
+
+Reply ONLY with a valid JSON object using these exact keys:
+{
+  "structuredText": "Clean technical diagnostic summary sentence.",
+  "quickTags": ["TAG1", "TAG2"]
+}`;
+
+    const groqChatResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      headers: {
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: text }
+        ],
+        temperature: 0.1,
+        response_format: { type: "json_object" }
+      }),
+    });
+
+    if (groqChatResponse.ok) {
+      const chatResult = await groqChatResponse.json();
+      const rawJsonContent = chatResult?.choices?.[0]?.message?.content;
+      
+      if (rawJsonContent) {
+        try {
+          const parsedAiResult = JSON.parse(rawJsonContent);
+          polishedEnglishText = parsedAiResult.structuredText || text;
+          computedTags = parsedAiResult.quickTags || ['Manual-Entry'];
+        } catch (parseErr) {
+          console.error('Failed parsing AI JSON response, defaulting to raw text.', parseErr);
+        }
+      }
+    }
+
+    const newNote = await prisma.technicianNote.create({
+      data: {
+        ticketId: parsedTicketId,
+        rawVoiceText: text, // Preserving original typed input
+        structuredText: polishedEnglishText,
+        quickTags: computedTags,
+      },
+    });
+
+    res.status(201).json({ success: true, note: newNote });
+  } catch (error: unknown) {
+    console.error('❌ Create Note Error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ success: false, error: errorMessage });
+  }
+};
+
+// --- 2. UPDATE EXISTING NOTE ---
+export const updateNote = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { noteId } = req.params;
+    const { structuredText } = req.body;
+
+    if (!noteId || !structuredText) {
+      res.status(400).json({ success: false, error: 'Note ID and new text are required.' });
+      return;
+    }
+
+    const updatedNote = await prisma.technicianNote.update({
+      where: { id: parseInt(String(noteId), 10) },
+      data: { structuredText },
+    });
+
+    res.status(200).json({ success: true, note: updatedNote });
+  } catch (error: unknown) {
+    console.error('❌ Update Note Error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ success: false, error: errorMessage });
+  }
+};
+
+// --- 3. DELETE NOTE ---
+export const deleteNote = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { noteId } = req.params;
+
+    if (!noteId) {
+      res.status(400).json({ success: false, error: 'Note ID is required.' });
+      return;
+    }
+
+    await prisma.technicianNote.delete({
+      where: { id: parseInt(String(noteId), 10) },
+    });
+
+    res.status(200).json({ success: true, message: 'Note deleted successfully.' });
+  } catch (error: unknown) {
+    console.error('❌ Delete Note Error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ success: false, error: errorMessage });
+  }
+};
+
+export const updateRepairCosts = async (req: Request, res: Response): Promise<any> => {
+  const ticketId = Number(req.params.id);
+  if (!Number.isInteger(ticketId)) {
+    return res.status(400).json({ success: false, message: 'Invalid ticket ID.' });
+  }
+
+  const estimatedCost = Number(req.body.estimatedCost ?? 0);
+  const laborHours = Number(req.body.laborHours ?? 0);
+  const laborRate = Number(req.body.laborRate ?? 0);
+  const taxRate = Number(req.body.taxRate ?? 0);
+  const discount = Number(req.body.discount ?? 0);
+  const values = [estimatedCost, laborHours, laborRate, taxRate, discount];
+
+  if (values.some((value) => !Number.isFinite(value) || value < 0) || taxRate > 100) {
+    return res.status(400).json({ success: false, message: 'Costs must be non-negative numbers and tax cannot exceed 100%.' });
+  }
+
+  try {
+    const ticket = await prisma.repairTicket.findUnique({
+      where: { id: ticketId },
+      select: { parts: { select: { quantity: true, lockedCost: true } } }
+    });
+    if (!ticket) return res.status(404).json({ success: false, message: 'Repair ticket not found.' });
+
+    const partsTotal = ticket.parts.reduce((sum, part) => sum + part.quantity * part.lockedCost, 0);
+    const laborTotal = laborHours * laborRate;
+    const subtotal = partsTotal + laborTotal;
+    const taxAmount = subtotal * (taxRate / 100);
+    const grossTotal = subtotal + taxAmount;
+
+    if (discount > grossTotal) {
+      return res.status(400).json({ success: false, message: 'Discount cannot exceed the repair total.' });
+    }
+
+    const grandTotal = grossTotal - discount;
+    const updatedTicket = await prisma.repairTicket.update({
+      where: { id: ticketId },
+      data: { estimatedCost, laborHours, laborRate, taxRate, discount, finalCost: grandTotal }
+    });
+
+    return res.status(200).json({
+      success: true,
+      ticket: updatedTicket,
+      totals: { partsTotal, laborTotal, subtotal, taxAmount, discount, grandTotal }
+    });
+  } catch (error) {
+    console.error('Error updating repair costs:', error);
+    return res.status(500).json({ success: false, message: 'Repair costs could not be saved.' });
   }
 };

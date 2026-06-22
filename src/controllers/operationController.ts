@@ -20,6 +20,23 @@ export const getOperationalTickets = async (req: Request, res: Response) => {
          select:{
           fullName:true
          }
+        },
+        vehicle: {
+          select: { vehicleModel: true, vin: true }
+        },
+        parts: {
+          include: {
+            inventoryItem: {
+              select: { partName: true, sku: true, retailPrice: true }
+            }
+          }
+        },
+        notes: {
+          select: { structuredText: true },
+          orderBy: { createdAt: 'asc' }
+        },
+        invoice: {
+          select: { id: true }
         }
       },
       // ✅ FIXED: Sorted by id descending to keep the newest tickets at the top safely
