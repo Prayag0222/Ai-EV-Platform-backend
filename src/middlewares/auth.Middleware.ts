@@ -7,12 +7,16 @@ import type { Role } from '../generated/client/index.js';
         user?:{
             id:string;
             email:string;
-            role:Role
+            role:Role;
+             shopId: string | null;  // ← add this
         };
     }
 
 
 export const authMiddleware = async (req: AuthenticatedRequest, res:Response,next:NextFunction) => {
+
+     console.log("🍪 Cookies:", req.cookies)      // ← add this
+  console.log("🔑 Token:", req.cookies?.authToken)  // ← add this
 
     const token = req.cookies?.authToken || req.headers?.cookie?.split('authToken=')[1]?.split(';')[0];
     
@@ -29,6 +33,7 @@ export const authMiddleware = async (req: AuthenticatedRequest, res:Response,nex
             id:string;
             email:string;
             role:Role
+            shopId: string | null;  // ← add this
         }
 
         req.user = decoded;

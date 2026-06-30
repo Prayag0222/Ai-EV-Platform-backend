@@ -7,6 +7,8 @@ import { prisma } from '../config/prisma.js';
  */
 export const createInventoryItem = async (req: Request, res: Response) => {
   try {
+    const shopId = (req as any).user?.shopId;
+if (!shopId) return res.status(403).json({ message: 'Shop not found.' });
     const { partName, category, stockLevel, retailPrice, lowStockAlert } = req.body;
 
     if (!partName || !category || retailPrice === undefined || Number(retailPrice) < 0 || Number(stockLevel) < 0) {
@@ -36,8 +38,11 @@ export const createInventoryItem = async (req: Request, res: Response) => {
         stockLevel: stockLevel ? Number(stockLevel) : 0,
         retailPrice: Number(retailPrice),
         lowStockAlert: lowStockAlert ? Number(lowStockAlert) : 5,
+        shopId
       },
     });
+
+    
 
     return res.status(201).json({
       success: true,
@@ -56,6 +61,7 @@ export const createInventoryItem = async (req: Request, res: Response) => {
 
 export const searchInventory = async (req: Request, res: Response) => {
   try {
+    const shopId = (req as any).user?.shopId;
     const { q, limit = 10 } = req.query;
 
     if (!q || typeof q !== 'string') {
@@ -67,6 +73,7 @@ export const searchInventory = async (req: Request, res: Response) => {
 
     const items = await prisma.inventory.findMany({
       where: {
+        shopId,
         OR: [
           { partName: { contains: q, mode: 'insensitive' } },
           { sku: { contains: q, mode: 'insensitive' } },
@@ -96,7 +103,12 @@ export const searchInventory = async (req: Request, res: Response) => {
  */
 export const getAllInventory = async (req: Request, res: Response) => {
   try {
+    const shopId = (req as any).user?.shopId;
+    console.log((req as any).user);
+    
+if (!shopId) return res.status(403).json({ message: 'Shop not found.' });
     const items = await prisma.inventory.findMany({
+      where:{shopId},
       orderBy: {
         createdAt: 'desc',
       },

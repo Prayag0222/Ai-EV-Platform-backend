@@ -18,6 +18,8 @@ interface CreateTechnicianInput {
 // ==========================================
 export const createTechnician = async (req: Request, res: Response): Promise<Response> => {
   try {
+    const shopId = (req as any).user?.shopId;
+if (!shopId) return res.status(403).json({ message: 'Shop not found.' });
     const { 
       fullName, 
       email, 
@@ -54,7 +56,7 @@ if (
     const normalizedEmail = email.toLowerCase().trim();
     // 🛡️ Guard 3: Double Check BOTH tables to prevent unique email constraint crashes
     const emailInUserTable = await prisma.user.findUnique({ where: { email: normalizedEmail } });
-    const emailInTechTable = await prisma.technician.findFirst({ where: { email: normalizedEmail } });
+    const emailInTechTable = await prisma.technician.findFirst({ where: { email: normalizedEmail , shopId } });
 
     if (emailInUserTable || emailInTechTable) {
       return res.status(400).json({ message: 'A user or technician account with this email already exists.' });
@@ -91,7 +93,8 @@ if (
           specialization,
          experienceYears: parseInt(experienceYears as unknown as string, 10),
           address: address || null,
-          profileImage: profileImage || null
+          profileImage: profileImage || null,
+          shopId
           // NOTE: If your technician schema has a relation field linking to User, 
           // you can cleanly add: userId: createdLoginAccount.id right here!
         }
@@ -117,7 +120,9 @@ if (
 // ==========================================
 export const getAllTechnicians = async (req: Request, res: Response): Promise<Response> => {
   try {
+    const shopId = (req as any).user?.shopId;
     const technicians = await prisma.technician.findMany({
+      where:{shopId},
       orderBy: { createdAt: 'desc' },
     });
     return res.status(200).json(technicians);
@@ -270,6 +275,11 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
     const idParam = req.params.id;
     const { newStatus } = req.body; // e.g., "IN_SERVICE", "RESOLVED"
     // ✅ Validate Ticket Status Enum
+    console.log(newStatus);
+    
+    if(!newStatus){
+      return res.status(404).json({message:"newStatus is not valid ", newStatus})
+    }
 if (
   !Object.values(TicketStatus).includes(
     newStatus as TicketStatus

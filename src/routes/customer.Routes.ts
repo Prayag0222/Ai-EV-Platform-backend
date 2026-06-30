@@ -1,8 +1,11 @@
 import  express, { Router } from 'express'
-import { createCustomer,getCustomer,deleteCustomer,updateCustomer } from '../controllers/customerController.js'
+import { createCustomer,getCustomer,deleteCustomer,updateCustomer } from '../controllers/customer.Controller.js'
+import { authMiddleware } from '../middlewares/auth.Middleware.js';
 
 
 const router = express.Router();
+
+router.use(authMiddleware)
 
 
 router.post('/createCustomer',createCustomer);

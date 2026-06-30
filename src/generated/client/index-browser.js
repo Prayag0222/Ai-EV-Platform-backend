@@ -126,10 +126,6 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   password: 'password',
   role: 'role',
-  shopName: 'shopName',
-  shopAddress: 'shopAddress',
-  gstNumber: 'gstNumber',
-  shopPhone: 'shopPhone',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -140,7 +136,8 @@ exports.Prisma.CustomerScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   address: 'address',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  shopId: 'shopId'
 };
 
 exports.Prisma.RepairTicketScalarFieldEnum = {
@@ -163,7 +160,8 @@ exports.Prisma.RepairTicketScalarFieldEnum = {
   manufacturer: 'manufacturer',
   customerId: 'customerId',
   technicianId: 'technicianId',
-  vehicleId: 'vehicleId'
+  vehicleId: 'vehicleId',
+  shopId: 'shopId'
 };
 
 exports.Prisma.TechnicianNoteScalarFieldEnum = {
@@ -202,7 +200,8 @@ exports.Prisma.InventoryScalarFieldEnum = {
   retailPrice: 'retailPrice',
   lowStockAlert: 'lowStockAlert',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  shopId: 'shopId'
 };
 
 exports.Prisma.InvoiceScalarFieldEnum = {
@@ -224,6 +223,7 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   notes: 'notes',
   saleType: 'saleType',
   ticketId: 'ticketId',
+  shopId: 'shopId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -240,7 +240,8 @@ exports.Prisma.TechnicianScalarFieldEnum = {
   address: 'address',
   profileImage: 'profileImage',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  shopId: 'shopId'
 };
 
 exports.Prisma.VehicleScalarFieldEnum = {
@@ -264,7 +265,17 @@ exports.Prisma.VehicleScalarFieldEnum = {
   controllerNotes: 'controllerNotes',
   healthScore: 'healthScore',
   lastAiCheck: 'lastAiCheck',
-  customerId: 'customerId'
+  customerId: 'customerId',
+  shopId: 'shopId'
+};
+
+exports.Prisma.ShopScalarFieldEnum = {
+  id: 'id',
+  shopName: 'shopName',
+  shopAddress: 'shopAddress',
+  gstNumber: 'gstNumber',
+  shopPhone: 'shopPhone',
+  ownerId: 'ownerId'
 };
 
 exports.Prisma.SortOrder = {
@@ -341,7 +352,8 @@ exports.Prisma.ModelName = {
   inventory: 'inventory',
   invoice: 'invoice',
   technician: 'technician',
-  Vehicle: 'Vehicle'
+  Vehicle: 'Vehicle',
+  shop: 'shop'
 };
 
 /**
