@@ -2,7 +2,7 @@ import express from 'express';
 import {
   getProfile,
   updateProfile,
-} from '../controllers/profileController.js';
+} from '../controllers/profile.Controller.js';
 
 import { authMiddleware } from '../middlewares/auth.Middleware.js';
 

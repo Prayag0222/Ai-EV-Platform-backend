@@ -1,15 +1,75 @@
 import { type Request, type Response } from 'express';
 import { prisma } from '../config/prisma.js';
+import { generateInvoicePDF } from "../pdf/pdf.service.js";
 
 interface InvoiceItemInput {
   name: string;
   sku: string;
   qty: number;
   price: number;
+  inventoryId?:number;
 }
+
+const getInvoicePDF = async (
+  invoiceId: number,
+  shopId: string
+): Promise<{ pdf: Buffer; invoice: any }> => {
+  const invoice = await prisma.invoice.findFirst({
+    where: {
+      id: invoiceId,
+      shopId,
+    },
+  });
+
+  if (!invoice) {
+    throw new Error("Invoice not found");
+  }
+
+  const pdf = await generateInvoicePDF(invoice);
+
+  return {
+    pdf,
+    invoice,
+  };
+};
+
+
+export const printInvoicePDF = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const id = Number(req.params.id);
+    const shopId = (req as any).user?.shopId;
+
+    const { pdf, invoice } = await getInvoicePDF(id, shopId);
+
+    res.setHeader("Content-Type", "application/pdf");
+
+    res.setHeader(
+      "Content-Disposition",
+      `inline; filename="${invoice.invoiceNo}.pdf"`
+    );
+
+    res.setHeader("Cache-Control", "no-store");
+
+    return res.send(pdf);
+  } catch (error) {
+    console.error("PDF print failed:", error);
+
+    return res.status(404).json({
+      success: false,
+      message: "Invoice not found",
+    });
+  }
+};
+
+
 
 export const createInvoice = async (req: Request, res: Response) => {
   try {
+    const shopId = (req as any).user?.shopId;
+if (!shopId) return res.status(403).json({ message: 'Shop not found.' });
     const {
       customerName,
       customerAddress,
@@ -40,6 +100,28 @@ export const createInvoice = async (req: Request, res: Response) => {
     }
 
     const saleType = ticketId ? "REPAIR" : "COUNTER";
+
+    // ✅ Stock validation
+if (Array.isArray(items)) {
+  for (const item of items as InvoiceItemInput[]) {
+    if (!item.inventoryId) continue; // skip non-inventory items (labor etc.)
+    
+    const inventoryItem = await prisma.inventory.findUnique({
+      where: { id: Number(item.inventoryId) }
+    });
+
+    if (!inventoryItem) {
+      return res.status(404).json({ success: false, error: `Item "${item.name}" not found in inventory.` });
+    }
+
+    if (item.qty > inventoryItem.stockLevel) {
+      return res.status(400).json({ 
+        success: false, 
+        error: `Insufficient stock for "${item.name}". Available: ${inventoryItem.stockLevel}, Requested: ${item.qty}` 
+      });
+    }
+  }
+}
 
     if (!customerName || !customerPhone || !items || !paymentStatus || !paymentMethod) {
       return res.status(400).json({
@@ -85,9 +167,23 @@ export const createInvoice = async (req: Request, res: Response) => {
         paymentStatus,
         paymentMethod,
         notes: notes || "",
+        shopId
       },
     });
 
+    // ✅ Deduct stock after invoice created
+if (Array.isArray(items)) {
+  for (const item of items as InvoiceItemInput[]) {
+    if (!item.inventoryId) continue;
+    
+    await prisma.inventory.update({
+      where: { id: Number(item.inventoryId) },
+      data: {
+        stockLevel: { decrement: item.qty }
+      }
+    });
+  }
+}
     return res.status(201).json({
       success: true,
       message: 'Invoice created successfully.',
@@ -106,7 +202,9 @@ export const createInvoice = async (req: Request, res: Response) => {
 
 export const getAllInvoices = async (req: Request, res: Response) => {
   try {
+    const shopId = (req as any).user?.shopId;
     const invoices = await prisma.invoice.findMany({
+      where:{shopId},
       include:{
         ticket: {
           include: {
@@ -130,6 +228,40 @@ export const getAllInvoices = async (req: Request, res: Response) => {
     return res.status(500).json({ success: false, error: 'Failed to retrieve invoices.' });
   }
 };
+
+export const downloadInvoicePDF = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const id = Number(req.params.id);
+    const shopId = (req as any).user?.shopId;
+
+    const { pdf, invoice } = await getInvoicePDF(id, shopId);
+
+    res.setHeader("Content-Type", "application/pdf");
+
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${invoice.invoiceNo}-${invoice.customerName.replace(
+        /\s+/g,
+        "-"
+      )}.pdf`
+    );
+
+    res.setHeader("Cache-Control", "no-store");
+
+    return res.send(pdf);
+  } catch (error) {
+    console.error("PDF download failed:", error);
+
+    return res.status(404).json({
+      success: false,
+      message: "Invoice not found",
+    });
+  }
+};
+
 
 export const updateInvoicePayment = async (req: Request, res: Response) => {
   const id = Number(req.params.id);

@@ -81,7 +81,8 @@ export const loginUser = async (req, res) => {
 
     // 3. Database Lookup: Locate the specific user account using Prisma
     const user = await prisma.user.findUnique({
-      where: { email: email.trim() } 
+      where: { email: email.trim() }, 
+        include:{shop:true}
     });
 
     // 4. Uniform Security Boundary: Prevent user enumeration
@@ -107,7 +108,7 @@ export const loginUser = async (req, res) => {
     // 6. GENERATE THE JWT TOKEN DYNAMICALLY
     // We bundle the user metadata securely inside the token signature
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
+      { id: user.id, email: user.email, role: user.role, shopId:user.shop?.id ?? null },
       process.env.JWT_SECRET,
       { expiresIn: '1d' } // Session card automatically invalidates after 24 hours
     );
@@ -128,10 +129,9 @@ export const loginUser = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
-        shopName: user.shopName,
-        shopAddress: user.shopAddress,
-        gstNumber: user.gstNumber,
-        shopPhone: user.shopPhone
+        hasShop: !!user.shop,
+        shopId: user.shop?.id ?? null 
+        
       }
     });
 
@@ -154,6 +154,9 @@ export const getCurrentUser = async (req, res) => {
   try {
     // 1. Extract the credential User ID verified by your authMiddleware
     const authUserId = req.user?.id;
+    const shopId = req.user?.shopId
+
+   
 
     if (!authUserId) {
       return res.status(401).json({ error: "Unauthorized. Session identity missing." });
@@ -191,7 +194,9 @@ export const getCurrentUser = async (req, res) => {
         id: targetWorkspaceId, // ⚡ Switches dynamically to Technician ID or User ID based on role
         name: userAccount.name,
         email: userAccount.email,
-        role: userAccount.role
+        role: userAccount.role,
+        shopId
+        
       }
     });
 
@@ -201,3 +206,7 @@ export const getCurrentUser = async (req, res) => {
   }
 };
 
+export const logout = (req, res) => {
+  res.clearCookie('authToken');
+  return res.status(200).json({ message: 'Logged out' });
+};

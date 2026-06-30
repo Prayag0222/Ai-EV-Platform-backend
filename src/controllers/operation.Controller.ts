@@ -8,7 +8,11 @@ import { prisma } from '../config/prisma.js';
  */
 export const getOperationalTickets = async (req: Request, res: Response) => {
   try {
+    const shopId = (req as any).user?.shopId;
+if (!shopId) return res.status(403).json({ message: 'Shop not found.' });
+
     const tickets = await prisma.repairTicket.findMany({
+      where:{shopId},
       include: {
         customer: {
           select: {
@@ -81,7 +85,6 @@ export const updateTicketOperation = async (req: Request, res: Response) => {
       },
       data: {
         ...(status && { status }),
-        ...(technicianNotes !== undefined && { technicianNotes })
       }
     });
 

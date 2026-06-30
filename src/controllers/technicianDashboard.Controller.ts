@@ -49,7 +49,7 @@ export const updateTicketProgress = async (req:Request,res:Response): Promise<an
     try {
         const {id } =req.params;
 
-        const {status , technicianNotes} = req.body;
+        const {status , } = req.body;
 
         const ticketIdNumber = Number(id)
            if(!Object.values(TicketStatus).includes(status as TicketStatus)){
@@ -81,7 +81,7 @@ export const updateTicketProgress = async (req:Request,res:Response): Promise<an
         // If status is passed, update it; if technicianNotes is passed, update it.
         // If either is missing, JavaScript leaves the existing column untouched!
         ...(status !== undefined && { status: validatedStatus, closedAt: completionTimestamp }),
-        ...(technicianNotes !== undefined && { technicianNotes })
+       
       }
     });
     return res.status(200).json({

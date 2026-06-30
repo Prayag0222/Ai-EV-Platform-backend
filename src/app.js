@@ -1,18 +1,21 @@
 import express from 'express';
 import 'dotenv/config';
-import authRoutes from './routes/authRoutes.js';
-import customerRoutes from './routes/customerRoutes.ts'
-import ticketRoutes from './routes/ticketRoutes.ts'
-import operationRoutes from './routes/operationRoutes.js';
+import authRoutes from './routes/auth.Routes.js';
+import customerRoutes from './routes/customer.Routes.js'
+import ticketRoutes from './routes/ticket.Routes.js'
+import operationRoutes from './routes/operation.Routes.js';
 // Add this to your imports at the top:
-import inventoryRoutes from './routes/inventoryRoutes.js';
-import invoiceRoutes from './routes/invoiceRoutes.js';
-import technicianRoutes from './routes/technicianRoutes.ts';
+import inventoryRoutes from './routes/inventory.Routes.js';
+import invoiceRoutes from './routes/invoice.Routes.js';
+import technicianRoutes from './routes/technician.Routes.js';
 import cors from 'cors';
 import voiceNotes from './routes/voiceNotes.js'
-import vehicleRoutes from './routes/vehicleRoutes.ts'
-import ownersRoutes from './routes/ownersRoutes.ts'
-import profileRoutes from './routes/profileRoutes.js';
+import vehicleRoutes from './routes/vehicle.Routes.js'
+import ownersRoutes from './routes/owners.Routes.js'
+import profileRoutes from './routes/profile.Routes.js';
+import shopRoutes from './routes/shop.Routes.js'
+import cookieParser from 'cookie-parser'
+
 
 
 const app = express();
@@ -20,6 +23,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+
+
+app.use(cookieParser())  // ← must be BEFORE your routes
 
 app.use(
   cors({
@@ -47,6 +53,7 @@ app.use('/api/technician', technicianRoutes);
 app.use('/api/vehicles',vehicleRoutes)
 app.use('/api/owner',ownersRoutes)
 app.use('/api/profile', profileRoutes);
+app.use('/api/shop',shopRoutes)
 
 app.listen(PORT,()=>{
     console.log(`Industry grade server is running on port ${PORT}`)

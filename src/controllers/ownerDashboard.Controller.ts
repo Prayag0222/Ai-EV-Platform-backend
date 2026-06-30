@@ -35,7 +35,23 @@ function getRelativeTimeDescription(date: Date): string {
 
 export async function ownerDashboardController(req: Request, res: Response) {
   try {
+  
+
+
+     
+
     const now = new Date();
+    const shopId = (req as any).user?.shopId;
+      console.log("🔍 Dashboard user:", (req as any).user);  // ← add this
+
+
+    
+    
+
+if (!shopId) {
+  return res.status(403).json({  message: 'Shop not found. Please set up your shop first.' ,  });
+
+}
 
     // Today
 
@@ -44,6 +60,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
       now.getMonth(),
       now.getDate(),
     );
+
 
     // Week (Monday)
 
@@ -58,6 +75,8 @@ export async function ownerDashboardController(req: Request, res: Response) {
     // Month
 
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+   
 
     const [
       todayRevenue,
@@ -102,6 +121,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
         },
 
         where: {
+          shopId,
           createdAt: {
             gte: startOfToday,
           },
@@ -114,6 +134,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
         },
 
         where: {
+          shopId,
           createdAt: {
             gte: startOfWeek,
           },
@@ -126,6 +147,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
         },
 
         where: {
+          shopId,
           createdAt: {
             gte: startOfMonth,
           },
@@ -133,6 +155,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
       }),
 
       prisma.invoice.aggregate({
+        where:{shopId},
         _sum: {
           grandTotal: true,
         },
@@ -140,6 +163,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
 
       prisma.repairTicket.count({
         where: {
+          shopId,
           status: {
             not: "DELIVERED",
           },
@@ -148,12 +172,13 @@ export async function ownerDashboardController(req: Request, res: Response) {
 
       prisma.repairTicket.count({
         where: {
+          shopId,
           status: "RESOLVED",
         },
       }),
 
       prisma.repairTicket.count({
-        where: {
+        where: {shopId,
           priority: {
             in: ["HIGH", "URGENT"],
           },
@@ -161,28 +186,30 @@ export async function ownerDashboardController(req: Request, res: Response) {
       }),
 
       prisma.repairTicket.count({
-        where: {
+        where: { shopId,
           createdAt: {
             gte: startOfToday,
           },
         },
       }),
 
-      prisma.customer.count(),
+      prisma.customer.count({where:{shopId}}),
 
-      prisma.vehicle.count(),
+      prisma.vehicle.count({where:{shopId}}),
 
-      prisma.technician.count(),
+      prisma.technician.count({where:{shopId}}),
 
-      prisma.inventory.count(),
+      prisma.inventory.count({where:{shopId}}),
 
       prisma.inventory.findMany({
+        where:{shopId},
         orderBy: {
           stockLevel: "asc",
         },
       }),
 
       prisma.repairTicket.groupBy({
+        where:{shopId},
         by: ["status"],
 
         _count: {
@@ -191,6 +218,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
       }),
 
       prisma.technician.findMany({
+        where:{shopId},
         include: {
           tickets: {
             where: {
@@ -203,6 +231,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
       }),
 
       prisma.repairTicket.findMany({
+        where:{shopId},
         take: 5,
 
         orderBy: {
@@ -215,6 +244,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
       }),
 
       prisma.invoice.findMany({
+        where:{shopId},
         take: 5,
 
         orderBy: {
@@ -223,6 +253,7 @@ export async function ownerDashboardController(req: Request, res: Response) {
       }),
 
       prisma.customer.findMany({
+        where:{shopId},
         take: 5,
 
         orderBy: {
@@ -495,6 +526,8 @@ export async function ownerDashboardController(req: Request, res: Response) {
       recentActivity,
 
       aiBriefing,
+      
+      
     });
   } catch (error) {
     console.error(

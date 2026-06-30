@@ -7,6 +7,10 @@ import { type Request, type Response } from 'express'
 export const createCustomer = async (req: Request, res: Response) => {
 
 try{
+    const shopId = (req as any).user?.shopId;
+    console.log((req as any).user);
+    
+if (!shopId) return res.status(403).json({ message: 'Shop not found.' });
 
     const {name , phone , email , address , vehicleModel ,vin , manufacturer,modelYear} = req.body
 
@@ -14,7 +18,7 @@ try{
         return res.status(400).json({message:"Missing required fields: name, phone, vehicleModel"})
     }
     const existingCustomer = await prisma.customer.findFirst({
-        where:{phone}
+        where:{phone , shopId}
     });
 
     // 3. Optional Sanity Check (Optional): If an email was typed, make sure it has an @ symbol
@@ -34,7 +38,8 @@ try{
             name,
             phone,
             email,
-            address
+            address,
+            shopId
         }
     });
 
@@ -44,7 +49,8 @@ try{
             vin,
             manufacturer,
             modelYear,
-            customerId:createCustomer.id
+            customerId:createCustomer.id,
+            shopId
         }
     });
     return createCustomer
@@ -64,7 +70,9 @@ try{
 export const getCustomer = async (req:Request,res:Response) =>{
 
     try {
+        const shopId = (req as any).user?.shopId;
         const customers = await prisma.customer.findMany({
+            where:{shopId},
             include:{
                 vehicles:true
             },
@@ -89,7 +97,7 @@ export const getCustomer = async (req:Request,res:Response) =>{
             }
 
             const existingCustomer = await prisma.customer.findUnique({
-                    where: { id: id}
+                    where: { id: id , }
             });
 
             if (!existingCustomer) {

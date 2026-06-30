@@ -63,6 +63,11 @@ export type technician = $Result.DefaultSelection<Prisma.$technicianPayload>
  * 
  */
 export type Vehicle = $Result.DefaultSelection<Prisma.$VehiclePayload>
+/**
+ * Model shop
+ * 
+ */
+export type shop = $Result.DefaultSelection<Prisma.$shopPayload>
 
 /**
  * Enums
@@ -371,6 +376,16 @@ export class PrismaClient<
     * ```
     */
   get vehicle(): Prisma.VehicleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.shop`: Exposes CRUD operations for the **shop** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Shops
+    * const shops = await prisma.shop.findMany()
+    * ```
+    */
+  get shop(): Prisma.shopDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -814,7 +829,8 @@ export namespace Prisma {
     inventory: 'inventory',
     invoice: 'invoice',
     technician: 'technician',
-    Vehicle: 'Vehicle'
+    Vehicle: 'Vehicle',
+    shop: 'shop'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -830,7 +846,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "customer" | "repairTicket" | "technicianNote" | "timelineEvent" | "usedPart" | "inventory" | "invoice" | "technician" | "vehicle"
+      modelProps: "user" | "customer" | "repairTicket" | "technicianNote" | "timelineEvent" | "usedPart" | "inventory" | "invoice" | "technician" | "vehicle" | "shop"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1574,6 +1590,80 @@ export namespace Prisma {
           }
         }
       }
+      shop: {
+        payload: Prisma.$shopPayload<ExtArgs>
+        fields: Prisma.shopFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.shopFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.shopFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>
+          }
+          findFirst: {
+            args: Prisma.shopFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.shopFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>
+          }
+          findMany: {
+            args: Prisma.shopFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>[]
+          }
+          create: {
+            args: Prisma.shopCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>
+          }
+          createMany: {
+            args: Prisma.shopCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.shopCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>[]
+          }
+          delete: {
+            args: Prisma.shopDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>
+          }
+          update: {
+            args: Prisma.shopUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>
+          }
+          deleteMany: {
+            args: Prisma.shopDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.shopUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.shopUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>[]
+          }
+          upsert: {
+            args: Prisma.shopUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$shopPayload>
+          }
+          aggregate: {
+            args: Prisma.ShopAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateShop>
+          }
+          groupBy: {
+            args: Prisma.shopGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ShopGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.shopCountArgs<ExtArgs>
+            result: $Utils.Optional<ShopCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1692,6 +1782,7 @@ export namespace Prisma {
     invoice?: invoiceOmit
     technician?: technicianOmit
     vehicle?: VehicleOmit
+    shop?: shopOmit
   }
 
   /* Types for Logging */
@@ -1950,6 +2041,82 @@ export namespace Prisma {
 
 
   /**
+   * Count Type ShopCountOutputType
+   */
+
+  export type ShopCountOutputType = {
+    customers: number
+    technicians: number
+    tickets: number
+    vehicles: number
+    inventory: number
+    invoice: number
+  }
+
+  export type ShopCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customers?: boolean | ShopCountOutputTypeCountCustomersArgs
+    technicians?: boolean | ShopCountOutputTypeCountTechniciansArgs
+    tickets?: boolean | ShopCountOutputTypeCountTicketsArgs
+    vehicles?: boolean | ShopCountOutputTypeCountVehiclesArgs
+    inventory?: boolean | ShopCountOutputTypeCountInventoryArgs
+    invoice?: boolean | ShopCountOutputTypeCountInvoiceArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ShopCountOutputType without action
+   */
+  export type ShopCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShopCountOutputType
+     */
+    select?: ShopCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ShopCountOutputType without action
+   */
+  export type ShopCountOutputTypeCountCustomersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: customerWhereInput
+  }
+
+  /**
+   * ShopCountOutputType without action
+   */
+  export type ShopCountOutputTypeCountTechniciansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: technicianWhereInput
+  }
+
+  /**
+   * ShopCountOutputType without action
+   */
+  export type ShopCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: repairTicketWhereInput
+  }
+
+  /**
+   * ShopCountOutputType without action
+   */
+  export type ShopCountOutputTypeCountVehiclesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VehicleWhereInput
+  }
+
+  /**
+   * ShopCountOutputType without action
+   */
+  export type ShopCountOutputTypeCountInventoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: inventoryWhereInput
+  }
+
+  /**
+   * ShopCountOutputType without action
+   */
+  export type ShopCountOutputTypeCountInvoiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: invoiceWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -1969,10 +2136,6 @@ export namespace Prisma {
     name: string | null
     password: string | null
     role: $Enums.Role | null
-    shopName: string | null
-    shopAddress: string | null
-    gstNumber: string | null
-    shopPhone: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1983,10 +2146,6 @@ export namespace Prisma {
     name: string | null
     password: string | null
     role: $Enums.Role | null
-    shopName: string | null
-    shopAddress: string | null
-    gstNumber: string | null
-    shopPhone: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1997,10 +2156,6 @@ export namespace Prisma {
     name: number
     password: number
     role: number
-    shopName: number
-    shopAddress: number
-    gstNumber: number
-    shopPhone: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2013,10 +2168,6 @@ export namespace Prisma {
     name?: true
     password?: true
     role?: true
-    shopName?: true
-    shopAddress?: true
-    gstNumber?: true
-    shopPhone?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2027,10 +2178,6 @@ export namespace Prisma {
     name?: true
     password?: true
     role?: true
-    shopName?: true
-    shopAddress?: true
-    gstNumber?: true
-    shopPhone?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2041,10 +2188,6 @@ export namespace Prisma {
     name?: true
     password?: true
     role?: true
-    shopName?: true
-    shopAddress?: true
-    gstNumber?: true
-    shopPhone?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2128,10 +2271,6 @@ export namespace Prisma {
     name: string
     password: string
     role: $Enums.Role
-    shopName: string | null
-    shopAddress: string | null
-    gstNumber: string | null
-    shopPhone: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -2159,12 +2298,9 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
-    shopName?: boolean
-    shopAddress?: boolean
-    gstNumber?: boolean
-    shopPhone?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shop?: boolean | User$shopArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2173,10 +2309,6 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
-    shopName?: boolean
-    shopAddress?: boolean
-    gstNumber?: boolean
-    shopPhone?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2187,10 +2319,6 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
-    shopName?: boolean
-    shopAddress?: boolean
-    gstNumber?: boolean
-    shopPhone?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2201,29 +2329,28 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     role?: boolean
-    shopName?: boolean
-    shopAddress?: boolean
-    gstNumber?: boolean
-    shopPhone?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "role" | "shopName" | "shopAddress" | "gstNumber" | "shopPhone" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | User$shopArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      shop: Prisma.$shopPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
       name: string
       password: string
       role: $Enums.Role
-      shopName: string | null
-      shopAddress: string | null
-      gstNumber: string | null
-      shopPhone: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -2620,6 +2747,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    shop<T extends User$shopArgs<ExtArgs> = {}>(args?: Subset<T, User$shopArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2654,10 +2782,6 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
-    readonly shopName: FieldRef<"User", 'String'>
-    readonly shopAddress: FieldRef<"User", 'String'>
-    readonly gstNumber: FieldRef<"User", 'String'>
-    readonly shopPhone: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -2677,6 +2801,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -2695,6 +2823,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -2712,6 +2844,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -2761,6 +2897,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -2808,6 +2948,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which Users to fetch.
      */
@@ -2857,6 +3001,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -2904,6 +3052,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -2971,6 +3123,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -2997,6 +3153,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -3017,6 +3177,25 @@ export namespace Prisma {
   }
 
   /**
+   * User.shop
+   */
+  export type User$shopArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    where?: shopWhereInput
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3028,6 +3207,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -3048,6 +3231,7 @@ export namespace Prisma {
     phone: string | null
     address: string | null
     createdAt: Date | null
+    shopId: string | null
   }
 
   export type CustomerMaxAggregateOutputType = {
@@ -3057,6 +3241,7 @@ export namespace Prisma {
     phone: string | null
     address: string | null
     createdAt: Date | null
+    shopId: string | null
   }
 
   export type CustomerCountAggregateOutputType = {
@@ -3066,6 +3251,7 @@ export namespace Prisma {
     phone: number
     address: number
     createdAt: number
+    shopId: number
     _all: number
   }
 
@@ -3077,6 +3263,7 @@ export namespace Prisma {
     phone?: true
     address?: true
     createdAt?: true
+    shopId?: true
   }
 
   export type CustomerMaxAggregateInputType = {
@@ -3086,6 +3273,7 @@ export namespace Prisma {
     phone?: true
     address?: true
     createdAt?: true
+    shopId?: true
   }
 
   export type CustomerCountAggregateInputType = {
@@ -3095,6 +3283,7 @@ export namespace Prisma {
     phone?: true
     address?: true
     createdAt?: true
+    shopId?: true
     _all?: true
   }
 
@@ -3177,6 +3366,7 @@ export namespace Prisma {
     phone: string
     address: string | null
     createdAt: Date
+    shopId: string
     _count: CustomerCountAggregateOutputType | null
     _min: CustomerMinAggregateOutputType | null
     _max: CustomerMaxAggregateOutputType | null
@@ -3203,8 +3393,10 @@ export namespace Prisma {
     phone?: boolean
     address?: boolean
     createdAt?: boolean
+    shopId?: boolean
     tickets?: boolean | customer$ticketsArgs<ExtArgs>
     vehicles?: boolean | customer$vehiclesArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
@@ -3215,6 +3407,8 @@ export namespace Prisma {
     phone?: boolean
     address?: boolean
     createdAt?: boolean
+    shopId?: boolean
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
   export type customerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3224,6 +3418,8 @@ export namespace Prisma {
     phone?: boolean
     address?: boolean
     createdAt?: boolean
+    shopId?: boolean
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
   export type customerSelectScalar = {
@@ -3233,22 +3429,29 @@ export namespace Prisma {
     phone?: boolean
     address?: boolean
     createdAt?: boolean
+    shopId?: boolean
   }
 
-  export type customerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "address" | "createdAt", ExtArgs["result"]["customer"]>
+  export type customerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "address" | "createdAt" | "shopId", ExtArgs["result"]["customer"]>
   export type customerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tickets?: boolean | customer$ticketsArgs<ExtArgs>
     vehicles?: boolean | customer$vehiclesArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type customerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type customerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type customerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | shopDefaultArgs<ExtArgs>
+  }
+  export type customerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | shopDefaultArgs<ExtArgs>
+  }
 
   export type $customerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "customer"
     objects: {
       tickets: Prisma.$repairTicketPayload<ExtArgs>[]
       vehicles: Prisma.$VehiclePayload<ExtArgs>[]
+      shop: Prisma.$shopPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3257,6 +3460,7 @@ export namespace Prisma {
       phone: string
       address: string | null
       createdAt: Date
+      shopId: string
     }, ExtArgs["result"]["customer"]>
     composites: {}
   }
@@ -3653,6 +3857,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tickets<T extends customer$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, customer$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     vehicles<T extends customer$vehiclesArgs<ExtArgs> = {}>(args?: Subset<T, customer$vehiclesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    shop<T extends shopDefaultArgs<ExtArgs> = {}>(args?: Subset<T, shopDefaultArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3688,6 +3893,7 @@ export namespace Prisma {
     readonly phone: FieldRef<"customer", 'String'>
     readonly address: FieldRef<"customer", 'String'>
     readonly createdAt: FieldRef<"customer", 'DateTime'>
+    readonly shopId: FieldRef<"customer", 'String'>
   }
     
 
@@ -3942,6 +4148,10 @@ export namespace Prisma {
      */
     data: customerCreateManyInput | customerCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4012,6 +4222,10 @@ export namespace Prisma {
      * Limit how many customers to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4202,6 +4416,7 @@ export namespace Prisma {
     customerId: string | null
     technicianId: string | null
     vehicleId: number | null
+    shopId: string | null
   }
 
   export type RepairTicketMaxAggregateOutputType = {
@@ -4225,6 +4440,7 @@ export namespace Prisma {
     customerId: string | null
     technicianId: string | null
     vehicleId: number | null
+    shopId: string | null
   }
 
   export type RepairTicketCountAggregateOutputType = {
@@ -4248,6 +4464,7 @@ export namespace Prisma {
     customerId: number
     technicianId: number
     vehicleId: number
+    shopId: number
     _all: number
   }
 
@@ -4295,6 +4512,7 @@ export namespace Prisma {
     customerId?: true
     technicianId?: true
     vehicleId?: true
+    shopId?: true
   }
 
   export type RepairTicketMaxAggregateInputType = {
@@ -4318,6 +4536,7 @@ export namespace Prisma {
     customerId?: true
     technicianId?: true
     vehicleId?: true
+    shopId?: true
   }
 
   export type RepairTicketCountAggregateInputType = {
@@ -4341,6 +4560,7 @@ export namespace Prisma {
     customerId?: true
     technicianId?: true
     vehicleId?: true
+    shopId?: true
     _all?: true
   }
 
@@ -4451,6 +4671,7 @@ export namespace Prisma {
     customerId: string
     technicianId: string | null
     vehicleId: number | null
+    shopId: string
     _count: RepairTicketCountAggregateOutputType | null
     _avg: RepairTicketAvgAggregateOutputType | null
     _sum: RepairTicketSumAggregateOutputType | null
@@ -4493,9 +4714,11 @@ export namespace Prisma {
     customerId?: boolean
     technicianId?: boolean
     vehicleId?: boolean
+    shopId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
     vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     notes?: boolean | repairTicket$notesArgs<ExtArgs>
     timeline?: boolean | repairTicket$timelineArgs<ExtArgs>
     parts?: boolean | repairTicket$partsArgs<ExtArgs>
@@ -4524,9 +4747,11 @@ export namespace Prisma {
     customerId?: boolean
     technicianId?: boolean
     vehicleId?: boolean
+    shopId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
     vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repairTicket"]>
 
   export type repairTicketSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4550,9 +4775,11 @@ export namespace Prisma {
     customerId?: boolean
     technicianId?: boolean
     vehicleId?: boolean
+    shopId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
     vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repairTicket"]>
 
   export type repairTicketSelectScalar = {
@@ -4576,13 +4803,15 @@ export namespace Prisma {
     customerId?: boolean
     technicianId?: boolean
     vehicleId?: boolean
+    shopId?: boolean
   }
 
-  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "bay" | "priority" | "createdAt" | "updatedAt" | "closedAt" | "estimatedCost" | "finalCost" | "laborHours" | "laborRate" | "taxRate" | "discount" | "aiSummary" | "manufacturer" | "customerId" | "technicianId" | "vehicleId", ExtArgs["result"]["repairTicket"]>
+  export type repairTicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "issueCategory" | "description" | "status" | "bay" | "priority" | "createdAt" | "updatedAt" | "closedAt" | "estimatedCost" | "finalCost" | "laborHours" | "laborRate" | "taxRate" | "discount" | "aiSummary" | "manufacturer" | "customerId" | "technicianId" | "vehicleId" | "shopId", ExtArgs["result"]["repairTicket"]>
   export type repairTicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
     vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     notes?: boolean | repairTicket$notesArgs<ExtArgs>
     timeline?: boolean | repairTicket$timelineArgs<ExtArgs>
     parts?: boolean | repairTicket$partsArgs<ExtArgs>
@@ -4593,11 +4822,13 @@ export namespace Prisma {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
     vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }
   export type repairTicketIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     technician?: boolean | repairTicket$technicianArgs<ExtArgs>
     vehicle?: boolean | repairTicket$vehicleArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }
 
   export type $repairTicketPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4606,6 +4837,7 @@ export namespace Prisma {
       customer: Prisma.$customerPayload<ExtArgs>
       technician: Prisma.$technicianPayload<ExtArgs> | null
       vehicle: Prisma.$VehiclePayload<ExtArgs> | null
+      shop: Prisma.$shopPayload<ExtArgs>
       notes: Prisma.$technicianNotePayload<ExtArgs>[]
       timeline: Prisma.$timelineEventPayload<ExtArgs>[]
       parts: Prisma.$usedPartPayload<ExtArgs>[]
@@ -4632,6 +4864,7 @@ export namespace Prisma {
       customerId: string
       technicianId: string | null
       vehicleId: number | null
+      shopId: string
     }, ExtArgs["result"]["repairTicket"]>
     composites: {}
   }
@@ -5029,6 +5262,7 @@ export namespace Prisma {
     customer<T extends customerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, customerDefaultArgs<ExtArgs>>): Prisma__customerClient<$Result.GetResult<Prisma.$customerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     technician<T extends repairTicket$technicianArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$technicianArgs<ExtArgs>>): Prisma__technicianClient<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     vehicle<T extends repairTicket$vehicleArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$vehicleArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    shop<T extends shopDefaultArgs<ExtArgs> = {}>(args?: Subset<T, shopDefaultArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     notes<T extends repairTicket$notesArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$notesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeline<T extends repairTicket$timelineArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$timelineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$timelineEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     parts<T extends repairTicket$partsArgs<ExtArgs> = {}>(args?: Subset<T, repairTicket$partsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -5082,6 +5316,7 @@ export namespace Prisma {
     readonly customerId: FieldRef<"repairTicket", 'String'>
     readonly technicianId: FieldRef<"repairTicket", 'String'>
     readonly vehicleId: FieldRef<"repairTicket", 'Int'>
+    readonly shopId: FieldRef<"repairTicket", 'String'>
   }
     
 
@@ -9020,6 +9255,7 @@ export namespace Prisma {
     lowStockAlert: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    shopId: string | null
   }
 
   export type InventoryMaxAggregateOutputType = {
@@ -9032,6 +9268,7 @@ export namespace Prisma {
     lowStockAlert: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    shopId: string | null
   }
 
   export type InventoryCountAggregateOutputType = {
@@ -9044,6 +9281,7 @@ export namespace Prisma {
     lowStockAlert: number
     createdAt: number
     updatedAt: number
+    shopId: number
     _all: number
   }
 
@@ -9072,6 +9310,7 @@ export namespace Prisma {
     lowStockAlert?: true
     createdAt?: true
     updatedAt?: true
+    shopId?: true
   }
 
   export type InventoryMaxAggregateInputType = {
@@ -9084,6 +9323,7 @@ export namespace Prisma {
     lowStockAlert?: true
     createdAt?: true
     updatedAt?: true
+    shopId?: true
   }
 
   export type InventoryCountAggregateInputType = {
@@ -9096,6 +9336,7 @@ export namespace Prisma {
     lowStockAlert?: true
     createdAt?: true
     updatedAt?: true
+    shopId?: true
     _all?: true
   }
 
@@ -9195,6 +9436,7 @@ export namespace Prisma {
     lowStockAlert: number
     createdAt: Date
     updatedAt: Date
+    shopId: string
     _count: InventoryCountAggregateOutputType | null
     _avg: InventoryAvgAggregateOutputType | null
     _sum: InventorySumAggregateOutputType | null
@@ -9226,6 +9468,8 @@ export namespace Prisma {
     lowStockAlert?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shopId?: boolean
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     usageHistory?: boolean | inventory$usageHistoryArgs<ExtArgs>
     _count?: boolean | InventoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventory"]>
@@ -9240,6 +9484,8 @@ export namespace Prisma {
     lowStockAlert?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shopId?: boolean
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventory"]>
 
   export type inventorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9252,6 +9498,8 @@ export namespace Prisma {
     lowStockAlert?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shopId?: boolean
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventory"]>
 
   export type inventorySelectScalar = {
@@ -9264,19 +9512,26 @@ export namespace Prisma {
     lowStockAlert?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shopId?: boolean
   }
 
-  export type inventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partName" | "sku" | "category" | "stockLevel" | "retailPrice" | "lowStockAlert" | "createdAt" | "updatedAt", ExtArgs["result"]["inventory"]>
+  export type inventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partName" | "sku" | "category" | "stockLevel" | "retailPrice" | "lowStockAlert" | "createdAt" | "updatedAt" | "shopId", ExtArgs["result"]["inventory"]>
   export type inventoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     usageHistory?: boolean | inventory$usageHistoryArgs<ExtArgs>
     _count?: boolean | InventoryCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type inventoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type inventoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type inventoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | shopDefaultArgs<ExtArgs>
+  }
+  export type inventoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | shopDefaultArgs<ExtArgs>
+  }
 
   export type $inventoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "inventory"
     objects: {
+      shop: Prisma.$shopPayload<ExtArgs>
       usageHistory: Prisma.$usedPartPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -9289,6 +9544,7 @@ export namespace Prisma {
       lowStockAlert: number
       createdAt: Date
       updatedAt: Date
+      shopId: string
     }, ExtArgs["result"]["inventory"]>
     composites: {}
   }
@@ -9683,6 +9939,7 @@ export namespace Prisma {
    */
   export interface Prisma__inventoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    shop<T extends shopDefaultArgs<ExtArgs> = {}>(args?: Subset<T, shopDefaultArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     usageHistory<T extends inventory$usageHistoryArgs<ExtArgs> = {}>(args?: Subset<T, inventory$usageHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9722,6 +9979,7 @@ export namespace Prisma {
     readonly lowStockAlert: FieldRef<"inventory", 'Int'>
     readonly createdAt: FieldRef<"inventory", 'DateTime'>
     readonly updatedAt: FieldRef<"inventory", 'DateTime'>
+    readonly shopId: FieldRef<"inventory", 'String'>
   }
     
 
@@ -9976,6 +10234,10 @@ export namespace Prisma {
      */
     data: inventoryCreateManyInput | inventoryCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -10046,6 +10308,10 @@ export namespace Prisma {
      * Limit how many inventories to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -10205,6 +10471,7 @@ export namespace Prisma {
     notes: string | null
     saleType: $Enums.SaleType | null
     ticketId: number | null
+    shopId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -10227,6 +10494,7 @@ export namespace Prisma {
     notes: string | null
     saleType: $Enums.SaleType | null
     ticketId: number | null
+    shopId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -10250,6 +10518,7 @@ export namespace Prisma {
     notes: number
     saleType: number
     ticketId: number
+    shopId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -10292,6 +10561,7 @@ export namespace Prisma {
     notes?: true
     saleType?: true
     ticketId?: true
+    shopId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10314,6 +10584,7 @@ export namespace Prisma {
     notes?: true
     saleType?: true
     ticketId?: true
+    shopId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10337,6 +10608,7 @@ export namespace Prisma {
     notes?: true
     saleType?: true
     ticketId?: true
+    shopId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -10447,6 +10719,7 @@ export namespace Prisma {
     notes: string
     saleType: $Enums.SaleType
     ticketId: number | null
+    shopId: string
     createdAt: Date
     updatedAt: Date
     _count: InvoiceCountAggregateOutputType | null
@@ -10489,9 +10762,11 @@ export namespace Prisma {
     notes?: boolean
     saleType?: boolean
     ticketId?: boolean
+    shopId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     ticket?: boolean | invoice$ticketArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
   export type invoiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10513,9 +10788,11 @@ export namespace Prisma {
     notes?: boolean
     saleType?: boolean
     ticketId?: boolean
+    shopId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     ticket?: boolean | invoice$ticketArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
   export type invoiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10537,9 +10814,11 @@ export namespace Prisma {
     notes?: boolean
     saleType?: boolean
     ticketId?: boolean
+    shopId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     ticket?: boolean | invoice$ticketArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
   export type invoiceSelectScalar = {
@@ -10561,25 +10840,30 @@ export namespace Prisma {
     notes?: boolean
     saleType?: boolean
     ticketId?: boolean
+    shopId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type invoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNo" | "shopName" | "shopAddress" | "gstNumber" | "customerName" | "customerAddress" | "customerPhone" | "items" | "laborCharge" | "tax" | "discount" | "grandTotal" | "paymentStatus" | "paymentMethod" | "notes" | "saleType" | "ticketId" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
+  export type invoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNo" | "shopName" | "shopAddress" | "gstNumber" | "customerName" | "customerAddress" | "customerPhone" | "items" | "laborCharge" | "tax" | "discount" | "grandTotal" | "paymentStatus" | "paymentMethod" | "notes" | "saleType" | "ticketId" | "shopId" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
   export type invoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ticket?: boolean | invoice$ticketArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }
   export type invoiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ticket?: boolean | invoice$ticketArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }
   export type invoiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ticket?: boolean | invoice$ticketArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }
 
   export type $invoicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "invoice"
     objects: {
       ticket: Prisma.$repairTicketPayload<ExtArgs> | null
+      shop: Prisma.$shopPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10600,6 +10884,7 @@ export namespace Prisma {
       notes: string
       saleType: $Enums.SaleType
       ticketId: number | null
+      shopId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["invoice"]>
@@ -10997,6 +11282,7 @@ export namespace Prisma {
   export interface Prisma__invoiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     ticket<T extends invoice$ticketArgs<ExtArgs> = {}>(args?: Subset<T, invoice$ticketArgs<ExtArgs>>): Prisma__repairTicketClient<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    shop<T extends shopDefaultArgs<ExtArgs> = {}>(args?: Subset<T, shopDefaultArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11044,6 +11330,7 @@ export namespace Prisma {
     readonly notes: FieldRef<"invoice", 'String'>
     readonly saleType: FieldRef<"invoice", 'SaleType'>
     readonly ticketId: FieldRef<"invoice", 'Int'>
+    readonly shopId: FieldRef<"invoice", 'String'>
     readonly createdAt: FieldRef<"invoice", 'DateTime'>
     readonly updatedAt: FieldRef<"invoice", 'DateTime'>
   }
@@ -11517,6 +11804,7 @@ export namespace Prisma {
     profileImage: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    shopId: string | null
   }
 
   export type TechnicianMaxAggregateOutputType = {
@@ -11532,6 +11820,7 @@ export namespace Prisma {
     profileImage: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    shopId: string | null
   }
 
   export type TechnicianCountAggregateOutputType = {
@@ -11547,6 +11836,7 @@ export namespace Prisma {
     profileImage: number
     createdAt: number
     updatedAt: number
+    shopId: number
     _all: number
   }
 
@@ -11572,6 +11862,7 @@ export namespace Prisma {
     profileImage?: true
     createdAt?: true
     updatedAt?: true
+    shopId?: true
   }
 
   export type TechnicianMaxAggregateInputType = {
@@ -11587,6 +11878,7 @@ export namespace Prisma {
     profileImage?: true
     createdAt?: true
     updatedAt?: true
+    shopId?: true
   }
 
   export type TechnicianCountAggregateInputType = {
@@ -11602,6 +11894,7 @@ export namespace Prisma {
     profileImage?: true
     createdAt?: true
     updatedAt?: true
+    shopId?: true
     _all?: true
   }
 
@@ -11704,6 +11997,7 @@ export namespace Prisma {
     profileImage: string | null
     createdAt: Date
     updatedAt: Date
+    shopId: string
     _count: TechnicianCountAggregateOutputType | null
     _avg: TechnicianAvgAggregateOutputType | null
     _sum: TechnicianSumAggregateOutputType | null
@@ -11738,6 +12032,8 @@ export namespace Prisma {
     profileImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shopId?: boolean
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     tickets?: boolean | technician$ticketsArgs<ExtArgs>
     _count?: boolean | TechnicianCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["technician"]>
@@ -11755,6 +12051,8 @@ export namespace Prisma {
     profileImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shopId?: boolean
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["technician"]>
 
   export type technicianSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11770,6 +12068,8 @@ export namespace Prisma {
     profileImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shopId?: boolean
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["technician"]>
 
   export type technicianSelectScalar = {
@@ -11785,19 +12085,26 @@ export namespace Prisma {
     profileImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    shopId?: boolean
   }
 
-  export type technicianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phone" | "employeeId" | "specialization" | "status" | "experienceYears" | "address" | "profileImage" | "createdAt" | "updatedAt", ExtArgs["result"]["technician"]>
+  export type technicianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phone" | "employeeId" | "specialization" | "status" | "experienceYears" | "address" | "profileImage" | "createdAt" | "updatedAt" | "shopId", ExtArgs["result"]["technician"]>
   export type technicianInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     tickets?: boolean | technician$ticketsArgs<ExtArgs>
     _count?: boolean | TechnicianCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type technicianIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type technicianIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type technicianIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | shopDefaultArgs<ExtArgs>
+  }
+  export type technicianIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shop?: boolean | shopDefaultArgs<ExtArgs>
+  }
 
   export type $technicianPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "technician"
     objects: {
+      shop: Prisma.$shopPayload<ExtArgs>
       tickets: Prisma.$repairTicketPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -11813,6 +12120,7 @@ export namespace Prisma {
       profileImage: string | null
       createdAt: Date
       updatedAt: Date
+      shopId: string
     }, ExtArgs["result"]["technician"]>
     composites: {}
   }
@@ -12207,6 +12515,7 @@ export namespace Prisma {
    */
   export interface Prisma__technicianClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    shop<T extends shopDefaultArgs<ExtArgs> = {}>(args?: Subset<T, shopDefaultArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     tickets<T extends technician$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, technician$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12249,6 +12558,7 @@ export namespace Prisma {
     readonly profileImage: FieldRef<"technician", 'String'>
     readonly createdAt: FieldRef<"technician", 'DateTime'>
     readonly updatedAt: FieldRef<"technician", 'DateTime'>
+    readonly shopId: FieldRef<"technician", 'String'>
   }
     
 
@@ -12503,6 +12813,10 @@ export namespace Prisma {
      */
     data: technicianCreateManyInput | technicianCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -12573,6 +12887,10 @@ export namespace Prisma {
      * Limit how many technicians to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -12734,6 +13052,7 @@ export namespace Prisma {
     healthScore: number | null
     lastAiCheck: Date | null
     customerId: string | null
+    shopId: string | null
   }
 
   export type VehicleMaxAggregateOutputType = {
@@ -12758,6 +13077,7 @@ export namespace Prisma {
     healthScore: number | null
     lastAiCheck: Date | null
     customerId: string | null
+    shopId: string | null
   }
 
   export type VehicleCountAggregateOutputType = {
@@ -12782,6 +13102,7 @@ export namespace Prisma {
     healthScore: number
     lastAiCheck: number
     customerId: number
+    shopId: number
     _all: number
   }
 
@@ -12824,6 +13145,7 @@ export namespace Prisma {
     healthScore?: true
     lastAiCheck?: true
     customerId?: true
+    shopId?: true
   }
 
   export type VehicleMaxAggregateInputType = {
@@ -12848,6 +13170,7 @@ export namespace Prisma {
     healthScore?: true
     lastAiCheck?: true
     customerId?: true
+    shopId?: true
   }
 
   export type VehicleCountAggregateInputType = {
@@ -12872,6 +13195,7 @@ export namespace Prisma {
     healthScore?: true
     lastAiCheck?: true
     customerId?: true
+    shopId?: true
     _all?: true
   }
 
@@ -12983,6 +13307,7 @@ export namespace Prisma {
     healthScore: number | null
     lastAiCheck: Date | null
     customerId: string
+    shopId: string
     _count: VehicleCountAggregateOutputType | null
     _avg: VehicleAvgAggregateOutputType | null
     _sum: VehicleSumAggregateOutputType | null
@@ -13026,7 +13351,9 @@ export namespace Prisma {
     healthScore?: boolean
     lastAiCheck?: boolean
     customerId?: boolean
+    shopId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     tickets?: boolean | Vehicle$ticketsArgs<ExtArgs>
     _count?: boolean | VehicleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["vehicle"]>
@@ -13053,7 +13380,9 @@ export namespace Prisma {
     healthScore?: boolean
     lastAiCheck?: boolean
     customerId?: boolean
+    shopId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["vehicle"]>
 
   export type VehicleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13078,7 +13407,9 @@ export namespace Prisma {
     healthScore?: boolean
     lastAiCheck?: boolean
     customerId?: boolean
+    shopId?: boolean
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["vehicle"]>
 
   export type VehicleSelectScalar = {
@@ -13103,25 +13434,30 @@ export namespace Prisma {
     healthScore?: boolean
     lastAiCheck?: boolean
     customerId?: boolean
+    shopId?: boolean
   }
 
-  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vin" | "vehicleModel" | "batteryPackSerial" | "batteryCapacity" | "batterySoh" | "batteryCycles" | "batteryTemp" | "odometer" | "lastServiceDate" | "manufacturer" | "modelYear" | "motorSerial" | "motorType" | "motorNotes" | "controllerSerial" | "controllerVersion" | "controllerNotes" | "healthScore" | "lastAiCheck" | "customerId", ExtArgs["result"]["vehicle"]>
+  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vin" | "vehicleModel" | "batteryPackSerial" | "batteryCapacity" | "batterySoh" | "batteryCycles" | "batteryTemp" | "odometer" | "lastServiceDate" | "manufacturer" | "modelYear" | "motorSerial" | "motorType" | "motorNotes" | "controllerSerial" | "controllerVersion" | "controllerNotes" | "healthScore" | "lastAiCheck" | "customerId" | "shopId", ExtArgs["result"]["vehicle"]>
   export type VehicleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
     tickets?: boolean | Vehicle$ticketsArgs<ExtArgs>
     _count?: boolean | VehicleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type VehicleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }
   export type VehicleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
+    shop?: boolean | shopDefaultArgs<ExtArgs>
   }
 
   export type $VehiclePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Vehicle"
     objects: {
       customer: Prisma.$customerPayload<ExtArgs>
+      shop: Prisma.$shopPayload<ExtArgs>
       tickets: Prisma.$repairTicketPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -13146,6 +13482,7 @@ export namespace Prisma {
       healthScore: number | null
       lastAiCheck: Date | null
       customerId: string
+      shopId: string
     }, ExtArgs["result"]["vehicle"]>
     composites: {}
   }
@@ -13541,6 +13878,7 @@ export namespace Prisma {
   export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     customer<T extends customerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, customerDefaultArgs<ExtArgs>>): Prisma__customerClient<$Result.GetResult<Prisma.$customerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    shop<T extends shopDefaultArgs<ExtArgs> = {}>(args?: Subset<T, shopDefaultArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     tickets<T extends Vehicle$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, Vehicle$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -13592,6 +13930,7 @@ export namespace Prisma {
     readonly healthScore: FieldRef<"Vehicle", 'Int'>
     readonly lastAiCheck: FieldRef<"Vehicle", 'DateTime'>
     readonly customerId: FieldRef<"Vehicle", 'String'>
+    readonly shopId: FieldRef<"Vehicle", 'String'>
   }
     
 
@@ -14036,6 +14375,1252 @@ export namespace Prisma {
 
 
   /**
+   * Model shop
+   */
+
+  export type AggregateShop = {
+    _count: ShopCountAggregateOutputType | null
+    _min: ShopMinAggregateOutputType | null
+    _max: ShopMaxAggregateOutputType | null
+  }
+
+  export type ShopMinAggregateOutputType = {
+    id: string | null
+    shopName: string | null
+    shopAddress: string | null
+    gstNumber: string | null
+    shopPhone: string | null
+    ownerId: string | null
+  }
+
+  export type ShopMaxAggregateOutputType = {
+    id: string | null
+    shopName: string | null
+    shopAddress: string | null
+    gstNumber: string | null
+    shopPhone: string | null
+    ownerId: string | null
+  }
+
+  export type ShopCountAggregateOutputType = {
+    id: number
+    shopName: number
+    shopAddress: number
+    gstNumber: number
+    shopPhone: number
+    ownerId: number
+    _all: number
+  }
+
+
+  export type ShopMinAggregateInputType = {
+    id?: true
+    shopName?: true
+    shopAddress?: true
+    gstNumber?: true
+    shopPhone?: true
+    ownerId?: true
+  }
+
+  export type ShopMaxAggregateInputType = {
+    id?: true
+    shopName?: true
+    shopAddress?: true
+    gstNumber?: true
+    shopPhone?: true
+    ownerId?: true
+  }
+
+  export type ShopCountAggregateInputType = {
+    id?: true
+    shopName?: true
+    shopAddress?: true
+    gstNumber?: true
+    shopPhone?: true
+    ownerId?: true
+    _all?: true
+  }
+
+  export type ShopAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which shop to aggregate.
+     */
+    where?: shopWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of shops to fetch.
+     */
+    orderBy?: shopOrderByWithRelationInput | shopOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: shopWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` shops from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` shops.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned shops
+    **/
+    _count?: true | ShopCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ShopMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ShopMaxAggregateInputType
+  }
+
+  export type GetShopAggregateType<T extends ShopAggregateArgs> = {
+        [P in keyof T & keyof AggregateShop]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateShop[P]>
+      : GetScalarType<T[P], AggregateShop[P]>
+  }
+
+
+
+
+  export type shopGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: shopWhereInput
+    orderBy?: shopOrderByWithAggregationInput | shopOrderByWithAggregationInput[]
+    by: ShopScalarFieldEnum[] | ShopScalarFieldEnum
+    having?: shopScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ShopCountAggregateInputType | true
+    _min?: ShopMinAggregateInputType
+    _max?: ShopMaxAggregateInputType
+  }
+
+  export type ShopGroupByOutputType = {
+    id: string
+    shopName: string
+    shopAddress: string | null
+    gstNumber: string | null
+    shopPhone: string | null
+    ownerId: string
+    _count: ShopCountAggregateOutputType | null
+    _min: ShopMinAggregateOutputType | null
+    _max: ShopMaxAggregateOutputType | null
+  }
+
+  type GetShopGroupByPayload<T extends shopGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ShopGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ShopGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ShopGroupByOutputType[P]>
+            : GetScalarType<T[P], ShopGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type shopSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shopName?: boolean
+    shopAddress?: boolean
+    gstNumber?: boolean
+    shopPhone?: boolean
+    ownerId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    customers?: boolean | shop$customersArgs<ExtArgs>
+    technicians?: boolean | shop$techniciansArgs<ExtArgs>
+    tickets?: boolean | shop$ticketsArgs<ExtArgs>
+    vehicles?: boolean | shop$vehiclesArgs<ExtArgs>
+    inventory?: boolean | shop$inventoryArgs<ExtArgs>
+    invoice?: boolean | shop$invoiceArgs<ExtArgs>
+    _count?: boolean | ShopCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["shop"]>
+
+  export type shopSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shopName?: boolean
+    shopAddress?: boolean
+    gstNumber?: boolean
+    shopPhone?: boolean
+    ownerId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["shop"]>
+
+  export type shopSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shopName?: boolean
+    shopAddress?: boolean
+    gstNumber?: boolean
+    shopPhone?: boolean
+    ownerId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["shop"]>
+
+  export type shopSelectScalar = {
+    id?: boolean
+    shopName?: boolean
+    shopAddress?: boolean
+    gstNumber?: boolean
+    shopPhone?: boolean
+    ownerId?: boolean
+  }
+
+  export type shopOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "shopName" | "shopAddress" | "gstNumber" | "shopPhone" | "ownerId", ExtArgs["result"]["shop"]>
+  export type shopInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    customers?: boolean | shop$customersArgs<ExtArgs>
+    technicians?: boolean | shop$techniciansArgs<ExtArgs>
+    tickets?: boolean | shop$ticketsArgs<ExtArgs>
+    vehicles?: boolean | shop$vehiclesArgs<ExtArgs>
+    inventory?: boolean | shop$inventoryArgs<ExtArgs>
+    invoice?: boolean | shop$invoiceArgs<ExtArgs>
+    _count?: boolean | ShopCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type shopIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type shopIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $shopPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "shop"
+    objects: {
+      owner: Prisma.$UserPayload<ExtArgs>
+      customers: Prisma.$customerPayload<ExtArgs>[]
+      technicians: Prisma.$technicianPayload<ExtArgs>[]
+      tickets: Prisma.$repairTicketPayload<ExtArgs>[]
+      vehicles: Prisma.$VehiclePayload<ExtArgs>[]
+      inventory: Prisma.$inventoryPayload<ExtArgs>[]
+      invoice: Prisma.$invoicePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      shopName: string
+      shopAddress: string | null
+      gstNumber: string | null
+      shopPhone: string | null
+      ownerId: string
+    }, ExtArgs["result"]["shop"]>
+    composites: {}
+  }
+
+  type shopGetPayload<S extends boolean | null | undefined | shopDefaultArgs> = $Result.GetResult<Prisma.$shopPayload, S>
+
+  type shopCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<shopFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ShopCountAggregateInputType | true
+    }
+
+  export interface shopDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['shop'], meta: { name: 'shop' } }
+    /**
+     * Find zero or one Shop that matches the filter.
+     * @param {shopFindUniqueArgs} args - Arguments to find a Shop
+     * @example
+     * // Get one Shop
+     * const shop = await prisma.shop.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends shopFindUniqueArgs>(args: SelectSubset<T, shopFindUniqueArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Shop that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {shopFindUniqueOrThrowArgs} args - Arguments to find a Shop
+     * @example
+     * // Get one Shop
+     * const shop = await prisma.shop.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends shopFindUniqueOrThrowArgs>(args: SelectSubset<T, shopFindUniqueOrThrowArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Shop that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {shopFindFirstArgs} args - Arguments to find a Shop
+     * @example
+     * // Get one Shop
+     * const shop = await prisma.shop.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends shopFindFirstArgs>(args?: SelectSubset<T, shopFindFirstArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Shop that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {shopFindFirstOrThrowArgs} args - Arguments to find a Shop
+     * @example
+     * // Get one Shop
+     * const shop = await prisma.shop.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends shopFindFirstOrThrowArgs>(args?: SelectSubset<T, shopFindFirstOrThrowArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Shops that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {shopFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Shops
+     * const shops = await prisma.shop.findMany()
+     * 
+     * // Get first 10 Shops
+     * const shops = await prisma.shop.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const shopWithIdOnly = await prisma.shop.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends shopFindManyArgs>(args?: SelectSubset<T, shopFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Shop.
+     * @param {shopCreateArgs} args - Arguments to create a Shop.
+     * @example
+     * // Create one Shop
+     * const Shop = await prisma.shop.create({
+     *   data: {
+     *     // ... data to create a Shop
+     *   }
+     * })
+     * 
+     */
+    create<T extends shopCreateArgs>(args: SelectSubset<T, shopCreateArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Shops.
+     * @param {shopCreateManyArgs} args - Arguments to create many Shops.
+     * @example
+     * // Create many Shops
+     * const shop = await prisma.shop.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends shopCreateManyArgs>(args?: SelectSubset<T, shopCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Shops and returns the data saved in the database.
+     * @param {shopCreateManyAndReturnArgs} args - Arguments to create many Shops.
+     * @example
+     * // Create many Shops
+     * const shop = await prisma.shop.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Shops and only return the `id`
+     * const shopWithIdOnly = await prisma.shop.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends shopCreateManyAndReturnArgs>(args?: SelectSubset<T, shopCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Shop.
+     * @param {shopDeleteArgs} args - Arguments to delete one Shop.
+     * @example
+     * // Delete one Shop
+     * const Shop = await prisma.shop.delete({
+     *   where: {
+     *     // ... filter to delete one Shop
+     *   }
+     * })
+     * 
+     */
+    delete<T extends shopDeleteArgs>(args: SelectSubset<T, shopDeleteArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Shop.
+     * @param {shopUpdateArgs} args - Arguments to update one Shop.
+     * @example
+     * // Update one Shop
+     * const shop = await prisma.shop.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends shopUpdateArgs>(args: SelectSubset<T, shopUpdateArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Shops.
+     * @param {shopDeleteManyArgs} args - Arguments to filter Shops to delete.
+     * @example
+     * // Delete a few Shops
+     * const { count } = await prisma.shop.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends shopDeleteManyArgs>(args?: SelectSubset<T, shopDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Shops.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {shopUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Shops
+     * const shop = await prisma.shop.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends shopUpdateManyArgs>(args: SelectSubset<T, shopUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Shops and returns the data updated in the database.
+     * @param {shopUpdateManyAndReturnArgs} args - Arguments to update many Shops.
+     * @example
+     * // Update many Shops
+     * const shop = await prisma.shop.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Shops and only return the `id`
+     * const shopWithIdOnly = await prisma.shop.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends shopUpdateManyAndReturnArgs>(args: SelectSubset<T, shopUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Shop.
+     * @param {shopUpsertArgs} args - Arguments to update or create a Shop.
+     * @example
+     * // Update or create a Shop
+     * const shop = await prisma.shop.upsert({
+     *   create: {
+     *     // ... data to create a Shop
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Shop we want to update
+     *   }
+     * })
+     */
+    upsert<T extends shopUpsertArgs>(args: SelectSubset<T, shopUpsertArgs<ExtArgs>>): Prisma__shopClient<$Result.GetResult<Prisma.$shopPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Shops.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {shopCountArgs} args - Arguments to filter Shops to count.
+     * @example
+     * // Count the number of Shops
+     * const count = await prisma.shop.count({
+     *   where: {
+     *     // ... the filter for the Shops we want to count
+     *   }
+     * })
+    **/
+    count<T extends shopCountArgs>(
+      args?: Subset<T, shopCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ShopCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Shop.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShopAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ShopAggregateArgs>(args: Subset<T, ShopAggregateArgs>): Prisma.PrismaPromise<GetShopAggregateType<T>>
+
+    /**
+     * Group by Shop.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {shopGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends shopGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: shopGroupByArgs['orderBy'] }
+        : { orderBy?: shopGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, shopGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetShopGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the shop model
+   */
+  readonly fields: shopFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for shop.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__shopClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    customers<T extends shop$customersArgs<ExtArgs> = {}>(args?: Subset<T, shop$customersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$customerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    technicians<T extends shop$techniciansArgs<ExtArgs> = {}>(args?: Subset<T, shop$techniciansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$technicianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tickets<T extends shop$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, shop$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$repairTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    vehicles<T extends shop$vehiclesArgs<ExtArgs> = {}>(args?: Subset<T, shop$vehiclesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    inventory<T extends shop$inventoryArgs<ExtArgs> = {}>(args?: Subset<T, shop$inventoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    invoice<T extends shop$invoiceArgs<ExtArgs> = {}>(args?: Subset<T, shop$invoiceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$invoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the shop model
+   */
+  interface shopFieldRefs {
+    readonly id: FieldRef<"shop", 'String'>
+    readonly shopName: FieldRef<"shop", 'String'>
+    readonly shopAddress: FieldRef<"shop", 'String'>
+    readonly gstNumber: FieldRef<"shop", 'String'>
+    readonly shopPhone: FieldRef<"shop", 'String'>
+    readonly ownerId: FieldRef<"shop", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * shop findUnique
+   */
+  export type shopFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * Filter, which shop to fetch.
+     */
+    where: shopWhereUniqueInput
+  }
+
+  /**
+   * shop findUniqueOrThrow
+   */
+  export type shopFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * Filter, which shop to fetch.
+     */
+    where: shopWhereUniqueInput
+  }
+
+  /**
+   * shop findFirst
+   */
+  export type shopFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * Filter, which shop to fetch.
+     */
+    where?: shopWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of shops to fetch.
+     */
+    orderBy?: shopOrderByWithRelationInput | shopOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for shops.
+     */
+    cursor?: shopWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` shops from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` shops.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of shops.
+     */
+    distinct?: ShopScalarFieldEnum | ShopScalarFieldEnum[]
+  }
+
+  /**
+   * shop findFirstOrThrow
+   */
+  export type shopFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * Filter, which shop to fetch.
+     */
+    where?: shopWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of shops to fetch.
+     */
+    orderBy?: shopOrderByWithRelationInput | shopOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for shops.
+     */
+    cursor?: shopWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` shops from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` shops.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of shops.
+     */
+    distinct?: ShopScalarFieldEnum | ShopScalarFieldEnum[]
+  }
+
+  /**
+   * shop findMany
+   */
+  export type shopFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * Filter, which shops to fetch.
+     */
+    where?: shopWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of shops to fetch.
+     */
+    orderBy?: shopOrderByWithRelationInput | shopOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing shops.
+     */
+    cursor?: shopWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` shops from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` shops.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of shops.
+     */
+    distinct?: ShopScalarFieldEnum | ShopScalarFieldEnum[]
+  }
+
+  /**
+   * shop create
+   */
+  export type shopCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * The data needed to create a shop.
+     */
+    data: XOR<shopCreateInput, shopUncheckedCreateInput>
+  }
+
+  /**
+   * shop createMany
+   */
+  export type shopCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many shops.
+     */
+    data: shopCreateManyInput | shopCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * shop createManyAndReturn
+   */
+  export type shopCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * The data used to create many shops.
+     */
+    data: shopCreateManyInput | shopCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * shop update
+   */
+  export type shopUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * The data needed to update a shop.
+     */
+    data: XOR<shopUpdateInput, shopUncheckedUpdateInput>
+    /**
+     * Choose, which shop to update.
+     */
+    where: shopWhereUniqueInput
+  }
+
+  /**
+   * shop updateMany
+   */
+  export type shopUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update shops.
+     */
+    data: XOR<shopUpdateManyMutationInput, shopUncheckedUpdateManyInput>
+    /**
+     * Filter which shops to update
+     */
+    where?: shopWhereInput
+    /**
+     * Limit how many shops to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * shop updateManyAndReturn
+   */
+  export type shopUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * The data used to update shops.
+     */
+    data: XOR<shopUpdateManyMutationInput, shopUncheckedUpdateManyInput>
+    /**
+     * Filter which shops to update
+     */
+    where?: shopWhereInput
+    /**
+     * Limit how many shops to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * shop upsert
+   */
+  export type shopUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * The filter to search for the shop to update in case it exists.
+     */
+    where: shopWhereUniqueInput
+    /**
+     * In case the shop found by the `where` argument doesn't exist, create a new shop with this data.
+     */
+    create: XOR<shopCreateInput, shopUncheckedCreateInput>
+    /**
+     * In case the shop was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<shopUpdateInput, shopUncheckedUpdateInput>
+  }
+
+  /**
+   * shop delete
+   */
+  export type shopDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+    /**
+     * Filter which shop to delete.
+     */
+    where: shopWhereUniqueInput
+  }
+
+  /**
+   * shop deleteMany
+   */
+  export type shopDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which shops to delete
+     */
+    where?: shopWhereInput
+    /**
+     * Limit how many shops to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * shop.customers
+   */
+  export type shop$customersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the customer
+     */
+    select?: customerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the customer
+     */
+    omit?: customerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: customerInclude<ExtArgs> | null
+    where?: customerWhereInput
+    orderBy?: customerOrderByWithRelationInput | customerOrderByWithRelationInput[]
+    cursor?: customerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CustomerScalarFieldEnum | CustomerScalarFieldEnum[]
+  }
+
+  /**
+   * shop.technicians
+   */
+  export type shop$techniciansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the technician
+     */
+    select?: technicianSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the technician
+     */
+    omit?: technicianOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: technicianInclude<ExtArgs> | null
+    where?: technicianWhereInput
+    orderBy?: technicianOrderByWithRelationInput | technicianOrderByWithRelationInput[]
+    cursor?: technicianWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TechnicianScalarFieldEnum | TechnicianScalarFieldEnum[]
+  }
+
+  /**
+   * shop.tickets
+   */
+  export type shop$ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the repairTicket
+     */
+    select?: repairTicketSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the repairTicket
+     */
+    omit?: repairTicketOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: repairTicketInclude<ExtArgs> | null
+    where?: repairTicketWhereInput
+    orderBy?: repairTicketOrderByWithRelationInput | repairTicketOrderByWithRelationInput[]
+    cursor?: repairTicketWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairTicketScalarFieldEnum | RepairTicketScalarFieldEnum[]
+  }
+
+  /**
+   * shop.vehicles
+   */
+  export type shop$vehiclesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    where?: VehicleWhereInput
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    cursor?: VehicleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
+   * shop.inventory
+   */
+  export type shop$inventoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inventory
+     */
+    select?: inventorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the inventory
+     */
+    omit?: inventoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: inventoryInclude<ExtArgs> | null
+    where?: inventoryWhereInput
+    orderBy?: inventoryOrderByWithRelationInput | inventoryOrderByWithRelationInput[]
+    cursor?: inventoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InventoryScalarFieldEnum | InventoryScalarFieldEnum[]
+  }
+
+  /**
+   * shop.invoice
+   */
+  export type shop$invoiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the invoice
+     */
+    select?: invoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the invoice
+     */
+    omit?: invoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: invoiceInclude<ExtArgs> | null
+    where?: invoiceWhereInput
+    orderBy?: invoiceOrderByWithRelationInput | invoiceOrderByWithRelationInput[]
+    cursor?: invoiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvoiceScalarFieldEnum | InvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * shop without action
+   */
+  export type shopDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the shop
+     */
+    select?: shopSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the shop
+     */
+    omit?: shopOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: shopInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14055,10 +15640,6 @@ export namespace Prisma {
     name: 'name',
     password: 'password',
     role: 'role',
-    shopName: 'shopName',
-    shopAddress: 'shopAddress',
-    gstNumber: 'gstNumber',
-    shopPhone: 'shopPhone',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -14072,7 +15653,8 @@ export namespace Prisma {
     email: 'email',
     phone: 'phone',
     address: 'address',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    shopId: 'shopId'
   };
 
   export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
@@ -14098,7 +15680,8 @@ export namespace Prisma {
     manufacturer: 'manufacturer',
     customerId: 'customerId',
     technicianId: 'technicianId',
-    vehicleId: 'vehicleId'
+    vehicleId: 'vehicleId',
+    shopId: 'shopId'
   };
 
   export type RepairTicketScalarFieldEnum = (typeof RepairTicketScalarFieldEnum)[keyof typeof RepairTicketScalarFieldEnum]
@@ -14149,7 +15732,8 @@ export namespace Prisma {
     retailPrice: 'retailPrice',
     lowStockAlert: 'lowStockAlert',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    shopId: 'shopId'
   };
 
   export type InventoryScalarFieldEnum = (typeof InventoryScalarFieldEnum)[keyof typeof InventoryScalarFieldEnum]
@@ -14174,6 +15758,7 @@ export namespace Prisma {
     notes: 'notes',
     saleType: 'saleType',
     ticketId: 'ticketId',
+    shopId: 'shopId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -14193,7 +15778,8 @@ export namespace Prisma {
     address: 'address',
     profileImage: 'profileImage',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    shopId: 'shopId'
   };
 
   export type TechnicianScalarFieldEnum = (typeof TechnicianScalarFieldEnum)[keyof typeof TechnicianScalarFieldEnum]
@@ -14220,10 +15806,23 @@ export namespace Prisma {
     controllerNotes: 'controllerNotes',
     healthScore: 'healthScore',
     lastAiCheck: 'lastAiCheck',
-    customerId: 'customerId'
+    customerId: 'customerId',
+    shopId: 'shopId'
   };
 
   export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
+
+
+  export const ShopScalarFieldEnum: {
+    id: 'id',
+    shopName: 'shopName',
+    shopAddress: 'shopAddress',
+    gstNumber: 'gstNumber',
+    shopPhone: 'shopPhone',
+    ownerId: 'ownerId'
+  };
+
+  export type ShopScalarFieldEnum = (typeof ShopScalarFieldEnum)[keyof typeof ShopScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14437,12 +16036,9 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    shopName?: StringNullableFilter<"User"> | string | null
-    shopAddress?: StringNullableFilter<"User"> | string | null
-    gstNumber?: StringNullableFilter<"User"> | string | null
-    shopPhone?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    shop?: XOR<ShopNullableScalarRelationFilter, shopWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14451,12 +16047,9 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    shopName?: SortOrderInput | SortOrder
-    shopAddress?: SortOrderInput | SortOrder
-    gstNumber?: SortOrderInput | SortOrder
-    shopPhone?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shop?: shopOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14468,12 +16061,9 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    shopName?: StringNullableFilter<"User"> | string | null
-    shopAddress?: StringNullableFilter<"User"> | string | null
-    gstNumber?: StringNullableFilter<"User"> | string | null
-    shopPhone?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    shop?: XOR<ShopNullableScalarRelationFilter, shopWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -14482,10 +16072,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    shopName?: SortOrderInput | SortOrder
-    shopAddress?: SortOrderInput | SortOrder
-    gstNumber?: SortOrderInput | SortOrder
-    shopPhone?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -14502,10 +16088,6 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
-    shopName?: StringNullableWithAggregatesFilter<"User"> | string | null
-    shopAddress?: StringNullableWithAggregatesFilter<"User"> | string | null
-    gstNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
-    shopPhone?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -14520,8 +16102,10 @@ export namespace Prisma {
     phone?: StringFilter<"customer"> | string
     address?: StringNullableFilter<"customer"> | string | null
     createdAt?: DateTimeFilter<"customer"> | Date | string
+    shopId?: StringFilter<"customer"> | string
     tickets?: RepairTicketListRelationFilter
     vehicles?: VehicleListRelationFilter
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
   }
 
   export type customerOrderByWithRelationInput = {
@@ -14531,23 +16115,28 @@ export namespace Prisma {
     phone?: SortOrder
     address?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    shopId?: SortOrder
     tickets?: repairTicketOrderByRelationAggregateInput
     vehicles?: VehicleOrderByRelationAggregateInput
+    shop?: shopOrderByWithRelationInput
   }
 
   export type customerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    phone?: string
+    shopId_phone?: customerShopIdPhoneCompoundUniqueInput
     AND?: customerWhereInput | customerWhereInput[]
     OR?: customerWhereInput[]
     NOT?: customerWhereInput | customerWhereInput[]
     name?: StringFilter<"customer"> | string
     email?: StringNullableFilter<"customer"> | string | null
+    phone?: StringFilter<"customer"> | string
     address?: StringNullableFilter<"customer"> | string | null
     createdAt?: DateTimeFilter<"customer"> | Date | string
+    shopId?: StringFilter<"customer"> | string
     tickets?: RepairTicketListRelationFilter
     vehicles?: VehicleListRelationFilter
-  }, "id" | "phone">
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
+  }, "id" | "shopId_phone">
 
   export type customerOrderByWithAggregationInput = {
     id?: SortOrder
@@ -14556,6 +16145,7 @@ export namespace Prisma {
     phone?: SortOrder
     address?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    shopId?: SortOrder
     _count?: customerCountOrderByAggregateInput
     _max?: customerMaxOrderByAggregateInput
     _min?: customerMinOrderByAggregateInput
@@ -14571,6 +16161,7 @@ export namespace Prisma {
     phone?: StringWithAggregatesFilter<"customer"> | string
     address?: StringNullableWithAggregatesFilter<"customer"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"customer"> | Date | string
+    shopId?: StringWithAggregatesFilter<"customer"> | string
   }
 
   export type repairTicketWhereInput = {
@@ -14597,9 +16188,11 @@ export namespace Prisma {
     customerId?: StringFilter<"repairTicket"> | string
     technicianId?: StringNullableFilter<"repairTicket"> | string | null
     vehicleId?: IntNullableFilter<"repairTicket"> | number | null
+    shopId?: StringFilter<"repairTicket"> | string
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
     technician?: XOR<TechnicianNullableScalarRelationFilter, technicianWhereInput> | null
     vehicle?: XOR<VehicleNullableScalarRelationFilter, VehicleWhereInput> | null
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
     notes?: TechnicianNoteListRelationFilter
     timeline?: TimelineEventListRelationFilter
     parts?: UsedPartListRelationFilter
@@ -14627,9 +16220,11 @@ export namespace Prisma {
     customerId?: SortOrder
     technicianId?: SortOrderInput | SortOrder
     vehicleId?: SortOrderInput | SortOrder
+    shopId?: SortOrder
     customer?: customerOrderByWithRelationInput
     technician?: technicianOrderByWithRelationInput
     vehicle?: VehicleOrderByWithRelationInput
+    shop?: shopOrderByWithRelationInput
     notes?: technicianNoteOrderByRelationAggregateInput
     timeline?: timelineEventOrderByRelationAggregateInput
     parts?: usedPartOrderByRelationAggregateInput
@@ -14660,9 +16255,11 @@ export namespace Prisma {
     customerId?: StringFilter<"repairTicket"> | string
     technicianId?: StringNullableFilter<"repairTicket"> | string | null
     vehicleId?: IntNullableFilter<"repairTicket"> | number | null
+    shopId?: StringFilter<"repairTicket"> | string
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
     technician?: XOR<TechnicianNullableScalarRelationFilter, technicianWhereInput> | null
     vehicle?: XOR<VehicleNullableScalarRelationFilter, VehicleWhereInput> | null
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
     notes?: TechnicianNoteListRelationFilter
     timeline?: TimelineEventListRelationFilter
     parts?: UsedPartListRelationFilter
@@ -14690,6 +16287,7 @@ export namespace Prisma {
     customerId?: SortOrder
     technicianId?: SortOrderInput | SortOrder
     vehicleId?: SortOrderInput | SortOrder
+    shopId?: SortOrder
     _count?: repairTicketCountOrderByAggregateInput
     _avg?: repairTicketAvgOrderByAggregateInput
     _max?: repairTicketMaxOrderByAggregateInput
@@ -14721,6 +16319,7 @@ export namespace Prisma {
     customerId?: StringWithAggregatesFilter<"repairTicket"> | string
     technicianId?: StringNullableWithAggregatesFilter<"repairTicket"> | string | null
     vehicleId?: IntNullableWithAggregatesFilter<"repairTicket"> | number | null
+    shopId?: StringWithAggregatesFilter<"repairTicket"> | string
   }
 
   export type technicianNoteWhereInput = {
@@ -14925,6 +16524,8 @@ export namespace Prisma {
     lowStockAlert?: IntFilter<"inventory"> | number
     createdAt?: DateTimeFilter<"inventory"> | Date | string
     updatedAt?: DateTimeFilter<"inventory"> | Date | string
+    shopId?: StringFilter<"inventory"> | string
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
     usageHistory?: UsedPartListRelationFilter
   }
 
@@ -14938,24 +16539,29 @@ export namespace Prisma {
     lowStockAlert?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
+    shop?: shopOrderByWithRelationInput
     usageHistory?: usedPartOrderByRelationAggregateInput
   }
 
   export type inventoryWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    sku?: string
+    shopId_sku?: inventoryShopIdSkuCompoundUniqueInput
     AND?: inventoryWhereInput | inventoryWhereInput[]
     OR?: inventoryWhereInput[]
     NOT?: inventoryWhereInput | inventoryWhereInput[]
     partName?: StringFilter<"inventory"> | string
+    sku?: StringFilter<"inventory"> | string
     category?: StringFilter<"inventory"> | string
     stockLevel?: IntFilter<"inventory"> | number
     retailPrice?: FloatFilter<"inventory"> | number
     lowStockAlert?: IntFilter<"inventory"> | number
     createdAt?: DateTimeFilter<"inventory"> | Date | string
     updatedAt?: DateTimeFilter<"inventory"> | Date | string
+    shopId?: StringFilter<"inventory"> | string
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
     usageHistory?: UsedPartListRelationFilter
-  }, "id" | "sku">
+  }, "id" | "shopId_sku">
 
   export type inventoryOrderByWithAggregationInput = {
     id?: SortOrder
@@ -14967,6 +16573,7 @@ export namespace Prisma {
     lowStockAlert?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
     _count?: inventoryCountOrderByAggregateInput
     _avg?: inventoryAvgOrderByAggregateInput
     _max?: inventoryMaxOrderByAggregateInput
@@ -14987,6 +16594,7 @@ export namespace Prisma {
     lowStockAlert?: IntWithAggregatesFilter<"inventory"> | number
     createdAt?: DateTimeWithAggregatesFilter<"inventory"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"inventory"> | Date | string
+    shopId?: StringWithAggregatesFilter<"inventory"> | string
   }
 
   export type invoiceWhereInput = {
@@ -15011,9 +16619,11 @@ export namespace Prisma {
     notes?: StringFilter<"invoice"> | string
     saleType?: EnumSaleTypeFilter<"invoice"> | $Enums.SaleType
     ticketId?: IntNullableFilter<"invoice"> | number | null
+    shopId?: StringFilter<"invoice"> | string
     createdAt?: DateTimeFilter<"invoice"> | Date | string
     updatedAt?: DateTimeFilter<"invoice"> | Date | string
     ticket?: XOR<RepairTicketNullableScalarRelationFilter, repairTicketWhereInput> | null
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
   }
 
   export type invoiceOrderByWithRelationInput = {
@@ -15035,9 +16645,11 @@ export namespace Prisma {
     notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrderInput | SortOrder
+    shopId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     ticket?: repairTicketOrderByWithRelationInput
+    shop?: shopOrderByWithRelationInput
   }
 
   export type invoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -15062,9 +16674,11 @@ export namespace Prisma {
     paymentMethod?: StringFilter<"invoice"> | string
     notes?: StringFilter<"invoice"> | string
     saleType?: EnumSaleTypeFilter<"invoice"> | $Enums.SaleType
+    shopId?: StringFilter<"invoice"> | string
     createdAt?: DateTimeFilter<"invoice"> | Date | string
     updatedAt?: DateTimeFilter<"invoice"> | Date | string
     ticket?: XOR<RepairTicketNullableScalarRelationFilter, repairTicketWhereInput> | null
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
   }, "id" | "invoiceNo" | "ticketId">
 
   export type invoiceOrderByWithAggregationInput = {
@@ -15086,6 +16700,7 @@ export namespace Prisma {
     notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrderInput | SortOrder
+    shopId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: invoiceCountOrderByAggregateInput
@@ -15117,6 +16732,7 @@ export namespace Prisma {
     notes?: StringWithAggregatesFilter<"invoice"> | string
     saleType?: EnumSaleTypeWithAggregatesFilter<"invoice"> | $Enums.SaleType
     ticketId?: IntNullableWithAggregatesFilter<"invoice"> | number | null
+    shopId?: StringWithAggregatesFilter<"invoice"> | string
     createdAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"invoice"> | Date | string
   }
@@ -15137,6 +16753,8 @@ export namespace Prisma {
     profileImage?: StringNullableFilter<"technician"> | string | null
     createdAt?: DateTimeFilter<"technician"> | Date | string
     updatedAt?: DateTimeFilter<"technician"> | Date | string
+    shopId?: StringFilter<"technician"> | string
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
     tickets?: RepairTicketListRelationFilter
   }
 
@@ -15153,18 +16771,22 @@ export namespace Prisma {
     profileImage?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
+    shop?: shopOrderByWithRelationInput
     tickets?: repairTicketOrderByRelationAggregateInput
   }
 
   export type technicianWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    email?: string
-    employeeId?: string
+    shopId_email?: technicianShopIdEmailCompoundUniqueInput
+    shopId_employeeId?: technicianShopIdEmployeeIdCompoundUniqueInput
     AND?: technicianWhereInput | technicianWhereInput[]
     OR?: technicianWhereInput[]
     NOT?: technicianWhereInput | technicianWhereInput[]
     fullName?: StringFilter<"technician"> | string
+    email?: StringFilter<"technician"> | string
     phone?: StringFilter<"technician"> | string
+    employeeId?: StringFilter<"technician"> | string
     specialization?: EnumTechnicianSpecializationFilter<"technician"> | $Enums.TechnicianSpecialization
     status?: EnumTechnicianStatusFilter<"technician"> | $Enums.TechnicianStatus
     experienceYears?: IntFilter<"technician"> | number
@@ -15172,8 +16794,10 @@ export namespace Prisma {
     profileImage?: StringNullableFilter<"technician"> | string | null
     createdAt?: DateTimeFilter<"technician"> | Date | string
     updatedAt?: DateTimeFilter<"technician"> | Date | string
+    shopId?: StringFilter<"technician"> | string
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
     tickets?: RepairTicketListRelationFilter
-  }, "id" | "email" | "employeeId">
+  }, "id" | "shopId_email" | "shopId_employeeId">
 
   export type technicianOrderByWithAggregationInput = {
     id?: SortOrder
@@ -15188,6 +16812,7 @@ export namespace Prisma {
     profileImage?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
     _count?: technicianCountOrderByAggregateInput
     _avg?: technicianAvgOrderByAggregateInput
     _max?: technicianMaxOrderByAggregateInput
@@ -15211,6 +16836,7 @@ export namespace Prisma {
     profileImage?: StringNullableWithAggregatesFilter<"technician"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"technician"> | Date | string
+    shopId?: StringWithAggregatesFilter<"technician"> | string
   }
 
   export type VehicleWhereInput = {
@@ -15238,7 +16864,9 @@ export namespace Prisma {
     healthScore?: IntNullableFilter<"Vehicle"> | number | null
     lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     customerId?: StringFilter<"Vehicle"> | string
+    shopId?: StringFilter<"Vehicle"> | string
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
     tickets?: RepairTicketListRelationFilter
   }
 
@@ -15264,7 +16892,9 @@ export namespace Prisma {
     healthScore?: SortOrderInput | SortOrder
     lastAiCheck?: SortOrderInput | SortOrder
     customerId?: SortOrder
+    shopId?: SortOrder
     customer?: customerOrderByWithRelationInput
+    shop?: shopOrderByWithRelationInput
     tickets?: repairTicketOrderByRelationAggregateInput
   }
 
@@ -15293,7 +16923,9 @@ export namespace Prisma {
     healthScore?: IntNullableFilter<"Vehicle"> | number | null
     lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     customerId?: StringFilter<"Vehicle"> | string
+    shopId?: StringFilter<"Vehicle"> | string
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
+    shop?: XOR<ShopScalarRelationFilter, shopWhereInput>
     tickets?: RepairTicketListRelationFilter
   }, "id" | "vin">
 
@@ -15319,6 +16951,7 @@ export namespace Prisma {
     healthScore?: SortOrderInput | SortOrder
     lastAiCheck?: SortOrderInput | SortOrder
     customerId?: SortOrder
+    shopId?: SortOrder
     _count?: VehicleCountOrderByAggregateInput
     _avg?: VehicleAvgOrderByAggregateInput
     _max?: VehicleMaxOrderByAggregateInput
@@ -15351,6 +16984,85 @@ export namespace Prisma {
     healthScore?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
     lastAiCheck?: DateTimeNullableWithAggregatesFilter<"Vehicle"> | Date | string | null
     customerId?: StringWithAggregatesFilter<"Vehicle"> | string
+    shopId?: StringWithAggregatesFilter<"Vehicle"> | string
+  }
+
+  export type shopWhereInput = {
+    AND?: shopWhereInput | shopWhereInput[]
+    OR?: shopWhereInput[]
+    NOT?: shopWhereInput | shopWhereInput[]
+    id?: StringFilter<"shop"> | string
+    shopName?: StringFilter<"shop"> | string
+    shopAddress?: StringNullableFilter<"shop"> | string | null
+    gstNumber?: StringNullableFilter<"shop"> | string | null
+    shopPhone?: StringNullableFilter<"shop"> | string | null
+    ownerId?: StringFilter<"shop"> | string
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
+    customers?: CustomerListRelationFilter
+    technicians?: TechnicianListRelationFilter
+    tickets?: RepairTicketListRelationFilter
+    vehicles?: VehicleListRelationFilter
+    inventory?: InventoryListRelationFilter
+    invoice?: InvoiceListRelationFilter
+  }
+
+  export type shopOrderByWithRelationInput = {
+    id?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrderInput | SortOrder
+    gstNumber?: SortOrderInput | SortOrder
+    shopPhone?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
+    owner?: UserOrderByWithRelationInput
+    customers?: customerOrderByRelationAggregateInput
+    technicians?: technicianOrderByRelationAggregateInput
+    tickets?: repairTicketOrderByRelationAggregateInput
+    vehicles?: VehicleOrderByRelationAggregateInput
+    inventory?: inventoryOrderByRelationAggregateInput
+    invoice?: invoiceOrderByRelationAggregateInput
+  }
+
+  export type shopWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    ownerId?: string
+    AND?: shopWhereInput | shopWhereInput[]
+    OR?: shopWhereInput[]
+    NOT?: shopWhereInput | shopWhereInput[]
+    shopName?: StringFilter<"shop"> | string
+    shopAddress?: StringNullableFilter<"shop"> | string | null
+    gstNumber?: StringNullableFilter<"shop"> | string | null
+    shopPhone?: StringNullableFilter<"shop"> | string | null
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
+    customers?: CustomerListRelationFilter
+    technicians?: TechnicianListRelationFilter
+    tickets?: RepairTicketListRelationFilter
+    vehicles?: VehicleListRelationFilter
+    inventory?: InventoryListRelationFilter
+    invoice?: InvoiceListRelationFilter
+  }, "id" | "ownerId">
+
+  export type shopOrderByWithAggregationInput = {
+    id?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrderInput | SortOrder
+    gstNumber?: SortOrderInput | SortOrder
+    shopPhone?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
+    _count?: shopCountOrderByAggregateInput
+    _max?: shopMaxOrderByAggregateInput
+    _min?: shopMinOrderByAggregateInput
+  }
+
+  export type shopScalarWhereWithAggregatesInput = {
+    AND?: shopScalarWhereWithAggregatesInput | shopScalarWhereWithAggregatesInput[]
+    OR?: shopScalarWhereWithAggregatesInput[]
+    NOT?: shopScalarWhereWithAggregatesInput | shopScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"shop"> | string
+    shopName?: StringWithAggregatesFilter<"shop"> | string
+    shopAddress?: StringNullableWithAggregatesFilter<"shop"> | string | null
+    gstNumber?: StringNullableWithAggregatesFilter<"shop"> | string | null
+    shopPhone?: StringNullableWithAggregatesFilter<"shop"> | string | null
+    ownerId?: StringWithAggregatesFilter<"shop"> | string
   }
 
   export type UserCreateInput = {
@@ -15359,12 +17071,9 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.Role
-    shopName?: string | null
-    shopAddress?: string | null
-    gstNumber?: string | null
-    shopPhone?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    shop?: shopCreateNestedOneWithoutOwnerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -15373,12 +17082,9 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.Role
-    shopName?: string | null
-    shopAddress?: string | null
-    gstNumber?: string | null
-    shopPhone?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    shop?: shopUncheckedCreateNestedOneWithoutOwnerInput
   }
 
   export type UserUpdateInput = {
@@ -15387,12 +17093,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    shopName?: NullableStringFieldUpdateOperationsInput | string | null
-    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: shopUpdateOneWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -15401,12 +17104,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    shopName?: NullableStringFieldUpdateOperationsInput | string | null
-    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: shopUncheckedUpdateOneWithoutOwnerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -15415,10 +17115,6 @@ export namespace Prisma {
     name: string
     password: string
     role?: $Enums.Role
-    shopName?: string | null
-    shopAddress?: string | null
-    gstNumber?: string | null
-    shopPhone?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15429,10 +17125,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    shopName?: NullableStringFieldUpdateOperationsInput | string | null
-    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15443,10 +17135,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    shopName?: NullableStringFieldUpdateOperationsInput | string | null
-    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15460,6 +17148,7 @@ export namespace Prisma {
     createdAt?: Date | string
     tickets?: repairTicketCreateNestedManyWithoutCustomerInput
     vehicles?: VehicleCreateNestedManyWithoutCustomerInput
+    shop: shopCreateNestedOneWithoutCustomersInput
   }
 
   export type customerUncheckedCreateInput = {
@@ -15469,6 +17158,7 @@ export namespace Prisma {
     phone: string
     address?: string | null
     createdAt?: Date | string
+    shopId: string
     tickets?: repairTicketUncheckedCreateNestedManyWithoutCustomerInput
     vehicles?: VehicleUncheckedCreateNestedManyWithoutCustomerInput
   }
@@ -15482,6 +17172,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tickets?: repairTicketUpdateManyWithoutCustomerNestedInput
     vehicles?: VehicleUpdateManyWithoutCustomerNestedInput
+    shop?: shopUpdateOneRequiredWithoutCustomersNestedInput
   }
 
   export type customerUncheckedUpdateInput = {
@@ -15491,6 +17182,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
     tickets?: repairTicketUncheckedUpdateManyWithoutCustomerNestedInput
     vehicles?: VehicleUncheckedUpdateManyWithoutCustomerNestedInput
   }
@@ -15502,6 +17194,7 @@ export namespace Prisma {
     phone: string
     address?: string | null
     createdAt?: Date | string
+    shopId: string
   }
 
   export type customerUpdateManyMutationInput = {
@@ -15520,6 +17213,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type repairTicketCreateInput = {
@@ -15542,6 +17236,7 @@ export namespace Prisma {
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
     vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    shop: shopCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
@@ -15569,6 +17264,7 @@ export namespace Prisma {
     customerId: string
     technicianId?: string | null
     vehicleId?: number | null
+    shopId: string
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
@@ -15595,6 +17291,7 @@ export namespace Prisma {
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
     vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    shop?: shopUpdateOneRequiredWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
@@ -15622,6 +17319,7 @@ export namespace Prisma {
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
@@ -15649,6 +17347,7 @@ export namespace Prisma {
     customerId: string
     technicianId?: string | null
     vehicleId?: number | null
+    shopId: string
   }
 
   export type repairTicketUpdateManyMutationInput = {
@@ -15691,6 +17390,7 @@ export namespace Prisma {
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type technicianNoteCreateInput = {
@@ -15878,6 +17578,7 @@ export namespace Prisma {
     lowStockAlert?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    shop: shopCreateNestedOneWithoutInventoryInput
     usageHistory?: usedPartCreateNestedManyWithoutInventoryItemInput
   }
 
@@ -15891,6 +17592,7 @@ export namespace Prisma {
     lowStockAlert?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    shopId: string
     usageHistory?: usedPartUncheckedCreateNestedManyWithoutInventoryItemInput
   }
 
@@ -15903,6 +17605,7 @@ export namespace Prisma {
     lowStockAlert?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: shopUpdateOneRequiredWithoutInventoryNestedInput
     usageHistory?: usedPartUpdateManyWithoutInventoryItemNestedInput
   }
 
@@ -15916,6 +17619,7 @@ export namespace Prisma {
     lowStockAlert?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
     usageHistory?: usedPartUncheckedUpdateManyWithoutInventoryItemNestedInput
   }
 
@@ -15929,6 +17633,7 @@ export namespace Prisma {
     lowStockAlert?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    shopId: string
   }
 
   export type inventoryUpdateManyMutationInput = {
@@ -15952,6 +17657,7 @@ export namespace Prisma {
     lowStockAlert?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type invoiceCreateInput = {
@@ -15974,6 +17680,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     ticket?: repairTicketCreateNestedOneWithoutInvoiceInput
+    shop: shopCreateNestedOneWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateInput = {
@@ -15995,6 +17702,7 @@ export namespace Prisma {
     notes?: string
     saleType: $Enums.SaleType
     ticketId?: number | null
+    shopId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16019,6 +17727,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ticket?: repairTicketUpdateOneWithoutInvoiceNestedInput
+    shop?: shopUpdateOneRequiredWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateInput = {
@@ -16040,6 +17749,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     ticketId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16063,6 +17773,7 @@ export namespace Prisma {
     notes?: string
     saleType: $Enums.SaleType
     ticketId?: number | null
+    shopId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16107,6 +17818,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     ticketId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16124,6 +17836,7 @@ export namespace Prisma {
     profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    shop: shopCreateNestedOneWithoutTechniciansInput
     tickets?: repairTicketCreateNestedManyWithoutTechnicianInput
   }
 
@@ -16140,6 +17853,7 @@ export namespace Prisma {
     profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    shopId: string
     tickets?: repairTicketUncheckedCreateNestedManyWithoutTechnicianInput
   }
 
@@ -16156,6 +17870,7 @@ export namespace Prisma {
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: shopUpdateOneRequiredWithoutTechniciansNestedInput
     tickets?: repairTicketUpdateManyWithoutTechnicianNestedInput
   }
 
@@ -16172,6 +17887,7 @@ export namespace Prisma {
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
     tickets?: repairTicketUncheckedUpdateManyWithoutTechnicianNestedInput
   }
 
@@ -16188,6 +17904,7 @@ export namespace Prisma {
     profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    shopId: string
   }
 
   export type technicianUpdateManyMutationInput = {
@@ -16218,6 +17935,7 @@ export namespace Prisma {
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type VehicleCreateInput = {
@@ -16241,6 +17959,7 @@ export namespace Prisma {
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customer: customerCreateNestedOneWithoutVehiclesInput
+    shop: shopCreateNestedOneWithoutVehiclesInput
     tickets?: repairTicketCreateNestedManyWithoutVehicleInput
   }
 
@@ -16266,6 +17985,7 @@ export namespace Prisma {
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customerId: string
+    shopId: string
     tickets?: repairTicketUncheckedCreateNestedManyWithoutVehicleInput
   }
 
@@ -16290,6 +18010,7 @@ export namespace Prisma {
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: customerUpdateOneRequiredWithoutVehiclesNestedInput
+    shop?: shopUpdateOneRequiredWithoutVehiclesNestedInput
     tickets?: repairTicketUpdateManyWithoutVehicleNestedInput
   }
 
@@ -16315,6 +18036,7 @@ export namespace Prisma {
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customerId?: StringFieldUpdateOperationsInput | string
+    shopId?: StringFieldUpdateOperationsInput | string
     tickets?: repairTicketUncheckedUpdateManyWithoutVehicleNestedInput
   }
 
@@ -16340,6 +18062,7 @@ export namespace Prisma {
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customerId: string
+    shopId: string
   }
 
   export type VehicleUpdateManyMutationInput = {
@@ -16386,6 +18109,93 @@ export namespace Prisma {
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customerId?: StringFieldUpdateOperationsInput | string
+    shopId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type shopCreateInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    owner: UserCreateNestedOneWithoutShopInput
+    customers?: customerCreateNestedManyWithoutShopInput
+    technicians?: technicianCreateNestedManyWithoutShopInput
+    tickets?: repairTicketCreateNestedManyWithoutShopInput
+    vehicles?: VehicleCreateNestedManyWithoutShopInput
+    inventory?: inventoryCreateNestedManyWithoutShopInput
+    invoice?: invoiceCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUncheckedCreateInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    ownerId: string
+    customers?: customerUncheckedCreateNestedManyWithoutShopInput
+    technicians?: technicianUncheckedCreateNestedManyWithoutShopInput
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutShopInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutShopInput
+    inventory?: inventoryUncheckedCreateNestedManyWithoutShopInput
+    invoice?: invoiceUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutShopNestedInput
+    customers?: customerUpdateManyWithoutShopNestedInput
+    technicians?: technicianUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    customers?: customerUncheckedUpdateManyWithoutShopNestedInput
+    technicians?: technicianUncheckedUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUncheckedUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUncheckedUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUncheckedUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopCreateManyInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    ownerId: string
+  }
+
+  export type shopUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type shopUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16410,21 +18220,6 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -16436,9 +18231,9 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
+  export type ShopNullableScalarRelationFilter = {
+    is?: shopWhereInput | null
+    isNot?: shopWhereInput | null
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -16447,10 +18242,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    shopName?: SortOrder
-    shopAddress?: SortOrder
-    gstNumber?: SortOrder
-    shopPhone?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16461,10 +18252,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    shopName?: SortOrder
-    shopAddress?: SortOrder
-    gstNumber?: SortOrder
-    shopPhone?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16475,10 +18262,6 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    shopName?: SortOrder
-    shopAddress?: SortOrder
-    gstNumber?: SortOrder
-    shopPhone?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16511,6 +18294,100 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type RepairTicketListRelationFilter = {
+    every?: repairTicketWhereInput
+    some?: repairTicketWhereInput
+    none?: repairTicketWhereInput
+  }
+
+  export type VehicleListRelationFilter = {
+    every?: VehicleWhereInput
+    some?: VehicleWhereInput
+    none?: VehicleWhereInput
+  }
+
+  export type ShopScalarRelationFilter = {
+    is?: shopWhereInput
+    isNot?: shopWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type repairTicketOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type VehicleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type customerShopIdPhoneCompoundUniqueInput = {
+    shopId: string
+    phone: string
+  }
+
+  export type customerCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    createdAt?: SortOrder
+    shopId?: SortOrder
+  }
+
+  export type customerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    createdAt?: SortOrder
+    shopId?: SortOrder
+  }
+
+  export type customerMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    createdAt?: SortOrder
+    shopId?: SortOrder
+  }
+
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -16527,67 +18404,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type RepairTicketListRelationFilter = {
-    every?: repairTicketWhereInput
-    some?: repairTicketWhereInput
-    none?: repairTicketWhereInput
-  }
-
-  export type VehicleListRelationFilter = {
-    every?: VehicleWhereInput
-    some?: VehicleWhereInput
-    none?: VehicleWhereInput
-  }
-
-  export type repairTicketOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type VehicleOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type customerCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    address?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type customerMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    address?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type customerMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    address?: SortOrder
-    createdAt?: SortOrder
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -16730,6 +18546,7 @@ export namespace Prisma {
     customerId?: SortOrder
     technicianId?: SortOrder
     vehicleId?: SortOrder
+    shopId?: SortOrder
   }
 
   export type repairTicketAvgOrderByAggregateInput = {
@@ -16764,6 +18581,7 @@ export namespace Prisma {
     customerId?: SortOrder
     technicianId?: SortOrder
     vehicleId?: SortOrder
+    shopId?: SortOrder
   }
 
   export type repairTicketMinOrderByAggregateInput = {
@@ -16787,6 +18605,7 @@ export namespace Prisma {
     customerId?: SortOrder
     technicianId?: SortOrder
     vehicleId?: SortOrder
+    shopId?: SortOrder
   }
 
   export type repairTicketSumOrderByAggregateInput = {
@@ -17029,6 +18848,11 @@ export namespace Prisma {
     lockedCost?: SortOrder
   }
 
+  export type inventoryShopIdSkuCompoundUniqueInput = {
+    shopId: string
+    sku: string
+  }
+
   export type inventoryCountOrderByAggregateInput = {
     id?: SortOrder
     partName?: SortOrder
@@ -17039,6 +18863,7 @@ export namespace Prisma {
     lowStockAlert?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
   }
 
   export type inventoryAvgOrderByAggregateInput = {
@@ -17058,6 +18883,7 @@ export namespace Prisma {
     lowStockAlert?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
   }
 
   export type inventoryMinOrderByAggregateInput = {
@@ -17070,6 +18896,7 @@ export namespace Prisma {
     lowStockAlert?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
   }
 
   export type inventorySumOrderByAggregateInput = {
@@ -17133,6 +18960,7 @@ export namespace Prisma {
     notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrder
+    shopId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17164,6 +18992,7 @@ export namespace Prisma {
     notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrder
+    shopId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17186,6 +19015,7 @@ export namespace Prisma {
     notes?: SortOrder
     saleType?: SortOrder
     ticketId?: SortOrder
+    shopId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17249,6 +19079,16 @@ export namespace Prisma {
     not?: NestedEnumTechnicianStatusFilter<$PrismaModel> | $Enums.TechnicianStatus
   }
 
+  export type technicianShopIdEmailCompoundUniqueInput = {
+    shopId: string
+    email: string
+  }
+
+  export type technicianShopIdEmployeeIdCompoundUniqueInput = {
+    shopId: string
+    employeeId: string
+  }
+
   export type technicianCountOrderByAggregateInput = {
     id?: SortOrder
     fullName?: SortOrder
@@ -17262,6 +19102,7 @@ export namespace Prisma {
     profileImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
   }
 
   export type technicianAvgOrderByAggregateInput = {
@@ -17281,6 +19122,7 @@ export namespace Prisma {
     profileImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
   }
 
   export type technicianMinOrderByAggregateInput = {
@@ -17296,6 +19138,7 @@ export namespace Prisma {
     profileImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    shopId?: SortOrder
   }
 
   export type technicianSumOrderByAggregateInput = {
@@ -17344,6 +19187,7 @@ export namespace Prisma {
     healthScore?: SortOrder
     lastAiCheck?: SortOrder
     customerId?: SortOrder
+    shopId?: SortOrder
   }
 
   export type VehicleAvgOrderByAggregateInput = {
@@ -17376,6 +19220,7 @@ export namespace Prisma {
     healthScore?: SortOrder
     lastAiCheck?: SortOrder
     customerId?: SortOrder
+    shopId?: SortOrder
   }
 
   export type VehicleMinOrderByAggregateInput = {
@@ -17400,6 +19245,7 @@ export namespace Prisma {
     healthScore?: SortOrder
     lastAiCheck?: SortOrder
     customerId?: SortOrder
+    shopId?: SortOrder
   }
 
   export type VehicleSumOrderByAggregateInput = {
@@ -17410,6 +19256,90 @@ export namespace Prisma {
     healthScore?: SortOrder
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type CustomerListRelationFilter = {
+    every?: customerWhereInput
+    some?: customerWhereInput
+    none?: customerWhereInput
+  }
+
+  export type TechnicianListRelationFilter = {
+    every?: technicianWhereInput
+    some?: technicianWhereInput
+    none?: technicianWhereInput
+  }
+
+  export type InventoryListRelationFilter = {
+    every?: inventoryWhereInput
+    some?: inventoryWhereInput
+    none?: inventoryWhereInput
+  }
+
+  export type InvoiceListRelationFilter = {
+    every?: invoiceWhereInput
+    some?: invoiceWhereInput
+    none?: invoiceWhereInput
+  }
+
+  export type customerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type technicianOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type inventoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type invoiceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type shopCountOrderByAggregateInput = {
+    id?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrder
+    gstNumber?: SortOrder
+    shopPhone?: SortOrder
+    ownerId?: SortOrder
+  }
+
+  export type shopMaxOrderByAggregateInput = {
+    id?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrder
+    gstNumber?: SortOrder
+    shopPhone?: SortOrder
+    ownerId?: SortOrder
+  }
+
+  export type shopMinOrderByAggregateInput = {
+    id?: SortOrder
+    shopName?: SortOrder
+    shopAddress?: SortOrder
+    gstNumber?: SortOrder
+    shopPhone?: SortOrder
+    ownerId?: SortOrder
+  }
+
+  export type shopCreateNestedOneWithoutOwnerInput = {
+    create?: XOR<shopCreateWithoutOwnerInput, shopUncheckedCreateWithoutOwnerInput>
+    connectOrCreate?: shopCreateOrConnectWithoutOwnerInput
+    connect?: shopWhereUniqueInput
+  }
+
+  export type shopUncheckedCreateNestedOneWithoutOwnerInput = {
+    create?: XOR<shopCreateWithoutOwnerInput, shopUncheckedCreateWithoutOwnerInput>
+    connectOrCreate?: shopCreateOrConnectWithoutOwnerInput
+    connect?: shopWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -17418,12 +19348,28 @@ export namespace Prisma {
     set?: $Enums.Role
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type shopUpdateOneWithoutOwnerNestedInput = {
+    create?: XOR<shopCreateWithoutOwnerInput, shopUncheckedCreateWithoutOwnerInput>
+    connectOrCreate?: shopCreateOrConnectWithoutOwnerInput
+    upsert?: shopUpsertWithoutOwnerInput
+    disconnect?: shopWhereInput | boolean
+    delete?: shopWhereInput | boolean
+    connect?: shopWhereUniqueInput
+    update?: XOR<XOR<shopUpdateToOneWithWhereWithoutOwnerInput, shopUpdateWithoutOwnerInput>, shopUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type shopUncheckedUpdateOneWithoutOwnerNestedInput = {
+    create?: XOR<shopCreateWithoutOwnerInput, shopUncheckedCreateWithoutOwnerInput>
+    connectOrCreate?: shopCreateOrConnectWithoutOwnerInput
+    upsert?: shopUpsertWithoutOwnerInput
+    disconnect?: shopWhereInput | boolean
+    delete?: shopWhereInput | boolean
+    connect?: shopWhereUniqueInput
+    update?: XOR<XOR<shopUpdateToOneWithWhereWithoutOwnerInput, shopUpdateWithoutOwnerInput>, shopUncheckedUpdateWithoutOwnerInput>
   }
 
   export type repairTicketCreateNestedManyWithoutCustomerInput = {
@@ -17440,6 +19386,12 @@ export namespace Prisma {
     connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
   }
 
+  export type shopCreateNestedOneWithoutCustomersInput = {
+    create?: XOR<shopCreateWithoutCustomersInput, shopUncheckedCreateWithoutCustomersInput>
+    connectOrCreate?: shopCreateOrConnectWithoutCustomersInput
+    connect?: shopWhereUniqueInput
+  }
+
   export type repairTicketUncheckedCreateNestedManyWithoutCustomerInput = {
     create?: XOR<repairTicketCreateWithoutCustomerInput, repairTicketUncheckedCreateWithoutCustomerInput> | repairTicketCreateWithoutCustomerInput[] | repairTicketUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: repairTicketCreateOrConnectWithoutCustomerInput | repairTicketCreateOrConnectWithoutCustomerInput[]
@@ -17452,6 +19404,10 @@ export namespace Prisma {
     connectOrCreate?: VehicleCreateOrConnectWithoutCustomerInput | VehicleCreateOrConnectWithoutCustomerInput[]
     createMany?: VehicleCreateManyCustomerInputEnvelope
     connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type repairTicketUpdateManyWithoutCustomerNestedInput = {
@@ -17480,6 +19436,14 @@ export namespace Prisma {
     update?: VehicleUpdateWithWhereUniqueWithoutCustomerInput | VehicleUpdateWithWhereUniqueWithoutCustomerInput[]
     updateMany?: VehicleUpdateManyWithWhereWithoutCustomerInput | VehicleUpdateManyWithWhereWithoutCustomerInput[]
     deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+  }
+
+  export type shopUpdateOneRequiredWithoutCustomersNestedInput = {
+    create?: XOR<shopCreateWithoutCustomersInput, shopUncheckedCreateWithoutCustomersInput>
+    connectOrCreate?: shopCreateOrConnectWithoutCustomersInput
+    upsert?: shopUpsertWithoutCustomersInput
+    connect?: shopWhereUniqueInput
+    update?: XOR<XOR<shopUpdateToOneWithWhereWithoutCustomersInput, shopUpdateWithoutCustomersInput>, shopUncheckedUpdateWithoutCustomersInput>
   }
 
   export type repairTicketUncheckedUpdateManyWithoutCustomerNestedInput = {
@@ -17526,6 +19490,12 @@ export namespace Prisma {
     create?: XOR<VehicleCreateWithoutTicketsInput, VehicleUncheckedCreateWithoutTicketsInput>
     connectOrCreate?: VehicleCreateOrConnectWithoutTicketsInput
     connect?: VehicleWhereUniqueInput
+  }
+
+  export type shopCreateNestedOneWithoutTicketsInput = {
+    create?: XOR<shopCreateWithoutTicketsInput, shopUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: shopCreateOrConnectWithoutTicketsInput
+    connect?: shopWhereUniqueInput
   }
 
   export type technicianNoteCreateNestedManyWithoutTicketInput = {
@@ -17636,6 +19606,14 @@ export namespace Prisma {
     delete?: VehicleWhereInput | boolean
     connect?: VehicleWhereUniqueInput
     update?: XOR<XOR<VehicleUpdateToOneWithWhereWithoutTicketsInput, VehicleUpdateWithoutTicketsInput>, VehicleUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type shopUpdateOneRequiredWithoutTicketsNestedInput = {
+    create?: XOR<shopCreateWithoutTicketsInput, shopUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: shopCreateOrConnectWithoutTicketsInput
+    upsert?: shopUpsertWithoutTicketsInput
+    connect?: shopWhereUniqueInput
+    update?: XOR<XOR<shopUpdateToOneWithWhereWithoutTicketsInput, shopUpdateWithoutTicketsInput>, shopUncheckedUpdateWithoutTicketsInput>
   }
 
   export type technicianNoteUpdateManyWithoutTicketNestedInput = {
@@ -17832,6 +19810,12 @@ export namespace Prisma {
     update?: XOR<XOR<inventoryUpdateToOneWithWhereWithoutUsageHistoryInput, inventoryUpdateWithoutUsageHistoryInput>, inventoryUncheckedUpdateWithoutUsageHistoryInput>
   }
 
+  export type shopCreateNestedOneWithoutInventoryInput = {
+    create?: XOR<shopCreateWithoutInventoryInput, shopUncheckedCreateWithoutInventoryInput>
+    connectOrCreate?: shopCreateOrConnectWithoutInventoryInput
+    connect?: shopWhereUniqueInput
+  }
+
   export type usedPartCreateNestedManyWithoutInventoryItemInput = {
     create?: XOR<usedPartCreateWithoutInventoryItemInput, usedPartUncheckedCreateWithoutInventoryItemInput> | usedPartCreateWithoutInventoryItemInput[] | usedPartUncheckedCreateWithoutInventoryItemInput[]
     connectOrCreate?: usedPartCreateOrConnectWithoutInventoryItemInput | usedPartCreateOrConnectWithoutInventoryItemInput[]
@@ -17844,6 +19828,14 @@ export namespace Prisma {
     connectOrCreate?: usedPartCreateOrConnectWithoutInventoryItemInput | usedPartCreateOrConnectWithoutInventoryItemInput[]
     createMany?: usedPartCreateManyInventoryItemInputEnvelope
     connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
+  }
+
+  export type shopUpdateOneRequiredWithoutInventoryNestedInput = {
+    create?: XOR<shopCreateWithoutInventoryInput, shopUncheckedCreateWithoutInventoryInput>
+    connectOrCreate?: shopCreateOrConnectWithoutInventoryInput
+    upsert?: shopUpsertWithoutInventoryInput
+    connect?: shopWhereUniqueInput
+    update?: XOR<XOR<shopUpdateToOneWithWhereWithoutInventoryInput, shopUpdateWithoutInventoryInput>, shopUncheckedUpdateWithoutInventoryInput>
   }
 
   export type usedPartUpdateManyWithoutInventoryItemNestedInput = {
@@ -17880,6 +19872,12 @@ export namespace Prisma {
     connect?: repairTicketWhereUniqueInput
   }
 
+  export type shopCreateNestedOneWithoutInvoiceInput = {
+    create?: XOR<shopCreateWithoutInvoiceInput, shopUncheckedCreateWithoutInvoiceInput>
+    connectOrCreate?: shopCreateOrConnectWithoutInvoiceInput
+    connect?: shopWhereUniqueInput
+  }
+
   export type EnumSaleTypeFieldUpdateOperationsInput = {
     set?: $Enums.SaleType
   }
@@ -17892,6 +19890,20 @@ export namespace Prisma {
     delete?: repairTicketWhereInput | boolean
     connect?: repairTicketWhereUniqueInput
     update?: XOR<XOR<repairTicketUpdateToOneWithWhereWithoutInvoiceInput, repairTicketUpdateWithoutInvoiceInput>, repairTicketUncheckedUpdateWithoutInvoiceInput>
+  }
+
+  export type shopUpdateOneRequiredWithoutInvoiceNestedInput = {
+    create?: XOR<shopCreateWithoutInvoiceInput, shopUncheckedCreateWithoutInvoiceInput>
+    connectOrCreate?: shopCreateOrConnectWithoutInvoiceInput
+    upsert?: shopUpsertWithoutInvoiceInput
+    connect?: shopWhereUniqueInput
+    update?: XOR<XOR<shopUpdateToOneWithWhereWithoutInvoiceInput, shopUpdateWithoutInvoiceInput>, shopUncheckedUpdateWithoutInvoiceInput>
+  }
+
+  export type shopCreateNestedOneWithoutTechniciansInput = {
+    create?: XOR<shopCreateWithoutTechniciansInput, shopUncheckedCreateWithoutTechniciansInput>
+    connectOrCreate?: shopCreateOrConnectWithoutTechniciansInput
+    connect?: shopWhereUniqueInput
   }
 
   export type repairTicketCreateNestedManyWithoutTechnicianInput = {
@@ -17914,6 +19926,14 @@ export namespace Prisma {
 
   export type EnumTechnicianStatusFieldUpdateOperationsInput = {
     set?: $Enums.TechnicianStatus
+  }
+
+  export type shopUpdateOneRequiredWithoutTechniciansNestedInput = {
+    create?: XOR<shopCreateWithoutTechniciansInput, shopUncheckedCreateWithoutTechniciansInput>
+    connectOrCreate?: shopCreateOrConnectWithoutTechniciansInput
+    upsert?: shopUpsertWithoutTechniciansInput
+    connect?: shopWhereUniqueInput
+    update?: XOR<XOR<shopUpdateToOneWithWhereWithoutTechniciansInput, shopUpdateWithoutTechniciansInput>, shopUncheckedUpdateWithoutTechniciansInput>
   }
 
   export type repairTicketUpdateManyWithoutTechnicianNestedInput = {
@@ -17950,6 +19970,12 @@ export namespace Prisma {
     connect?: customerWhereUniqueInput
   }
 
+  export type shopCreateNestedOneWithoutVehiclesInput = {
+    create?: XOR<shopCreateWithoutVehiclesInput, shopUncheckedCreateWithoutVehiclesInput>
+    connectOrCreate?: shopCreateOrConnectWithoutVehiclesInput
+    connect?: shopWhereUniqueInput
+  }
+
   export type repairTicketCreateNestedManyWithoutVehicleInput = {
     create?: XOR<repairTicketCreateWithoutVehicleInput, repairTicketUncheckedCreateWithoutVehicleInput> | repairTicketCreateWithoutVehicleInput[] | repairTicketUncheckedCreateWithoutVehicleInput[]
     connectOrCreate?: repairTicketCreateOrConnectWithoutVehicleInput | repairTicketCreateOrConnectWithoutVehicleInput[]
@@ -17970,6 +19996,14 @@ export namespace Prisma {
     upsert?: customerUpsertWithoutVehiclesInput
     connect?: customerWhereUniqueInput
     update?: XOR<XOR<customerUpdateToOneWithWhereWithoutVehiclesInput, customerUpdateWithoutVehiclesInput>, customerUncheckedUpdateWithoutVehiclesInput>
+  }
+
+  export type shopUpdateOneRequiredWithoutVehiclesNestedInput = {
+    create?: XOR<shopCreateWithoutVehiclesInput, shopUncheckedCreateWithoutVehiclesInput>
+    connectOrCreate?: shopCreateOrConnectWithoutVehiclesInput
+    upsert?: shopUpsertWithoutVehiclesInput
+    connect?: shopWhereUniqueInput
+    update?: XOR<XOR<shopUpdateToOneWithWhereWithoutVehiclesInput, shopUpdateWithoutVehiclesInput>, shopUncheckedUpdateWithoutVehiclesInput>
   }
 
   export type repairTicketUpdateManyWithoutVehicleNestedInput = {
@@ -18000,6 +20034,272 @@ export namespace Prisma {
     deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
   }
 
+  export type UserCreateNestedOneWithoutShopInput = {
+    create?: XOR<UserCreateWithoutShopInput, UserUncheckedCreateWithoutShopInput>
+    connectOrCreate?: UserCreateOrConnectWithoutShopInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type customerCreateNestedManyWithoutShopInput = {
+    create?: XOR<customerCreateWithoutShopInput, customerUncheckedCreateWithoutShopInput> | customerCreateWithoutShopInput[] | customerUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: customerCreateOrConnectWithoutShopInput | customerCreateOrConnectWithoutShopInput[]
+    createMany?: customerCreateManyShopInputEnvelope
+    connect?: customerWhereUniqueInput | customerWhereUniqueInput[]
+  }
+
+  export type technicianCreateNestedManyWithoutShopInput = {
+    create?: XOR<technicianCreateWithoutShopInput, technicianUncheckedCreateWithoutShopInput> | technicianCreateWithoutShopInput[] | technicianUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: technicianCreateOrConnectWithoutShopInput | technicianCreateOrConnectWithoutShopInput[]
+    createMany?: technicianCreateManyShopInputEnvelope
+    connect?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+  }
+
+  export type repairTicketCreateNestedManyWithoutShopInput = {
+    create?: XOR<repairTicketCreateWithoutShopInput, repairTicketUncheckedCreateWithoutShopInput> | repairTicketCreateWithoutShopInput[] | repairTicketUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutShopInput | repairTicketCreateOrConnectWithoutShopInput[]
+    createMany?: repairTicketCreateManyShopInputEnvelope
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type VehicleCreateNestedManyWithoutShopInput = {
+    create?: XOR<VehicleCreateWithoutShopInput, VehicleUncheckedCreateWithoutShopInput> | VehicleCreateWithoutShopInput[] | VehicleUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutShopInput | VehicleCreateOrConnectWithoutShopInput[]
+    createMany?: VehicleCreateManyShopInputEnvelope
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+  }
+
+  export type inventoryCreateNestedManyWithoutShopInput = {
+    create?: XOR<inventoryCreateWithoutShopInput, inventoryUncheckedCreateWithoutShopInput> | inventoryCreateWithoutShopInput[] | inventoryUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: inventoryCreateOrConnectWithoutShopInput | inventoryCreateOrConnectWithoutShopInput[]
+    createMany?: inventoryCreateManyShopInputEnvelope
+    connect?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+  }
+
+  export type invoiceCreateNestedManyWithoutShopInput = {
+    create?: XOR<invoiceCreateWithoutShopInput, invoiceUncheckedCreateWithoutShopInput> | invoiceCreateWithoutShopInput[] | invoiceUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: invoiceCreateOrConnectWithoutShopInput | invoiceCreateOrConnectWithoutShopInput[]
+    createMany?: invoiceCreateManyShopInputEnvelope
+    connect?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+  }
+
+  export type customerUncheckedCreateNestedManyWithoutShopInput = {
+    create?: XOR<customerCreateWithoutShopInput, customerUncheckedCreateWithoutShopInput> | customerCreateWithoutShopInput[] | customerUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: customerCreateOrConnectWithoutShopInput | customerCreateOrConnectWithoutShopInput[]
+    createMany?: customerCreateManyShopInputEnvelope
+    connect?: customerWhereUniqueInput | customerWhereUniqueInput[]
+  }
+
+  export type technicianUncheckedCreateNestedManyWithoutShopInput = {
+    create?: XOR<technicianCreateWithoutShopInput, technicianUncheckedCreateWithoutShopInput> | technicianCreateWithoutShopInput[] | technicianUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: technicianCreateOrConnectWithoutShopInput | technicianCreateOrConnectWithoutShopInput[]
+    createMany?: technicianCreateManyShopInputEnvelope
+    connect?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+  }
+
+  export type repairTicketUncheckedCreateNestedManyWithoutShopInput = {
+    create?: XOR<repairTicketCreateWithoutShopInput, repairTicketUncheckedCreateWithoutShopInput> | repairTicketCreateWithoutShopInput[] | repairTicketUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutShopInput | repairTicketCreateOrConnectWithoutShopInput[]
+    createMany?: repairTicketCreateManyShopInputEnvelope
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+  }
+
+  export type VehicleUncheckedCreateNestedManyWithoutShopInput = {
+    create?: XOR<VehicleCreateWithoutShopInput, VehicleUncheckedCreateWithoutShopInput> | VehicleCreateWithoutShopInput[] | VehicleUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutShopInput | VehicleCreateOrConnectWithoutShopInput[]
+    createMany?: VehicleCreateManyShopInputEnvelope
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+  }
+
+  export type inventoryUncheckedCreateNestedManyWithoutShopInput = {
+    create?: XOR<inventoryCreateWithoutShopInput, inventoryUncheckedCreateWithoutShopInput> | inventoryCreateWithoutShopInput[] | inventoryUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: inventoryCreateOrConnectWithoutShopInput | inventoryCreateOrConnectWithoutShopInput[]
+    createMany?: inventoryCreateManyShopInputEnvelope
+    connect?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+  }
+
+  export type invoiceUncheckedCreateNestedManyWithoutShopInput = {
+    create?: XOR<invoiceCreateWithoutShopInput, invoiceUncheckedCreateWithoutShopInput> | invoiceCreateWithoutShopInput[] | invoiceUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: invoiceCreateOrConnectWithoutShopInput | invoiceCreateOrConnectWithoutShopInput[]
+    createMany?: invoiceCreateManyShopInputEnvelope
+    connect?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutShopNestedInput = {
+    create?: XOR<UserCreateWithoutShopInput, UserUncheckedCreateWithoutShopInput>
+    connectOrCreate?: UserCreateOrConnectWithoutShopInput
+    upsert?: UserUpsertWithoutShopInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutShopInput, UserUpdateWithoutShopInput>, UserUncheckedUpdateWithoutShopInput>
+  }
+
+  export type customerUpdateManyWithoutShopNestedInput = {
+    create?: XOR<customerCreateWithoutShopInput, customerUncheckedCreateWithoutShopInput> | customerCreateWithoutShopInput[] | customerUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: customerCreateOrConnectWithoutShopInput | customerCreateOrConnectWithoutShopInput[]
+    upsert?: customerUpsertWithWhereUniqueWithoutShopInput | customerUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: customerCreateManyShopInputEnvelope
+    set?: customerWhereUniqueInput | customerWhereUniqueInput[]
+    disconnect?: customerWhereUniqueInput | customerWhereUniqueInput[]
+    delete?: customerWhereUniqueInput | customerWhereUniqueInput[]
+    connect?: customerWhereUniqueInput | customerWhereUniqueInput[]
+    update?: customerUpdateWithWhereUniqueWithoutShopInput | customerUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: customerUpdateManyWithWhereWithoutShopInput | customerUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: customerScalarWhereInput | customerScalarWhereInput[]
+  }
+
+  export type technicianUpdateManyWithoutShopNestedInput = {
+    create?: XOR<technicianCreateWithoutShopInput, technicianUncheckedCreateWithoutShopInput> | technicianCreateWithoutShopInput[] | technicianUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: technicianCreateOrConnectWithoutShopInput | technicianCreateOrConnectWithoutShopInput[]
+    upsert?: technicianUpsertWithWhereUniqueWithoutShopInput | technicianUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: technicianCreateManyShopInputEnvelope
+    set?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+    disconnect?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+    delete?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+    connect?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+    update?: technicianUpdateWithWhereUniqueWithoutShopInput | technicianUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: technicianUpdateManyWithWhereWithoutShopInput | technicianUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: technicianScalarWhereInput | technicianScalarWhereInput[]
+  }
+
+  export type repairTicketUpdateManyWithoutShopNestedInput = {
+    create?: XOR<repairTicketCreateWithoutShopInput, repairTicketUncheckedCreateWithoutShopInput> | repairTicketCreateWithoutShopInput[] | repairTicketUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutShopInput | repairTicketCreateOrConnectWithoutShopInput[]
+    upsert?: repairTicketUpsertWithWhereUniqueWithoutShopInput | repairTicketUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: repairTicketCreateManyShopInputEnvelope
+    set?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    disconnect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    delete?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    update?: repairTicketUpdateWithWhereUniqueWithoutShopInput | repairTicketUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: repairTicketUpdateManyWithWhereWithoutShopInput | repairTicketUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+  }
+
+  export type VehicleUpdateManyWithoutShopNestedInput = {
+    create?: XOR<VehicleCreateWithoutShopInput, VehicleUncheckedCreateWithoutShopInput> | VehicleCreateWithoutShopInput[] | VehicleUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutShopInput | VehicleCreateOrConnectWithoutShopInput[]
+    upsert?: VehicleUpsertWithWhereUniqueWithoutShopInput | VehicleUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: VehicleCreateManyShopInputEnvelope
+    set?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    disconnect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    delete?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    update?: VehicleUpdateWithWhereUniqueWithoutShopInput | VehicleUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: VehicleUpdateManyWithWhereWithoutShopInput | VehicleUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+  }
+
+  export type inventoryUpdateManyWithoutShopNestedInput = {
+    create?: XOR<inventoryCreateWithoutShopInput, inventoryUncheckedCreateWithoutShopInput> | inventoryCreateWithoutShopInput[] | inventoryUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: inventoryCreateOrConnectWithoutShopInput | inventoryCreateOrConnectWithoutShopInput[]
+    upsert?: inventoryUpsertWithWhereUniqueWithoutShopInput | inventoryUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: inventoryCreateManyShopInputEnvelope
+    set?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+    disconnect?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+    delete?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+    connect?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+    update?: inventoryUpdateWithWhereUniqueWithoutShopInput | inventoryUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: inventoryUpdateManyWithWhereWithoutShopInput | inventoryUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: inventoryScalarWhereInput | inventoryScalarWhereInput[]
+  }
+
+  export type invoiceUpdateManyWithoutShopNestedInput = {
+    create?: XOR<invoiceCreateWithoutShopInput, invoiceUncheckedCreateWithoutShopInput> | invoiceCreateWithoutShopInput[] | invoiceUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: invoiceCreateOrConnectWithoutShopInput | invoiceCreateOrConnectWithoutShopInput[]
+    upsert?: invoiceUpsertWithWhereUniqueWithoutShopInput | invoiceUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: invoiceCreateManyShopInputEnvelope
+    set?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+    disconnect?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+    delete?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+    connect?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+    update?: invoiceUpdateWithWhereUniqueWithoutShopInput | invoiceUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: invoiceUpdateManyWithWhereWithoutShopInput | invoiceUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: invoiceScalarWhereInput | invoiceScalarWhereInput[]
+  }
+
+  export type customerUncheckedUpdateManyWithoutShopNestedInput = {
+    create?: XOR<customerCreateWithoutShopInput, customerUncheckedCreateWithoutShopInput> | customerCreateWithoutShopInput[] | customerUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: customerCreateOrConnectWithoutShopInput | customerCreateOrConnectWithoutShopInput[]
+    upsert?: customerUpsertWithWhereUniqueWithoutShopInput | customerUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: customerCreateManyShopInputEnvelope
+    set?: customerWhereUniqueInput | customerWhereUniqueInput[]
+    disconnect?: customerWhereUniqueInput | customerWhereUniqueInput[]
+    delete?: customerWhereUniqueInput | customerWhereUniqueInput[]
+    connect?: customerWhereUniqueInput | customerWhereUniqueInput[]
+    update?: customerUpdateWithWhereUniqueWithoutShopInput | customerUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: customerUpdateManyWithWhereWithoutShopInput | customerUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: customerScalarWhereInput | customerScalarWhereInput[]
+  }
+
+  export type technicianUncheckedUpdateManyWithoutShopNestedInput = {
+    create?: XOR<technicianCreateWithoutShopInput, technicianUncheckedCreateWithoutShopInput> | technicianCreateWithoutShopInput[] | technicianUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: technicianCreateOrConnectWithoutShopInput | technicianCreateOrConnectWithoutShopInput[]
+    upsert?: technicianUpsertWithWhereUniqueWithoutShopInput | technicianUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: technicianCreateManyShopInputEnvelope
+    set?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+    disconnect?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+    delete?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+    connect?: technicianWhereUniqueInput | technicianWhereUniqueInput[]
+    update?: technicianUpdateWithWhereUniqueWithoutShopInput | technicianUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: technicianUpdateManyWithWhereWithoutShopInput | technicianUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: technicianScalarWhereInput | technicianScalarWhereInput[]
+  }
+
+  export type repairTicketUncheckedUpdateManyWithoutShopNestedInput = {
+    create?: XOR<repairTicketCreateWithoutShopInput, repairTicketUncheckedCreateWithoutShopInput> | repairTicketCreateWithoutShopInput[] | repairTicketUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: repairTicketCreateOrConnectWithoutShopInput | repairTicketCreateOrConnectWithoutShopInput[]
+    upsert?: repairTicketUpsertWithWhereUniqueWithoutShopInput | repairTicketUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: repairTicketCreateManyShopInputEnvelope
+    set?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    disconnect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    delete?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    connect?: repairTicketWhereUniqueInput | repairTicketWhereUniqueInput[]
+    update?: repairTicketUpdateWithWhereUniqueWithoutShopInput | repairTicketUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: repairTicketUpdateManyWithWhereWithoutShopInput | repairTicketUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: repairTicketScalarWhereInput | repairTicketScalarWhereInput[]
+  }
+
+  export type VehicleUncheckedUpdateManyWithoutShopNestedInput = {
+    create?: XOR<VehicleCreateWithoutShopInput, VehicleUncheckedCreateWithoutShopInput> | VehicleCreateWithoutShopInput[] | VehicleUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutShopInput | VehicleCreateOrConnectWithoutShopInput[]
+    upsert?: VehicleUpsertWithWhereUniqueWithoutShopInput | VehicleUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: VehicleCreateManyShopInputEnvelope
+    set?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    disconnect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    delete?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    update?: VehicleUpdateWithWhereUniqueWithoutShopInput | VehicleUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: VehicleUpdateManyWithWhereWithoutShopInput | VehicleUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+  }
+
+  export type inventoryUncheckedUpdateManyWithoutShopNestedInput = {
+    create?: XOR<inventoryCreateWithoutShopInput, inventoryUncheckedCreateWithoutShopInput> | inventoryCreateWithoutShopInput[] | inventoryUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: inventoryCreateOrConnectWithoutShopInput | inventoryCreateOrConnectWithoutShopInput[]
+    upsert?: inventoryUpsertWithWhereUniqueWithoutShopInput | inventoryUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: inventoryCreateManyShopInputEnvelope
+    set?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+    disconnect?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+    delete?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+    connect?: inventoryWhereUniqueInput | inventoryWhereUniqueInput[]
+    update?: inventoryUpdateWithWhereUniqueWithoutShopInput | inventoryUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: inventoryUpdateManyWithWhereWithoutShopInput | inventoryUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: inventoryScalarWhereInput | inventoryScalarWhereInput[]
+  }
+
+  export type invoiceUncheckedUpdateManyWithoutShopNestedInput = {
+    create?: XOR<invoiceCreateWithoutShopInput, invoiceUncheckedCreateWithoutShopInput> | invoiceCreateWithoutShopInput[] | invoiceUncheckedCreateWithoutShopInput[]
+    connectOrCreate?: invoiceCreateOrConnectWithoutShopInput | invoiceCreateOrConnectWithoutShopInput[]
+    upsert?: invoiceUpsertWithWhereUniqueWithoutShopInput | invoiceUpsertWithWhereUniqueWithoutShopInput[]
+    createMany?: invoiceCreateManyShopInputEnvelope
+    set?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+    disconnect?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+    delete?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+    connect?: invoiceWhereUniqueInput | invoiceWhereUniqueInput[]
+    update?: invoiceUpdateWithWhereUniqueWithoutShopInput | invoiceUpdateWithWhereUniqueWithoutShopInput[]
+    updateMany?: invoiceUpdateManyWithWhereWithoutShopInput | invoiceUpdateManyWithWhereWithoutShopInput[]
+    deleteMany?: invoiceScalarWhereInput | invoiceScalarWhereInput[]
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -18019,20 +20319,6 @@ export namespace Prisma {
     in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
     notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -18084,6 +20370,34 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -18110,20 +20424,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedEnumTicketStatusFilter<$PrismaModel = never> = {
@@ -18345,6 +20645,78 @@ export namespace Prisma {
     _max?: NestedEnumTechnicianStatusFilter<$PrismaModel>
   }
 
+  export type shopCreateWithoutOwnerInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    customers?: customerCreateNestedManyWithoutShopInput
+    technicians?: technicianCreateNestedManyWithoutShopInput
+    tickets?: repairTicketCreateNestedManyWithoutShopInput
+    vehicles?: VehicleCreateNestedManyWithoutShopInput
+    inventory?: inventoryCreateNestedManyWithoutShopInput
+    invoice?: invoiceCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUncheckedCreateWithoutOwnerInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    customers?: customerUncheckedCreateNestedManyWithoutShopInput
+    technicians?: technicianUncheckedCreateNestedManyWithoutShopInput
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutShopInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutShopInput
+    inventory?: inventoryUncheckedCreateNestedManyWithoutShopInput
+    invoice?: invoiceUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type shopCreateOrConnectWithoutOwnerInput = {
+    where: shopWhereUniqueInput
+    create: XOR<shopCreateWithoutOwnerInput, shopUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type shopUpsertWithoutOwnerInput = {
+    update: XOR<shopUpdateWithoutOwnerInput, shopUncheckedUpdateWithoutOwnerInput>
+    create: XOR<shopCreateWithoutOwnerInput, shopUncheckedCreateWithoutOwnerInput>
+    where?: shopWhereInput
+  }
+
+  export type shopUpdateToOneWithWhereWithoutOwnerInput = {
+    where?: shopWhereInput
+    data: XOR<shopUpdateWithoutOwnerInput, shopUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type shopUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    customers?: customerUpdateManyWithoutShopNestedInput
+    technicians?: technicianUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopUncheckedUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    customers?: customerUncheckedUpdateManyWithoutShopNestedInput
+    technicians?: technicianUncheckedUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUncheckedUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUncheckedUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUncheckedUpdateManyWithoutShopNestedInput
+  }
+
   export type repairTicketCreateWithoutCustomerInput = {
     issueCategory: string
     description: string
@@ -18364,6 +20736,7 @@ export namespace Prisma {
     manufacturer?: string | null
     technician?: technicianCreateNestedOneWithoutTicketsInput
     vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    shop: shopCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
@@ -18390,6 +20763,7 @@ export namespace Prisma {
     manufacturer?: string | null
     technicianId?: string | null
     vehicleId?: number | null
+    shopId: string
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
@@ -18426,6 +20800,7 @@ export namespace Prisma {
     controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
+    shop: shopCreateNestedOneWithoutVehiclesInput
     tickets?: repairTicketCreateNestedManyWithoutVehicleInput
   }
 
@@ -18450,6 +20825,7 @@ export namespace Prisma {
     controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
+    shopId: string
     tickets?: repairTicketUncheckedCreateNestedManyWithoutVehicleInput
   }
 
@@ -18461,6 +20837,39 @@ export namespace Prisma {
   export type VehicleCreateManyCustomerInputEnvelope = {
     data: VehicleCreateManyCustomerInput | VehicleCreateManyCustomerInput[]
     skipDuplicates?: boolean
+  }
+
+  export type shopCreateWithoutCustomersInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    owner: UserCreateNestedOneWithoutShopInput
+    technicians?: technicianCreateNestedManyWithoutShopInput
+    tickets?: repairTicketCreateNestedManyWithoutShopInput
+    vehicles?: VehicleCreateNestedManyWithoutShopInput
+    inventory?: inventoryCreateNestedManyWithoutShopInput
+    invoice?: invoiceCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUncheckedCreateWithoutCustomersInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    ownerId: string
+    technicians?: technicianUncheckedCreateNestedManyWithoutShopInput
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutShopInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutShopInput
+    inventory?: inventoryUncheckedCreateNestedManyWithoutShopInput
+    invoice?: invoiceUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type shopCreateOrConnectWithoutCustomersInput = {
+    where: shopWhereUniqueInput
+    create: XOR<shopCreateWithoutCustomersInput, shopUncheckedCreateWithoutCustomersInput>
   }
 
   export type repairTicketUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -18503,6 +20912,7 @@ export namespace Prisma {
     customerId?: StringFilter<"repairTicket"> | string
     technicianId?: StringNullableFilter<"repairTicket"> | string | null
     vehicleId?: IntNullableFilter<"repairTicket"> | number | null
+    shopId?: StringFilter<"repairTicket"> | string
   }
 
   export type VehicleUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -18546,6 +20956,46 @@ export namespace Prisma {
     healthScore?: IntNullableFilter<"Vehicle"> | number | null
     lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     customerId?: StringFilter<"Vehicle"> | string
+    shopId?: StringFilter<"Vehicle"> | string
+  }
+
+  export type shopUpsertWithoutCustomersInput = {
+    update: XOR<shopUpdateWithoutCustomersInput, shopUncheckedUpdateWithoutCustomersInput>
+    create: XOR<shopCreateWithoutCustomersInput, shopUncheckedCreateWithoutCustomersInput>
+    where?: shopWhereInput
+  }
+
+  export type shopUpdateToOneWithWhereWithoutCustomersInput = {
+    where?: shopWhereInput
+    data: XOR<shopUpdateWithoutCustomersInput, shopUncheckedUpdateWithoutCustomersInput>
+  }
+
+  export type shopUpdateWithoutCustomersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutShopNestedInput
+    technicians?: technicianUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopUncheckedUpdateWithoutCustomersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    technicians?: technicianUncheckedUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUncheckedUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUncheckedUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUncheckedUpdateManyWithoutShopNestedInput
   }
 
   export type customerCreateWithoutTicketsInput = {
@@ -18556,6 +21006,7 @@ export namespace Prisma {
     address?: string | null
     createdAt?: Date | string
     vehicles?: VehicleCreateNestedManyWithoutCustomerInput
+    shop: shopCreateNestedOneWithoutCustomersInput
   }
 
   export type customerUncheckedCreateWithoutTicketsInput = {
@@ -18565,6 +21016,7 @@ export namespace Prisma {
     phone: string
     address?: string | null
     createdAt?: Date | string
+    shopId: string
     vehicles?: VehicleUncheckedCreateNestedManyWithoutCustomerInput
   }
 
@@ -18586,6 +21038,7 @@ export namespace Prisma {
     profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    shop: shopCreateNestedOneWithoutTechniciansInput
   }
 
   export type technicianUncheckedCreateWithoutTicketsInput = {
@@ -18601,6 +21054,7 @@ export namespace Prisma {
     profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    shopId: string
   }
 
   export type technicianCreateOrConnectWithoutTicketsInput = {
@@ -18629,6 +21083,7 @@ export namespace Prisma {
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customer: customerCreateNestedOneWithoutVehiclesInput
+    shop: shopCreateNestedOneWithoutVehiclesInput
   }
 
   export type VehicleUncheckedCreateWithoutTicketsInput = {
@@ -18653,11 +21108,45 @@ export namespace Prisma {
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customerId: string
+    shopId: string
   }
 
   export type VehicleCreateOrConnectWithoutTicketsInput = {
     where: VehicleWhereUniqueInput
     create: XOR<VehicleCreateWithoutTicketsInput, VehicleUncheckedCreateWithoutTicketsInput>
+  }
+
+  export type shopCreateWithoutTicketsInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    owner: UserCreateNestedOneWithoutShopInput
+    customers?: customerCreateNestedManyWithoutShopInput
+    technicians?: technicianCreateNestedManyWithoutShopInput
+    vehicles?: VehicleCreateNestedManyWithoutShopInput
+    inventory?: inventoryCreateNestedManyWithoutShopInput
+    invoice?: invoiceCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUncheckedCreateWithoutTicketsInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    ownerId: string
+    customers?: customerUncheckedCreateNestedManyWithoutShopInput
+    technicians?: technicianUncheckedCreateNestedManyWithoutShopInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutShopInput
+    inventory?: inventoryUncheckedCreateNestedManyWithoutShopInput
+    invoice?: invoiceUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type shopCreateOrConnectWithoutTicketsInput = {
+    where: shopWhereUniqueInput
+    create: XOR<shopCreateWithoutTicketsInput, shopUncheckedCreateWithoutTicketsInput>
   }
 
   export type technicianNoteCreateWithoutTicketInput = {
@@ -18754,6 +21243,7 @@ export namespace Prisma {
     saleType: $Enums.SaleType
     createdAt?: Date | string
     updatedAt?: Date | string
+    shop: shopCreateNestedOneWithoutInvoiceInput
   }
 
   export type invoiceUncheckedCreateWithoutTicketInput = {
@@ -18774,6 +21264,7 @@ export namespace Prisma {
     paymentMethod?: string
     notes?: string
     saleType: $Enums.SaleType
+    shopId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -18802,6 +21293,7 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehicles?: VehicleUpdateManyWithoutCustomerNestedInput
+    shop?: shopUpdateOneRequiredWithoutCustomersNestedInput
   }
 
   export type customerUncheckedUpdateWithoutTicketsInput = {
@@ -18811,6 +21303,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
     vehicles?: VehicleUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
@@ -18838,6 +21331,7 @@ export namespace Prisma {
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: shopUpdateOneRequiredWithoutTechniciansNestedInput
   }
 
   export type technicianUncheckedUpdateWithoutTicketsInput = {
@@ -18853,6 +21347,7 @@ export namespace Prisma {
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type VehicleUpsertWithoutTicketsInput = {
@@ -18887,6 +21382,7 @@ export namespace Prisma {
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: customerUpdateOneRequiredWithoutVehiclesNestedInput
+    shop?: shopUpdateOneRequiredWithoutVehiclesNestedInput
   }
 
   export type VehicleUncheckedUpdateWithoutTicketsInput = {
@@ -18911,6 +21407,46 @@ export namespace Prisma {
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customerId?: StringFieldUpdateOperationsInput | string
+    shopId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type shopUpsertWithoutTicketsInput = {
+    update: XOR<shopUpdateWithoutTicketsInput, shopUncheckedUpdateWithoutTicketsInput>
+    create: XOR<shopCreateWithoutTicketsInput, shopUncheckedCreateWithoutTicketsInput>
+    where?: shopWhereInput
+  }
+
+  export type shopUpdateToOneWithWhereWithoutTicketsInput = {
+    where?: shopWhereInput
+    data: XOR<shopUpdateWithoutTicketsInput, shopUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type shopUpdateWithoutTicketsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutShopNestedInput
+    customers?: customerUpdateManyWithoutShopNestedInput
+    technicians?: technicianUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopUncheckedUpdateWithoutTicketsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    customers?: customerUncheckedUpdateManyWithoutShopNestedInput
+    technicians?: technicianUncheckedUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUncheckedUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUncheckedUpdateManyWithoutShopNestedInput
   }
 
   export type technicianNoteUpsertWithWhereUniqueWithoutTicketInput = {
@@ -19027,6 +21563,7 @@ export namespace Prisma {
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: shopUpdateOneRequiredWithoutInvoiceNestedInput
   }
 
   export type invoiceUncheckedUpdateWithoutTicketInput = {
@@ -19047,6 +21584,7 @@ export namespace Prisma {
     paymentMethod?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
     saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
+    shopId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19071,6 +21609,7 @@ export namespace Prisma {
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
     vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    shop: shopCreateNestedOneWithoutTicketsInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
     invoice?: invoiceCreateNestedOneWithoutTicketInput
@@ -19097,6 +21636,7 @@ export namespace Prisma {
     customerId: string
     technicianId?: string | null
     vehicleId?: number | null
+    shopId: string
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
     invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
@@ -19138,6 +21678,7 @@ export namespace Prisma {
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
     vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    shop?: shopUpdateOneRequiredWithoutTicketsNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
     invoice?: invoiceUpdateOneWithoutTicketNestedInput
@@ -19164,6 +21705,7 @@ export namespace Prisma {
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
     invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
@@ -19189,6 +21731,7 @@ export namespace Prisma {
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
     vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    shop: shopCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
     invoice?: invoiceCreateNestedOneWithoutTicketInput
@@ -19215,6 +21758,7 @@ export namespace Prisma {
     customerId: string
     technicianId?: string | null
     vehicleId?: number | null
+    shopId: string
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
     invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
@@ -19256,6 +21800,7 @@ export namespace Prisma {
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
     vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    shop?: shopUpdateOneRequiredWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
     invoice?: invoiceUpdateOneWithoutTicketNestedInput
@@ -19282,6 +21827,7 @@ export namespace Prisma {
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
     invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
@@ -19307,6 +21853,7 @@ export namespace Prisma {
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
     vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    shop: shopCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     invoice?: invoiceCreateNestedOneWithoutTicketInput
@@ -19333,6 +21880,7 @@ export namespace Prisma {
     customerId: string
     technicianId?: string | null
     vehicleId?: number | null
+    shopId: string
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
@@ -19352,6 +21900,7 @@ export namespace Prisma {
     lowStockAlert?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    shop: shopCreateNestedOneWithoutInventoryInput
   }
 
   export type inventoryUncheckedCreateWithoutUsageHistoryInput = {
@@ -19364,6 +21913,7 @@ export namespace Prisma {
     lowStockAlert?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    shopId: string
   }
 
   export type inventoryCreateOrConnectWithoutUsageHistoryInput = {
@@ -19402,6 +21952,7 @@ export namespace Prisma {
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
     vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    shop?: shopUpdateOneRequiredWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     invoice?: invoiceUpdateOneWithoutTicketNestedInput
@@ -19428,6 +21979,7 @@ export namespace Prisma {
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
@@ -19453,6 +22005,7 @@ export namespace Prisma {
     lowStockAlert?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shop?: shopUpdateOneRequiredWithoutInventoryNestedInput
   }
 
   export type inventoryUncheckedUpdateWithoutUsageHistoryInput = {
@@ -19465,6 +22018,40 @@ export namespace Prisma {
     lowStockAlert?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type shopCreateWithoutInventoryInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    owner: UserCreateNestedOneWithoutShopInput
+    customers?: customerCreateNestedManyWithoutShopInput
+    technicians?: technicianCreateNestedManyWithoutShopInput
+    tickets?: repairTicketCreateNestedManyWithoutShopInput
+    vehicles?: VehicleCreateNestedManyWithoutShopInput
+    invoice?: invoiceCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUncheckedCreateWithoutInventoryInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    ownerId: string
+    customers?: customerUncheckedCreateNestedManyWithoutShopInput
+    technicians?: technicianUncheckedCreateNestedManyWithoutShopInput
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutShopInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutShopInput
+    invoice?: invoiceUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type shopCreateOrConnectWithoutInventoryInput = {
+    where: shopWhereUniqueInput
+    create: XOR<shopCreateWithoutInventoryInput, shopUncheckedCreateWithoutInventoryInput>
   }
 
   export type usedPartCreateWithoutInventoryItemInput = {
@@ -19490,6 +22077,45 @@ export namespace Prisma {
   export type usedPartCreateManyInventoryItemInputEnvelope = {
     data: usedPartCreateManyInventoryItemInput | usedPartCreateManyInventoryItemInput[]
     skipDuplicates?: boolean
+  }
+
+  export type shopUpsertWithoutInventoryInput = {
+    update: XOR<shopUpdateWithoutInventoryInput, shopUncheckedUpdateWithoutInventoryInput>
+    create: XOR<shopCreateWithoutInventoryInput, shopUncheckedCreateWithoutInventoryInput>
+    where?: shopWhereInput
+  }
+
+  export type shopUpdateToOneWithWhereWithoutInventoryInput = {
+    where?: shopWhereInput
+    data: XOR<shopUpdateWithoutInventoryInput, shopUncheckedUpdateWithoutInventoryInput>
+  }
+
+  export type shopUpdateWithoutInventoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutShopNestedInput
+    customers?: customerUpdateManyWithoutShopNestedInput
+    technicians?: technicianUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopUncheckedUpdateWithoutInventoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    customers?: customerUncheckedUpdateManyWithoutShopNestedInput
+    technicians?: technicianUncheckedUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUncheckedUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUncheckedUpdateManyWithoutShopNestedInput
   }
 
   export type usedPartUpsertWithWhereUniqueWithoutInventoryItemInput = {
@@ -19528,6 +22154,7 @@ export namespace Prisma {
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
     vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    shop: shopCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
@@ -19554,6 +22181,7 @@ export namespace Prisma {
     customerId: string
     technicianId?: string | null
     vehicleId?: number | null
+    shopId: string
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
@@ -19562,6 +22190,39 @@ export namespace Prisma {
   export type repairTicketCreateOrConnectWithoutInvoiceInput = {
     where: repairTicketWhereUniqueInput
     create: XOR<repairTicketCreateWithoutInvoiceInput, repairTicketUncheckedCreateWithoutInvoiceInput>
+  }
+
+  export type shopCreateWithoutInvoiceInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    owner: UserCreateNestedOneWithoutShopInput
+    customers?: customerCreateNestedManyWithoutShopInput
+    technicians?: technicianCreateNestedManyWithoutShopInput
+    tickets?: repairTicketCreateNestedManyWithoutShopInput
+    vehicles?: VehicleCreateNestedManyWithoutShopInput
+    inventory?: inventoryCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUncheckedCreateWithoutInvoiceInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    ownerId: string
+    customers?: customerUncheckedCreateNestedManyWithoutShopInput
+    technicians?: technicianUncheckedCreateNestedManyWithoutShopInput
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutShopInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutShopInput
+    inventory?: inventoryUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type shopCreateOrConnectWithoutInvoiceInput = {
+    where: shopWhereUniqueInput
+    create: XOR<shopCreateWithoutInvoiceInput, shopUncheckedCreateWithoutInvoiceInput>
   }
 
   export type repairTicketUpsertWithoutInvoiceInput = {
@@ -19595,6 +22256,7 @@ export namespace Prisma {
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
     vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    shop?: shopUpdateOneRequiredWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
@@ -19621,9 +22283,82 @@ export namespace Prisma {
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type shopUpsertWithoutInvoiceInput = {
+    update: XOR<shopUpdateWithoutInvoiceInput, shopUncheckedUpdateWithoutInvoiceInput>
+    create: XOR<shopCreateWithoutInvoiceInput, shopUncheckedCreateWithoutInvoiceInput>
+    where?: shopWhereInput
+  }
+
+  export type shopUpdateToOneWithWhereWithoutInvoiceInput = {
+    where?: shopWhereInput
+    data: XOR<shopUpdateWithoutInvoiceInput, shopUncheckedUpdateWithoutInvoiceInput>
+  }
+
+  export type shopUpdateWithoutInvoiceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutShopNestedInput
+    customers?: customerUpdateManyWithoutShopNestedInput
+    technicians?: technicianUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopUncheckedUpdateWithoutInvoiceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    customers?: customerUncheckedUpdateManyWithoutShopNestedInput
+    technicians?: technicianUncheckedUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUncheckedUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUncheckedUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopCreateWithoutTechniciansInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    owner: UserCreateNestedOneWithoutShopInput
+    customers?: customerCreateNestedManyWithoutShopInput
+    tickets?: repairTicketCreateNestedManyWithoutShopInput
+    vehicles?: VehicleCreateNestedManyWithoutShopInput
+    inventory?: inventoryCreateNestedManyWithoutShopInput
+    invoice?: invoiceCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUncheckedCreateWithoutTechniciansInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    ownerId: string
+    customers?: customerUncheckedCreateNestedManyWithoutShopInput
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutShopInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutShopInput
+    inventory?: inventoryUncheckedCreateNestedManyWithoutShopInput
+    invoice?: invoiceUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type shopCreateOrConnectWithoutTechniciansInput = {
+    where: shopWhereUniqueInput
+    create: XOR<shopCreateWithoutTechniciansInput, shopUncheckedCreateWithoutTechniciansInput>
   }
 
   export type repairTicketCreateWithoutTechnicianInput = {
@@ -19645,6 +22380,7 @@ export namespace Prisma {
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
     vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    shop: shopCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
@@ -19671,6 +22407,7 @@ export namespace Prisma {
     manufacturer?: string | null
     customerId: string
     vehicleId?: number | null
+    shopId: string
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
@@ -19685,6 +22422,45 @@ export namespace Prisma {
   export type repairTicketCreateManyTechnicianInputEnvelope = {
     data: repairTicketCreateManyTechnicianInput | repairTicketCreateManyTechnicianInput[]
     skipDuplicates?: boolean
+  }
+
+  export type shopUpsertWithoutTechniciansInput = {
+    update: XOR<shopUpdateWithoutTechniciansInput, shopUncheckedUpdateWithoutTechniciansInput>
+    create: XOR<shopCreateWithoutTechniciansInput, shopUncheckedCreateWithoutTechniciansInput>
+    where?: shopWhereInput
+  }
+
+  export type shopUpdateToOneWithWhereWithoutTechniciansInput = {
+    where?: shopWhereInput
+    data: XOR<shopUpdateWithoutTechniciansInput, shopUncheckedUpdateWithoutTechniciansInput>
+  }
+
+  export type shopUpdateWithoutTechniciansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutShopNestedInput
+    customers?: customerUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopUncheckedUpdateWithoutTechniciansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    customers?: customerUncheckedUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUncheckedUpdateManyWithoutShopNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUncheckedUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUncheckedUpdateManyWithoutShopNestedInput
   }
 
   export type repairTicketUpsertWithWhereUniqueWithoutTechnicianInput = {
@@ -19711,6 +22487,7 @@ export namespace Prisma {
     address?: string | null
     createdAt?: Date | string
     tickets?: repairTicketCreateNestedManyWithoutCustomerInput
+    shop: shopCreateNestedOneWithoutCustomersInput
   }
 
   export type customerUncheckedCreateWithoutVehiclesInput = {
@@ -19720,12 +22497,46 @@ export namespace Prisma {
     phone: string
     address?: string | null
     createdAt?: Date | string
+    shopId: string
     tickets?: repairTicketUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type customerCreateOrConnectWithoutVehiclesInput = {
     where: customerWhereUniqueInput
     create: XOR<customerCreateWithoutVehiclesInput, customerUncheckedCreateWithoutVehiclesInput>
+  }
+
+  export type shopCreateWithoutVehiclesInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    owner: UserCreateNestedOneWithoutShopInput
+    customers?: customerCreateNestedManyWithoutShopInput
+    technicians?: technicianCreateNestedManyWithoutShopInput
+    tickets?: repairTicketCreateNestedManyWithoutShopInput
+    inventory?: inventoryCreateNestedManyWithoutShopInput
+    invoice?: invoiceCreateNestedManyWithoutShopInput
+  }
+
+  export type shopUncheckedCreateWithoutVehiclesInput = {
+    id?: string
+    shopName: string
+    shopAddress?: string | null
+    gstNumber?: string | null
+    shopPhone?: string | null
+    ownerId: string
+    customers?: customerUncheckedCreateNestedManyWithoutShopInput
+    technicians?: technicianUncheckedCreateNestedManyWithoutShopInput
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutShopInput
+    inventory?: inventoryUncheckedCreateNestedManyWithoutShopInput
+    invoice?: invoiceUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type shopCreateOrConnectWithoutVehiclesInput = {
+    where: shopWhereUniqueInput
+    create: XOR<shopCreateWithoutVehiclesInput, shopUncheckedCreateWithoutVehiclesInput>
   }
 
   export type repairTicketCreateWithoutVehicleInput = {
@@ -19747,6 +22558,7 @@ export namespace Prisma {
     manufacturer?: string | null
     customer: customerCreateNestedOneWithoutTicketsInput
     technician?: technicianCreateNestedOneWithoutTicketsInput
+    shop: shopCreateNestedOneWithoutTicketsInput
     notes?: technicianNoteCreateNestedManyWithoutTicketInput
     timeline?: timelineEventCreateNestedManyWithoutTicketInput
     parts?: usedPartCreateNestedManyWithoutTicketInput
@@ -19773,6 +22585,7 @@ export namespace Prisma {
     manufacturer?: string | null
     customerId: string
     technicianId?: string | null
+    shopId: string
     notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
     timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
     parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
@@ -19808,6 +22621,7 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tickets?: repairTicketUpdateManyWithoutCustomerNestedInput
+    shop?: shopUpdateOneRequiredWithoutCustomersNestedInput
   }
 
   export type customerUncheckedUpdateWithoutVehiclesInput = {
@@ -19817,7 +22631,47 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shopId?: StringFieldUpdateOperationsInput | string
     tickets?: repairTicketUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type shopUpsertWithoutVehiclesInput = {
+    update: XOR<shopUpdateWithoutVehiclesInput, shopUncheckedUpdateWithoutVehiclesInput>
+    create: XOR<shopCreateWithoutVehiclesInput, shopUncheckedCreateWithoutVehiclesInput>
+    where?: shopWhereInput
+  }
+
+  export type shopUpdateToOneWithWhereWithoutVehiclesInput = {
+    where?: shopWhereInput
+    data: XOR<shopUpdateWithoutVehiclesInput, shopUncheckedUpdateWithoutVehiclesInput>
+  }
+
+  export type shopUpdateWithoutVehiclesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutShopNestedInput
+    customers?: customerUpdateManyWithoutShopNestedInput
+    technicians?: technicianUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUpdateManyWithoutShopNestedInput
+  }
+
+  export type shopUncheckedUpdateWithoutVehiclesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shopName?: StringFieldUpdateOperationsInput | string
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shopPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    customers?: customerUncheckedUpdateManyWithoutShopNestedInput
+    technicians?: technicianUncheckedUpdateManyWithoutShopNestedInput
+    tickets?: repairTicketUncheckedUpdateManyWithoutShopNestedInput
+    inventory?: inventoryUncheckedUpdateManyWithoutShopNestedInput
+    invoice?: invoiceUncheckedUpdateManyWithoutShopNestedInput
   }
 
   export type repairTicketUpsertWithWhereUniqueWithoutVehicleInput = {
@@ -19834,6 +22688,519 @@ export namespace Prisma {
   export type repairTicketUpdateManyWithWhereWithoutVehicleInput = {
     where: repairTicketScalarWhereInput
     data: XOR<repairTicketUpdateManyMutationInput, repairTicketUncheckedUpdateManyWithoutVehicleInput>
+  }
+
+  export type UserCreateWithoutShopInput = {
+    id?: string
+    email: string
+    name: string
+    password: string
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutShopInput = {
+    id?: string
+    email: string
+    name: string
+    password: string
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutShopInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutShopInput, UserUncheckedCreateWithoutShopInput>
+  }
+
+  export type customerCreateWithoutShopInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    address?: string | null
+    createdAt?: Date | string
+    tickets?: repairTicketCreateNestedManyWithoutCustomerInput
+    vehicles?: VehicleCreateNestedManyWithoutCustomerInput
+  }
+
+  export type customerUncheckedCreateWithoutShopInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    address?: string | null
+    createdAt?: Date | string
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutCustomerInput
+    vehicles?: VehicleUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type customerCreateOrConnectWithoutShopInput = {
+    where: customerWhereUniqueInput
+    create: XOR<customerCreateWithoutShopInput, customerUncheckedCreateWithoutShopInput>
+  }
+
+  export type customerCreateManyShopInputEnvelope = {
+    data: customerCreateManyShopInput | customerCreateManyShopInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type technicianCreateWithoutShopInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: $Enums.TechnicianSpecialization
+    status?: $Enums.TechnicianStatus
+    experienceYears: number
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tickets?: repairTicketCreateNestedManyWithoutTechnicianInput
+  }
+
+  export type technicianUncheckedCreateWithoutShopInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: $Enums.TechnicianSpecialization
+    status?: $Enums.TechnicianStatus
+    experienceYears: number
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutTechnicianInput
+  }
+
+  export type technicianCreateOrConnectWithoutShopInput = {
+    where: technicianWhereUniqueInput
+    create: XOR<technicianCreateWithoutShopInput, technicianUncheckedCreateWithoutShopInput>
+  }
+
+  export type technicianCreateManyShopInputEnvelope = {
+    data: technicianCreateManyShopInput | technicianCreateManyShopInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type repairTicketCreateWithoutShopInput = {
+    issueCategory: string
+    description: string
+    status?: $Enums.TicketStatus
+    bay?: string | null
+    priority?: $Enums.TicketPriority
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
+    aiSummary?: string | null
+    manufacturer?: string | null
+    customer: customerCreateNestedOneWithoutTicketsInput
+    technician?: technicianCreateNestedOneWithoutTicketsInput
+    vehicle?: VehicleCreateNestedOneWithoutTicketsInput
+    notes?: technicianNoteCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventCreateNestedManyWithoutTicketInput
+    parts?: usedPartCreateNestedManyWithoutTicketInput
+    invoice?: invoiceCreateNestedOneWithoutTicketInput
+  }
+
+  export type repairTicketUncheckedCreateWithoutShopInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: $Enums.TicketStatus
+    bay?: string | null
+    priority?: $Enums.TicketPriority
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
+    aiSummary?: string | null
+    manufacturer?: string | null
+    customerId: string
+    technicianId?: string | null
+    vehicleId?: number | null
+    notes?: technicianNoteUncheckedCreateNestedManyWithoutTicketInput
+    timeline?: timelineEventUncheckedCreateNestedManyWithoutTicketInput
+    parts?: usedPartUncheckedCreateNestedManyWithoutTicketInput
+    invoice?: invoiceUncheckedCreateNestedOneWithoutTicketInput
+  }
+
+  export type repairTicketCreateOrConnectWithoutShopInput = {
+    where: repairTicketWhereUniqueInput
+    create: XOR<repairTicketCreateWithoutShopInput, repairTicketUncheckedCreateWithoutShopInput>
+  }
+
+  export type repairTicketCreateManyShopInputEnvelope = {
+    data: repairTicketCreateManyShopInput | repairTicketCreateManyShopInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type VehicleCreateWithoutShopInput = {
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDate?: Date | string | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    customer: customerCreateNestedOneWithoutVehiclesInput
+    tickets?: repairTicketCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleUncheckedCreateWithoutShopInput = {
+    id?: number
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDate?: Date | string | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    customerId: string
+    tickets?: repairTicketUncheckedCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleCreateOrConnectWithoutShopInput = {
+    where: VehicleWhereUniqueInput
+    create: XOR<VehicleCreateWithoutShopInput, VehicleUncheckedCreateWithoutShopInput>
+  }
+
+  export type VehicleCreateManyShopInputEnvelope = {
+    data: VehicleCreateManyShopInput | VehicleCreateManyShopInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type inventoryCreateWithoutShopInput = {
+    partName: string
+    sku: string
+    category: string
+    stockLevel?: number
+    retailPrice: number
+    lowStockAlert?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    usageHistory?: usedPartCreateNestedManyWithoutInventoryItemInput
+  }
+
+  export type inventoryUncheckedCreateWithoutShopInput = {
+    id?: number
+    partName: string
+    sku: string
+    category: string
+    stockLevel?: number
+    retailPrice: number
+    lowStockAlert?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    usageHistory?: usedPartUncheckedCreateNestedManyWithoutInventoryItemInput
+  }
+
+  export type inventoryCreateOrConnectWithoutShopInput = {
+    where: inventoryWhereUniqueInput
+    create: XOR<inventoryCreateWithoutShopInput, inventoryUncheckedCreateWithoutShopInput>
+  }
+
+  export type inventoryCreateManyShopInputEnvelope = {
+    data: inventoryCreateManyShopInput | inventoryCreateManyShopInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type invoiceCreateWithoutShopInput = {
+    invoiceNo: string
+    shopName?: string | null
+    shopAddress?: string | null
+    gstNumber?: string | null
+    customerName: string
+    customerAddress?: string
+    customerPhone: string
+    items: JsonNullValueInput | InputJsonValue
+    laborCharge?: number
+    tax?: number
+    discount?: number
+    grandTotal: number
+    paymentStatus?: string
+    paymentMethod?: string
+    notes?: string
+    saleType: $Enums.SaleType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ticket?: repairTicketCreateNestedOneWithoutInvoiceInput
+  }
+
+  export type invoiceUncheckedCreateWithoutShopInput = {
+    id?: number
+    invoiceNo: string
+    shopName?: string | null
+    shopAddress?: string | null
+    gstNumber?: string | null
+    customerName: string
+    customerAddress?: string
+    customerPhone: string
+    items: JsonNullValueInput | InputJsonValue
+    laborCharge?: number
+    tax?: number
+    discount?: number
+    grandTotal: number
+    paymentStatus?: string
+    paymentMethod?: string
+    notes?: string
+    saleType: $Enums.SaleType
+    ticketId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type invoiceCreateOrConnectWithoutShopInput = {
+    where: invoiceWhereUniqueInput
+    create: XOR<invoiceCreateWithoutShopInput, invoiceUncheckedCreateWithoutShopInput>
+  }
+
+  export type invoiceCreateManyShopInputEnvelope = {
+    data: invoiceCreateManyShopInput | invoiceCreateManyShopInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutShopInput = {
+    update: XOR<UserUpdateWithoutShopInput, UserUncheckedUpdateWithoutShopInput>
+    create: XOR<UserCreateWithoutShopInput, UserUncheckedCreateWithoutShopInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutShopInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutShopInput, UserUncheckedUpdateWithoutShopInput>
+  }
+
+  export type UserUpdateWithoutShopInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutShopInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type customerUpsertWithWhereUniqueWithoutShopInput = {
+    where: customerWhereUniqueInput
+    update: XOR<customerUpdateWithoutShopInput, customerUncheckedUpdateWithoutShopInput>
+    create: XOR<customerCreateWithoutShopInput, customerUncheckedCreateWithoutShopInput>
+  }
+
+  export type customerUpdateWithWhereUniqueWithoutShopInput = {
+    where: customerWhereUniqueInput
+    data: XOR<customerUpdateWithoutShopInput, customerUncheckedUpdateWithoutShopInput>
+  }
+
+  export type customerUpdateManyWithWhereWithoutShopInput = {
+    where: customerScalarWhereInput
+    data: XOR<customerUpdateManyMutationInput, customerUncheckedUpdateManyWithoutShopInput>
+  }
+
+  export type customerScalarWhereInput = {
+    AND?: customerScalarWhereInput | customerScalarWhereInput[]
+    OR?: customerScalarWhereInput[]
+    NOT?: customerScalarWhereInput | customerScalarWhereInput[]
+    id?: StringFilter<"customer"> | string
+    name?: StringFilter<"customer"> | string
+    email?: StringNullableFilter<"customer"> | string | null
+    phone?: StringFilter<"customer"> | string
+    address?: StringNullableFilter<"customer"> | string | null
+    createdAt?: DateTimeFilter<"customer"> | Date | string
+    shopId?: StringFilter<"customer"> | string
+  }
+
+  export type technicianUpsertWithWhereUniqueWithoutShopInput = {
+    where: technicianWhereUniqueInput
+    update: XOR<technicianUpdateWithoutShopInput, technicianUncheckedUpdateWithoutShopInput>
+    create: XOR<technicianCreateWithoutShopInput, technicianUncheckedCreateWithoutShopInput>
+  }
+
+  export type technicianUpdateWithWhereUniqueWithoutShopInput = {
+    where: technicianWhereUniqueInput
+    data: XOR<technicianUpdateWithoutShopInput, technicianUncheckedUpdateWithoutShopInput>
+  }
+
+  export type technicianUpdateManyWithWhereWithoutShopInput = {
+    where: technicianScalarWhereInput
+    data: XOR<technicianUpdateManyMutationInput, technicianUncheckedUpdateManyWithoutShopInput>
+  }
+
+  export type technicianScalarWhereInput = {
+    AND?: technicianScalarWhereInput | technicianScalarWhereInput[]
+    OR?: technicianScalarWhereInput[]
+    NOT?: technicianScalarWhereInput | technicianScalarWhereInput[]
+    id?: StringFilter<"technician"> | string
+    fullName?: StringFilter<"technician"> | string
+    email?: StringFilter<"technician"> | string
+    phone?: StringFilter<"technician"> | string
+    employeeId?: StringFilter<"technician"> | string
+    specialization?: EnumTechnicianSpecializationFilter<"technician"> | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFilter<"technician"> | $Enums.TechnicianStatus
+    experienceYears?: IntFilter<"technician"> | number
+    address?: StringNullableFilter<"technician"> | string | null
+    profileImage?: StringNullableFilter<"technician"> | string | null
+    createdAt?: DateTimeFilter<"technician"> | Date | string
+    updatedAt?: DateTimeFilter<"technician"> | Date | string
+    shopId?: StringFilter<"technician"> | string
+  }
+
+  export type repairTicketUpsertWithWhereUniqueWithoutShopInput = {
+    where: repairTicketWhereUniqueInput
+    update: XOR<repairTicketUpdateWithoutShopInput, repairTicketUncheckedUpdateWithoutShopInput>
+    create: XOR<repairTicketCreateWithoutShopInput, repairTicketUncheckedCreateWithoutShopInput>
+  }
+
+  export type repairTicketUpdateWithWhereUniqueWithoutShopInput = {
+    where: repairTicketWhereUniqueInput
+    data: XOR<repairTicketUpdateWithoutShopInput, repairTicketUncheckedUpdateWithoutShopInput>
+  }
+
+  export type repairTicketUpdateManyWithWhereWithoutShopInput = {
+    where: repairTicketScalarWhereInput
+    data: XOR<repairTicketUpdateManyMutationInput, repairTicketUncheckedUpdateManyWithoutShopInput>
+  }
+
+  export type VehicleUpsertWithWhereUniqueWithoutShopInput = {
+    where: VehicleWhereUniqueInput
+    update: XOR<VehicleUpdateWithoutShopInput, VehicleUncheckedUpdateWithoutShopInput>
+    create: XOR<VehicleCreateWithoutShopInput, VehicleUncheckedCreateWithoutShopInput>
+  }
+
+  export type VehicleUpdateWithWhereUniqueWithoutShopInput = {
+    where: VehicleWhereUniqueInput
+    data: XOR<VehicleUpdateWithoutShopInput, VehicleUncheckedUpdateWithoutShopInput>
+  }
+
+  export type VehicleUpdateManyWithWhereWithoutShopInput = {
+    where: VehicleScalarWhereInput
+    data: XOR<VehicleUpdateManyMutationInput, VehicleUncheckedUpdateManyWithoutShopInput>
+  }
+
+  export type inventoryUpsertWithWhereUniqueWithoutShopInput = {
+    where: inventoryWhereUniqueInput
+    update: XOR<inventoryUpdateWithoutShopInput, inventoryUncheckedUpdateWithoutShopInput>
+    create: XOR<inventoryCreateWithoutShopInput, inventoryUncheckedCreateWithoutShopInput>
+  }
+
+  export type inventoryUpdateWithWhereUniqueWithoutShopInput = {
+    where: inventoryWhereUniqueInput
+    data: XOR<inventoryUpdateWithoutShopInput, inventoryUncheckedUpdateWithoutShopInput>
+  }
+
+  export type inventoryUpdateManyWithWhereWithoutShopInput = {
+    where: inventoryScalarWhereInput
+    data: XOR<inventoryUpdateManyMutationInput, inventoryUncheckedUpdateManyWithoutShopInput>
+  }
+
+  export type inventoryScalarWhereInput = {
+    AND?: inventoryScalarWhereInput | inventoryScalarWhereInput[]
+    OR?: inventoryScalarWhereInput[]
+    NOT?: inventoryScalarWhereInput | inventoryScalarWhereInput[]
+    id?: IntFilter<"inventory"> | number
+    partName?: StringFilter<"inventory"> | string
+    sku?: StringFilter<"inventory"> | string
+    category?: StringFilter<"inventory"> | string
+    stockLevel?: IntFilter<"inventory"> | number
+    retailPrice?: FloatFilter<"inventory"> | number
+    lowStockAlert?: IntFilter<"inventory"> | number
+    createdAt?: DateTimeFilter<"inventory"> | Date | string
+    updatedAt?: DateTimeFilter<"inventory"> | Date | string
+    shopId?: StringFilter<"inventory"> | string
+  }
+
+  export type invoiceUpsertWithWhereUniqueWithoutShopInput = {
+    where: invoiceWhereUniqueInput
+    update: XOR<invoiceUpdateWithoutShopInput, invoiceUncheckedUpdateWithoutShopInput>
+    create: XOR<invoiceCreateWithoutShopInput, invoiceUncheckedCreateWithoutShopInput>
+  }
+
+  export type invoiceUpdateWithWhereUniqueWithoutShopInput = {
+    where: invoiceWhereUniqueInput
+    data: XOR<invoiceUpdateWithoutShopInput, invoiceUncheckedUpdateWithoutShopInput>
+  }
+
+  export type invoiceUpdateManyWithWhereWithoutShopInput = {
+    where: invoiceScalarWhereInput
+    data: XOR<invoiceUpdateManyMutationInput, invoiceUncheckedUpdateManyWithoutShopInput>
+  }
+
+  export type invoiceScalarWhereInput = {
+    AND?: invoiceScalarWhereInput | invoiceScalarWhereInput[]
+    OR?: invoiceScalarWhereInput[]
+    NOT?: invoiceScalarWhereInput | invoiceScalarWhereInput[]
+    id?: IntFilter<"invoice"> | number
+    invoiceNo?: StringFilter<"invoice"> | string
+    shopName?: StringNullableFilter<"invoice"> | string | null
+    shopAddress?: StringNullableFilter<"invoice"> | string | null
+    gstNumber?: StringNullableFilter<"invoice"> | string | null
+    customerName?: StringFilter<"invoice"> | string
+    customerAddress?: StringFilter<"invoice"> | string
+    customerPhone?: StringFilter<"invoice"> | string
+    items?: JsonFilter<"invoice">
+    laborCharge?: FloatFilter<"invoice"> | number
+    tax?: FloatFilter<"invoice"> | number
+    discount?: FloatFilter<"invoice"> | number
+    grandTotal?: FloatFilter<"invoice"> | number
+    paymentStatus?: StringFilter<"invoice"> | string
+    paymentMethod?: StringFilter<"invoice"> | string
+    notes?: StringFilter<"invoice"> | string
+    saleType?: EnumSaleTypeFilter<"invoice"> | $Enums.SaleType
+    ticketId?: IntNullableFilter<"invoice"> | number | null
+    shopId?: StringFilter<"invoice"> | string
+    createdAt?: DateTimeFilter<"invoice"> | Date | string
+    updatedAt?: DateTimeFilter<"invoice"> | Date | string
   }
 
   export type repairTicketCreateManyCustomerInput = {
@@ -19856,6 +23223,7 @@ export namespace Prisma {
     manufacturer?: string | null
     technicianId?: string | null
     vehicleId?: number | null
+    shopId: string
   }
 
   export type VehicleCreateManyCustomerInput = {
@@ -19879,6 +23247,7 @@ export namespace Prisma {
     controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
+    shopId: string
   }
 
   export type repairTicketUpdateWithoutCustomerInput = {
@@ -19900,6 +23269,7 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technician?: technicianUpdateOneWithoutTicketsNestedInput
     vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    shop?: shopUpdateOneRequiredWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
@@ -19926,6 +23296,7 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
@@ -19952,6 +23323,7 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type VehicleUpdateWithoutCustomerInput = {
@@ -19974,6 +23346,7 @@ export namespace Prisma {
     controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shop?: shopUpdateOneRequiredWithoutVehiclesNestedInput
     tickets?: repairTicketUpdateManyWithoutVehicleNestedInput
   }
 
@@ -19998,6 +23371,7 @@ export namespace Prisma {
     controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shopId?: StringFieldUpdateOperationsInput | string
     tickets?: repairTicketUncheckedUpdateManyWithoutVehicleNestedInput
   }
 
@@ -20022,6 +23396,7 @@ export namespace Prisma {
     controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type technicianNoteCreateManyTicketInput = {
@@ -20168,6 +23543,7 @@ export namespace Prisma {
     manufacturer?: string | null
     customerId: string
     vehicleId?: number | null
+    shopId: string
   }
 
   export type repairTicketUpdateWithoutTechnicianInput = {
@@ -20189,6 +23565,7 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    shop?: shopUpdateOneRequiredWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
@@ -20215,6 +23592,7 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
@@ -20241,6 +23619,7 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    shopId?: StringFieldUpdateOperationsInput | string
   }
 
   export type repairTicketCreateManyVehicleInput = {
@@ -20263,6 +23642,7 @@ export namespace Prisma {
     manufacturer?: string | null
     customerId: string
     technicianId?: string | null
+    shopId: string
   }
 
   export type repairTicketUpdateWithoutVehicleInput = {
@@ -20284,6 +23664,7 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
     technician?: technicianUpdateOneWithoutTicketsNestedInput
+    shop?: shopUpdateOneRequiredWithoutTicketsNestedInput
     notes?: technicianNoteUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUpdateManyWithoutTicketNestedInput
     parts?: usedPartUpdateManyWithoutTicketNestedInput
@@ -20310,6 +23691,7 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    shopId?: StringFieldUpdateOperationsInput | string
     notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
     timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
     parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
@@ -20336,6 +23718,445 @@ export namespace Prisma {
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     customerId?: StringFieldUpdateOperationsInput | string
     technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    shopId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type customerCreateManyShopInput = {
+    id?: string
+    name: string
+    email?: string | null
+    phone: string
+    address?: string | null
+    createdAt?: Date | string
+  }
+
+  export type technicianCreateManyShopInput = {
+    id?: string
+    fullName: string
+    email: string
+    phone: string
+    employeeId: string
+    specialization: $Enums.TechnicianSpecialization
+    status?: $Enums.TechnicianStatus
+    experienceYears: number
+    address?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type repairTicketCreateManyShopInput = {
+    id?: number
+    issueCategory: string
+    description: string
+    status?: $Enums.TicketStatus
+    bay?: string | null
+    priority?: $Enums.TicketPriority
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    estimatedCost?: number | null
+    finalCost?: number | null
+    laborHours?: number
+    laborRate?: number
+    taxRate?: number
+    discount?: number
+    aiSummary?: string | null
+    manufacturer?: string | null
+    customerId: string
+    technicianId?: string | null
+    vehicleId?: number | null
+  }
+
+  export type VehicleCreateManyShopInput = {
+    id?: number
+    vin: string
+    vehicleModel: string
+    batteryPackSerial?: string | null
+    batteryCapacity?: string | null
+    batterySoh?: number | null
+    batteryCycles?: number | null
+    batteryTemp?: string | null
+    odometer?: string | null
+    lastServiceDate?: Date | string | null
+    manufacturer?: string | null
+    modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
+    healthScore?: number | null
+    lastAiCheck?: Date | string | null
+    customerId: string
+  }
+
+  export type inventoryCreateManyShopInput = {
+    id?: number
+    partName: string
+    sku: string
+    category: string
+    stockLevel?: number
+    retailPrice: number
+    lowStockAlert?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type invoiceCreateManyShopInput = {
+    id?: number
+    invoiceNo: string
+    shopName?: string | null
+    shopAddress?: string | null
+    gstNumber?: string | null
+    customerName: string
+    customerAddress?: string
+    customerPhone: string
+    items: JsonNullValueInput | InputJsonValue
+    laborCharge?: number
+    tax?: number
+    discount?: number
+    grandTotal: number
+    paymentStatus?: string
+    paymentMethod?: string
+    notes?: string
+    saleType: $Enums.SaleType
+    ticketId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type customerUpdateWithoutShopInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUpdateManyWithoutCustomerNestedInput
+    vehicles?: VehicleUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type customerUncheckedUpdateWithoutShopInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUncheckedUpdateManyWithoutCustomerNestedInput
+    vehicles?: VehicleUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type customerUncheckedUpdateManyWithoutShopInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type technicianUpdateWithoutShopInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUpdateManyWithoutTechnicianNestedInput
+  }
+
+  export type technicianUncheckedUpdateWithoutShopInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tickets?: repairTicketUncheckedUpdateManyWithoutTechnicianNestedInput
+  }
+
+  export type technicianUncheckedUpdateManyWithoutShopInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    specialization?: EnumTechnicianSpecializationFieldUpdateOperationsInput | $Enums.TechnicianSpecialization
+    status?: EnumTechnicianStatusFieldUpdateOperationsInput | $Enums.TechnicianStatus
+    experienceYears?: IntFieldUpdateOperationsInput | number
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type repairTicketUpdateWithoutShopInput = {
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    customer?: customerUpdateOneRequiredWithoutTicketsNestedInput
+    technician?: technicianUpdateOneWithoutTicketsNestedInput
+    vehicle?: VehicleUpdateOneWithoutTicketsNestedInput
+    notes?: technicianNoteUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUpdateOneWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateWithoutShopInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+    notes?: technicianNoteUncheckedUpdateManyWithoutTicketNestedInput
+    timeline?: timelineEventUncheckedUpdateManyWithoutTicketNestedInput
+    parts?: usedPartUncheckedUpdateManyWithoutTicketNestedInput
+    invoice?: invoiceUncheckedUpdateOneWithoutTicketNestedInput
+  }
+
+  export type repairTicketUncheckedUpdateManyWithoutShopInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    issueCategory?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
+    bay?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: EnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    finalCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    laborHours?: FloatFieldUpdateOperationsInput | number
+    laborRate?: FloatFieldUpdateOperationsInput | number
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    technicianId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type VehicleUpdateWithoutShopInput = {
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer?: customerUpdateOneRequiredWithoutVehiclesNestedInput
+    tickets?: repairTicketUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateWithoutShopInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    tickets?: repairTicketUncheckedUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateManyWithoutShopInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vin?: StringFieldUpdateOperationsInput | string
+    vehicleModel?: StringFieldUpdateOperationsInput | string
+    batteryPackSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    batteryCapacity?: NullableStringFieldUpdateOperationsInput | string | null
+    batterySoh?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
+    batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
+    odometer?: NullableStringFieldUpdateOperationsInput | string | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    healthScore?: NullableIntFieldUpdateOperationsInput | number | null
+    lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type inventoryUpdateWithoutShopInput = {
+    partName?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    stockLevel?: IntFieldUpdateOperationsInput | number
+    retailPrice?: FloatFieldUpdateOperationsInput | number
+    lowStockAlert?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usageHistory?: usedPartUpdateManyWithoutInventoryItemNestedInput
+  }
+
+  export type inventoryUncheckedUpdateWithoutShopInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    partName?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    stockLevel?: IntFieldUpdateOperationsInput | number
+    retailPrice?: FloatFieldUpdateOperationsInput | number
+    lowStockAlert?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usageHistory?: usedPartUncheckedUpdateManyWithoutInventoryItemNestedInput
+  }
+
+  export type inventoryUncheckedUpdateManyWithoutShopInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    partName?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    stockLevel?: IntFieldUpdateOperationsInput | number
+    retailPrice?: FloatFieldUpdateOperationsInput | number
+    lowStockAlert?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type invoiceUpdateWithoutShopInput = {
+    invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: NullableStringFieldUpdateOperationsInput | string | null
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    items?: JsonNullValueInput | InputJsonValue
+    laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    grandTotal?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: StringFieldUpdateOperationsInput | string
+    paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ticket?: repairTicketUpdateOneWithoutInvoiceNestedInput
+  }
+
+  export type invoiceUncheckedUpdateWithoutShopInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: NullableStringFieldUpdateOperationsInput | string | null
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    items?: JsonNullValueInput | InputJsonValue
+    laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    grandTotal?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: StringFieldUpdateOperationsInput | string
+    paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
+    ticketId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type invoiceUncheckedUpdateManyWithoutShopInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    invoiceNo?: StringFieldUpdateOperationsInput | string
+    shopName?: NullableStringFieldUpdateOperationsInput | string | null
+    shopAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    gstNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerAddress?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    items?: JsonNullValueInput | InputJsonValue
+    laborCharge?: FloatFieldUpdateOperationsInput | number
+    tax?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    grandTotal?: FloatFieldUpdateOperationsInput | number
+    paymentStatus?: StringFieldUpdateOperationsInput | string
+    paymentMethod?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    saleType?: EnumSaleTypeFieldUpdateOperationsInput | $Enums.SaleType
+    ticketId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

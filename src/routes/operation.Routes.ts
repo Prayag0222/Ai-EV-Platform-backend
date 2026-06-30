@@ -1,8 +1,11 @@
 import { Router } from 'express';
 // 🔌 Import your fresh operational controller brains
-import { getOperationalTickets, updateTicketOperation } from '../controllers/operationController.js';
+import { getOperationalTickets, updateTicketOperation } from '../controllers/operation.Controller.js';
+import { authMiddleware } from '../middlewares/auth.Middleware.js';
 
 const router = Router();
+
+router.use(authMiddleware)
 
 /**
  * 🛰️ LANE 1: Fetching active shop cards

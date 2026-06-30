@@ -7,9 +7,11 @@ import {
   deleteInventoryItem,
   addStockToItem,
   deductStockFromItems,
-} from '../controllers/inventoryController.js';
+} from '../controllers/inventory.Controller.js';
+import { authMiddleware } from '../middlewares/auth.Middleware.js';
 
 const router = Router();
+router.use(authMiddleware)
 
 router.post('/', createInventoryItem);
 router.get('/search', searchInventory);

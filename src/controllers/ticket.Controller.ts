@@ -26,6 +26,8 @@ interface CreateTicketInputBody {
 export const createTicket = async (req: Request, res: Response): Promise<void> => {
   try {
     // 📥 1. Unpack ALL input variables arriving from our unified client form layout
+    const shopId = (req as any).user?.shopId
+    if (!shopId) throw new Error("TRANS_NO_SHOP");
     const { 
       customerId, 
       name, phone, vehicleModel, email, address, 
@@ -82,7 +84,8 @@ export const createTicket = async (req: Request, res: Response): Promise<void> =
             name,
             phone,
             email: email || null,
-            address: address || null
+            address: address || null,
+            shopId
           }
         });
 
@@ -99,12 +102,13 @@ export const createTicket = async (req: Request, res: Response): Promise<void> =
 
       // Find the existing vehicle tracker record by unique VIN index, or instantiate it if it's the vehicle's first visit
       const targetVehicle = await tx.vehicle.upsert({
-        where: { vin: resolvedVin },
+        where: { vin: resolvedVin,shopId },
         update: {}, // If vehicle exists, keep its historical floor telemetry completely untouched
         create: {
           vin: resolvedVin,
           vehicleModel: targetModel,
-          customerId: finalCustomerId
+          customerId: finalCustomerId,
+          shopId
         }
       });
 
@@ -117,9 +121,12 @@ export const createTicket = async (req: Request, res: Response): Promise<void> =
           priority: priority ?? TicketPriority.STANDARD,    
           customerId: finalCustomerId,
           vehicleId: targetVehicle.id, // ⚡ Fully linked! No more orphan arrays on the vehicle dashboard page
-          technicianId: technicianId || null
+          technicianId: technicianId || null,
+          shopId
         }
       });
+
+      
 
       // Initialize the tracking logging timeline
       await tx.timelineEvent.create({
@@ -141,6 +148,7 @@ export const createTicket = async (req: Request, res: Response): Promise<void> =
 
   } catch (err: unknown) {
     // 🛡️ Catch transaction thrown strings and transform them into semantic REST status errors
+    
     if (err instanceof Error) {
       if (err.message === "TRANS_CUSTOMER_NOT_FOUND") {
         res.status(404).json({ error: "Provided customer identity tracking badge not found inside database files." });
@@ -150,6 +158,10 @@ export const createTicket = async (req: Request, res: Response): Promise<void> =
         res.status(400).json({ error: "Missing walk-in customer parameters. Provide name, phone, and vehicleModel to register profile inline first." });
         return;
       }
+      if (err.message === "TRANS_NO_SHOP") {
+  res.status(403).json({ error: "Shop not found." });
+  return;
+}
     }
 
     // ✅ STRICT LINTER SHIELD: Guarding unknown catch instances to prevent environment compiler warnings
@@ -191,3 +203,5 @@ try {
     });
 }
 }
+
+

@@ -13,10 +13,13 @@ import {
   updateNote,
   deleteNote,
   updateRepairCosts
-} from '../controllers/technicianController.js';
+} from '../controllers/technician.Controller.js';
 
-import { getAssignedTickets,updateTicketProgress } from '../controllers/technicianDashboardController.js';
+import { getAssignedTickets,updateTicketProgress } from '../controllers/technicianDashboard.Controller.js';
+import { authMiddleware } from '../middlewares/auth.Middleware.js';
 const router = express.Router();
+
+router.use(authMiddleware)
 
 router.post('/createTechnician', createTechnician);
 router.get('/getAllTechnicians', getAllTechnicians);
