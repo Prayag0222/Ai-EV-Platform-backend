@@ -128,3 +128,232 @@ const telemetryUpdates: Record<string, unknown> = {};
     res.status(500).json({ success: false, message: "Database update transaction crash." });
   }
 }
+
+export async function getVehicleWorkspace(
+  req: Request,
+  res: Response
+): Promise<void> {
+  try {
+    const rawId = req.params.vehicleId;
+
+    if (!rawId) {
+      res.status(400).json({
+        success: false,
+        message: "Vehicle ID is required."
+      });
+      return;
+    }
+
+    const vehicleId = parseInt(String(rawId), 10);
+
+    if (isNaN(vehicleId)) {
+      res.status(400).json({
+        success: false,
+        message: "Invalid Vehicle ID."
+      });
+      return;
+    }
+
+    const vehicle = await prisma.vehicle.findUnique({
+      where: {
+        id: vehicleId
+      },
+      include: {
+        customer: true,
+        tickets: {
+          include: {
+            technician: true,
+            invoice: true,
+            parts: {
+              include: {
+                inventoryItem: true
+              }
+            },
+            timeline: true
+          },
+          orderBy: {
+            createdAt: "desc"
+          }
+        }
+      }
+    });
+
+    if (!vehicle) {
+      res.status(404).json({
+        success: false,
+        message: "Vehicle not found."
+      });
+      return;
+    }
+
+    const totalRepairs = vehicle.tickets.length;
+
+    const totalRevenue = vehicle.tickets.reduce(
+      (sum, ticket) => sum + (ticket.invoice?.grandTotal || 0),
+      0
+    );
+
+    const totalPartsConsumed = vehicle.tickets.reduce(
+      (sum, ticket) =>
+        sum +
+        ticket.parts.reduce(
+          (partSum, part) => partSum + part.quantity,
+          0
+        ),
+      0
+    );
+
+    const averageRepairCost =
+      totalRepairs > 0
+        ? Number((totalRevenue / totalRepairs).toFixed(2))
+        : 0;
+
+    const activeIssues = vehicle.tickets.filter(
+      (ticket) =>
+        ticket.status !== TicketStatus.RESOLVED &&
+        ticket.status !== TicketStatus.DELIVERED
+    ).length;
+
+const lastRepairDate = vehicle.tickets.at(0)?.createdAt ?? null;
+
+const activeTicket =
+  vehicle.tickets.find(
+    ticket =>
+      ticket.status !== TicketStatus.RESOLVED &&
+      ticket.status !== TicketStatus.DELIVERED
+  ) ?? null;
+
+const timeline = vehicle.tickets
+  .flatMap(ticket =>
+    ticket.timeline.map(event => ({
+      id: event.id,
+      status: event.status,
+      createdAt: event.createdAt,
+      ticketId: ticket.id
+    }))
+  )
+  .sort(
+    (a, b) =>
+      new Date(b.createdAt).getTime() -
+      new Date(a.createdAt).getTime()
+  );
+
+  const lastServiceDaysAgo = vehicle.lastServiceDate
+  ? Math.floor(
+      (Date.now() -
+        new Date(vehicle.lastServiceDate).getTime()) /
+        (1000 * 60 * 60 * 24)
+    )
+  : null;
+  
+
+
+    res.status(200).json({
+      success: true,
+      vehicle,
+      activeTicket,
+      timeline,
+      statistics: {
+        totalRepairs,
+        totalRevenue,
+        totalPartsConsumed,
+        averageRepairCost
+      },
+      healthSummary: {
+        healthScore: vehicle.healthScore,
+        lastRepairDate,
+        lastServiceDate:vehicle.lastServiceDate,
+        lastServiceDaysAgo,
+        activeIssues
+      }
+    });
+  } catch (error) {
+    console.error("Vehicle workspace fetch error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to load vehicle workspace."
+    });
+  }
+}
+
+export async function updateVehicleWorkspace(
+  req: Request,
+  res: Response
+): Promise<void> {
+  try {
+    const vehicleId = parseInt(String(req.params.vehicleId), 10);
+
+    if (isNaN(vehicleId)) {
+      res.status(400).json({
+        success: false,
+        message: "Invalid vehicle ID."
+      });
+      return;
+    }
+
+    const {
+      batteryPackSerial,
+      batteryCapacity,
+      batterySoh,
+      batteryCycles,
+      batteryTemp,
+      odometer,
+      lastServiceDaysAgo,
+      lastServiceDate,
+      manufacturer,
+      modelYear,
+      healthScore,
+
+      motorSerial,
+      motorType,
+      motorNotes,
+
+      controllerSerial,
+      controllerVersion,
+      controllerNotes
+    } = req.body;
+
+    const updatedVehicle = await prisma.vehicle.update({
+      where: {
+        id: vehicleId
+      },
+      data: {
+        batteryPackSerial,
+        batteryCapacity,
+        batterySoh,
+        batteryCycles,
+        batteryTemp,
+        odometer,
+        lastServiceDaysAgo,
+        lastServiceDate,
+        manufacturer,
+        modelYear,
+        healthScore,
+
+        motorSerial,
+        motorType,
+        motorNotes,
+
+        controllerSerial,
+        controllerVersion,
+        controllerNotes
+      }
+    });
+
+    
+
+
+    res.status(200).json({
+      success: true,
+      vehicle: updatedVehicle
+    });
+  } catch (error) {
+    console.error("Vehicle workspace update error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to update vehicle."
+    });
+  }
+}

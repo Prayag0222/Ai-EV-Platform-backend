@@ -296,10 +296,13 @@ const validatedStatus = newStatus as TicketStatus;
       return res.status(400).json({ success: false, message: "Ticket ID must be a number." });
     }
 
-    const existingTicket = await prisma.repairTicket.findUnique({
-      where: { id: ticketId },
-      select: { closedAt: true }
-    });
+   const existingTicket = await prisma.repairTicket.findUnique({
+  where: { id: ticketId },
+  select: {
+    closedAt: true,
+    vehicleId: true
+  }
+});
     if (!existingTicket) {
       return res.status(404).json({ success: false, message: "Repair ticket not found." });
     }
@@ -331,6 +334,19 @@ const validatedStatus = newStatus as TicketStatus;
       })
 
     ]);
+    if (
+  validatedStatus === TicketStatus.DELIVERED &&
+  existingTicket?.vehicleId
+) {
+  await prisma.vehicle.update({
+    where: {
+      id: existingTicket.vehicleId
+    },
+    data: {
+      lastServiceDate: new Date()
+    }
+  });
+}
 
     // 3. Return the newly created timeline event so the mobile UI can instantly draw it on screen
     return res.status(200).json({ 
@@ -339,6 +355,7 @@ const validatedStatus = newStatus as TicketStatus;
       ticket: updatedTicket,
       timelineEvent: newTimelineEvent 
     });
+    
 
   } catch (error) {
     console.error("Error updating mobile ticket status:", error);

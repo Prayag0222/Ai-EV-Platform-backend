@@ -234,10 +234,18 @@ model Vehicle {
   batteryCycles      Int?
   batteryTemp        String?
   odometer           String?
-  lastServiceDaysAgo Int?
+  lastServiceDate DateTime?
   manufacturer       String?
-
   modelYear Int?
+
+motorSerial String?
+motorType String?
+motorNotes String?
+
+controllerSerial String?
+controllerVersion String?
+controllerNotes String?
+
 
   healthScore Int?
 

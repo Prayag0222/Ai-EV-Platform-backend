@@ -12700,7 +12700,6 @@ export namespace Prisma {
     id: number | null
     batterySoh: number | null
     batteryCycles: number | null
-    lastServiceDaysAgo: number | null
     modelYear: number | null
     healthScore: number | null
   }
@@ -12709,7 +12708,6 @@ export namespace Prisma {
     id: number | null
     batterySoh: number | null
     batteryCycles: number | null
-    lastServiceDaysAgo: number | null
     modelYear: number | null
     healthScore: number | null
   }
@@ -12724,9 +12722,15 @@ export namespace Prisma {
     batteryCycles: number | null
     batteryTemp: string | null
     odometer: string | null
-    lastServiceDaysAgo: number | null
+    lastServiceDate: Date | null
     manufacturer: string | null
     modelYear: number | null
+    motorSerial: string | null
+    motorType: string | null
+    motorNotes: string | null
+    controllerSerial: string | null
+    controllerVersion: string | null
+    controllerNotes: string | null
     healthScore: number | null
     lastAiCheck: Date | null
     customerId: string | null
@@ -12742,9 +12746,15 @@ export namespace Prisma {
     batteryCycles: number | null
     batteryTemp: string | null
     odometer: string | null
-    lastServiceDaysAgo: number | null
+    lastServiceDate: Date | null
     manufacturer: string | null
     modelYear: number | null
+    motorSerial: string | null
+    motorType: string | null
+    motorNotes: string | null
+    controllerSerial: string | null
+    controllerVersion: string | null
+    controllerNotes: string | null
     healthScore: number | null
     lastAiCheck: Date | null
     customerId: string | null
@@ -12760,9 +12770,15 @@ export namespace Prisma {
     batteryCycles: number
     batteryTemp: number
     odometer: number
-    lastServiceDaysAgo: number
+    lastServiceDate: number
     manufacturer: number
     modelYear: number
+    motorSerial: number
+    motorType: number
+    motorNotes: number
+    controllerSerial: number
+    controllerVersion: number
+    controllerNotes: number
     healthScore: number
     lastAiCheck: number
     customerId: number
@@ -12774,7 +12790,6 @@ export namespace Prisma {
     id?: true
     batterySoh?: true
     batteryCycles?: true
-    lastServiceDaysAgo?: true
     modelYear?: true
     healthScore?: true
   }
@@ -12783,7 +12798,6 @@ export namespace Prisma {
     id?: true
     batterySoh?: true
     batteryCycles?: true
-    lastServiceDaysAgo?: true
     modelYear?: true
     healthScore?: true
   }
@@ -12798,9 +12812,15 @@ export namespace Prisma {
     batteryCycles?: true
     batteryTemp?: true
     odometer?: true
-    lastServiceDaysAgo?: true
+    lastServiceDate?: true
     manufacturer?: true
     modelYear?: true
+    motorSerial?: true
+    motorType?: true
+    motorNotes?: true
+    controllerSerial?: true
+    controllerVersion?: true
+    controllerNotes?: true
     healthScore?: true
     lastAiCheck?: true
     customerId?: true
@@ -12816,9 +12836,15 @@ export namespace Prisma {
     batteryCycles?: true
     batteryTemp?: true
     odometer?: true
-    lastServiceDaysAgo?: true
+    lastServiceDate?: true
     manufacturer?: true
     modelYear?: true
+    motorSerial?: true
+    motorType?: true
+    motorNotes?: true
+    controllerSerial?: true
+    controllerVersion?: true
+    controllerNotes?: true
     healthScore?: true
     lastAiCheck?: true
     customerId?: true
@@ -12834,9 +12860,15 @@ export namespace Prisma {
     batteryCycles?: true
     batteryTemp?: true
     odometer?: true
-    lastServiceDaysAgo?: true
+    lastServiceDate?: true
     manufacturer?: true
     modelYear?: true
+    motorSerial?: true
+    motorType?: true
+    motorNotes?: true
+    controllerSerial?: true
+    controllerVersion?: true
+    controllerNotes?: true
     healthScore?: true
     lastAiCheck?: true
     customerId?: true
@@ -12939,9 +12971,15 @@ export namespace Prisma {
     batteryCycles: number | null
     batteryTemp: string | null
     odometer: string | null
-    lastServiceDaysAgo: number | null
+    lastServiceDate: Date | null
     manufacturer: string | null
     modelYear: number | null
+    motorSerial: string | null
+    motorType: string | null
+    motorNotes: string | null
+    controllerSerial: string | null
+    controllerVersion: string | null
+    controllerNotes: string | null
     healthScore: number | null
     lastAiCheck: Date | null
     customerId: string
@@ -12976,9 +13014,15 @@ export namespace Prisma {
     batteryCycles?: boolean
     batteryTemp?: boolean
     odometer?: boolean
-    lastServiceDaysAgo?: boolean
+    lastServiceDate?: boolean
     manufacturer?: boolean
     modelYear?: boolean
+    motorSerial?: boolean
+    motorType?: boolean
+    motorNotes?: boolean
+    controllerSerial?: boolean
+    controllerVersion?: boolean
+    controllerNotes?: boolean
     healthScore?: boolean
     lastAiCheck?: boolean
     customerId?: boolean
@@ -12997,9 +13041,15 @@ export namespace Prisma {
     batteryCycles?: boolean
     batteryTemp?: boolean
     odometer?: boolean
-    lastServiceDaysAgo?: boolean
+    lastServiceDate?: boolean
     manufacturer?: boolean
     modelYear?: boolean
+    motorSerial?: boolean
+    motorType?: boolean
+    motorNotes?: boolean
+    controllerSerial?: boolean
+    controllerVersion?: boolean
+    controllerNotes?: boolean
     healthScore?: boolean
     lastAiCheck?: boolean
     customerId?: boolean
@@ -13016,9 +13066,15 @@ export namespace Prisma {
     batteryCycles?: boolean
     batteryTemp?: boolean
     odometer?: boolean
-    lastServiceDaysAgo?: boolean
+    lastServiceDate?: boolean
     manufacturer?: boolean
     modelYear?: boolean
+    motorSerial?: boolean
+    motorType?: boolean
+    motorNotes?: boolean
+    controllerSerial?: boolean
+    controllerVersion?: boolean
+    controllerNotes?: boolean
     healthScore?: boolean
     lastAiCheck?: boolean
     customerId?: boolean
@@ -13035,15 +13091,21 @@ export namespace Prisma {
     batteryCycles?: boolean
     batteryTemp?: boolean
     odometer?: boolean
-    lastServiceDaysAgo?: boolean
+    lastServiceDate?: boolean
     manufacturer?: boolean
     modelYear?: boolean
+    motorSerial?: boolean
+    motorType?: boolean
+    motorNotes?: boolean
+    controllerSerial?: boolean
+    controllerVersion?: boolean
+    controllerNotes?: boolean
     healthScore?: boolean
     lastAiCheck?: boolean
     customerId?: boolean
   }
 
-  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vin" | "vehicleModel" | "batteryPackSerial" | "batteryCapacity" | "batterySoh" | "batteryCycles" | "batteryTemp" | "odometer" | "lastServiceDaysAgo" | "manufacturer" | "modelYear" | "healthScore" | "lastAiCheck" | "customerId", ExtArgs["result"]["vehicle"]>
+  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vin" | "vehicleModel" | "batteryPackSerial" | "batteryCapacity" | "batterySoh" | "batteryCycles" | "batteryTemp" | "odometer" | "lastServiceDate" | "manufacturer" | "modelYear" | "motorSerial" | "motorType" | "motorNotes" | "controllerSerial" | "controllerVersion" | "controllerNotes" | "healthScore" | "lastAiCheck" | "customerId", ExtArgs["result"]["vehicle"]>
   export type VehicleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customerDefaultArgs<ExtArgs>
     tickets?: boolean | Vehicle$ticketsArgs<ExtArgs>
@@ -13072,9 +13134,15 @@ export namespace Prisma {
       batteryCycles: number | null
       batteryTemp: string | null
       odometer: string | null
-      lastServiceDaysAgo: number | null
+      lastServiceDate: Date | null
       manufacturer: string | null
       modelYear: number | null
+      motorSerial: string | null
+      motorType: string | null
+      motorNotes: string | null
+      controllerSerial: string | null
+      controllerVersion: string | null
+      controllerNotes: string | null
       healthScore: number | null
       lastAiCheck: Date | null
       customerId: string
@@ -13512,9 +13580,15 @@ export namespace Prisma {
     readonly batteryCycles: FieldRef<"Vehicle", 'Int'>
     readonly batteryTemp: FieldRef<"Vehicle", 'String'>
     readonly odometer: FieldRef<"Vehicle", 'String'>
-    readonly lastServiceDaysAgo: FieldRef<"Vehicle", 'Int'>
+    readonly lastServiceDate: FieldRef<"Vehicle", 'DateTime'>
     readonly manufacturer: FieldRef<"Vehicle", 'String'>
     readonly modelYear: FieldRef<"Vehicle", 'Int'>
+    readonly motorSerial: FieldRef<"Vehicle", 'String'>
+    readonly motorType: FieldRef<"Vehicle", 'String'>
+    readonly motorNotes: FieldRef<"Vehicle", 'String'>
+    readonly controllerSerial: FieldRef<"Vehicle", 'String'>
+    readonly controllerVersion: FieldRef<"Vehicle", 'String'>
+    readonly controllerNotes: FieldRef<"Vehicle", 'String'>
     readonly healthScore: FieldRef<"Vehicle", 'Int'>
     readonly lastAiCheck: FieldRef<"Vehicle", 'DateTime'>
     readonly customerId: FieldRef<"Vehicle", 'String'>
@@ -14135,9 +14209,15 @@ export namespace Prisma {
     batteryCycles: 'batteryCycles',
     batteryTemp: 'batteryTemp',
     odometer: 'odometer',
-    lastServiceDaysAgo: 'lastServiceDaysAgo',
+    lastServiceDate: 'lastServiceDate',
     manufacturer: 'manufacturer',
     modelYear: 'modelYear',
+    motorSerial: 'motorSerial',
+    motorType: 'motorType',
+    motorNotes: 'motorNotes',
+    controllerSerial: 'controllerSerial',
+    controllerVersion: 'controllerVersion',
+    controllerNotes: 'controllerNotes',
     healthScore: 'healthScore',
     lastAiCheck: 'lastAiCheck',
     customerId: 'customerId'
@@ -15146,9 +15226,15 @@ export namespace Prisma {
     batteryCycles?: IntNullableFilter<"Vehicle"> | number | null
     batteryTemp?: StringNullableFilter<"Vehicle"> | string | null
     odometer?: StringNullableFilter<"Vehicle"> | string | null
-    lastServiceDaysAgo?: IntNullableFilter<"Vehicle"> | number | null
+    lastServiceDate?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     manufacturer?: StringNullableFilter<"Vehicle"> | string | null
     modelYear?: IntNullableFilter<"Vehicle"> | number | null
+    motorSerial?: StringNullableFilter<"Vehicle"> | string | null
+    motorType?: StringNullableFilter<"Vehicle"> | string | null
+    motorNotes?: StringNullableFilter<"Vehicle"> | string | null
+    controllerSerial?: StringNullableFilter<"Vehicle"> | string | null
+    controllerVersion?: StringNullableFilter<"Vehicle"> | string | null
+    controllerNotes?: StringNullableFilter<"Vehicle"> | string | null
     healthScore?: IntNullableFilter<"Vehicle"> | number | null
     lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     customerId?: StringFilter<"Vehicle"> | string
@@ -15166,9 +15252,15 @@ export namespace Prisma {
     batteryCycles?: SortOrderInput | SortOrder
     batteryTemp?: SortOrderInput | SortOrder
     odometer?: SortOrderInput | SortOrder
-    lastServiceDaysAgo?: SortOrderInput | SortOrder
+    lastServiceDate?: SortOrderInput | SortOrder
     manufacturer?: SortOrderInput | SortOrder
     modelYear?: SortOrderInput | SortOrder
+    motorSerial?: SortOrderInput | SortOrder
+    motorType?: SortOrderInput | SortOrder
+    motorNotes?: SortOrderInput | SortOrder
+    controllerSerial?: SortOrderInput | SortOrder
+    controllerVersion?: SortOrderInput | SortOrder
+    controllerNotes?: SortOrderInput | SortOrder
     healthScore?: SortOrderInput | SortOrder
     lastAiCheck?: SortOrderInput | SortOrder
     customerId?: SortOrder
@@ -15189,9 +15281,15 @@ export namespace Prisma {
     batteryCycles?: IntNullableFilter<"Vehicle"> | number | null
     batteryTemp?: StringNullableFilter<"Vehicle"> | string | null
     odometer?: StringNullableFilter<"Vehicle"> | string | null
-    lastServiceDaysAgo?: IntNullableFilter<"Vehicle"> | number | null
+    lastServiceDate?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     manufacturer?: StringNullableFilter<"Vehicle"> | string | null
     modelYear?: IntNullableFilter<"Vehicle"> | number | null
+    motorSerial?: StringNullableFilter<"Vehicle"> | string | null
+    motorType?: StringNullableFilter<"Vehicle"> | string | null
+    motorNotes?: StringNullableFilter<"Vehicle"> | string | null
+    controllerSerial?: StringNullableFilter<"Vehicle"> | string | null
+    controllerVersion?: StringNullableFilter<"Vehicle"> | string | null
+    controllerNotes?: StringNullableFilter<"Vehicle"> | string | null
     healthScore?: IntNullableFilter<"Vehicle"> | number | null
     lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     customerId?: StringFilter<"Vehicle"> | string
@@ -15209,9 +15307,15 @@ export namespace Prisma {
     batteryCycles?: SortOrderInput | SortOrder
     batteryTemp?: SortOrderInput | SortOrder
     odometer?: SortOrderInput | SortOrder
-    lastServiceDaysAgo?: SortOrderInput | SortOrder
+    lastServiceDate?: SortOrderInput | SortOrder
     manufacturer?: SortOrderInput | SortOrder
     modelYear?: SortOrderInput | SortOrder
+    motorSerial?: SortOrderInput | SortOrder
+    motorType?: SortOrderInput | SortOrder
+    motorNotes?: SortOrderInput | SortOrder
+    controllerSerial?: SortOrderInput | SortOrder
+    controllerVersion?: SortOrderInput | SortOrder
+    controllerNotes?: SortOrderInput | SortOrder
     healthScore?: SortOrderInput | SortOrder
     lastAiCheck?: SortOrderInput | SortOrder
     customerId?: SortOrder
@@ -15235,9 +15339,15 @@ export namespace Prisma {
     batteryCycles?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
     batteryTemp?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
     odometer?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
-    lastServiceDaysAgo?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
+    lastServiceDate?: DateTimeNullableWithAggregatesFilter<"Vehicle"> | Date | string | null
     manufacturer?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
     modelYear?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
+    motorSerial?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    motorType?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    motorNotes?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    controllerSerial?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    controllerVersion?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    controllerNotes?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
     healthScore?: IntNullableWithAggregatesFilter<"Vehicle"> | number | null
     lastAiCheck?: DateTimeNullableWithAggregatesFilter<"Vehicle"> | Date | string | null
     customerId?: StringWithAggregatesFilter<"Vehicle"> | string
@@ -16119,9 +16229,15 @@ export namespace Prisma {
     batteryCycles?: number | null
     batteryTemp?: string | null
     odometer?: string | null
-    lastServiceDaysAgo?: number | null
+    lastServiceDate?: Date | string | null
     manufacturer?: string | null
     modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customer: customerCreateNestedOneWithoutVehiclesInput
@@ -16138,9 +16254,15 @@ export namespace Prisma {
     batteryCycles?: number | null
     batteryTemp?: string | null
     odometer?: string | null
-    lastServiceDaysAgo?: number | null
+    lastServiceDate?: Date | string | null
     manufacturer?: string | null
     modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customerId: string
@@ -16156,9 +16278,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: customerUpdateOneRequiredWithoutVehiclesNestedInput
@@ -16175,9 +16303,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -16194,9 +16328,15 @@ export namespace Prisma {
     batteryCycles?: number | null
     batteryTemp?: string | null
     odometer?: string | null
-    lastServiceDaysAgo?: number | null
+    lastServiceDate?: Date | string | null
     manufacturer?: string | null
     modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customerId: string
@@ -16211,9 +16351,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -16228,9 +16374,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -17180,9 +17332,15 @@ export namespace Prisma {
     batteryCycles?: SortOrder
     batteryTemp?: SortOrder
     odometer?: SortOrder
-    lastServiceDaysAgo?: SortOrder
+    lastServiceDate?: SortOrder
     manufacturer?: SortOrder
     modelYear?: SortOrder
+    motorSerial?: SortOrder
+    motorType?: SortOrder
+    motorNotes?: SortOrder
+    controllerSerial?: SortOrder
+    controllerVersion?: SortOrder
+    controllerNotes?: SortOrder
     healthScore?: SortOrder
     lastAiCheck?: SortOrder
     customerId?: SortOrder
@@ -17192,7 +17350,6 @@ export namespace Prisma {
     id?: SortOrder
     batterySoh?: SortOrder
     batteryCycles?: SortOrder
-    lastServiceDaysAgo?: SortOrder
     modelYear?: SortOrder
     healthScore?: SortOrder
   }
@@ -17207,9 +17364,15 @@ export namespace Prisma {
     batteryCycles?: SortOrder
     batteryTemp?: SortOrder
     odometer?: SortOrder
-    lastServiceDaysAgo?: SortOrder
+    lastServiceDate?: SortOrder
     manufacturer?: SortOrder
     modelYear?: SortOrder
+    motorSerial?: SortOrder
+    motorType?: SortOrder
+    motorNotes?: SortOrder
+    controllerSerial?: SortOrder
+    controllerVersion?: SortOrder
+    controllerNotes?: SortOrder
     healthScore?: SortOrder
     lastAiCheck?: SortOrder
     customerId?: SortOrder
@@ -17225,9 +17388,15 @@ export namespace Prisma {
     batteryCycles?: SortOrder
     batteryTemp?: SortOrder
     odometer?: SortOrder
-    lastServiceDaysAgo?: SortOrder
+    lastServiceDate?: SortOrder
     manufacturer?: SortOrder
     modelYear?: SortOrder
+    motorSerial?: SortOrder
+    motorType?: SortOrder
+    motorNotes?: SortOrder
+    controllerSerial?: SortOrder
+    controllerVersion?: SortOrder
+    controllerNotes?: SortOrder
     healthScore?: SortOrder
     lastAiCheck?: SortOrder
     customerId?: SortOrder
@@ -17237,7 +17406,6 @@ export namespace Prisma {
     id?: SortOrder
     batterySoh?: SortOrder
     batteryCycles?: SortOrder
-    lastServiceDaysAgo?: SortOrder
     modelYear?: SortOrder
     healthScore?: SortOrder
   }
@@ -18247,9 +18415,15 @@ export namespace Prisma {
     batteryCycles?: number | null
     batteryTemp?: string | null
     odometer?: string | null
-    lastServiceDaysAgo?: number | null
+    lastServiceDate?: Date | string | null
     manufacturer?: string | null
     modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     tickets?: repairTicketCreateNestedManyWithoutVehicleInput
@@ -18265,9 +18439,15 @@ export namespace Prisma {
     batteryCycles?: number | null
     batteryTemp?: string | null
     odometer?: string | null
-    lastServiceDaysAgo?: number | null
+    lastServiceDate?: Date | string | null
     manufacturer?: string | null
     modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     tickets?: repairTicketUncheckedCreateNestedManyWithoutVehicleInput
@@ -18354,9 +18534,15 @@ export namespace Prisma {
     batteryCycles?: IntNullableFilter<"Vehicle"> | number | null
     batteryTemp?: StringNullableFilter<"Vehicle"> | string | null
     odometer?: StringNullableFilter<"Vehicle"> | string | null
-    lastServiceDaysAgo?: IntNullableFilter<"Vehicle"> | number | null
+    lastServiceDate?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     manufacturer?: StringNullableFilter<"Vehicle"> | string | null
     modelYear?: IntNullableFilter<"Vehicle"> | number | null
+    motorSerial?: StringNullableFilter<"Vehicle"> | string | null
+    motorType?: StringNullableFilter<"Vehicle"> | string | null
+    motorNotes?: StringNullableFilter<"Vehicle"> | string | null
+    controllerSerial?: StringNullableFilter<"Vehicle"> | string | null
+    controllerVersion?: StringNullableFilter<"Vehicle"> | string | null
+    controllerNotes?: StringNullableFilter<"Vehicle"> | string | null
     healthScore?: IntNullableFilter<"Vehicle"> | number | null
     lastAiCheck?: DateTimeNullableFilter<"Vehicle"> | Date | string | null
     customerId?: StringFilter<"Vehicle"> | string
@@ -18431,9 +18617,15 @@ export namespace Prisma {
     batteryCycles?: number | null
     batteryTemp?: string | null
     odometer?: string | null
-    lastServiceDaysAgo?: number | null
+    lastServiceDate?: Date | string | null
     manufacturer?: string | null
     modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customer: customerCreateNestedOneWithoutVehiclesInput
@@ -18449,9 +18641,15 @@ export namespace Prisma {
     batteryCycles?: number | null
     batteryTemp?: string | null
     odometer?: string | null
-    lastServiceDaysAgo?: number | null
+    lastServiceDate?: Date | string | null
     manufacturer?: string | null
     modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
     customerId: string
@@ -18677,9 +18875,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: customerUpdateOneRequiredWithoutVehiclesNestedInput
@@ -18695,9 +18899,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customerId?: StringFieldUpdateOperationsInput | string
@@ -19658,9 +19868,15 @@ export namespace Prisma {
     batteryCycles?: number | null
     batteryTemp?: string | null
     odometer?: string | null
-    lastServiceDaysAgo?: number | null
+    lastServiceDate?: Date | string | null
     manufacturer?: string | null
     modelYear?: number | null
+    motorSerial?: string | null
+    motorType?: string | null
+    motorNotes?: string | null
+    controllerSerial?: string | null
+    controllerVersion?: string | null
+    controllerNotes?: string | null
     healthScore?: number | null
     lastAiCheck?: Date | string | null
   }
@@ -19747,9 +19963,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tickets?: repairTicketUpdateManyWithoutVehicleNestedInput
@@ -19765,9 +19987,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tickets?: repairTicketUncheckedUpdateManyWithoutVehicleNestedInput
@@ -19783,9 +20011,15 @@ export namespace Prisma {
     batteryCycles?: NullableIntFieldUpdateOperationsInput | number | null
     batteryTemp?: NullableStringFieldUpdateOperationsInput | string | null
     odometer?: NullableStringFieldUpdateOperationsInput | string | null
-    lastServiceDaysAgo?: NullableIntFieldUpdateOperationsInput | number | null
+    lastServiceDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
     modelYear?: NullableIntFieldUpdateOperationsInput | number | null
+    motorSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    motorType?: NullableStringFieldUpdateOperationsInput | string | null
+    motorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerSerial?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    controllerNotes?: NullableStringFieldUpdateOperationsInput | string | null
     healthScore?: NullableIntFieldUpdateOperationsInput | number | null
     lastAiCheck?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
