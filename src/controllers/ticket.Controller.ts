@@ -197,7 +197,6 @@ try {
 
   return res.status(200).json({ message: "Ticket deleted successfully." });
 } catch (error) {
-  console.log("Error in deleting Ticket ", error )
  return res.status(404).json({ 
       error: "Ticket not found or already deleted from the ledger." 
     });

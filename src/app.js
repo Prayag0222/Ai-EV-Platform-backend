@@ -4,7 +4,6 @@ import authRoutes from './routes/auth.Routes.js';
 import customerRoutes from './routes/customer.Routes.js'
 import ticketRoutes from './routes/ticket.Routes.js'
 import operationRoutes from './routes/operation.Routes.js';
-// Add this to your imports at the top:
 import inventoryRoutes from './routes/inventory.Routes.js';
 import invoiceRoutes from './routes/invoice.Routes.js';
 import technicianRoutes from './routes/technician.Routes.js';
@@ -29,7 +28,7 @@ app.use(cookieParser())  // ← must be BEFORE your routes
 
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: process.env.CLIENT_URL?.split(","),
     credentials: true,
   })
 );
@@ -45,7 +44,6 @@ app.use(voiceNotes)
 app.use('/api/auth', authRoutes)
 app.use('/api/owner',customerRoutes)
 app.use('/api/owner',ticketRoutes)
-// 🛠️ OPERATIONAL DOMAIN LINK: Mount your greasy-hands technician workspace routes
 app.use('/api/operation', operationRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/invoice', invoiceRoutes);

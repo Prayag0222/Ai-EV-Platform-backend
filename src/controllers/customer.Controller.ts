@@ -8,7 +8,6 @@ export const createCustomer = async (req: Request, res: Response) => {
 
 try{
     const shopId = (req as any).user?.shopId;
-    console.log((req as any).user);
     
 if (!shopId) return res.status(403).json({ message: 'Shop not found.' });
 
