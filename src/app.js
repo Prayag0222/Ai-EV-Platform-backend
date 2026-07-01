@@ -20,18 +20,18 @@ import cookieParser from 'cookie-parser'
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-
-app.use(express.json());
-
-
-app.use(cookieParser())  // ← must be BEFORE your routes
-
+console.log("CLIENT_URL:", process.env.CLIENT_URL);
 app.use(
   cors({
     origin: process.env.CLIENT_URL?.split(","),
     credentials: true,
   })
 );
+app.use(express.json());
+
+
+app.use(cookieParser())  // ← must be BEFORE your routes
+
 
 app.get('/api/health',(req,res)=>(
     res.status(200).json({
