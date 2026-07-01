@@ -15,8 +15,7 @@ import type { Role } from '../generated/client/index.js';
 
 export const authMiddleware = async (req: AuthenticatedRequest, res:Response,next:NextFunction) => {
 
-     console.log("🍪 Cookies:", req.cookies)      // ← add this
-  console.log("🔑 Token:", req.cookies?.authToken)  // ← add this
+  
 
     const token = req.cookies?.authToken || req.headers?.cookie?.split('authToken=')[1]?.split(';')[0];
     
@@ -39,7 +38,7 @@ export const authMiddleware = async (req: AuthenticatedRequest, res:Response,nex
         req.user = decoded;
 
 
-        console.log("🔓 Verified Token Payload Data:", decoded);
+      
 
 
                 next();

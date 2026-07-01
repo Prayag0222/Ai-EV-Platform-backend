@@ -42,7 +42,6 @@ export async function ownerDashboardController(req: Request, res: Response) {
 
     const now = new Date();
     const shopId = (req as any).user?.shopId;
-      console.log("🔍 Dashboard user:", (req as any).user);  // ← add this
 
 
     

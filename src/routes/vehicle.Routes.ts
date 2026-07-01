@@ -4,7 +4,6 @@ import { getTechnicianVehiclesDashboard, getVehicleWorkspace, updateVehicleTelem
 
 const router = Router();
 
-// 📡 FIXED: Added leading slashes and explicit dynamic path parameters
 router.get("/dashboard/:id", getTechnicianVehiclesDashboard);
 router.patch("/vehicle/tickets/:id", updateVehicleTelemetry);
 router.get("/vehicle/workspace/:vehicleId",getVehicleWorkspace);

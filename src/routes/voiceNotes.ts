@@ -24,8 +24,6 @@ router.post(
         return;
       }
 
-      console.log(`🎙️ Multilingual audio received (${req.file.size} bytes). Sending to Groq LPU speed engine...`);
-
       // --- STAGE 1: LIGHTNING FAST TRANSCRIPTION ---
       const audioForm = new FormData();
       const audioBlob = new Blob([req.file.buffer as unknown as BlobPart], { type: 'audio/webm' });
@@ -53,10 +51,7 @@ router.post(
       const whisperResult = (await groqAudioResponse.json()) as GroqWhisperResponse;
       const rawTranscription = whisperResult.text;
       
-      console.log(`✨ Stage 1 (Raw Voice): "${rawTranscription}"`);
-
       // --- STAGE 2: SUB-SECOND AI TRANSLATION ---
-      console.log(`🤖 Passing to stable Llama-3.3-70b-versatile for safe translation...`);
       let polishedEnglishText = rawTranscription;
 
       const groqChatResponse = await fetch(
@@ -94,11 +89,7 @@ router.post(
         if (chatResult?.choices?.[0]?.message?.content) {
           polishedEnglishText = chatResult.choices[0].message.content.trim();
         }
-      } else {
-        console.warn(`Groq LLM rejected request with status: ${groqChatResponse.status}. Using raw text.`);
       }
-
-      console.log(`✨ Stage 2 (Polished English): "${polishedEnglishText}"`);
 
       // --- STAGE 3: PERSIST TO DATABASE ---
       const cleanTicketId = Array.isArray(ticketIdParam) ? ticketIdParam[0] : ticketIdParam;

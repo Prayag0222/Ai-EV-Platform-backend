@@ -10,6 +10,8 @@ import jwt from 'jsonwebtoken';
 export const createShop = async (req: Request, res: Response) => {
   try {
     const ownerId = (req as any).user?.id;
+    console.log("req.user =", (req as any).user);
+console.log("ownerId =", ownerId);
 
     if (!ownerId) {
       return res.status(401).json({ message: 'Unauthorized.' });

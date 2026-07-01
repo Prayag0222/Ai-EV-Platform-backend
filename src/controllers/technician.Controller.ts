@@ -275,7 +275,6 @@ export const updateMobileTicketStatus = async (req: Request, res: Response): Pro
     const idParam = req.params.id;
     const { newStatus } = req.body; // e.g., "IN_SERVICE", "RESOLVED"
     // ✅ Validate Ticket Status Enum
-    console.log(newStatus);
     
     if(!newStatus){
       return res.status(404).json({message:"newStatus is not valid ", newStatus})
@@ -541,7 +540,6 @@ export const createManualNote = async (req: Request, res: Response): Promise<voi
     }
 
     const parsedTicketId = parseInt(String(ticketId), 10);
-    console.log(`🤖 Passing manual text to Llama-3.3-70b-versatile for structuring...`);
 
     let polishedEnglishText = text;
     let computedTags: string[] = ['Manual-Entry'];

@@ -10,8 +10,6 @@ import { Role } from '../generated/client/client.js';
 export const signupUser = async (req, res) => {
   try {
     const { email, name, password, role } = req.body;
-    console.log("Received role:", role);
-
   if(role && !Object.values(Role).includes(role))
   {
      return res.status(400).json({
@@ -105,20 +103,35 @@ export const loginUser = async (req, res) => {
     if (!process.env.JWT_SECRET) {
     throw new Error("JWT_SECRET missing");
 }
+    // Determine the shopId for this login session.
+    // Owner accounts store the shop relation directly on User.shop,
+    // but technician accounts store shopId on the technician record.
+    let sessionShopId = user.shop?.id ?? null;
+
+    if (user.role === Role.TECHNICIAN) {
+      const technicianProfile = await prisma.technician.findFirst({
+        where: { email: user.email.toLowerCase().trim() },
+      });
+      sessionShopId = technicianProfile?.shopId ?? sessionShopId;
+    }
+
     // 6. GENERATE THE JWT TOKEN DYNAMICALLY
     // We bundle the user metadata securely inside the token signature
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role, shopId:user.shop?.id ?? null },
+      { id: user.id, email: user.email, role: user.role, shopId: sessionShopId },
       process.env.JWT_SECRET,
       { expiresIn: '1d' } // Session card automatically invalidates after 24 hours
     );
 
     // 7. INJECT THE JWT INTO AN HTTP-ONLY COOKIE ENVELOPE
-    res.cookie('authToken', token, {
-      httpOnly: true,                      // Absolutely blocks client-side browser JS from stealing the token
-      secure: process.env.NODE_ENV === 'production', // Transmit only over HTTPS in active production
-      sameSite: 'lax',                     // Clean defense blocking Cross-Site Request Forgery (CSRF)
-      maxAge: 24 * 60 * 60 * 1000          // Lifespan set to match 1 day in clean milliseconds
+    const isProduction = process.env.NODE_ENV === "production";
+
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      secure: isProduction,          // HTTPS only in production
+      sameSite: isProduction ? "none" : "lax",
+      maxAge: 24 * 60 * 60 * 1000,
+      path: "/",
     });
 
     // 8. Success Response: Return user data (The token stays hidden inside the cookie headers!)
@@ -129,9 +142,8 @@ export const loginUser = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
-        hasShop: !!user.shop,
-        shopId: user.shop?.id ?? null 
-        
+        hasShop: !!sessionShopId,
+        shopId: sessionShopId,
       }
     });
 
