@@ -20,15 +20,22 @@ import cookieParser from 'cookie-parser'
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+const allowedOrigins = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL.split(",").map((url) => url.trim()).filter(Boolean)
+  : [];
+
 console.log("CLIENT_URL:", process.env.CLIENT_URL);
+console.log("CORS allowed origins:", allowedOrigins.length ? allowedOrigins : "any");
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL?.split(","),
+    origin: allowedOrigins.length ? allowedOrigins : true,
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
-
 
 app.use(cookieParser())  // ← must be BEFORE your routes
 
@@ -41,17 +48,17 @@ app.get('/api/health',(req,res)=>(
     })
 ))
 app.use(voiceNotes)
-app.use('/api/auth', authRoutes)
-app.use('/api/owner',customerRoutes)
-app.use('/api/owner',ticketRoutes)
-app.use('/api/operation', operationRoutes);
-app.use('/api/inventory', inventoryRoutes);
-app.use('/api/invoice', invoiceRoutes);
-app.use('/api/technician', technicianRoutes);
-app.use('/api/vehicles',vehicleRoutes)
-app.use('/api/owner',ownersRoutes)
-app.use('/api/profile', profileRoutes);
-app.use('/api/shop',shopRoutes)
+app.use(['/api/auth', '/auth'], authRoutes)
+app.use(['/api/owner', '/owner'], customerRoutes)
+app.use(['/api/owner', '/owner'], ticketRoutes)
+app.use(['/api/operation', '/operation'], operationRoutes);
+app.use(['/api/inventory', '/inventory'], inventoryRoutes);
+app.use(['/api/invoice', '/invoice'], invoiceRoutes);
+app.use(['/api/technician', '/technician'], technicianRoutes);
+app.use(['/api/vehicles', '/vehicles'], vehicleRoutes)
+app.use(['/api/owner', '/owner'], ownersRoutes)
+app.use(['/api/profile', '/profile'], profileRoutes);
+app.use(['/api/shop', '/shop'], shopRoutes)
 
 app.listen(PORT,()=>{
     console.log(`Industry grade server is running on port ${PORT}`)
