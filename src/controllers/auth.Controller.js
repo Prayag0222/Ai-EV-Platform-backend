@@ -219,6 +219,14 @@ export const getCurrentUser = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.clearCookie('authToken');
-  return res.status(200).json({ message: 'Logged out' });
+  const isProduction = process.env.NODE_ENV === "production";
+
+  res.clearCookie("authToken", {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
+    path: "/",
+  });
+
+  return res.status(200).json({ message: "Logged out" });
 };
