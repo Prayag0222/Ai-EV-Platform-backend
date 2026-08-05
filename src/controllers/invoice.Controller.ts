@@ -15,9 +15,7 @@ const getInvoicePDF = async (
   shopId: string
 ): Promise<{ pdf: Buffer; invoice: any }> => {
 
- console.log("============== PDF DEBUG ==============");
-  console.log("Invoice ID:", invoiceId);
-  console.log("Shop ID:", shopId);
+ 
 
   const invoice = await prisma.invoice.findFirst({
     where: {
@@ -26,7 +24,6 @@ const getInvoicePDF = async (
     },
   });
 
-    console.log("Invoice Found:", invoice);
 
   if (!invoice) {
     throw new Error("Invoice not found");
@@ -62,13 +59,13 @@ export const printInvoicePDF = async (
 
     return res.send(pdf);
   } catch (error) {
-    console.error("PDF print failed:", error);
+  console.error(error);
 
-    return res.status(404).json({
-      success: false,
-      message: "Invoice not found",
-    });
-  }
+  return res.status(500).json({
+    success: false,
+    message: error instanceof Error ? error.message : "PDF generation failed"
+  });
+}
 };
 
 
