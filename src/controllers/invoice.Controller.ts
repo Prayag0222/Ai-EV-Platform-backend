@@ -14,12 +14,19 @@ const getInvoicePDF = async (
   invoiceId: number,
   shopId: string
 ): Promise<{ pdf: Buffer; invoice: any }> => {
+
+ console.log("============== PDF DEBUG ==============");
+  console.log("Invoice ID:", invoiceId);
+  console.log("Shop ID:", shopId);
+
   const invoice = await prisma.invoice.findFirst({
     where: {
       id: invoiceId,
       shopId,
     },
   });
+
+    console.log("Invoice Found:", invoice);
 
   if (!invoice) {
     throw new Error("Invoice not found");
