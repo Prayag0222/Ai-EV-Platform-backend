@@ -161,7 +161,8 @@ exports.Prisma.RepairTicketScalarFieldEnum = {
   customerId: 'customerId',
   technicianId: 'technicianId',
   vehicleId: 'vehicleId',
-  shopId: 'shopId'
+  shopId: 'shopId',
+  diagnosticState: 'diagnosticState'
 };
 
 exports.Prisma.TechnicianNoteScalarFieldEnum = {
@@ -278,9 +279,29 @@ exports.Prisma.ShopScalarFieldEnum = {
   ownerId: 'ownerId'
 };
 
+exports.Prisma.AiConversationScalarFieldEnum = {
+  id: 'id',
+  ticketId: 'ticketId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AiMessageScalarFieldEnum = {
+  id: 'id',
+  conversationId: 'conversationId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.JsonNullValueInput = {
@@ -353,7 +374,9 @@ exports.Prisma.ModelName = {
   invoice: 'invoice',
   technician: 'technician',
   Vehicle: 'Vehicle',
-  shop: 'shop'
+  shop: 'shop',
+  aiConversation: 'aiConversation',
+  aiMessage: 'aiMessage'
 };
 
 /**
