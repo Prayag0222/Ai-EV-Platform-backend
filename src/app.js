@@ -14,6 +14,7 @@ import ownersRoutes from './routes/owners.Routes.js'
 import profileRoutes from './routes/profile.Routes.js';
 import shopRoutes from './routes/shop.Routes.js'
 import cookieParser from 'cookie-parser'
+import aiRoutes from './routes/ai.routes.js'
 
 
 
@@ -59,6 +60,7 @@ app.use(['/api/vehicles', '/vehicles'], vehicleRoutes)
 app.use(['/api/owner', '/owner'], ownersRoutes)
 app.use(['/api/profile', '/profile'], profileRoutes);
 app.use(['/api/shop', '/shop'], shopRoutes)
+app.use("/api/ai", aiRoutes);
 
 app.listen(PORT,()=>{
     console.log(`Industry grade server is running on port ${PORT}`)

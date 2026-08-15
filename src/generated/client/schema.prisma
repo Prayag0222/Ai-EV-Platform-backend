@@ -118,6 +118,10 @@ model repairTicket {
   shopId String
   shop   shop   @relation(fields: [shopId], references: [id], onDelete: Cascade)
 
+  aiConversation aiConversation?
+
+  diagnosticState Json?
+
   // ⚡ NEW MOBILE-FIRST RELATIONS
   notes    technicianNote[]
   timeline timelineEvent[]
@@ -294,4 +298,26 @@ model shop {
   vehicles    Vehicle[]
   inventory   inventory[]
   invoice     invoice[]
+}
+
+model aiConversation {
+  id       String       @id @default(uuid())
+  ticketId Int          @unique
+  ticket   repairTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  messages aiMessage[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model aiMessage {
+  id             String         @id @default(uuid())
+  conversationId String
+  conversation   aiConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  role    String
+  content String
+
+  createdAt DateTime @default(now())
 }
