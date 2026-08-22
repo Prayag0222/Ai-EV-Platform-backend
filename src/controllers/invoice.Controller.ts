@@ -1,6 +1,7 @@
 import { type Request, type Response } from 'express';
 import { prisma } from '../config/prisma.js';
 import { generateInvoicePDF } from "../pdf/pdf.service.js";
+import { TicketStatus } from '../generated/client/index.js';
 
 interface InvoiceItemInput {
   name: string;
@@ -188,6 +189,16 @@ if (Array.isArray(items)) {
     });
   }
 }
+
+    if (paymentStatus === 'PAID' && newInvoice.ticketId !== null) {
+      await prisma.repairTicket.update({
+        where: { id: newInvoice.ticketId },
+        data: {
+          status: TicketStatus.DELIVERED,
+          closedAt: new Date(),
+        },
+      });
+    }
     return res.status(201).json({
       success: true,
       message: 'Invoice created successfully.',
@@ -274,10 +285,24 @@ export const updateInvoicePayment = async (req: Request, res: Response) => {
     return res.status(400).json({ success: false, error: 'A valid invoice and payment status are required.' });
   }
   try {
-    const invoice = await prisma.invoice.update({
-      where: { id },
-      data: { paymentStatus, ...(paymentMethod ? { paymentMethod: String(paymentMethod) } : {}) },
-      include: { ticket: { include: { vehicle: true, technician: true } } }
+    const invoice = await prisma.$transaction(async (tx) => {
+      const updatedInvoice = await tx.invoice.update({
+        where: { id },
+        data: { paymentStatus, ...(paymentMethod ? { paymentMethod: String(paymentMethod) } : {}) },
+        include: { ticket: { include: { vehicle: true, technician: true } } }
+      });
+
+      if (paymentStatus === 'PAID' && updatedInvoice.ticketId !== null) {
+        await tx.repairTicket.update({
+          where: { id: updatedInvoice.ticketId },
+          data: {
+            status: TicketStatus.DELIVERED,
+            closedAt: new Date(),
+          },
+        });
+      }
+
+      return updatedInvoice;
     });
     return res.status(200).json({ success: true, invoice });
   } catch (error) {
