@@ -178,20 +178,22 @@ model usedPart {
 
 model inventory {
   id            Int    @id @default(autoincrement())
-  partName      String // e.g., "Ather 450X Brake Pads"
+  partName      String
   sku           String
-   @@unique([shopId, sku])
-  category      String // e.g., "Electrical", "Consumables", "Drivetrain"
-  stockLevel    Int    @default(0) // How many are on the shelf right now
-  retailPrice   Float // What the customer pays on the final invoice
-  lowStockAlert Int    @default(5) // Triggers the UI warning when stock dips below this number
+  @@unique([shopId, sku])
+  category      String
+  stockLevel    Int    @default(0)
+  retailPrice   Float
+  lowStockAlert Int    @default(5)
+
+  isArchived    Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-shopId  String
-shop    shop   @relation(fields: [shopId], references: [id], onDelete: Cascade)
 
-  // ⚡ LINK ROW: Points to our usedPart history
+  shopId String
+  shop   shop   @relation(fields: [shopId], references: [id], onDelete: Cascade)
+
   usageHistory usedPart[]
 }
 
