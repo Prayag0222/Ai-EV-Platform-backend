@@ -200,6 +200,7 @@ exports.Prisma.InventoryScalarFieldEnum = {
   stockLevel: 'stockLevel',
   retailPrice: 'retailPrice',
   lowStockAlert: 'lowStockAlert',
+  isArchived: 'isArchived',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   shopId: 'shopId'

@@ -9498,6 +9498,7 @@ export namespace Prisma {
     stockLevel: number | null
     retailPrice: number | null
     lowStockAlert: number | null
+    isArchived: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     shopId: string | null
@@ -9511,6 +9512,7 @@ export namespace Prisma {
     stockLevel: number | null
     retailPrice: number | null
     lowStockAlert: number | null
+    isArchived: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     shopId: string | null
@@ -9524,6 +9526,7 @@ export namespace Prisma {
     stockLevel: number
     retailPrice: number
     lowStockAlert: number
+    isArchived: number
     createdAt: number
     updatedAt: number
     shopId: number
@@ -9553,6 +9556,7 @@ export namespace Prisma {
     stockLevel?: true
     retailPrice?: true
     lowStockAlert?: true
+    isArchived?: true
     createdAt?: true
     updatedAt?: true
     shopId?: true
@@ -9566,6 +9570,7 @@ export namespace Prisma {
     stockLevel?: true
     retailPrice?: true
     lowStockAlert?: true
+    isArchived?: true
     createdAt?: true
     updatedAt?: true
     shopId?: true
@@ -9579,6 +9584,7 @@ export namespace Prisma {
     stockLevel?: true
     retailPrice?: true
     lowStockAlert?: true
+    isArchived?: true
     createdAt?: true
     updatedAt?: true
     shopId?: true
@@ -9679,6 +9685,7 @@ export namespace Prisma {
     stockLevel: number
     retailPrice: number
     lowStockAlert: number
+    isArchived: boolean
     createdAt: Date
     updatedAt: Date
     shopId: string
@@ -9711,6 +9718,7 @@ export namespace Prisma {
     stockLevel?: boolean
     retailPrice?: boolean
     lowStockAlert?: boolean
+    isArchived?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     shopId?: boolean
@@ -9727,6 +9735,7 @@ export namespace Prisma {
     stockLevel?: boolean
     retailPrice?: boolean
     lowStockAlert?: boolean
+    isArchived?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     shopId?: boolean
@@ -9741,6 +9750,7 @@ export namespace Prisma {
     stockLevel?: boolean
     retailPrice?: boolean
     lowStockAlert?: boolean
+    isArchived?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     shopId?: boolean
@@ -9755,12 +9765,13 @@ export namespace Prisma {
     stockLevel?: boolean
     retailPrice?: boolean
     lowStockAlert?: boolean
+    isArchived?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     shopId?: boolean
   }
 
-  export type inventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partName" | "sku" | "category" | "stockLevel" | "retailPrice" | "lowStockAlert" | "createdAt" | "updatedAt" | "shopId", ExtArgs["result"]["inventory"]>
+  export type inventoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partName" | "sku" | "category" | "stockLevel" | "retailPrice" | "lowStockAlert" | "isArchived" | "createdAt" | "updatedAt" | "shopId", ExtArgs["result"]["inventory"]>
   export type inventoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     shop?: boolean | shopDefaultArgs<ExtArgs>
     usageHistory?: boolean | inventory$usageHistoryArgs<ExtArgs>
@@ -9787,6 +9798,7 @@ export namespace Prisma {
       stockLevel: number
       retailPrice: number
       lowStockAlert: number
+      isArchived: boolean
       createdAt: Date
       updatedAt: Date
       shopId: string
@@ -10222,6 +10234,7 @@ export namespace Prisma {
     readonly stockLevel: FieldRef<"inventory", 'Int'>
     readonly retailPrice: FieldRef<"inventory", 'Float'>
     readonly lowStockAlert: FieldRef<"inventory", 'Int'>
+    readonly isArchived: FieldRef<"inventory", 'Boolean'>
     readonly createdAt: FieldRef<"inventory", 'DateTime'>
     readonly updatedAt: FieldRef<"inventory", 'DateTime'>
     readonly shopId: FieldRef<"inventory", 'String'>
@@ -18154,6 +18167,7 @@ export namespace Prisma {
     stockLevel: 'stockLevel',
     retailPrice: 'retailPrice',
     lowStockAlert: 'lowStockAlert',
+    isArchived: 'isArchived',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     shopId: 'shopId'
@@ -18431,6 +18445,13 @@ export namespace Prisma {
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -18982,6 +19003,7 @@ export namespace Prisma {
     stockLevel?: IntFilter<"inventory"> | number
     retailPrice?: FloatFilter<"inventory"> | number
     lowStockAlert?: IntFilter<"inventory"> | number
+    isArchived?: BoolFilter<"inventory"> | boolean
     createdAt?: DateTimeFilter<"inventory"> | Date | string
     updatedAt?: DateTimeFilter<"inventory"> | Date | string
     shopId?: StringFilter<"inventory"> | string
@@ -18997,6 +19019,7 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+    isArchived?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     shopId?: SortOrder
@@ -19016,6 +19039,7 @@ export namespace Prisma {
     stockLevel?: IntFilter<"inventory"> | number
     retailPrice?: FloatFilter<"inventory"> | number
     lowStockAlert?: IntFilter<"inventory"> | number
+    isArchived?: BoolFilter<"inventory"> | boolean
     createdAt?: DateTimeFilter<"inventory"> | Date | string
     updatedAt?: DateTimeFilter<"inventory"> | Date | string
     shopId?: StringFilter<"inventory"> | string
@@ -19031,6 +19055,7 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+    isArchived?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     shopId?: SortOrder
@@ -19052,6 +19077,7 @@ export namespace Prisma {
     stockLevel?: IntWithAggregatesFilter<"inventory"> | number
     retailPrice?: FloatWithAggregatesFilter<"inventory"> | number
     lowStockAlert?: IntWithAggregatesFilter<"inventory"> | number
+    isArchived?: BoolWithAggregatesFilter<"inventory"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"inventory"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"inventory"> | Date | string
     shopId?: StringWithAggregatesFilter<"inventory"> | string
@@ -20157,6 +20183,7 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+    isArchived?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     shop: shopCreateNestedOneWithoutInventoryInput
@@ -20171,6 +20198,7 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+    isArchived?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     shopId: string
@@ -20184,6 +20212,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     shop?: shopUpdateOneRequiredWithoutInventoryNestedInput
@@ -20198,6 +20227,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     shopId?: StringFieldUpdateOperationsInput | string
@@ -20212,6 +20242,7 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+    isArchived?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     shopId: string
@@ -20224,6 +20255,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20236,6 +20268,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     shopId?: StringFieldUpdateOperationsInput | string
@@ -21591,6 +21624,11 @@ export namespace Prisma {
     lockedCost?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type inventoryShopIdSkuCompoundUniqueInput = {
     shopId: string
     sku: string
@@ -21604,6 +21642,7 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+    isArchived?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     shopId?: SortOrder
@@ -21624,6 +21663,7 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+    isArchived?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     shopId?: SortOrder
@@ -21637,6 +21677,7 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+    isArchived?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     shopId?: SortOrder
@@ -21647,6 +21688,14 @@ export namespace Prisma {
     stockLevel?: SortOrder
     retailPrice?: SortOrder
     lowStockAlert?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -22673,6 +22722,10 @@ export namespace Prisma {
     connect?: usedPartWhereUniqueInput | usedPartWhereUniqueInput[]
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type shopUpdateOneRequiredWithoutInventoryNestedInput = {
     create?: XOR<shopCreateWithoutInventoryInput, shopUncheckedCreateWithoutInventoryInput>
     connectOrCreate?: shopCreateOrConnectWithoutInventoryInput
@@ -23505,6 +23558,19 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedEnumSaleTypeFilter<$PrismaModel = never> = {
@@ -24903,6 +24969,7 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+    isArchived?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     shop: shopCreateNestedOneWithoutInventoryInput
@@ -24916,6 +24983,7 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+    isArchived?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     shopId: string
@@ -25012,6 +25080,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     shop?: shopUpdateOneRequiredWithoutInventoryNestedInput
@@ -25025,6 +25094,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     shopId?: StringFieldUpdateOperationsInput | string
@@ -25947,6 +26017,7 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+    isArchived?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     usageHistory?: usedPartCreateNestedManyWithoutInventoryItemInput
@@ -25960,6 +26031,7 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+    isArchived?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     usageHistory?: usedPartUncheckedCreateNestedManyWithoutInventoryItemInput
@@ -26184,6 +26256,7 @@ export namespace Prisma {
     stockLevel?: IntFilter<"inventory"> | number
     retailPrice?: FloatFilter<"inventory"> | number
     lowStockAlert?: IntFilter<"inventory"> | number
+    isArchived?: BoolFilter<"inventory"> | boolean
     createdAt?: DateTimeFilter<"inventory"> | Date | string
     updatedAt?: DateTimeFilter<"inventory"> | Date | string
     shopId?: StringFilter<"inventory"> | string
@@ -27073,6 +27146,7 @@ export namespace Prisma {
     stockLevel?: number
     retailPrice: number
     lowStockAlert?: number
+    isArchived?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -27339,6 +27413,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usageHistory?: usedPartUpdateManyWithoutInventoryItemNestedInput
@@ -27352,6 +27427,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usageHistory?: usedPartUncheckedUpdateManyWithoutInventoryItemNestedInput
@@ -27365,6 +27441,7 @@ export namespace Prisma {
     stockLevel?: IntFieldUpdateOperationsInput | number
     retailPrice?: FloatFieldUpdateOperationsInput | number
     lowStockAlert?: IntFieldUpdateOperationsInput | number
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
